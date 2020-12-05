@@ -7,6 +7,6 @@ namespace FKRM.Application.Interfaces
 {
     public interface ISchoolService
     {
-        IEnumerable<SchoolViewModel> GetSchools();
+        SchoolViewModel GetSchools();
     }
 }
