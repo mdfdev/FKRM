@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FKRM.Infra.Data\FKRM.Infra.Data.csproj" />
+    <ProjectReference Include="..\FKRM.Infra.IoC\FKRM.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

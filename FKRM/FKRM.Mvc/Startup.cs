@@ -1,4 +1,5 @@
 using FKRM.Infra.Data.Context;
+using FKRM.Infra.IoC;
 using FKRM.Mvc.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +39,8 @@ namespace FKRM.Mvc
             services.AddDbContext<SchoolDBContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDBConnection"));
             });
+
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +70,11 @@ namespace FKRM.Mvc
             {
                 endpoints.MapRazorPages();
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services )
+        {
+            DependencyContainer.RegisterServices(services);
         }
     }
 }

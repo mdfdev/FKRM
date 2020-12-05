@@ -8,4 +8,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FKRM.Application\FKRM.Application.csproj" />
+    <ProjectReference Include="..\FKRM.Infra.Data\FKRM.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
