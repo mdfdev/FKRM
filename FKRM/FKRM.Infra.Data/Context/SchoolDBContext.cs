@@ -14,5 +14,8 @@ namespace FKRM.Infra.Data.Context
         }
         public DbSet<School> schools { get; set; }
         public DbSet<Gender> genders { get; set; }
+        public DbSet<Feature> features { get; set; }
+        public DbSet<OUType> oUTypes { get; set; }
+        public DbSet<UnitType> unitTypes { get; set; }
     }
 }
