@@ -32,13 +32,15 @@ namespace FKRM.Mvc
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SchoolIdentityDBConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
 
             services.AddDbContext<SchoolDBContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDBConnection"));
             });
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
             RegisterServices(services);
         }
@@ -53,11 +55,10 @@ namespace FKRM.Mvc
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -68,11 +69,13 @@ namespace FKRM.Mvc
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
-
-        private static void RegisterServices(IServiceCollection services )
+        private static void RegisterServices(IServiceCollection services)
         {
             DependencyContainer.RegisterServices(services);
         }
