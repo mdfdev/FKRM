@@ -15,9 +15,11 @@ namespace FKRM.Infra.IoC
         {
             //Application Layer
             services.AddScoped<ISchoolService,SchoolService>();
+            services.AddScoped<IGenderService, GenderService>();
 
             //Infra.Data.Layer
             services.AddScoped<ISchoolRepository,SchoolRepository>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace FKRM.Infra.Data.Context
 
         }
         public DbSet<School> schools { get; set; }
+        public DbSet<Gender> genders { get; set; }
     }
 }

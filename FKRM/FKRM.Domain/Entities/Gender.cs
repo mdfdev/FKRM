@@ -5,13 +5,9 @@ using System.Text;
 
 namespace FKRM.Domain.Entities
 {
-    public class School : IEntity
+    public class Gender : IEntity
     {
         public int Id { get; set ; }
         public string Name { get; set; }
-        public string Code { get; set; }
-
-        public int GenderId { get; set; }
-        public Gender Gender { get; set; }
     }
 }
