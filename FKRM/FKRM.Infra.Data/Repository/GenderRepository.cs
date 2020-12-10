@@ -16,7 +16,7 @@ namespace FKRM.Infra.Data.Repository
         }
         public IEnumerable<Gender> GetGenders()
         {
-            return _ctx.genders;
+            return _ctx.Genders;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace FKRM.Infra.Data.Repository
         }
         public IEnumerable<School> GetSchools()
         {
-            return _ctx.schools;
+            return _ctx.Schools;
         }
     }
 }

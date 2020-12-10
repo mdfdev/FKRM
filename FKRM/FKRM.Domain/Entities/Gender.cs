@@ -8,6 +8,9 @@ namespace FKRM.Domain.Entities
     public class Gender : IEntity
     {
         public int Id { get; set ; }
+
         public string Name { get; set; }
+
+        public List<School> Schools { get; set; }
     }
 }
