@@ -6,16 +6,14 @@ using System.Text;
 namespace FKRM.Domain.Entities
 {
     /// <summary>
-    /// جنسیت
+    /// زمینه رشته
     /// </summary>
-    public class Gender : IEntity
+    public class Area : IEntity
     {
         public int Id { get; set ; }
-        /// <summary>
-        /// نوع جنسیت
-        /// </summary>
         public string Name { get; set; }
+        public Branch Branch { get; set; }
 
-        public List<School> Schools { get; set; }
+        public List<Group> Groups { get; set; }
     }
 }

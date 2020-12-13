@@ -14,6 +14,12 @@ namespace FKRM.Infra.Data.Context
         public DbSet<Feature> Features { get; set; }
         public DbSet<OUType> OUTypes { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
+
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Major> Majors { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public  SchoolDBContext(DbContextOptions options):base(options)
         {
 

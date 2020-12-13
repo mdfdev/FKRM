@@ -1,17 +1,15 @@
 ﻿using FKRM.Domain.Common;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Entities
 {
     /// <summary>
-    /// ویژگی مدرسه
+    /// شاخه تحصیلی
     /// </summary>
-    public class Feature : IEntity
+    public class Branch : IEntity
     {
         public int Id { get ; set ; }
         public string Name { get; set; }
-        public List<School> Schools { get; set; }
+        public List<Area> Areas { get; set; }
     }
 }
