@@ -24,5 +24,8 @@ namespace FKRM.Domain.Entities
         /// </summary>
         public int Credits { get; set; }
         public Major Major { get; set; }
+        public MarkingType MarkingType { get; set; }
+        public Grade Grade { get; set; }
+        public List<Enrollment> Enrollments { get; set; }
     }
 }

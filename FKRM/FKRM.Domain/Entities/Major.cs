@@ -27,6 +27,10 @@ namespace FKRM.Domain.Entities
         /// تعداد واحد اختیاری یا انتخابی
         /// </summary>
         public int OptionalElectiveCredit { get; set; }
+        /// <summary>
+        /// تعداد واحد فارغ التحصیلی
+        /// </summary>
+        public int GraduationCredits { get; set; }
         public Group Group { get; set; }
         public List<Course> Courses { get; set; }
     }
