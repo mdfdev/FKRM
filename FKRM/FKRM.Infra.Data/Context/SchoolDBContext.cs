@@ -46,11 +46,23 @@ namespace FKRM.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GenderConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AcademicCalendarConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AreaConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BranchConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CourseConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EnrollmentConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeatureConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UnitTypeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GenderConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GradeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GroupConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MajorConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MarkingTypeConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OUTypeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RoomConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ScheduleConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SchoolConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(StaffConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UnitTypeConfiguration).Assembly);
         }
         #endregion
     }

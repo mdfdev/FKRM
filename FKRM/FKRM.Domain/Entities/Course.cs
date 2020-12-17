@@ -23,6 +23,11 @@ namespace FKRM.Domain.Entities
         /// تعداد واحد
         /// </summary>
         public int Credits { get; set; }
+        /// <summary>
+        /// حد نصاب قبولی
+        /// </summary>
+        public int PassMark { get; set; }
+
         public Major Major { get; set; }
         public MarkingType MarkingType { get; set; }
         public Grade Grade { get; set; }
