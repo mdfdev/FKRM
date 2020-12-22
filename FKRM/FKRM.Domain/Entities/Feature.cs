@@ -12,6 +12,6 @@ namespace FKRM.Domain.Entities
     {
         public int Id { get ; set ; }
         public string Name { get; set; }
-        public List<School> Schools { get; set; }
+        public ICollection<School> Schools { get; set; }
     }
 }

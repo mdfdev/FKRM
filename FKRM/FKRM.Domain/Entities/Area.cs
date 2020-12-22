@@ -14,6 +14,6 @@ namespace FKRM.Domain.Entities
         public string Name { get; set; }
         public Branch Branch { get; set; }
 
-        public List<Group> Groups { get; set; }
+        public ICollection<Group> Groups { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace FKRM.Domain.Entities
         /// نوع اداره خصوصی یا دولتی
         /// </summary>
         public string Name { get; set; }
-        public List<School> Schools { get; set; }
+        public ICollection<School> Schools { get; set; }
 
     }
 }

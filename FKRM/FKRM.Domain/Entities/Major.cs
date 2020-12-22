@@ -32,6 +32,6 @@ namespace FKRM.Domain.Entities
         /// </summary>
         public int GraduationCredits { get; set; }
         public Group Group { get; set; }
-        public List<Course> Courses { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

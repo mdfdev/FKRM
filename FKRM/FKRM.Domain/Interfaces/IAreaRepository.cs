@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace FKRM.Domain.Interfaces
+namespace FKRM.Application.Interfaces.Repositories
 {
-    public interface IAreaRepository
+    public interface IAreaRepository 
     {
         IEnumerable<Area> GetAreas();
     }

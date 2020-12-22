@@ -10,6 +10,6 @@ namespace FKRM.Domain.Entities
     {
         public int Id { get ; set ; }
         public string Name { get; set; }
-        public List<Area> Areas { get; set; }
+        public ICollection<Area> Areas { get; set; }
     }
 }

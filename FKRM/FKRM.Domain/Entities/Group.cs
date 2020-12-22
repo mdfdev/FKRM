@@ -13,6 +13,6 @@ namespace FKRM.Domain.Entities
         public int Id { get ; set ; }
         public string Name { get; set; }
         public Area Area { get; set; }
-        public List<Major> Majors { get; set; }
+        public ICollection<Major> Majors { get; set; }
     }
 }

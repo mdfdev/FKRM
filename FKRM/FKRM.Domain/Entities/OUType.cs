@@ -15,6 +15,6 @@ namespace FKRM.Domain.Entities
         /// نوع واحد سازمانی
         /// </summary>
         public string Name { get; set; }
-        public List<School> Schools { get; set; }
+        public ICollection<School> Schools { get; set; }
     }
 }

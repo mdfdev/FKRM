@@ -1,4 +1,5 @@
 ﻿using FKRM.Application.Interfaces;
+using FKRM.Application.Interfaces.Repositories;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Interfaces;
 using System;

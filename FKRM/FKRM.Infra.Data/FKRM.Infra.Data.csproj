@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FKRM.Application\FKRM.Application.csproj" />
     <ProjectReference Include="..\FKRM.Domain\FKRM.Domain.csproj" />
   </ItemGroup>
 

@@ -14,6 +14,6 @@ namespace FKRM.Domain.Entities
         public int DayOfTheWeek { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }
-        public List<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

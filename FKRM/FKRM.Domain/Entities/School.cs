@@ -26,5 +26,6 @@ namespace FKRM.Domain.Entities
         public Feature Feature { get; set; }
         public OUType OUType { get; set; }
         public UnitType UnitType { get; set; }
+        public ICollection<Room> Rooms { get; set; }
     }
 }

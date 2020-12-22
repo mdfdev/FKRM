@@ -13,6 +13,6 @@ namespace FKRM.Domain.Entities
         public int Id { get; set; }
         public string AcademicYear { get; set; }
         public string AcademicQuarter { get; set; }
-        public List<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

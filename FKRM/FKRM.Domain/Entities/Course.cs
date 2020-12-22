@@ -31,6 +31,6 @@ namespace FKRM.Domain.Entities
         public Major Major { get; set; }
         public MarkingType MarkingType { get; set; }
         public Grade Grade { get; set; }
-        public List<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
