@@ -10,7 +10,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Major : IEntity
     {
-        public int Id { get ; set ; }
+        public int Id { get; set; }
         /// <summary>
         /// نام رشته
         /// </summary>

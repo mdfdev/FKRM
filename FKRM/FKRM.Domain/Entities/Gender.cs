@@ -10,7 +10,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Gender : IEntity
     {
-        public int Id { get; set ; }
+        public int Id { get; set; }
         /// <summary>
         /// نوع جنسیت
         /// </summary>

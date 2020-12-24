@@ -10,10 +10,11 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Area : IEntity
     {
-        public int Id { get; set ; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public Branch Branch { get; set; }
 
         public ICollection<Group> Groups { get; set; }
+        
     }
 }

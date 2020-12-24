@@ -8,7 +8,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Branch : IEntity
     {
-        public int Id { get ; set ; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Area> Areas { get; set; }
     }

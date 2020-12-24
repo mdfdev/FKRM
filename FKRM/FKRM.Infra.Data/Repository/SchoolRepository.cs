@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FKRM.Infra.Data.Repository
 {
-    public class SchoolRepository : ISchoolRepository
+    public class SchoolRepository :  ISchoolRepository
     {
         private SchoolDBContext _ctx;
         public SchoolRepository(SchoolDBContext ctx)

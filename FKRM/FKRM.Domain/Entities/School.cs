@@ -13,7 +13,7 @@ namespace FKRM.Domain.Entities
     /// </remarks>
     public class School : IEntity
     {
-        public int Id { get; set ; }
+        public int Id { get; set; }
         /// <summary>
         /// نام مدرسه
         /// </summary>

@@ -10,7 +10,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class OUType : IEntity
     {
-        public int Id { get ; set ; }
+        public int Id { get; set; }
         /// <summary>
         /// نوع واحد سازمانی
         /// </summary>

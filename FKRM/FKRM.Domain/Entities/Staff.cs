@@ -5,6 +5,9 @@ using System.Text;
 
 namespace FKRM.Domain.Entities
 {
+    /// <summary>
+    /// پرسنل
+    /// </summary>
     public class Staff : IEntity
     {
         public int Id { get; set; }

@@ -10,7 +10,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Group : IEntity
     {
-        public int Id { get ; set ; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public Area Area { get; set; }
         public ICollection<Major> Majors { get; set; }

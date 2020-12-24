@@ -10,7 +10,7 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Feature : IEntity
     {
-        public int Id { get ; set ; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<School> Schools { get; set; }
     }
