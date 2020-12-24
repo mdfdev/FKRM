@@ -1,6 +1,7 @@
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.IoC;
 using FKRM.Mvc.Data;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,7 +36,7 @@ namespace FKRM.Mvc
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddMediatR(typeof(Startup));
             RegisterServices(services);
         }
 
