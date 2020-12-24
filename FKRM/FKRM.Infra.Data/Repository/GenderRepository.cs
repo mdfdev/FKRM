@@ -14,6 +14,13 @@ namespace FKRM.Infra.Data.Repository
         {
             _ctx = ctx;
         }
+
+        public void Add(Gender gender)
+        {
+            _ctx.Genders.Add(gender);
+            _ctx.SaveChanges();
+        }
+
         public IEnumerable<Gender> GetGenders()
         {
             return _ctx.Genders;

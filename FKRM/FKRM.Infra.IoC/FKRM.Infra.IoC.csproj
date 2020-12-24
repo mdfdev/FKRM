@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FKRM.Application\FKRM.Application.csproj" />
+    <ProjectReference Include="..\FKRM.Infra.Bus\FKRM.Infra.Bus.csproj" />
     <ProjectReference Include="..\FKRM.Infra.Data\FKRM.Infra.Data.csproj" />
   </ItemGroup>
 

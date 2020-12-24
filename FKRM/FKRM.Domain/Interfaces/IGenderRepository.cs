@@ -8,5 +8,6 @@ namespace FKRM.Domain.Interfaces
     public interface IGenderRepository
     {
         IEnumerable<Gender> GetGenders();
+        void Add(Gender gender);
     }
 }

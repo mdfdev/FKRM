@@ -11,4 +11,8 @@
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FKRM.Domain.Core\FKRM.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

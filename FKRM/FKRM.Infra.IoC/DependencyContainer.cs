@@ -1,8 +1,14 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Interfaces.Repositories;
 using FKRM.Application.Services;
+using FKRM.Domain.CommandHandlers;
+using FKRM.Domain.Commands;
+using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
+using FKRM.Infra.Bus;
+using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +20,12 @@ namespace FKRM.Infra.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            //Domain InMemoryBus MediatR
+            services.AddScoped<IMediatorHandler,InMemoryBus>();
+
+            //Domain Handler
+            services.AddScoped<IRequestHandler<CreateGenderCommand,bool>,GenderCommandHandler>();
+
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();
             services.AddScoped<IAreaService, AreaService>();
@@ -52,6 +64,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IUnitTypeRepository, UnitTypeRepository>();
+            services.AddScoped<SchoolDBContext>();
         }
     }
 }
