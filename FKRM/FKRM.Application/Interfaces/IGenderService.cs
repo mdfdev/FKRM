@@ -8,5 +8,6 @@ namespace FKRM.Application.Interfaces
     public interface IGenderService
     {
         GenderViewModel GetGenders();
+        void Create(GenderViewModel genderViewModel);
     }
 }

@@ -7,6 +7,7 @@ namespace FKRM.Application.ViewModels
 {
     public class GenderViewModel
     {
+        public string Name { get; set; }
         public IEnumerable<Gender> genders { get; set; }
     }
 }
