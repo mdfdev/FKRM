@@ -21,7 +21,9 @@ namespace FKRM.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] GenderViewModel genderViewModel)
         {
+
             _genderService.Create(genderViewModel);
+
             return Ok(genderViewModel);
         }
     }
