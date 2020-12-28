@@ -1,5 +1,6 @@
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.IoC;
+using FKRM.Mvc.Configurations;
 using FKRM.Mvc.Data;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,7 @@ namespace FKRM.Mvc
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMediatR(typeof(Startup));
+            services.RegisterAutoMapper();
             RegisterServices(services);
         }
 

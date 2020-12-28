@@ -1,3 +1,4 @@
+using FKRM.Api.Configurations;
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.IoC;
 using MediatR;
@@ -37,6 +38,7 @@ namespace FKRM.Api
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title="School Api",Version="v1"  });
             });
             services.AddMediatR(typeof(Startup));
+            services.RegisterAutoMapper();
             RegisterServices(services);
         }
 

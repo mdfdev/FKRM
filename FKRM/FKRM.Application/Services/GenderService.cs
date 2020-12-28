@@ -1,4 +1,6 @@
-﻿using FKRM.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands;
 using FKRM.Domain.Core.Bus;
@@ -12,25 +14,23 @@ namespace FKRM.Application.Services
     public class GenderService : IGenderService
     {
         private readonly IGenderRepository _genderRepository;
-        private readonly IMediatorHandler _bus; 
-        public GenderService(IGenderRepository repository,IMediatorHandler bus)
+        private readonly IMediatorHandler _bus;
+        private readonly IMapper _autoMapper;
+        public GenderService(IGenderRepository repository,IMediatorHandler bus,IMapper mapper)
         {
             _genderRepository = repository;
             _bus = bus;
+            _autoMapper = mapper;
         }
 
         public void Create(GenderViewModel genderViewModel)
         {
-            var createGenderCommand = new CreateGenderCommand(genderViewModel.Name);
-            _bus.SendCommand(createGenderCommand);
+            _bus.SendCommand(_autoMapper.Map< CreateGenderCommand>(genderViewModel));
         }
 
-        public GenderViewModel GetGenders()
+        public IEnumerable<GenderViewModel> GetGenders()
         {
-            return new GenderViewModel()
-            {
-                genders = _genderRepository.GetGenders()
-            };
+            return _genderRepository.GetGenders().ProjectTo<GenderViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }
