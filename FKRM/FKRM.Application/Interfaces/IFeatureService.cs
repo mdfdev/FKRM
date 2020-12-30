@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IFeatureService
     {
-        FeatureViewModel GetFeatures();
+        IEnumerable<FeatureViewModel> GetFeatures();
+        void Create(FeatureViewModel  featureViewModel);
     }
 }

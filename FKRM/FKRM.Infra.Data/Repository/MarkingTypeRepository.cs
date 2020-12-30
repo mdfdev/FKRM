@@ -1,9 +1,7 @@
 ﻿using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
 using FKRM.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace FKRM.Infra.Data.Repository
 {
@@ -14,7 +12,13 @@ namespace FKRM.Infra.Data.Repository
         {
             _ctx = context;
         }
-        public IEnumerable<MarkingType> GetMarkingTypes()
+        public void Add(MarkingType markingType)
+        {
+            _ctx.Add(markingType);
+            _ctx.SaveChanges();
+        }
+
+        public IQueryable<MarkingType> GetMarkingTypes()
         {
             return _ctx.MarkingTypes;
         }

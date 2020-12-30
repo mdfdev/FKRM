@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class StaffViewModel
     {
-        public IEnumerable<Staff> staffs { get; set; }
+        public string Name { get; set; }
     }
 }

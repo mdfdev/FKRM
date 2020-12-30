@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands;
+using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using System;

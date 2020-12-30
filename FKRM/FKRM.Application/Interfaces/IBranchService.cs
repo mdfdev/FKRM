@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IBranchService
     {
-        BranchViewModel GetBranchs();
+        IEnumerable<BranchViewModel> GetBranchs();
+        void Create(BranchViewModel branchViewModel);
     }
 }

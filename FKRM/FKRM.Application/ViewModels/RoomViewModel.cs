@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class RoomViewModel
     {
-        public IEnumerable<Room> rooms { get; set; }
+        public string Name { get; set; }
     }
 }

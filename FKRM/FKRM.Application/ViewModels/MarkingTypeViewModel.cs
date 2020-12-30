@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class MarkingTypeViewModel
     {
-        public IEnumerable<MarkingType> markingTypes { get; set; }
+        public string Name { get; set; }
     }
 }

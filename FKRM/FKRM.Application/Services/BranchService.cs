@@ -1,5 +1,9 @@
-﻿using FKRM.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.Commands.Branch;
+using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,16 +14,22 @@ namespace FKRM.Application.Services
     public class BranchService : IBranchService
     {
         private IBranchRepository _branchRepository;
-        public BranchService(IBranchRepository repository)
+        private readonly IMediatorHandler _bus;
+        private readonly IMapper _autoMapper;
+        public BranchService(IBranchRepository repository, IMediatorHandler bus, IMapper mapper)
         {
             _branchRepository = repository;
+            _bus = bus;
+            _autoMapper = mapper;
         }
-        public BranchViewModel GetBranchs()
+        public void Create(BranchViewModel branchViewModel)
         {
-            return new BranchViewModel()
-            {
-                branches = _branchRepository.GetBranches()
-            };
+            _bus.SendCommand(_autoMapper.Map<CreateBranchCommand>(branchViewModel));
+        }
+
+        public IEnumerable<BranchViewModel> GetBranchs()
+        {
+            return _branchRepository.GetBranches().ProjectTo<BranchViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

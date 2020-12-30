@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class ScheduleViewModel
     {
-        public IEnumerable<Schedule> schedules { get; set; }
+        public string Name { get; set; }
     }
 }

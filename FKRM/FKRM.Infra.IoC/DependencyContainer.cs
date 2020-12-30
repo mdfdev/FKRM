@@ -1,8 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
-using FKRM.Application.Interfaces.Repositories;
 using FKRM.Application.Services;
 using FKRM.Domain.CommandHandlers;
-using FKRM.Domain.Commands;
+using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using FKRM.Infra.Bus;

@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IStaffService
     {
-        StaffViewModel GetStaff();
+        IEnumerable<StaffViewModel> GetStaff();
+        void Create(StaffViewModel staffViewModel);
     }
 }

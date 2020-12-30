@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class MajorViewModel
     {
-        public IEnumerable<Major> majors { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,5 +1,9 @@
-﻿using FKRM.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.Commands.Grade;
+using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,16 +14,22 @@ namespace FKRM.Application.Services
     public class GradeService : IGradeService
     {
         private IGradeRepository _gradeRepository;
-        public GradeService(IGradeRepository repository)
+        private readonly IMediatorHandler _bus;
+        private readonly IMapper _autoMapper;
+        public GradeService(IGradeRepository repository, IMediatorHandler bus, IMapper mapper)
         {
             _gradeRepository = repository;
+            _bus = bus;
+            _autoMapper = mapper;
         }
-        public GradeViewModel GetGrades()
+        public void Create(GradeViewModel gradeViewModel)
         {
-            return new GradeViewModel()
-            {
-                grades = _gradeRepository.GetGrades()
-            };
+            _bus.SendCommand(_autoMapper.Map<CreateGradeCommand>(gradeViewModel));
+        }
+
+        public IEnumerable<GradeViewModel> GetGrades()
+        {
+            return _gradeRepository.GetGrades().ProjectTo<GradeViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

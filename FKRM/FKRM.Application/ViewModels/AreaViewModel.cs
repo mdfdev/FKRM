@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class AreaViewModel
     {
-        public IEnumerable<Area>  areas { get; set; }
+        public string Name { get; set; }
     }
 }

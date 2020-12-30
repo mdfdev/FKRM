@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class OUTypeViewModel
     {
-        public IEnumerable<OUType> oUTypes { get; set; }
+        public string Name { get; set; }
     }
 }

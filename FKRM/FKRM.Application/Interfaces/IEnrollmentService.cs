@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IEnrollmentService
     {
-        EnrollmentViewModel GetEnrollments();
+        IEnumerable<EnrollmentViewModel> GetEnrollments();
+        void Create(EnrollmentViewModel enrollmentViewModel);
     }
 }

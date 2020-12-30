@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IMarkingTypeService
     {
-        MarkingTypeViewModel GetMarkingTypes();
+        IEnumerable<MarkingTypeViewModel> GetMarkingTypes();
+        void Create(MarkingTypeViewModel markingTypeViewModel);
     }
 }

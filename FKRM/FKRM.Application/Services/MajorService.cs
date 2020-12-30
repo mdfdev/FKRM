@@ -1,5 +1,9 @@
-﻿using FKRM.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.Commands.Major;
+using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,16 +14,22 @@ namespace FKRM.Application.Services
     public class MajorService : IMajorService
     {
         private IMajorRepository _majorRepository;
-        public MajorService(IMajorRepository repository)
+        private readonly IMediatorHandler _bus;
+        private readonly IMapper _autoMapper;
+        public MajorService(IMajorRepository repository, IMediatorHandler bus, IMapper mapper)
         {
             _majorRepository = repository;
+            _bus = bus;
+            _autoMapper = mapper;
         }
-        public MajorViewModel GetMajors()
+        public void Create(MajorViewModel majorViewModel)
         {
-            return new MajorViewModel()
-            {
-                majors = _majorRepository.GetMajors()
-            };
+            _bus.SendCommand(_autoMapper.Map<CreateMajorCommand>(majorViewModel));
+        }
+
+        public IEnumerable<MajorViewModel> GetMajors()
+        {
+            return _majorRepository.GetMajors().ProjectTo<MajorViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

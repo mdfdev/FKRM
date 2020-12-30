@@ -1,4 +1,4 @@
-﻿using FKRM.Domain.Commands;
+﻿using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
 using MediatR;

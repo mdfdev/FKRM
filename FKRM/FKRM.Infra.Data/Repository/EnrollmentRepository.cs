@@ -3,6 +3,7 @@ using FKRM.Domain.Interfaces;
 using FKRM.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FKRM.Infra.Data.Repository
@@ -14,7 +15,13 @@ namespace FKRM.Infra.Data.Repository
         {
             _ctx = context;
         }
-        public IEnumerable<Enrollment> GetEnrollments()
+        public void Add(Enrollment enrollment)
+        {
+            _ctx.Add(enrollment);
+            _ctx.SaveChanges();
+        }
+
+        public IQueryable<Enrollment> GetEnrollments()
         {
             return _ctx.Enrollments;
         }

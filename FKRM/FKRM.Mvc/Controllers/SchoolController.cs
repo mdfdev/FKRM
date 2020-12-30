@@ -17,8 +17,7 @@ namespace FKRM.Mvc.Controllers
         }
         public IActionResult Index()
         {
-            SchoolViewModel model = _schoolService.GetSchools();
-            return View(model);
+            return View(_schoolService.GetSchools());
         }
     }
 }

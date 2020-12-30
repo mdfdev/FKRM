@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class BranchViewModel
     {
-        public IEnumerable<Branch> branches  { get; set; }
+        public string Name { get; set; }
     }
 }

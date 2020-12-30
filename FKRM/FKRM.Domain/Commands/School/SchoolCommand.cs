@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FKRM.Domain.Commands
+namespace FKRM.Domain.Commands.School
 {
-    public abstract class GenderCommand:Command
+    public abstract class SchoolCommand:Command
     {
         public string Name { get; protected set; }
+        public string Code { get; protected set; }
     }
 }

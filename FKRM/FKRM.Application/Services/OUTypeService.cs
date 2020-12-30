@@ -1,5 +1,9 @@
-﻿using FKRM.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.Commands.OUType;
+using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,16 +14,22 @@ namespace FKRM.Application.Services
     public class OUTypeService : IOUTypeService
     {
         private IOUTypeRepository _oUTypeRepository;
-        public OUTypeService(IOUTypeRepository repository)
+        private readonly IMediatorHandler _bus;
+        private readonly IMapper _autoMapper;
+        public OUTypeService(IOUTypeRepository repository, IMediatorHandler bus, IMapper mapper)
         {
             _oUTypeRepository = repository;
+            _bus = bus;
+            _autoMapper = mapper;
         }
-        public OUTypeViewModel GetOUTypes()
+        public void Create(OUTypeViewModel oUTypeViewModel)
         {
-            return new OUTypeViewModel()
-            {
-                oUTypes = _oUTypeRepository.GetOUTypes()
-            };
+            _bus.SendCommand(_autoMapper.Map<CreateOUTypeCommand>(oUTypeViewModel));
+        }
+
+        public IEnumerable<OUTypeViewModel> GetOUTypes()
+        {
+            return _oUTypeRepository.GetOUTypes().ProjectTo<OUTypeViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

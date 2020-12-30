@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class GradeViewModel
     {
-        public IEnumerable<Grade> grades{ get; set; }
+        public string Name { get; set; }
     }
 }

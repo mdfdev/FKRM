@@ -1,12 +1,14 @@
 ﻿using FKRM.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FKRM.Domain.Interfaces
 {
     public interface IUnitTypeRepository
     {
-        IEnumerable<UnitType> GetUnitTypes();
+        IQueryable<UnitType> GetUnitTypes();
+        void Add(UnitType unitType);
     }
 }

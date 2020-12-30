@@ -1,9 +1,9 @@
-﻿using FKRM.Application.Interfaces.Repositories;
-using FKRM.Domain.Entities;
+﻿using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
 using FKRM.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FKRM.Infra.Data.Repository
@@ -15,7 +15,13 @@ namespace FKRM.Infra.Data.Repository
         {
             _ctx = context;
         }
-        public IEnumerable<Area> GetAreas()
+        public void Add(Area area)
+        {
+            _ctx.Add(area);
+            _ctx.SaveChanges();
+        }
+
+        public IQueryable<Area> GetAreas()
         {
             return _ctx.Areas;
         }

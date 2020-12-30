@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IScheduleService
     {
-        ScheduleViewModel GetSchedules(); 
+        IEnumerable<ScheduleViewModel> GetSchedules();
+        void Create(ScheduleViewModel scheduleViewModel);
     }
 }

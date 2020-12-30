@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FKRM.Domain.Commands
+namespace FKRM.Domain.Commands.Gender
 {
-    public class CreateGenderCommand:GenderCommand
+    public class CreateGenderCommand:AcademicCalendarCommand
     {
         public CreateGenderCommand(string name)
         {

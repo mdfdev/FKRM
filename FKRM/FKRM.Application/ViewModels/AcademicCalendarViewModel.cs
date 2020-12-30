@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class AcademicCalendarViewModel
     {
-        public IEnumerable<AcademicCalendar>  academicCalendars { get; set; }
+        public string Name { get; set; }
     }
 }

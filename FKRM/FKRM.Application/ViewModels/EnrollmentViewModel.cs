@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class EnrollmentViewModel
     {
-        public IEnumerable<Enrollment> enrollments { get; set; }
+        public string Name { get; set; }
     }
 }

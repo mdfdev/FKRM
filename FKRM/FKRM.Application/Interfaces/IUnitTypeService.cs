@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IUnitTypeService
     {
-        UnitTypeViewModel GetUnitTypes();
+        IEnumerable<UnitTypeViewModel> GetUnitTypes();
+        void Create(UnitTypeViewModel unitTypeViewModel);
     }
 }

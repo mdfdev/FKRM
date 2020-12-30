@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IRoomService
     {
-        RoomViewModel GetRooms();
+        IEnumerable<RoomViewModel> GetRooms();
+        void Create(RoomViewModel roomViewModel);
     }
 }

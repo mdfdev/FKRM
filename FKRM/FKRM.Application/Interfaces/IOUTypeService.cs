@@ -7,6 +7,7 @@ namespace FKRM.Application.Interfaces
 {
     public interface IOUTypeService
     {
-        OUTypeViewModel GetOUTypes();
+        IEnumerable<OUTypeViewModel> GetOUTypes();
+        void Create(OUTypeViewModel oUTypeViewModel);
     }
 }

@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class GroupViewModel
     {
-        public IEnumerable<Group> groups { get; set; }
+        public string Name { get; set; }
     }
 }

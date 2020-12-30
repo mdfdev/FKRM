@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class FeatureViewModel
     {
-        public IEnumerable<Feature> features  { get; set; }
+        public string Name { get; set; }
     }
 }

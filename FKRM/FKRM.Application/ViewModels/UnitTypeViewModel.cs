@@ -7,6 +7,6 @@ namespace FKRM.Application.ViewModels
 {
     public class UnitTypeViewModel
     {
-        public IEnumerable<UnitType> unitTypes { get; set; }
+        public string Name { get; set; }
     }
 }
