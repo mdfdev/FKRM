@@ -1,17 +1,15 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Services;
-using FKRM.Domain.CommandHandlers;
+using FKRM.Domain.CommandHandlers.Gender;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using FKRM.Infra.Bus;
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Infra.IoC
 {
@@ -23,7 +21,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMediatorHandler,InMemoryBus>();
 
             //Domain Handler
-            services.AddScoped<IRequestHandler<CreateGenderCommand,bool>,GenderCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>,CreateGenderCommandHandler>();
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.CommandHandlers.Gender;
 using FKRM.Domain.Commands.AcademicCalendar;
 using FKRM.Domain.Commands.Area;
 using FKRM.Domain.Commands.Branch;

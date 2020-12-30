@@ -4,11 +4,11 @@ using System.Text;
 
 namespace FKRM.Domain.Commands.Gender
 {
-    public class CreateGenderCommand : GenderCommand
+    public class DeleteGenderCommand : GenderCommand
     {
-        public CreateGenderCommand(string name)
+        public DeleteGenderCommand(int id)
         {
-            Name = name;
+            ID = id;
         }
     }
 }

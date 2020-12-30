@@ -5,9 +5,7 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Application.Services
 {

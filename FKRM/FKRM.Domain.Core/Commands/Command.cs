@@ -1,4 +1,4 @@
-﻿using FKRM.Domain.Core.Events;
+﻿using FKRM.Domain.Core.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
