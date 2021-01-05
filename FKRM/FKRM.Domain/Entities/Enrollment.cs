@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// اطلاعات ثبت نام کلاس
     /// </summary>
-    public class Enrollment : IEntity
+    public class Enrollment : BaseEntity
     {
-        public int Id { get; set; }
         public Staff Staff { get; set; }
         public Course Course { get; set; }
         public Room Room { get; set; }

@@ -11,9 +11,8 @@ namespace FKRM.Domain.Entities
     /// <remarks>
     /// This class can add, subtract, multiply and divide.
     /// </remarks>
-    public class School : IEntity
+    public class School : BaseEntity
     {
-        public int Id { get; set; }
         /// <summary>
         /// نام مدرسه
         /// </summary>

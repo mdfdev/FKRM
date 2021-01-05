@@ -56,7 +56,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new CreateGroupCommand(c.Name));
 
             CreateMap<MajorViewModel, CreateMajorCommand>()
-                .ConstructUsing(c => new CreateMajorCommand(c.Name));
+                .ConstructUsing(c => new CreateMajorCommand(c.Name,c.ComputerCode,c.RequiredCredit,c.OptionalElectiveCredit,c.GraduationCredits));
 
             CreateMap<MarkingTypeViewModel, CreateMarkingTypeCommand>()
                 .ConstructUsing(c => new CreateMarkingTypeCommand(c.Name));

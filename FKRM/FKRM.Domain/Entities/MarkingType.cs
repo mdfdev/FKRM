@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// مدل نمره دهی
     /// </summary>
-    public class MarkingType : IEntity
+    public class MarkingType : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Course> Courses { get; set; }
     }

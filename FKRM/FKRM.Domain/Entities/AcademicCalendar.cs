@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// نوبت تحصیلی
     /// </summary>
-    public class AcademicCalendar : IEntity
+    public class AcademicCalendar : BaseEntity
     {
-        public int Id { get; set; }
         public string AcademicYear { get; set; }
         public string AcademicQuarter { get; set; }
         public ICollection<Enrollment> Enrollments { get; set; }

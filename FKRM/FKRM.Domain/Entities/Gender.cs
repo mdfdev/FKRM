@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// جنسیت
     /// </summary>
-    public class Gender : IEntity
+    public class Gender : BaseEntity
     {
-        public int Id { get; set; }
         /// <summary>
         /// نوع جنسیت
         /// </summary>

@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// نوع اداره
     /// </summary>
-    public class UnitType : IEntity
+    public class UnitType : BaseEntity
     {
-        public int Id { get; set; }
         /// <summary>
         /// نوع اداره خصوصی یا دولتی
         /// </summary>

@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// زمینه رشته
     /// </summary>
-    public class Area : IEntity
+    public class Area : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Branch Branch { get; set; }
 

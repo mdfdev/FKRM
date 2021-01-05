@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// پایه تحصیلی
     /// </summary>
-    public class Grade : IEntity
+    public class Grade : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Course> Courses { get; set; }
 

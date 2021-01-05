@@ -21,9 +21,24 @@ namespace FKRM.Infra.Data.Repository
             _ctx.SaveChanges();
         }
 
+        public void Delete(Major major)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Major> GetMajors()
         {
             return _ctx.Majors;
+        }
+
+        public IQueryable<Major> GetPagedReponse(int pageNumber, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Major major)
+        {
+            throw new NotImplementedException();
         }
     }
 }

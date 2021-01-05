@@ -10,5 +10,8 @@ namespace FKRM.Domain.Interfaces
     {
         IQueryable<Major> GetMajors();
         void Add(Major major);
+        void Delete(Major major);
+        void Update(Major major);
+        IQueryable<Major> GetPagedReponse(int pageNumber, int pageSize);
     }
 }

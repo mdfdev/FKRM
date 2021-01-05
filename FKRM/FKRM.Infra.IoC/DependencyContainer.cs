@@ -1,7 +1,9 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Services;
 using FKRM.Domain.CommandHandlers.Gender;
+using FKRM.Domain.CommandHandlers.Major;
 using FKRM.Domain.Commands.Gender;
+using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
@@ -22,6 +24,7 @@ namespace FKRM.Infra.IoC
 
             //Domain Handler
             services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>,CreateGenderCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, CreateMajorCommandHandler>();
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();

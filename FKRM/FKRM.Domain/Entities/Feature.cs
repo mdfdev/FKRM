@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// ویژگی مدرسه
     /// </summary>
-    public class Feature : IEntity
+    public class Feature : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<School> Schools { get; set; }
     }

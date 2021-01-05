@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// واحد سازمانی
     /// </summary>
-    public class OUType : IEntity
+    public class OUType : BaseEntity
     {
-        public int Id { get; set; }
         /// <summary>
         /// نوع واحد سازمانی
         /// </summary>

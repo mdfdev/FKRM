@@ -6,9 +6,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// شاخه تحصیلی
     /// </summary>
-    public class Branch : IEntity
+    public class Branch : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Area> Areas { get; set; }
     }

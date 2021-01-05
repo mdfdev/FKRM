@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// کلاس
     /// </summary>
-    public class Room : IEntity
+    public class Room : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
       
         public ICollection<Enrollment> Enrollments { get; set; }

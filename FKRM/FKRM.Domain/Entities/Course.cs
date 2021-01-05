@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// درس
     /// </summary>
-    public class Course : IEntity
+    public class Course : BaseEntity
     {
-        public int Id { get; set; }
         /// <summary>
         /// کد درس
         /// </summary>

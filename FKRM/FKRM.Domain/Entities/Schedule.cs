@@ -8,9 +8,8 @@ namespace FKRM.Domain.Entities
     /// <summary>
     /// برنامه زمانبندی
     /// </summary>
-    public class Schedule : IEntity
+    public class Schedule : BaseEntity
     {
-        public int Id { get; set; }
         public int DayOfTheWeek { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }
