@@ -16,10 +16,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="col-6 col-sm-auto ml-auto text-right pl-0">
-                    <button class="btn btn-falcon-default btn-sm" type="button">
+                    <a class="btn btn-falcon-default btn-sm" asp-action="create">
                         <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
                         <span class="d-none d-sm-inline-block ml-1">جدید</span>
-                    </button>
+                    </a>
                 </div>
                 <table class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
                     <thead class="bg-200">
@@ -43,10 +43,21 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ComputerCode)
                                 </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <td class="align-middle white-space-nowrap">
+                                    <div class="dropdown text-sans-serif">
+                                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
+                                                data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
+                                            <span class="fas fa-ellipsis-h fs--1"></span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                                            <div class="bg-white py-2">
+                                                @Html.ActionLink("جزئیات", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "dropdown-item" })
+                                                <div class="dropdown-divider"></div>
+                                                @Html.ActionLink("حذف", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "dropdown-item text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         }

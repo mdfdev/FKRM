@@ -23,4 +23,8 @@
     <ProjectReference Include="..\FKRM.Infra.IoC\FKRM.Infra.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, FKRM.Mvc.Helper
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8">
@@ -41,7 +42,7 @@
     <!-- ===============================================-->
     <main class="main" id="top">
 
-        <div class="container-fluid" data-layout="container">
+        <div class="container" data-layout="container">
             <nav class="navbar navbar-vertical navbar-expand-xl navbar-vibrant">
                 <div class="d-flex align-items-center">
                     <div class="toggle-icon-wrapper">
@@ -56,20 +57,24 @@
                 <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
                     <div class="navbar-vertical-content perfect-scrollbar scrollbar">
                         <ul class="navbar-nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link dropdown-indicator" href="#home" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home">
+                            <li class="nav-item @(new string[]{ "Home","Staff"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"active":"")">
+                                <a class="nav-link dropdown-indicator" href="#home" data-toggle="collapse" role="button" 
+                                   aria-expanded="@(new string[]{ "Home","Staff"}.Contains( ViewContext.RouteData.Values["controller"].ToString()))?"true":"false")" aria-controls="home">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon">
                                             <span class="fas fa-chart-pie"></span>
                                         </span><span class="nav-link-text">خانه</span>
                                     </div>
                                 </a>
-                                <ul class="nav collapse show" id="home" data-parent="#navbarVerticalCollapse">
-                                    <li class="nav-item active"><a class="nav-link" asp-action="index" asp-controller="staff">پرسنل</a></li>
+                                <ul class="nav collapse @(new string[]{ "Staff"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="home" data-parent="#navbarVerticalCollapse">
+                                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Staff"?"active":"")">
+                                    <a class="nav-link" asp-action="index" asp-controller="staff">پرسنل</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link dropdown-indicator" href="#pages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages">
+                                <a class="nav-link dropdown-indicator" href="#pages" data-toggle="collapse" role="button" 
+                                   aria-expanded="@(new string[]{ "Major","Group","Course","Room","School","Gender","Feature","OUType",
+                                                  "UnitType","MarkingType","AcademicCalendar","Branch","Area","Grade"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"true":"false")" aria-controls="pages">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon">
                                             <span class="fas fa-tools">
@@ -78,32 +83,36 @@
                                         <span class="nav-link-text">تنظیمات</span>
                                     </div>
                                 </a>
-                                <ul class="nav collapse" id="pages" data-parent="#navbarVerticalCollapse">
-                                    <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="course">درس</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="room">کلاس</a></li>
-                                    
+                                <ul class="nav collapse @(new string[]{  "Major","Group","Course","Room","School","Gender","Feature","OUType",
+                                                  "UnitType","MarkingType","AcademicCalendar","Branch","Area","Grade"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="pages" data-parent="#navbarVerticalCollapse">
+                                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Course"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="course">درس</a></li>
+                                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Room"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="room">کلاس</a></li>
+
                                     <li class="nav-item">
                                         <a class="nav-link dropdown-indicator" href="#pages-school"
                                            data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages-school">مدرسه</a>
-                                        <ul class="nav collapse" id="pages-school" data-parent="#pages">
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="school">اطلاعات</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="gender">جنسیت</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="feature">ویژگی مدرسه</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="outype">واحد سازمانی</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="unittype">نوع اداره</a></li>
+                                        <ul class="nav collapse @(new string[]{  "School","Gender","Feature","OUType","UnitType"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="pages-school" data-parent="#pages">
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="School"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="school">اطلاعات</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Gender"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="gender">جنسیت</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Feature"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="feature">ویژگی مدرسه</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="OUType"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="outype">واحد سازمانی</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="UnitType"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="unittype">نوع اداره</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link dropdown-indicator" href="#pages-course"
-                                           data-toggle="collapse" role="button" aria-expanded="false" aria-controls="pages-course">رشته</a>
-                                        <ul class="nav collapse" id="pages-course" data-parent="#pages">
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="major">اطلاعات رشته</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="group">گروه رشته</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="markingtype">مدل نمره دهی</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="academiccalendar">نوبت تحسیلی</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="branch">شاخه تحصیلی</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="area">زمینه رشته</a></li>
-                                            <li class="nav-item"><a class="nav-link" asp-action="index" asp-controller="grade">پایه تحصیلی</a></li>
+                                        <a class="nav-link dropdown-indicator" href="#pages-course" 
+                                           data-toggle="collapse" role="button" 
+                                           aria-expanded="@(new string[]{"Major","Group","MarkingType","AcademicCalendar","Branch","Area","Grade"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"true":"false")" 
+                                           aria-controls="pages-course">رشته</a>
+                                        <ul class="nav collapse @(new string[]{ "Major","Group","MarkingType","AcademicCalendar","Branch","Area","Grade"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" 
+                                            id="pages-course" data-parent="#pages">
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Major"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="major">اطلاعات رشته</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Group"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="group">گروه رشته</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="MarkingType"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="markingtype">مدل نمره دهی</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="AcademicCalendar"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="academiccalendar">نوبت تحسیلی</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Branch"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="branch">شاخه تحصیلی</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Area"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="area">زمینه رشته</a></li>
+                                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Grade"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="grade">پایه تحصیلی</a></li>
 
                                         </ul>
                                     </li>
@@ -131,7 +140,7 @@
                     </div>
                 </div>
             </nav>
-      
+
             <div class="content">
                 <nav class="navbar navbar-light navbar-glass navbar-top sticky-kit navbar-expand">
                     <button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation">
@@ -228,7 +237,7 @@
                         </li>
                     </ul>
                 </nav>
-               
+
                 @RenderBody()
                 <footer>
                     <div class="row no-gutters justify-content-between fs--1 mt-4 mb-3">
@@ -251,8 +260,8 @@
                             </div><button class="close z-index-1" type="button" data-dismiss="modal" aria-label="Close"><span class="font-weight-light" aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body px-card">
-                          
-                     
+
+
 
                         </div>
                     </div>
@@ -298,7 +307,6 @@
     </main><!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
-
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->

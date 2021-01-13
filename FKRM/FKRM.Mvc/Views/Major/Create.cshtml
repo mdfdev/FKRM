@@ -1,53 +1,59 @@
 ﻿@model FKRM.Application.ViewModels.MajorViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "رشته جدید";
 }
 
-<h1>Create</h1>
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="mb-0">رشته جدید</h5>
+    </div>
+    <div class="card-body bg-light">
+        <div class="row">
+            <div class="col-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ComputerCode" class="control-label"></label>
+                        <input asp-for="ComputerCode" class="form-control" />
+                        <span asp-validation-for="ComputerCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RequiredCredit" class="control-label"></label>
+                        <input asp-for="RequiredCredit" class="form-control" />
+                        <span asp-validation-for="RequiredCredit" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OptionalElectiveCredit" class="control-label"></label>
+                        <input asp-for="OptionalElectiveCredit" class="form-control" />
+                        <span asp-validation-for="OptionalElectiveCredit" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GraduationCredits" class="control-label"></label>
+                        <input asp-for="GraduationCredits" class="form-control" />
+                        <span asp-validation-for="GraduationCredits" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-1 mb-1" type="submit" asp-action="create">
+                            <span class="far fa-save mr-1" data-fa-transform="shrink-3"></span>ذخیره
+                        </button>
+                        <a class="btn btn-light mb-1" asp-action="Index">
+                            <span class="fas fa-door-closed mr-1" data-fa-transform="shrink-3"></span>بازگشت
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-<h4>MajorViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ComputerCode" class="control-label"></label>
-                <input asp-for="ComputerCode" class="form-control" />
-                <span asp-validation-for="ComputerCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequiredCredit" class="control-label"></label>
-                <input asp-for="RequiredCredit" class="form-control" />
-                <span asp-validation-for="RequiredCredit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionalElectiveCredit" class="control-label"></label>
-                <input asp-for="OptionalElectiveCredit" class="form-control" />
-                <span asp-validation-for="OptionalElectiveCredit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GraduationCredits" class="control-label"></label>
-                <input asp-for="GraduationCredits" class="form-control" />
-                <span asp-validation-for="GraduationCredits" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+     
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

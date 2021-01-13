@@ -65,6 +65,8 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IUnitTypeRepository, UnitTypeRepository>();
             services.AddScoped<SchoolDBContext>();
+
+
         }
     }
 }
