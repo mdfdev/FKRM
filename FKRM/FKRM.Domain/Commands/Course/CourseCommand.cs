@@ -7,6 +7,8 @@ namespace FKRM.Domain.Commands.Course
 {
     public abstract class CourseCommand:Command
     {
+        public Guid ID { get; protected set; }
+
         public string Name { get; protected set; }
     }
 }

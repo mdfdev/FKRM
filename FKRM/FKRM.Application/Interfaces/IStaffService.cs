@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface IStaffService
     {
-        IEnumerable<StaffViewModel> GetStaff();
-        void Create(StaffViewModel staffViewModel);
+        StaffViewModel GetById(Guid id);
+        void Register(StaffViewModel staffViewModel);
+        IEnumerable<StaffViewModel> GetAll();
+        void Update(StaffViewModel staffViewModel);
+        void Remove(Guid id);
     }
 }

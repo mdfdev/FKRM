@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface IGenderService
     {
-        IEnumerable<GenderViewModel> GetGenders();
-        void Create(GenderViewModel genderViewModel);
+        GenderViewModel GetById(Guid id);
+        void Register(GenderViewModel genderViewModel);
+        IEnumerable<GenderViewModel> GetAll();
+        void Update(GenderViewModel genderViewModel);
+        void Remove(Guid id);
     }
 }

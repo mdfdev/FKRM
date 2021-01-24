@@ -8,5 +8,6 @@ namespace FKRM.Domain.Commands.Schedule
     public abstract class ScheduleCommand:Command
     {
         public string Name { get; protected set; }
+        public Guid ID { get; set; }
     }
 }

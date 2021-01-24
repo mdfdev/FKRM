@@ -23,14 +23,29 @@ namespace FKRM.Application.Services
             _autoMapper = mapper;
         }
 
-        public void Create(AreaViewModel areaViewModel)
+        public IEnumerable<AreaViewModel> GetAll()
+        {
+            return _areaRepository.GetAll().ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public AreaViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<AreaViewModel>(_areaRepository.GetById(id));
+        }
+
+        public void Register(AreaViewModel areaViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateAreaCommand>(areaViewModel));
         }
 
-        public IEnumerable<AreaViewModel> GetAreas()
+        public void Remove(Guid id)
         {
-            return _areaRepository.GetAreas().ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteAreaCommand(id));
+        }
+
+        public void Update(AreaViewModel areaViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
         }
     }
 }

@@ -7,10 +7,10 @@ namespace FKRM.Domain.Commands.School
 {
     public class CreateSchoolCommand: SchoolCommand
     {
-        public CreateSchoolCommand(string name,string code)
+        public CreateSchoolCommand(Guid id,string name)
         {
             Name = name;
-            Code = code;
+            ID = id;
         }
     }
 }

@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(FeatureViewModel featureViewModel)
+
+        public IEnumerable<FeatureViewModel> GetAll()
+        {
+            return _featureRepository.GetAll().ProjectTo<FeatureViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public FeatureViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<FeatureViewModel>(_featureRepository.GetById(id));
+        }
+
+        public void Register(FeatureViewModel featureViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateFeatureCommand>(featureViewModel));
         }
 
-        public IEnumerable<FeatureViewModel> GetFeatures()
+        public void Remove(Guid id)
         {
-            return _featureRepository.GetFeatures().ProjectTo<FeatureViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteFeatureCommand(id));
+        }
+
+        public void Update(FeatureViewModel featureViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateFeatureCommand>(featureViewModel));
         }
     }
 }

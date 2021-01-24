@@ -7,6 +7,8 @@ namespace FKRM.Domain.Commands.Major
 {
     public abstract class MajorCommand:Command
     {
+        public Guid ID { get; protected set; }
+
         public string Name { get; protected set; }
         public string ComputerCode { get; protected set; }
         public int RequiredCredit { get; protected set; }

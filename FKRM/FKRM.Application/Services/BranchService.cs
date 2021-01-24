@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(BranchViewModel branchViewModel)
+
+        public IEnumerable<BranchViewModel> GetAll()
+        {
+            return _branchRepository.GetAll().ProjectTo<BranchViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public BranchViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<BranchViewModel>(_branchRepository.GetById(id));
+        }
+
+        public void Register(BranchViewModel branchViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateBranchCommand>(branchViewModel));
         }
 
-        public IEnumerable<BranchViewModel> GetBranchs()
+        public void Remove(Guid id)
         {
-            return _branchRepository.GetBranches().ProjectTo<BranchViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteBranchCommand(id));
+        }
+
+        public void Update(BranchViewModel branchViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateBranchCommand>(branchViewModel));
         }
     }
 }

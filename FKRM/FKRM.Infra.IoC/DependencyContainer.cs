@@ -6,7 +6,9 @@ using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
+using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
+using FKRM.Domain.Queries.Gender;
 using FKRM.Infra.Bus;
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
@@ -25,6 +27,8 @@ namespace FKRM.Infra.IoC
             //Domain Handler
             services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>,CreateGenderCommandHandler>();
             services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, CreateMajorCommandHandler>();
+
+            services.AddScoped<IRequestHandler<GetGenderByIdQuery, Response<Gender>>, GetGenderByIdQueryHandler>();
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();

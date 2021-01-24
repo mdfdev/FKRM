@@ -22,14 +22,29 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(UnitTypeViewModel unitTypeViewModel)
+        public IEnumerable<UnitTypeViewModel> GetAll()
+        {
+            return _unitTypeRepository.GetAll().ProjectTo<UnitTypeViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public UnitTypeViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<UnitTypeViewModel>(_unitTypeRepository.GetById(id));
+        }
+
+        public void Register(UnitTypeViewModel unitTypeViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateUnitTypeCommand>(unitTypeViewModel));
         }
 
-        public IEnumerable<UnitTypeViewModel> GetUnitTypes()
+        public void Remove(Guid id)
         {
-            return _unitTypeRepository.GetUnitTypes().ProjectTo<UnitTypeViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteUnitTypeCommand(id));
+        }
+
+        public void Update(UnitTypeViewModel unitTypeViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateUnitTypeCommand>(unitTypeViewModel));
         }
     }
 }

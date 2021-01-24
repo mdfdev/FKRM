@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FKRM.Domain.Commands.Gender
 {
-    class UpdateGenderCommand:GenderCommand
+    public class UpdateAcademicCalendarCommand:GenderCommand
     {
-        public UpdateGenderCommand(int id,string name)
+        public UpdateAcademicCalendarCommand(Guid id,string name)
         {
             ID = id;
             Name = name;

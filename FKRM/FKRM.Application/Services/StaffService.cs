@@ -22,16 +22,31 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(StaffViewModel staffViewModel)
+        public IEnumerable<StaffViewModel> GetAll()
+        {
+            return _staffRepository.GetAll().ProjectTo<StaffViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public StaffViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<StaffViewModel>(_staffRepository.GetById(id));
+        }
+
+        public void Register(StaffViewModel staffViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateStaffCommand>(staffViewModel));
         }
 
-        public IEnumerable<StaffViewModel> GetStaff()
+        public void Remove(Guid id)
         {
-            return _staffRepository.GetStaffs().ProjectTo<StaffViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteStaffCommand(id));
         }
 
-  
+        public void Update(StaffViewModel staffViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateStaffCommand>(staffViewModel));
+        }
+
+
     }
 }

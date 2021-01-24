@@ -22,14 +22,29 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(ScheduleViewModel scheduleViewModel)
+        public IEnumerable<ScheduleViewModel> GetAll()
+        {
+            return _scheduleRepository.GetAll().ProjectTo<ScheduleViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public ScheduleViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<ScheduleViewModel>(_scheduleRepository.GetById(id));
+        }
+
+        public void Register(ScheduleViewModel scheduleViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateScheduleCommand>(scheduleViewModel));
         }
 
-        public IEnumerable<ScheduleViewModel> GetSchedules()
+        public void Remove(Guid id)
         {
-            return _scheduleRepository.GetSchedules().ProjectTo<ScheduleViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteScheduleCommand(id));
+        }
+
+        public void Update(ScheduleViewModel scheduleViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateScheduleCommand>(scheduleViewModel));
         }
     }
 }

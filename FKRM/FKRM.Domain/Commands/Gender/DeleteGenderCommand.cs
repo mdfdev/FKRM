@@ -6,7 +6,7 @@ namespace FKRM.Domain.Commands.Gender
 {
     public class DeleteGenderCommand : GenderCommand
     {
-        public DeleteGenderCommand(int id)
+        public DeleteGenderCommand(Guid id)
         {
             ID = id;
         }

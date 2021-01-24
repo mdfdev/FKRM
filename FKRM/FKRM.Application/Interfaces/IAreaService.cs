@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface IAreaService
     {
-        IEnumerable<AreaViewModel> GetAreas();
-        void Create(AreaViewModel areaViewModel);
+        AreaViewModel GetById(Guid id);
+        void Register(AreaViewModel areaViewModel);
+        IEnumerable<AreaViewModel> GetAll();
+        void Update(AreaViewModel areaViewModel);
+        void Remove(Guid id);
     }
 }

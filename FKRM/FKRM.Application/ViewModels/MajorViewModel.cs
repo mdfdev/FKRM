@@ -8,6 +8,7 @@ namespace FKRM.Application.ViewModels
 {
     public class MajorViewModel
     {
+        public int id { get; set; }
         /// <summary>
         /// نام رشته
         /// </summary>

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers.Gender
 {
-    class UpdateGenderCommandHandler : IRequestHandler<UpdateGenderCommand, Response<int>>
+    class UpdateGenderCommandHandler : IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>
     {
         private readonly IGenderRepository _genderRepository;
         public UpdateGenderCommandHandler(IGenderRepository genderRepository)
         {
             _genderRepository = genderRepository;
         }
-        public Task<Response<int>> Handle(UpdateGenderCommand request, CancellationToken cancellationToken)
+        public Task<Response<int>> Handle(UpdateAcademicCalendarCommand request, CancellationToken cancellationToken)
         {
             var entity = _genderRepository.GetById(request.ID);
 
@@ -27,7 +27,7 @@ namespace FKRM.Domain.CommandHandlers.Gender
             {
                 entity.Name = request.Name;
                 _genderRepository.Update(entity);
-                return Task.FromResult(new Response<int>(request.ID,""));
+                return Task.FromResult(new Response<int>(200));
             }
         }
     }

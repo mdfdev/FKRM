@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(OUTypeViewModel oUTypeViewModel)
+
+        public OUTypeViewModel GetById(Guid id)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateOUTypeCommand>(oUTypeViewModel));
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<OUTypeViewModel> GetOUTypes()
+        public void Register(OUTypeViewModel oUTypeViewModel)
         {
-            return _oUTypeRepository.GetOUTypes().ProjectTo<OUTypeViewModel>(_autoMapper.ConfigurationProvider);
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<OUTypeViewModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(OUTypeViewModel oUTypeViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

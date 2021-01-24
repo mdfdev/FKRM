@@ -5,6 +5,7 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace FKRM.Application.Services
@@ -21,14 +22,29 @@ namespace FKRM.Application.Services
             _autoMapper = mapper;
         }
 
-        public void Create(GenderViewModel genderViewModel)
+        public IEnumerable<GenderViewModel> GetAll()
         {
-            _bus.SendCommand(_autoMapper.Map< CreateGenderCommand>(genderViewModel));
+            return _genderRepository.GetAll().ProjectTo<GenderViewModel>(_autoMapper.ConfigurationProvider);
         }
 
-        public IEnumerable<GenderViewModel> GetGenders()
+        public GenderViewModel GetById(Guid id)
         {
-            return _genderRepository.GetGenders().ProjectTo<GenderViewModel>(_autoMapper.ConfigurationProvider);
+            return _autoMapper.Map<GenderViewModel>(_genderRepository.GetById(id));
+        }
+
+        public void Register(GenderViewModel genderViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<CreateGenderCommand>(genderViewModel));
+        }
+
+        public void Remove(Guid id)
+        {
+            _bus.SendCommand(new DeleteGenderCommand(id));
+        }
+
+        public void Update(GenderViewModel genderViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(genderViewModel));
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿@model IEnumerable< FKRM.Application.ViewModels.GenderViewModel>
 
-
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" 
+            data-url="Gender/Create" data-target="#modalCreate">Create new</button>
+
 </p>
 <table class="table">
     <thead>
@@ -20,16 +21,29 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+            <td>
+                <button class="btn btn-sm btn-primary" data-toggle="modal" data-url="Gender/Edit/@item.Id" data-target="#modalCreate">Edit</button> |
+                <button class="btn btn-sm btn-danger" data-toggle="modal" data-url="Gender/Delete/@item.Id" data-target="#modalCreate">Delete</button>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+
+<div id="modalCreate" class="modal fade" role="dialog" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="OpenDialog" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

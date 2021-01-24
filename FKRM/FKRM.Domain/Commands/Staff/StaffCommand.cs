@@ -7,6 +7,7 @@ namespace FKRM.Domain.Commands.Staff
 {
     public abstract class StaffCommand:Command
     {
+        public Guid ID { get; protected set; }
         public string Name { get; protected set; }
     }
 }

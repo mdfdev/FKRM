@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface IAcademicCalendarService
     {
-        IEnumerable<AcademicCalendarViewModel> GetAcademicCalendars();
-        void Create(AcademicCalendarViewModel academicCalendarViewModel);
+        AcademicCalendarViewModel GetById(Guid id);
+        void Register(AcademicCalendarViewModel academicCalendarViewModel);
+        IEnumerable<AcademicCalendarViewModel> GetAll();
+        void Update(AcademicCalendarViewModel academicCalendarViewModel);
+        void Remove(Guid id);
     }
 }

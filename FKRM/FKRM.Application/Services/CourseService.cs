@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(CourseViewModel courseViewModel)
+
+        public IEnumerable<CourseViewModel> GetAll()
         {
-            _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+            return _courseRepository.GetAll().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
         }
 
-        public IEnumerable<CourseViewModel> GetCourses()
+        public CourseViewModel GetById(Guid id)
         {
-            return _courseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
+            return _autoMapper.Map<CourseViewModel>(_courseRepository.GetById(id));
+        }
+
+        public void Register(CourseViewModel branchViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(branchViewModel));
+        }
+
+        public void Remove(Guid id)
+        {
+            _bus.SendCommand(new DeleteCourseCommand(id));
+        }
+
+        public void Update(CourseViewModel courseViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
         }
     }
 }

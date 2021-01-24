@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface IMajorService
     {
-        IEnumerable<MajorViewModel> GetMajors();
-        void Create(MajorViewModel majorViewModel);
+        MajorViewModel GetById(Guid id);
+        void Register(MajorViewModel majorViewModel);
+        IEnumerable<MajorViewModel> GetAll();
+        void Update(MajorViewModel majorViewModel);
+        void Remove(Guid id);
     }
 }

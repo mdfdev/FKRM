@@ -23,14 +23,29 @@ namespace FKRM.Application.Services
             _autoMapper = mapper;
         }
 
-        public void Create(GroupViewModel groupViewModel)
+        public IEnumerable<GroupViewModel> GetAll()
+        {
+            return _groupRepository.GetAll().ProjectTo<GroupViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public GroupViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<GroupViewModel>(_groupRepository.GetById(id));
+        }
+
+        public void Register(GroupViewModel groupViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateGroupCommand>(groupViewModel));
         }
 
-        public IEnumerable< GroupViewModel> GetGroups()
+        public void Remove(Guid id)
         {
-            return _groupRepository.GetGroups().ProjectTo<GroupViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteGroupCommand(id));
+        }
+
+        public void Update(GroupViewModel groupViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateGroupCommand>(groupViewModel));
         }
     }
 }

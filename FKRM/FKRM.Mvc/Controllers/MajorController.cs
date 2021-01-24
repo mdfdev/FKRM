@@ -18,7 +18,7 @@ namespace FKRM.Mvc.Controllers
         }
         public ActionResult Index()
         {
-            return View(_majorService.GetMajors());
+            return View(_majorService.GetAll());
         }
 
         // GET: MajorController/Details/5
@@ -42,7 +42,7 @@ namespace FKRM.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _majorService.Create(majorViewModel);
+                    _majorService.Register(majorViewModel);
                     return RedirectToAction(nameof(Index));
                 }
             }

@@ -7,7 +7,11 @@ namespace FKRM.Application.Interfaces
 {
     public interface IGroupService
     {
-        IEnumerable<GroupViewModel> GetGroups();
-        void Create(GroupViewModel groupViewModel);
+    
+        GroupViewModel GetById(Guid id);
+        void Register(GroupViewModel groupViewModel);
+        IEnumerable<GroupViewModel> GetAll();
+        void Update(GroupViewModel groupViewModel);
+        void Remove(Guid id);
     }
 }

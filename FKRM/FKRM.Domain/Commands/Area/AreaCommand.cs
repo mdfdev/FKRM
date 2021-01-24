@@ -7,6 +7,8 @@ namespace FKRM.Domain.Commands.Area
 {
     public abstract class AreaCommand : Command
     {
+        public Guid ID { get; protected set; }
+
         public string Name { get; protected set; }
     }
 }

@@ -22,14 +22,29 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(SchoolViewModel schoolViewModel)
+        public IEnumerable<SchoolViewModel> GetAll()
+        {
+            return _schoolRepository.GetAll().ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public SchoolViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<SchoolViewModel>(_schoolRepository.GetById(id));
+        }
+
+        public void Register(SchoolViewModel schoolViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateSchoolCommand>(schoolViewModel));
         }
 
-        public IEnumerable<SchoolViewModel> GetSchools()
+        public void Remove(Guid id)
         {
-            return _schoolRepository.GetSchools().ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteSchoolCommand(id));
+        }
+
+        public void Update(SchoolViewModel schoolViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
         }
     }
 }

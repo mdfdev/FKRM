@@ -21,10 +21,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.AcademicCalendar", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AcademicQuarter")
                         .IsRequired()
@@ -50,16 +49,15 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Area", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BranchId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("BranchId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -80,10 +78,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Branch", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -105,10 +102,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Course", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -119,17 +115,17 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GradeId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("GradeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MajorId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("MajorId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("MarkingTypeId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("MarkingTypeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -154,13 +150,12 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("AcademicCalendarId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AcademicCalendarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -168,8 +163,8 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -177,14 +172,14 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RoomId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("RoomId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("ScheduleId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ScheduleId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("StaffId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("StaffId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -203,10 +198,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Feature", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -229,10 +223,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Gender", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -255,10 +248,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Grade", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -280,16 +272,15 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Group", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("AreaId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AreaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -310,10 +301,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Major", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -324,8 +314,8 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<int>("GraduationCredits")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -352,10 +342,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.MarkingType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -377,10 +366,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.OUType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -403,10 +391,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Room", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -421,8 +408,8 @@ namespace FKRM.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SchoolId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SchoolId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -433,10 +420,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Schedule", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -463,10 +449,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.School", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -474,11 +459,11 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FeatureId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("FeatureId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("GenderId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("GenderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -489,11 +474,11 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OUTypeId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("OUTypeId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("UnitTypeId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("UnitTypeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -510,10 +495,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Staff", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
@@ -529,8 +513,14 @@ namespace FKRM.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NationalCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -542,10 +532,9 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.UnitType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");

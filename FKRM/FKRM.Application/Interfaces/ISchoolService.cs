@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface ISchoolService
     {
-        IEnumerable<SchoolViewModel> GetSchools();
-        void Create(SchoolViewModel schoolViewModel);
+        SchoolViewModel GetById(Guid id);
+        void Register(SchoolViewModel schoolViewModel);
+        IEnumerable<SchoolViewModel> GetAll();
+        void Update(SchoolViewModel schoolViewModel);
+        void Remove(Guid id);
     }
 }

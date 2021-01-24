@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(RoomViewModel roomViewModel)
+
+        public RoomViewModel GetById(Guid id)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<RoomViewModel> GetRooms()
+        public void Register(RoomViewModel roomViewModel)
         {
-            return _roomRepository.GetRooms().ProjectTo<RoomViewModel>(_autoMapper.ConfigurationProvider);
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<RoomViewModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(RoomViewModel roomViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -25,8 +25,8 @@ namespace FKRM.Domain.CommandHandlers.Gender
                 throw new ApiException($"گزینه مورد نظر یافت نشد.");
             }
 
-            _genderRepository.Delete(entity);
-            return Task.FromResult(new Response<int>(request.ID));
+            _genderRepository.Remove(request.ID);
+            return Task.FromResult(new Response<int>(200));
         }
     }
 }

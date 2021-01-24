@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(MajorViewModel majorViewModel)
+
+        public MajorViewModel GetById(Guid id)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateMajorCommand>(majorViewModel));
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<MajorViewModel> GetMajors()
+        public void Register(MajorViewModel majorViewModel)
         {
-            return _majorRepository.GetMajors().ProjectTo<MajorViewModel>(_autoMapper.ConfigurationProvider);
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MajorViewModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(MajorViewModel majorViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

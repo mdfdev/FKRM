@@ -18,6 +18,7 @@ using FKRM.Domain.Commands.Schedule;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
+using FKRM.Domain.Queries.Gender;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,7 @@ namespace FKRM.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
+
             CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>()
                 .ConstructUsing(c => new CreateAcademicCalendarCommand(c.Name));
 
@@ -71,7 +73,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new CreateScheduleCommand(c.Name));
 
             CreateMap<SchoolViewModel, CreateSchoolCommand>()
-                .ConstructUsing(c => new CreateSchoolCommand(c.Name,c.Code));
+                .ConstructUsing(c => new CreateSchoolCommand(c.Id,c.Name));
 
             CreateMap<StaffViewModel, CreateStaffCommand>()
                 .ConstructUsing(c => new CreateStaffCommand(c.Name));

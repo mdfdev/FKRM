@@ -5,8 +5,10 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Grade;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
+using FKRM.Domain.Queries.Grade;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FKRM.Application.Services
@@ -22,14 +24,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(GradeViewModel gradeViewModel)
+
+        public IEnumerable<GradeViewModel> GetAll()
+        {
+            return _gradeRepository.GetAll().ProjectTo<GradeViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public GradeViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<GradeViewModel>(_gradeRepository.GetById(id));
+        }
+
+        public void Register(GradeViewModel gradeViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateGradeCommand>(gradeViewModel));
         }
 
-        public IEnumerable<GradeViewModel> GetGrades()
+        public void Remove(Guid id)
         {
-            return _gradeRepository.GetGrades().ProjectTo<GradeViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteGradeCommand(id));
+        }
+
+        public void Update(GradeViewModel gradeViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateGradeCommand>(gradeViewModel));
         }
     }
 }

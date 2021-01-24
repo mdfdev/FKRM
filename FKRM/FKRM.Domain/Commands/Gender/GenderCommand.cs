@@ -7,7 +7,7 @@ namespace FKRM.Domain.Commands.Gender
 {
     public abstract class GenderCommand:Command
     {
-        public int ID { get; protected set; }
+        public Guid ID { get; protected set; }
         public string Name { get; protected set; }
     }
 }

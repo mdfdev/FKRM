@@ -22,14 +22,30 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
-        public void Create(MarkingTypeViewModel markingTypeViewModel)
+
+        public MarkingTypeViewModel GetById(Guid id)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateMarkingTypeCommand>(markingTypeViewModel));
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<MarkingTypeViewModel> GetMarkingTypes()
+        public void Register(MarkingTypeViewModel markingTypeViewModel)
         {
-            return _markingTypeRepository.GetMarkingTypes().ProjectTo<MarkingTypeViewModel>(_autoMapper.ConfigurationProvider);
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MarkingTypeViewModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(MarkingTypeViewModel markingTypeViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

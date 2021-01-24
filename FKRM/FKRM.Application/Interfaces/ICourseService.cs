@@ -7,7 +7,10 @@ namespace FKRM.Application.Interfaces
 {
     public interface ICourseService
     {
-        IEnumerable<CourseViewModel> GetCourses();
-        void Create(CourseViewModel courseViewModel);
+        CourseViewModel GetById(Guid id);
+        void Register(CourseViewModel courseViewModel);
+        IEnumerable<CourseViewModel> GetAll();
+        void Update(CourseViewModel courseViewModel);
+        void Remove(Guid id);
     }
 }

@@ -23,15 +23,29 @@ namespace FKRM.Application.Services
             _autoMapper = mapper;
         }
 
-        public void Create(AcademicCalendarViewModel academicCalendarViewModel)
+        public IEnumerable<AcademicCalendarViewModel> GetAll()
+        {
+            return _academicCalendarRepository.GetAll().ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public AcademicCalendarViewModel GetById(Guid id)
+        {
+            return _autoMapper.Map<AcademicCalendarViewModel>(_academicCalendarRepository.GetById(id));
+        }
+
+        public void Register(AcademicCalendarViewModel academicCalendarViewModel)
         {
             _bus.SendCommand(_autoMapper.Map<CreateAcademicCalendarCommand>(academicCalendarViewModel));
         }
 
-        public IEnumerable<AcademicCalendarViewModel> GetAcademicCalendars()
+        public void Remove(Guid id)
         {
-            return _academicCalendarRepository.GetAcademicCalendars().ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
+            _bus.SendCommand(new DeleteAcademicCalendarCommand(id));
         }
 
+        public void Update(AcademicCalendarViewModel academicCalendarViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(academicCalendarViewModel));
+        }
     }
 }

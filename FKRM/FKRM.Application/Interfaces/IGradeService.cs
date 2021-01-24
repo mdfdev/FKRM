@@ -7,7 +7,12 @@ namespace FKRM.Application.Interfaces
 {
     public interface IGradeService
     {
-        IEnumerable<GradeViewModel> GetGrades();
-        void Create(GradeViewModel gradeViewModel);
+
+
+        GradeViewModel GetById(Guid id);
+        void Register(GradeViewModel gradeViewModel);
+        IEnumerable<GradeViewModel> GetAll();
+        void Update(GradeViewModel gradeViewModel);
+        void Remove(Guid id);
     }
 }

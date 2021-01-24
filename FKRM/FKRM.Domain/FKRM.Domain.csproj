@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CommandHandlers\Grade\" />
     <Folder Include="Enums\" />
     <Folder Include="Events\" />
     <Folder Include="ValueObjects\" />
