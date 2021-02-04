@@ -1,23 +1,23 @@
-﻿using FKRM.Domain.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
     public class MajorViewModel
     {
-        public int id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         /// <summary>
         /// نام رشته
         /// </summary>
         [Display(Name = "نام رشته",Prompt = "نام رشته")]
+        [Required(ErrorMessage = "(*)")]
         public string Name { get; set; }
         /// <summary>
         /// کد رایانه ای
         /// </summary>
         [Display(Name = "کد رایانه ای",Prompt = "کد رایانه ای")]
+        [Required(ErrorMessage = "(*)")]
         public string ComputerCode { get; set; }
         /// <summary>
         /// تعداد واحد الزامی

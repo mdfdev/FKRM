@@ -1,15 +1,21 @@
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.IoC;
+using FKRM.Mvc.Abstractions;
 using FKRM.Mvc.Configurations;
 using FKRM.Mvc.Data;
+using FKRM.Mvc.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using NToastNotify;
 
 namespace FKRM.Mvc
 {
@@ -39,12 +45,24 @@ namespace FKRM.Mvc
             services.AddRazorPages();
             services.AddMediatR(typeof(Startup));
             services.RegisterAutoMapper();
+
+            services.AddDistributedMemoryCache();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
+            services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+            {
+                Rtl = true,
+                ProgressBar = true,
+                PositionClass = ToastPositions.BottomLeft
+            });
             RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseNToastNotify();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

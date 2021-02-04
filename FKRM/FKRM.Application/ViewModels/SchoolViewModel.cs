@@ -1,13 +1,15 @@
-﻿using FKRM.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
     public class SchoolViewModel
     {
-        public string Name { get; set; }
+        [Key]
         public Guid Id { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("نام")]
+        public string Name { get; set; }
     }
 }

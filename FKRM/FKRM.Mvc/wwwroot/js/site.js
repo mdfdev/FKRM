@@ -1,8 +1,5 @@
 ﻿$(document).ready(function () {
     $('.form-image').click(function () { $('#customFile').trigger('click'); });
-    $(function () {
-        $('.selectpicker').selectpicker();
-    });
     setTimeout(function () {
         $('body').addClass('loaded');
     }, 200);
@@ -15,7 +12,7 @@
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $('#form-modal .modal-body').html(res.html);
+                    $('#form-modal .modal-body').html(res.html.result);
                     $('#form-modal .modal-title').html(title);
                     $('#form-modal').modal('show');
                     console.log(res);

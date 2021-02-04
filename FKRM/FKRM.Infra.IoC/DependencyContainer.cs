@@ -2,8 +2,10 @@
 using FKRM.Application.Services;
 using FKRM.Domain.CommandHandlers.Gender;
 using FKRM.Domain.CommandHandlers.Major;
+using FKRM.Domain.CommandHandlers.Staff;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Commands.Major;
+using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Entities;
@@ -21,13 +23,17 @@ namespace FKRM.Infra.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
+
+
             //Domain InMemoryBus MediatR
             services.AddScoped<IMediatorHandler,InMemoryBus>();
 
             //Domain Handler
+            services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, UpdateStaffCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, DeleteStaffCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, CreateStaffCommandHandler>();
             services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>,CreateGenderCommandHandler>();
             services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, CreateMajorCommandHandler>();
-
             services.AddScoped<IRequestHandler<GetGenderByIdQuery, Response<Gender>>, GetGenderByIdQueryHandler>();
 
             //Application Layer

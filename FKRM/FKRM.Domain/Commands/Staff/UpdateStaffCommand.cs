@@ -6,10 +6,14 @@ namespace FKRM.Domain.Commands.Staff
 {
     public class UpdateStaffCommand:StaffCommand
     {
-        public UpdateStaffCommand(Guid id,string name)
+        public UpdateStaffCommand(Guid id, string fname, string lname, string phone, string mobile, string nationalcode)
         {
             ID = id;
-            Name = name;
+            FirstName = fname;
+            LastName = lname;
+            Phone = phone;
+            Mobile = mobile;
+            NationalCode = nationalcode;
         }
     }
 }

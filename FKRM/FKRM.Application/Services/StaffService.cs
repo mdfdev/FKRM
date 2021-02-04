@@ -8,6 +8,7 @@ using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
@@ -34,7 +35,7 @@ namespace FKRM.Application.Services
 
         public void Register(StaffViewModel staffViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateStaffCommand>(staffViewModel));
+             _bus.SendCommand(_autoMapper.Map<CreateStaffCommand>(staffViewModel));
         }
 
         public void Remove(Guid id)

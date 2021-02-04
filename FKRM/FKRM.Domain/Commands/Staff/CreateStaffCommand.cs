@@ -7,9 +7,13 @@ namespace FKRM.Domain.Commands.Staff
 {
     public class CreateStaffCommand: StaffCommand
     {
-        public CreateStaffCommand(string name)
+        public CreateStaffCommand(string fname,string lname,string phone,string mobile,string nationalcode)
         {
-            Name = name;
+            FirstName = fname;
+            LastName = lname;
+            Phone = phone;
+            Mobile = mobile;
+            NationalCode = nationalcode;
         }
     }
 }

@@ -35,7 +35,8 @@ namespace FKRM.Application.Services
 
         public IEnumerable<MajorViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _majorRepository.GetAll().ProjectTo<MajorViewModel>(_autoMapper.ConfigurationProvider);
+
         }
 
         public void Update(MajorViewModel majorViewModel)

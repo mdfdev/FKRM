@@ -1,5 +1,6 @@
 ﻿using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Commands;
+using FKRM.Domain.Core.Wrappers;
 using MediatR;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace FKRM.Infra.Bus
         }
         public Task SendCommand<T>(T command) where T : Command
         {
-            return _mediator.Send(command);
+            return  _mediator.Send(command);
         }
     }
 }
