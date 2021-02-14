@@ -54,6 +54,7 @@ namespace FKRM.Api
 
             app.UseSwagger();
             app.UseSwaggerUI(c=> {
+                c.DisplayRequestDuration();
                 c.SwaggerEndpoint("/swagger/v1/swagger.json","School Api v1");
             });
 
