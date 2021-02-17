@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Course;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,11 @@ namespace FKRM.Domain.Commands.Course
         {
             ID = id;
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateCourseCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

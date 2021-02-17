@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Room;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,11 @@ namespace FKRM.Domain.Commands.Room
         {
             ID = id;
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateRoomCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

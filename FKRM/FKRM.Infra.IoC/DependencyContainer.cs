@@ -1,8 +1,6 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Services;
-using FKRM.Domain.CommandHandlers.Gender;
-using FKRM.Domain.CommandHandlers.Major;
-using FKRM.Domain.CommandHandlers.Staff;
+using FKRM.Domain.CommandHandlers;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Commands.Staff;
@@ -29,11 +27,11 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMediatorHandler,InMemoryBus>();
 
             //Domain Handler
-            services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, UpdateStaffCommandHandler>();
-            services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, DeleteStaffCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, CreateStaffCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>,CreateGenderCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, CreateMajorCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, StaffCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, StaffCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, StaffCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>, GenderCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, MajorCommandHandler>();
             services.AddScoped<IRequestHandler<GetGenderByIdQuery, Response<Gender>>, GetGenderByIdQueryHandler>();
 
             //Application Layer

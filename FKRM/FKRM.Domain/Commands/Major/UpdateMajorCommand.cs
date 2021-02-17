@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Major;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,11 @@ namespace FKRM.Domain.Commands.Major
         {
             ID = id;
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateMajorCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

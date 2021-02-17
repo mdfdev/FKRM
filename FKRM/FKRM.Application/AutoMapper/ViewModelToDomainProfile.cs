@@ -24,57 +24,24 @@ namespace FKRM.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
-
-            CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>()
-                .ConstructUsing(c => new CreateAcademicCalendarCommand(c.Name));
-
-            CreateMap<AreaViewModel, CreateAreaCommand>()
-                .ConstructUsing(c => new CreateAreaCommand(c.Name));
-
-            CreateMap<BranchViewModel, CreateBranchCommand>()
-                .ConstructUsing(c => new CreateBranchCommand(c.Name));
-
-            CreateMap<CourseViewModel, CreateCourseCommand>()
-                .ConstructUsing(c => new CreateCourseCommand(c.Name));
-
-            CreateMap<EnrollmentViewModel, CreateEnrollmentCommand>()
-                .ConstructUsing(c => new CreateEnrollmentCommand(c.Name));
-
-            CreateMap<FeatureViewModel, CreateFeatureCommand>()
-                .ConstructUsing(c => new CreateFeatureCommand(c.Name));
-
-            CreateMap<GenderViewModel, CreateGenderCommand>()
-                .ConstructUsing(c => new CreateGenderCommand(c.Name));
-
-            CreateMap<GradeViewModel, CreateGradeCommand>()
-                .ConstructUsing(c => new CreateGradeCommand(c.Name));
-
-            CreateMap<GroupViewModel, CreateGroupCommand>()
-                .ConstructUsing(c => new CreateGroupCommand(c.Name));
-
+            CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>().ConstructUsing(c => new CreateAcademicCalendarCommand(c.Name));
+            CreateMap<AreaViewModel, CreateAreaCommand>().ConstructUsing(c => new CreateAreaCommand(c.Name));
+            CreateMap<BranchViewModel, CreateBranchCommand>().ConstructUsing(c => new CreateBranchCommand(c.Name));
+            CreateMap<CourseViewModel, CreateCourseCommand>().ConstructUsing(c => new CreateCourseCommand(c.Name));
+            CreateMap<EnrollmentViewModel, CreateEnrollmentCommand>().ConstructUsing(c => new CreateEnrollmentCommand(c.Capacity));
+            CreateMap<FeatureViewModel, CreateFeatureCommand>().ConstructUsing(c => new CreateFeatureCommand(c.Name));
+            CreateMap<GenderViewModel, CreateGenderCommand>().ConstructUsing(c => new CreateGenderCommand(c.Name));
+            CreateMap<GradeViewModel, CreateGradeCommand>().ConstructUsing(c => new CreateGradeCommand(c.Name));
+            CreateMap<GroupViewModel, CreateGroupCommand>().ConstructUsing(c => new CreateGroupCommand(c.Name));
             CreateMap<StaffViewModel, UpdateStaffCommand>().ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode));
             CreateMap<MajorViewModel, CreateMajorCommand>().ConstructUsing(c => new CreateMajorCommand(c.Name,c.ComputerCode,c.RequiredCredit,c.OptionalElectiveCredit,c.GraduationCredits));
-
-            CreateMap<MarkingTypeViewModel, CreateMarkingTypeCommand>()
-                .ConstructUsing(c => new CreateMarkingTypeCommand(c.Name));
-
-            CreateMap<OUTypeViewModel, CreateOUTypeCommand>()
-                .ConstructUsing(c => new CreateOUTypeCommand(c.Name));
-
-            CreateMap<RoomViewModel, CreateRoomCommand>()
-                .ConstructUsing(c => new CreateRoomCommand(c.Name));
-
-            CreateMap<ScheduleViewModel, CreateScheduleCommand>()
-                .ConstructUsing(c => new CreateScheduleCommand(c.Name));
-
-            CreateMap<SchoolViewModel, CreateSchoolCommand>()
-                .ConstructUsing(c => new CreateSchoolCommand(c.Id,c.Name));
-
-            CreateMap<StaffViewModel, CreateStaffCommand>()
-                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode));
-
-            CreateMap<UnitTypeViewModel, CreateUnitTypeCommand>()
-                .ConstructUsing(c => new CreateUnitTypeCommand(c.Name));
+            CreateMap<MarkingTypeViewModel, CreateMarkingTypeCommand>().ConstructUsing(c => new CreateMarkingTypeCommand(c.Name));
+            CreateMap<OUTypeViewModel, CreateOUTypeCommand>().ConstructUsing(c => new CreateOUTypeCommand(c.Name));
+            CreateMap<RoomViewModel, CreateRoomCommand>().ConstructUsing(c => new CreateRoomCommand(c.Name));
+            CreateMap<ScheduleViewModel, CreateScheduleCommand>().ConstructUsing(c => new CreateScheduleCommand(c.StartTime));
+            CreateMap<SchoolViewModel, CreateSchoolCommand>().ConstructUsing(c => new CreateSchoolCommand(c.Id,c.Name));
+            CreateMap<StaffViewModel, CreateStaffCommand>().ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode));
+            CreateMap<UnitTypeViewModel, CreateUnitTypeCommand>().ConstructUsing(c => new CreateUnitTypeCommand(c.Name));
         }
     }
 }

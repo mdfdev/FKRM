@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Commands.Gender;
+using FKRM.Domain.Validation.School;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,11 @@ namespace FKRM.Domain.Commands.School
         {
             Name = name;
             ID = id;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateSchoolCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

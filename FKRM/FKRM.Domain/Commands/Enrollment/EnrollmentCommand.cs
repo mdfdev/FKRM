@@ -9,6 +9,6 @@ namespace FKRM.Domain.Commands.Enrollment
     {
         public Guid ID { get; protected set; }
 
-        public string Name { get; protected set; }
+        public int Capacity { get; protected set; }
     }
 }

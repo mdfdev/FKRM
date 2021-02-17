@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Schedule;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,15 @@ namespace FKRM.Domain.Commands.Schedule
 {
     public class UpdateScheduleCommand:ScheduleCommand
     {
-        public UpdateScheduleCommand(Guid id,string name)
+        public UpdateScheduleCommand(Guid id,int startTime)
         {
             ID = id;
-            Name = name;
+            StartTime = startTime;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateScheduleCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

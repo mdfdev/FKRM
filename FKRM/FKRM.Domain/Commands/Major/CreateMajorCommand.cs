@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Commands.Gender;
+using FKRM.Domain.Validation.Major;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,11 @@ namespace FKRM.Domain.Commands.Major
             RequiredCredit = requiredCredit;
             OptionalElectiveCredit = optionalElectiveCredit;
             GraduationCredits = graduationCredits;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateMajorCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

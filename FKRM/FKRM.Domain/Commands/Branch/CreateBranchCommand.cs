@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Commands.Gender;
+using FKRM.Domain.Validation.Branch;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,11 @@ namespace FKRM.Domain.Commands.Branch
         public CreateBranchCommand(string name)
         {
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateBranchCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

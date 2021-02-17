@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Gender;
 
 namespace FKRM.Domain.Commands.Gender
 {
@@ -9,6 +7,11 @@ namespace FKRM.Domain.Commands.Gender
         public CreateGenderCommand(string name)
         {
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateGenderCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

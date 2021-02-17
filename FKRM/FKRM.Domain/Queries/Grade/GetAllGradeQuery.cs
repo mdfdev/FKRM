@@ -25,7 +25,7 @@ namespace FKRM.Domain.Queries.Grade
         public Task<Response<IQueryable<Entities.Grade>>> Handle(GetAllGradeQuery request, CancellationToken cancellationToken)
         {
             var grade = _gradeRepository.GetAll();
-            if (grade == null) throw new ApiException($"Product Not Found.");
+            if (grade == null) throw new ApiException($"Grade Not Found.");
             return Task.FromResult(new Response<IQueryable<Entities.Grade>>(grade));
         }
     }

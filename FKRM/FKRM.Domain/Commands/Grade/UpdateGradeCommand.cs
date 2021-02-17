@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Grade;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,11 @@ namespace FKRM.Domain.Commands.Grade
         {
             ID = id;
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateGradeCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

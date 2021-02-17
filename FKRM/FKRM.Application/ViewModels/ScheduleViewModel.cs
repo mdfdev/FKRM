@@ -10,6 +10,6 @@ namespace FKRM.Application.ViewModels
         public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]
-        public string Name { get; set; }
+        public int StartTime { get; set; }
     }
 }

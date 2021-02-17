@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Staff;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,11 @@ namespace FKRM.Domain.Commands.Staff
             Phone = phone;
             Mobile = mobile;
             NationalCode = nationalcode;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateStaffCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

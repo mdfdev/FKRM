@@ -12,7 +12,7 @@ namespace FKRM.Application.ViewModels
         [Key]
         public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
-        public string Name { get; set; }
+        [DisplayName("ظرفیت")]
+        public int Capacity { get; set; }
     }
 }

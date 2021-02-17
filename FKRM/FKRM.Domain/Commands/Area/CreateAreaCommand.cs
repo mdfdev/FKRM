@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Area;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +10,11 @@ namespace FKRM.Domain.Commands.Area
         public CreateAreaCommand(string name)
         {
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new CreateAreaCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

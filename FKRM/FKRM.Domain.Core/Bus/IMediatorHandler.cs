@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Core.Commands;
+using FKRM.Domain.Core.Events;
 using System.Threading.Tasks;
 
 namespace FKRM.Domain.Core.Bus
@@ -6,5 +7,6 @@ namespace FKRM.Domain.Core.Bus
     public interface IMediatorHandler
     {
         Task SendCommand<T>(T command) where T : Command;
+        Task RaiseEvent<T>(T @event) where T : Event;
     }
 }

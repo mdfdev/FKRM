@@ -45,7 +45,7 @@ namespace FKRM.Application.Services
 
         public void Update(GenderViewModel genderViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(genderViewModel));
+            _bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
         }
     }
 }

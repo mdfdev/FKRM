@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommandHandlers\Grade\" />
     <Folder Include="Enums\" />
     <Folder Include="Events\" />
     <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
   </ItemGroup>
 
   <ItemGroup>

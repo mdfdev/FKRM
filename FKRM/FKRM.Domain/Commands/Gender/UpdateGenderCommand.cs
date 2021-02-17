@@ -1,13 +1,19 @@
-﻿using System;
+﻿using FKRM.Domain.Validation.Gender;
+using System;
 
 namespace FKRM.Domain.Commands.Gender
 {
-    public class UpdateAcademicCalendarCommand:GenderCommand
+    public class UpdateGenderCommand:GenderCommand
     {
-        public UpdateAcademicCalendarCommand(Guid id,string name)
+        public UpdateGenderCommand(Guid id,string name)
         {
             ID = id;
             Name = name;
+        }
+        public override bool IsValid()
+        {
+            ValidationResult = new UpdateGenderCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }
