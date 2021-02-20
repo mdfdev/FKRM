@@ -1,9 +1,22 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Services;
 using FKRM.Domain.CommandHandlers;
+using FKRM.Domain.Commands.AcademicCalendar;
+using FKRM.Domain.Commands.Area;
+using FKRM.Domain.Commands.Branch;
+using FKRM.Domain.Commands.Course;
+using FKRM.Domain.Commands.Enrollment;
 using FKRM.Domain.Commands.Gender;
+using FKRM.Domain.Commands.Grade;
+using FKRM.Domain.Commands.Group;
 using FKRM.Domain.Commands.Major;
+using FKRM.Domain.Commands.MarkingType;
+using FKRM.Domain.Commands.OUType;
+using FKRM.Domain.Commands.Room;
+using FKRM.Domain.Commands.Schedule;
+using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
+using FKRM.Domain.Commands.UnitType;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Entities;
@@ -27,11 +40,70 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMediatorHandler,InMemoryBus>();
 
             //Domain Handler
+            services.AddScoped<IRequestHandler<CreateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateAreaCommand, Response<int>>, AreaCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateAreaCommand, Response<int>>, AreaCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteAreaCommand, Response<int>>, AreaCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateBranchCommand, Response<int>>, BranchCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateBranchCommand, Response<int>>, BranchCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteBranchCommand, Response<int>>, BranchCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateCourseCommand, Response<int>>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCourseCommand, Response<int>>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteCourseCommand, Response<int>>, CourseCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateGenderCommand, Response<int>>, GenderCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGenderCommand, Response<int>>, GenderCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteGenderCommand, Response<int>>, GenderCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateGradeCommand, Response<int>>, GradeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGradeCommand, Response<int>>, GradeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteGradeCommand, Response<int>>, GradeCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateGroupCommand, Response<int>>, GroupCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateGroupCommand, Response<int>>, GroupCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteGroupCommand, Response<int>>, GroupCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, MajorCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateMajorCommand, Response<int>>, MajorCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteMajorCommand, Response<int>>, MajorCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateRoomCommand, Response<int>>, RoomCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateRoomCommand, Response<int>>, RoomCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteRoomCommand, Response<int>>, RoomCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateScheduleCommand, Response<int>>, ScheduleCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateScheduleCommand, Response<int>>, ScheduleCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteScheduleCommand, Response<int>>, ScheduleCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateSchoolCommand, Response<int>>, SchoolCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateSchoolCommand, Response<int>>, SchoolCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteSchoolCommand, Response<int>>, SchoolCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, StaffCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, StaffCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateGenderCommand,Response<int>>, GenderCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, MajorCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
+
             services.AddScoped<IRequestHandler<GetGenderByIdQuery, Response<Gender>>, GetGenderByIdQueryHandler>();
 
             //Application Layer

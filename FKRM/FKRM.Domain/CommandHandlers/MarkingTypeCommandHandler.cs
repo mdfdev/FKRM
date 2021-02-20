@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class MarkingTypeCommandHandler : CommandHandler,
+    public class MarkingTypeCommandHandler : CommandHandler,
         IRequestHandler<CreateMarkingTypeCommand, Response<int>>,
         IRequestHandler<DeleteMarkingTypeCommand, Response<int>>,
         IRequestHandler<UpdateMarkingTypeCommand, Response<int>>

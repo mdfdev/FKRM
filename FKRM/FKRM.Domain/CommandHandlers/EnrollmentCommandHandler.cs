@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class EnrollmentCommandHandler : CommandHandler,
+    public class EnrollmentCommandHandler : CommandHandler,
         IRequestHandler<CreateEnrollmentCommand, Response<int>>,
         IRequestHandler<DeleteEnrollmentCommand, Response<int>>,
         IRequestHandler<UpdateEnrollmentCommand, Response<int>>

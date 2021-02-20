@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class FeatureCommandHandler : CommandHandler,
+    public class FeatureCommandHandler : CommandHandler,
         IRequestHandler<CreateFeatureCommand, Response<int>>,
         IRequestHandler<DeleteFeatureCommand, Response<int>>,
         IRequestHandler<UpdateFeatureCommand, Response<int>>

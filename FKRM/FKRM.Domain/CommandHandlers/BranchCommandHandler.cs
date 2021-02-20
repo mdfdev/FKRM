@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class BranchCommandHandler : CommandHandler,
+    public class BranchCommandHandler : CommandHandler,
         IRequestHandler<CreateBranchCommand, Response<int>>,
         IRequestHandler<DeleteBranchCommand, Response<int>>,
         IRequestHandler<UpdateBranchCommand, Response<int>>

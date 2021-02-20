@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class SchoolCommandHandler : CommandHandler,
+    public class SchoolCommandHandler : CommandHandler,
         IRequestHandler<CreateSchoolCommand, Response<int>>,
         IRequestHandler<DeleteSchoolCommand, Response<int>>,
         IRequestHandler<UpdateSchoolCommand, Response<int>>

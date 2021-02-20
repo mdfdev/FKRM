@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    class GroupCommandHandler : CommandHandler,
+    public class GroupCommandHandler : CommandHandler,
         IRequestHandler<CreateGroupCommand, Response<int>>,
         IRequestHandler<DeleteGroupCommand, Response<int>>,
         IRequestHandler<UpdateGroupCommand, Response<int>>
