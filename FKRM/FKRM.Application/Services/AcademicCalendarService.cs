@@ -47,5 +47,9 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(academicCalendarViewModel));
         }
+        public IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _academicCalendarRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

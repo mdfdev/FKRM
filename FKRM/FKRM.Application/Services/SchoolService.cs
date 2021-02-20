@@ -46,5 +46,11 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
         }
+
+        public IEnumerable<SchoolViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _schoolRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
+
+        }
     }
 }

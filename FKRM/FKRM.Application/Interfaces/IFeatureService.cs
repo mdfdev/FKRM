@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         FeatureViewModel GetById(Guid id);
         void Register(FeatureViewModel featureViewModel);
         IEnumerable<FeatureViewModel> GetAll();
+        IEnumerable<FeatureViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(FeatureViewModel featureViewModel);
         void Remove(Guid id);
     }

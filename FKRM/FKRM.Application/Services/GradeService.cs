@@ -49,5 +49,10 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateGradeCommand>(gradeViewModel));
         }
+
+        public IEnumerable<GradeViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _gradeRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<GradeViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

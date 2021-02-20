@@ -47,5 +47,10 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
         }
+
+        public IEnumerable<AreaViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _areaRepository.GetPagedReponse(pageNumber,pageSize).ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

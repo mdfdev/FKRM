@@ -25,27 +25,34 @@ namespace FKRM.Application.Services
 
         public RoomViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _autoMapper.Map<RoomViewModel>(_roomRepository.GetById(id));
         }
 
         public void Register(RoomViewModel roomViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
         }
 
         public IEnumerable<RoomViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _roomRepository.GetAll().ProjectTo<RoomViewModel>(_autoMapper.ConfigurationProvider);
         }
 
         public void Update(RoomViewModel roomViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<UpdateRoomCommand>(roomViewModel));
+
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(new DeleteRoomCommand(id));
+        }
+
+        public IEnumerable<RoomViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _roomRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<RoomViewModel>(_autoMapper.ConfigurationProvider);
+
         }
     }
 }

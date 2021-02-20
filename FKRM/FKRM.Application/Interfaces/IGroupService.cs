@@ -11,6 +11,8 @@ namespace FKRM.Application.Interfaces
         GroupViewModel GetById(Guid id);
         void Register(GroupViewModel groupViewModel);
         IEnumerable<GroupViewModel> GetAll();
+        IEnumerable<GroupViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(GroupViewModel groupViewModel);
         void Remove(Guid id);
     }

@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         BranchViewModel GetById(Guid id);
         void Register(BranchViewModel branchViewModel);
         IEnumerable<BranchViewModel> GetAll();
+        IEnumerable<BranchViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(BranchViewModel branchViewModel);
         void Remove(Guid id);
     }

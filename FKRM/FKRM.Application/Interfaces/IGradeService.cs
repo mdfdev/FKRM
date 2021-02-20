@@ -12,6 +12,8 @@ namespace FKRM.Application.Interfaces
         GradeViewModel GetById(Guid id);
         void Register(GradeViewModel gradeViewModel);
         IEnumerable<GradeViewModel> GetAll();
+        IEnumerable<GradeViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(GradeViewModel gradeViewModel);
         void Remove(Guid id);
     }

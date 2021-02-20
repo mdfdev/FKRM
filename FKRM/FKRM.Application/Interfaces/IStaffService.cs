@@ -11,6 +11,8 @@ namespace FKRM.Application.Interfaces
         StaffViewModel GetById(Guid id);
         void Register(StaffViewModel staffViewModel);
         IEnumerable<StaffViewModel> GetAll();
+        IEnumerable<StaffViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(StaffViewModel staffViewModel);
         void Remove(Guid id);
     }

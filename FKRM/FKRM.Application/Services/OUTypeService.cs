@@ -25,27 +25,34 @@ namespace FKRM.Application.Services
 
         public OUTypeViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _autoMapper.Map<OUTypeViewModel>(_oUTypeRepository.GetById(id));
         }
 
         public void Register(OUTypeViewModel oUTypeViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<CreateOUTypeCommand>(oUTypeViewModel));
         }
 
         public IEnumerable<OUTypeViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _oUTypeRepository.GetAll().ProjectTo<OUTypeViewModel>(_autoMapper.ConfigurationProvider);
         }
 
         public void Update(OUTypeViewModel oUTypeViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<UpdateOUTypeCommand>(oUTypeViewModel));
+
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(new DeleteOUTypeCommand(id));
+        }
+
+        public IEnumerable<OUTypeViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _oUTypeRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<OUTypeViewModel>(_autoMapper.ConfigurationProvider);
+
         }
     }
 }

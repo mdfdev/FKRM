@@ -46,5 +46,10 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateScheduleCommand>(scheduleViewModel));
         }
+
+        public IEnumerable<ScheduleViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _scheduleRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<ScheduleViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

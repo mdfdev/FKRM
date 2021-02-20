@@ -48,6 +48,10 @@ namespace FKRM.Application.Services
             _bus.SendCommand(_autoMapper.Map<UpdateStaffCommand>(staffViewModel));
         }
 
+        public IEnumerable<StaffViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _staffRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<StaffViewModel>(_autoMapper.ConfigurationProvider);
 
+        }
     }
 }

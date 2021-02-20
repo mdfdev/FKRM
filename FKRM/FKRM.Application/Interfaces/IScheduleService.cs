@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         ScheduleViewModel GetById(Guid id);
         void Register(ScheduleViewModel scheduleViewModel);
         IEnumerable<ScheduleViewModel> GetAll();
+        IEnumerable<ScheduleViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(ScheduleViewModel scheduleViewModel);
         void Remove(Guid id);
     }

@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         EnrollmentViewModel GetById(Guid id);
         void Register(EnrollmentViewModel enrollmentViewModel);
         IEnumerable<EnrollmentViewModel> GetAll();
+        IEnumerable<EnrollmentViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(EnrollmentViewModel enrollmentViewModel);
         void Remove(Guid id);
     }

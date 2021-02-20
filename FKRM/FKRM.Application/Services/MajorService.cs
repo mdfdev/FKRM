@@ -25,12 +25,12 @@ namespace FKRM.Application.Services
 
         public MajorViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _autoMapper.Map<MajorViewModel>(_majorRepository.GetById(id));
         }
 
         public void Register(MajorViewModel majorViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<CreateMajorCommand>(majorViewModel));
         }
 
         public IEnumerable<MajorViewModel> GetAll()
@@ -41,12 +41,17 @@ namespace FKRM.Application.Services
 
         public void Update(MajorViewModel majorViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<UpdateMajorCommand>(majorViewModel));
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(new DeleteMajorCommand(id));
+        }
+
+        public IEnumerable<MajorViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _majorRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<MajorViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

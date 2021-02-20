@@ -25,27 +25,31 @@ namespace FKRM.Application.Services
 
         public MarkingTypeViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _autoMapper.Map<MarkingTypeViewModel>(_markingTypeRepository.GetById(id));
         }
 
         public void Register(MarkingTypeViewModel markingTypeViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<CreateMarkingTypeCommand>(markingTypeViewModel));
         }
 
         public IEnumerable<MarkingTypeViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _markingTypeRepository.GetAll().ProjectTo<MarkingTypeViewModel>(_autoMapper.ConfigurationProvider);
         }
 
         public void Update(MarkingTypeViewModel markingTypeViewModel)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(_autoMapper.Map<UpdateMarkingTypeCommand>(markingTypeViewModel));
         }
 
         public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            _bus.SendCommand(new DeleteMarkingTypeCommand(id));
+        }
+        public IEnumerable<MarkingTypeViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _markingTypeRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<MarkingTypeViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

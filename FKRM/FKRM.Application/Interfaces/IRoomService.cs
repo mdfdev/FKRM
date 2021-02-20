@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         RoomViewModel GetById(Guid id);
         void Register(RoomViewModel roomViewModel);
         IEnumerable<RoomViewModel> GetAll();
+        IEnumerable<RoomViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(RoomViewModel roomViewModel);
         void Remove(Guid id);
     }

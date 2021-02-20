@@ -47,5 +47,10 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateFeatureCommand>(featureViewModel));
         }
+
+        public IEnumerable<FeatureViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _featureRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<FeatureViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

@@ -47,5 +47,9 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
         }
+        public IEnumerable<GenderViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _genderRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<GenderViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

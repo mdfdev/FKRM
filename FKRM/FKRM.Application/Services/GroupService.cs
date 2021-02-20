@@ -47,5 +47,9 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateGroupCommand>(groupViewModel));
         }
+        public IEnumerable<GroupViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _groupRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<GroupViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         SchoolViewModel GetById(Guid id);
         void Register(SchoolViewModel schoolViewModel);
         IEnumerable<SchoolViewModel> GetAll();
+        IEnumerable<SchoolViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(SchoolViewModel schoolViewModel);
         void Remove(Guid id);
     }

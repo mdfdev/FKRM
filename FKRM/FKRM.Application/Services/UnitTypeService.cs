@@ -46,5 +46,11 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateUnitTypeCommand>(unitTypeViewModel));
         }
+
+        public IEnumerable<UnitTypeViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _unitTypeRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<UnitTypeViewModel>(_autoMapper.ConfigurationProvider);
+
+        }
     }
 }

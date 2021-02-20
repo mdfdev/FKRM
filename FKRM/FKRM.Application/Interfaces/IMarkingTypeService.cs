@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         MarkingTypeViewModel GetById(Guid id);
         void Register(MarkingTypeViewModel markingTypeViewModel);
         IEnumerable<MarkingTypeViewModel> GetAll();
+        IEnumerable<MarkingTypeViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(MarkingTypeViewModel markingTypeViewModel);
         void Remove(Guid id);
     }

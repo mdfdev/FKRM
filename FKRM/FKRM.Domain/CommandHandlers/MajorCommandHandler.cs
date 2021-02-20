@@ -1,5 +1,6 @@
 ﻿using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Core.Wrappers;
+using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
 using System;
@@ -21,12 +22,31 @@ namespace FKRM.Domain.CommandHandlers
         }
         public Task<Response<int>> Handle(UpdateMajorCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entity = _majorRepository.GetById(request.ID);
+
+            if (entity == null)
+            {
+                throw new ApiException($"گزینه مورد نظر یافت نشد.");
+            }
+            else
+            {
+                entity.Name = request.Name;
+                _majorRepository.Update(entity);
+                return Task.FromResult(new Response<int>(200));
+            }
         }
 
         public Task<Response<int>> Handle(DeleteMajorCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entity = _majorRepository.GetById(request.ID);
+
+            if (entity == null)
+            {
+                throw new ApiException($"گزینه مورد نظر یافت نشد.");
+            }
+
+            _majorRepository.Remove(request.ID);
+            return Task.FromResult(new Response<int>(200));
         }
 
         public Task<Response<int>> Handle(CreateMajorCommand request, CancellationToken cancellationToken)

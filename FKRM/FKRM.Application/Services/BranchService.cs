@@ -47,5 +47,10 @@ namespace FKRM.Application.Services
         {
             _bus.SendCommand(_autoMapper.Map<UpdateBranchCommand>(branchViewModel));
         }
+
+        public IEnumerable<BranchViewModel> GetPagedResponse(int pageNumber, int pageSize)
+        {
+            return _branchRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<BranchViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

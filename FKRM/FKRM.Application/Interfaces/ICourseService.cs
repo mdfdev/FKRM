@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         CourseViewModel GetById(Guid id);
         void Register(CourseViewModel courseViewModel);
         IEnumerable<CourseViewModel> GetAll();
+        IEnumerable<CourseViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(CourseViewModel courseViewModel);
         void Remove(Guid id);
     }

@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         GenderViewModel GetById(Guid id);
         void Register(GenderViewModel genderViewModel);
         IEnumerable<GenderViewModel> GetAll();
+        IEnumerable<GenderViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(GenderViewModel genderViewModel);
         void Remove(Guid id);
     }

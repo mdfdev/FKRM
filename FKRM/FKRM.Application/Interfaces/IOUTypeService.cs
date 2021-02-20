@@ -10,6 +10,8 @@ namespace FKRM.Application.Interfaces
         OUTypeViewModel GetById(Guid id);
         void Register(OUTypeViewModel oUTypeViewModel);
         IEnumerable<OUTypeViewModel> GetAll();
+        IEnumerable<OUTypeViewModel> GetPagedResponse(int pageNumber, int pageSize);
+
         void Update(OUTypeViewModel oUTypeViewModel);
         void Remove(Guid id);
     }

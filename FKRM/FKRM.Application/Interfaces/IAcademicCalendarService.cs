@@ -10,6 +10,7 @@ namespace FKRM.Application.Interfaces
         AcademicCalendarViewModel GetById(Guid id);
         void Register(AcademicCalendarViewModel academicCalendarViewModel);
         IEnumerable<AcademicCalendarViewModel> GetAll();
+        IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize);
         void Update(AcademicCalendarViewModel academicCalendarViewModel);
         void Remove(Guid id);
     }
