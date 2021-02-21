@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class GenderCommandHandler :CommandHandler,
+    public class GenderCommandHandler :
         IRequestHandler<CreateGenderCommand, Response<int>>,
         IRequestHandler<DeleteGenderCommand, Response<int>>,
         IRequestHandler<UpdateGenderCommand, Response<int>>
     {
         private readonly IGenderRepository _genderRepository;
 
-        public GenderCommandHandler(IGenderRepository genderRepository,IMediatorHandler bus):base(bus)
+        public GenderCommandHandler(IGenderRepository genderRepository)
         {
             _genderRepository = genderRepository;
         }
@@ -24,7 +24,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var gender = new Entities.Gender()

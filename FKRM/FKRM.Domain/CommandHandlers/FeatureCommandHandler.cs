@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class FeatureCommandHandler : CommandHandler,
+    public class FeatureCommandHandler : 
         IRequestHandler<CreateFeatureCommand, Response<int>>,
         IRequestHandler<DeleteFeatureCommand, Response<int>>,
         IRequestHandler<UpdateFeatureCommand, Response<int>>
     {
         private readonly IFeatureRepository _featureRepository;
-        public FeatureCommandHandler(IFeatureRepository FeatureRepository, IMediatorHandler bus) : base(bus)
+        public FeatureCommandHandler(IFeatureRepository FeatureRepository)
         {
             _featureRepository = FeatureRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Feature = new Entities.Feature()

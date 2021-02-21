@@ -17,6 +17,7 @@ using FKRM.Domain.Commands.Schedule;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
+using FKRM.Domain.Queries.Area;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -24,6 +25,7 @@ namespace FKRM.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
+            CreateMap<AreaViewModel, GetAreaByIdQuery>().ConstructUsing(c => new  GetAreaByIdQuery(c.Id));
             CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>().ConstructUsing(c => new CreateAcademicCalendarCommand(c.Name));
             CreateMap<AreaViewModel, CreateAreaCommand>().ConstructUsing(c => new CreateAreaCommand(c.Name));
             CreateMap<BranchViewModel, CreateBranchCommand>().ConstructUsing(c => new CreateBranchCommand(c.Name));

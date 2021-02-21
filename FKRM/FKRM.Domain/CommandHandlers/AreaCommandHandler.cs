@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class AreaCommandHandler : CommandHandler,
+    public class AreaCommandHandler : 
         IRequestHandler<CreateAreaCommand, Response<int>>,
         IRequestHandler<DeleteAreaCommand, Response<int>>,
         IRequestHandler<UpdateAreaCommand, Response<int>>
     {
         private readonly IAreaRepository _areaRepository;
-        public AreaCommandHandler(IAreaRepository areaRepository, IMediatorHandler bus) : base(bus)
+        public AreaCommandHandler(IAreaRepository areaRepository) 
         {
             _areaRepository = areaRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var area = new Entities.Area()

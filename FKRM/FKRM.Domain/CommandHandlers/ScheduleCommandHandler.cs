@@ -1,24 +1,20 @@
 ﻿using FKRM.Domain.Commands.Schedule;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class ScheduleCommandHandler : CommandHandler,
+    public class ScheduleCommandHandler : 
         IRequestHandler<CreateScheduleCommand, Response<int>>,
         IRequestHandler<DeleteScheduleCommand, Response<int>>,
         IRequestHandler<UpdateScheduleCommand, Response<int>>
     {
         private readonly IScheduleRepository _scheduleRepository;
-        public ScheduleCommandHandler(IScheduleRepository ScheduleRepository, IMediatorHandler bus) : base(bus)
+        public ScheduleCommandHandler(IScheduleRepository ScheduleRepository) 
         {
             _scheduleRepository = ScheduleRepository;
         }
@@ -26,7 +22,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Schedule = new Entities.Schedule()

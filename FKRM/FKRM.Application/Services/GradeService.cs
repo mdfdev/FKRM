@@ -5,7 +5,6 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Grade;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
-using FKRM.Domain.Queries.Grade;
 using System;
 using System.Collections.Generic;
 using System.Linq;

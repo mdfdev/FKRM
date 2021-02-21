@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class GroupCommandHandler : CommandHandler,
+    public class GroupCommandHandler : 
         IRequestHandler<CreateGroupCommand, Response<int>>,
         IRequestHandler<DeleteGroupCommand, Response<int>>,
         IRequestHandler<UpdateGroupCommand, Response<int>>
     {
         private readonly IGroupRepository _groupRepository;
-        public GroupCommandHandler(IGroupRepository GroupRepository, IMediatorHandler bus) : base(bus)
+        public GroupCommandHandler(IGroupRepository GroupRepository) 
         {
             _groupRepository = GroupRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Group = new Entities.Group()

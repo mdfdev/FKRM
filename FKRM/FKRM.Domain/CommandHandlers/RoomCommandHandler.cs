@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class RoomCommandHandler : CommandHandler,
+    public class RoomCommandHandler : 
         IRequestHandler<CreateRoomCommand, Response<int>>,
         IRequestHandler<DeleteRoomCommand, Response<int>>,
         IRequestHandler<UpdateRoomCommand, Response<int>>
     {
         private readonly IRoomRepository _roomRepository;
-        public RoomCommandHandler(IRoomRepository RoomRepository, IMediatorHandler bus) : base(bus)
+        public RoomCommandHandler(IRoomRepository RoomRepository) 
         {
             _roomRepository = RoomRepository;
         }
@@ -23,7 +23,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Room = new Entities.Room()

@@ -21,12 +21,14 @@ using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
-using FKRM.Domain.Queries.Gender;
+using FKRM.Domain.Queries.Area;
+using FKRM.Domain.QueryHandlers;
 using FKRM.Infra.Bus;
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace FKRM.Infra.IoC
 {
@@ -47,6 +49,8 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateAreaCommand, Response<int>>, AreaCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateAreaCommand, Response<int>>, AreaCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteAreaCommand, Response<int>>, AreaCommandHandler>();
+            services.AddScoped<IRequestHandler<GetAreaByIdQuery, Response<Area>>, AreaQueryHandler>();
+            services.AddScoped<IRequestHandler<GetAllAreaQuery, Response<IQueryable<Area>>>, AreaQueryHandler>();
 
             services.AddScoped<IRequestHandler<CreateBranchCommand, Response<int>>, BranchCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateBranchCommand, Response<int>>, BranchCommandHandler>();
@@ -104,7 +108,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
 
-            services.AddScoped<IRequestHandler<GetGenderByIdQuery, Response<Gender>>, GetGenderByIdQueryHandler>();
+            
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();

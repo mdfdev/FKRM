@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class UnitTypeCommandHandler : CommandHandler,
+    public class UnitTypeCommandHandler : 
         IRequestHandler<CreateUnitTypeCommand, Response<int>>,
         IRequestHandler<DeleteUnitTypeCommand, Response<int>>,
         IRequestHandler<UpdateUnitTypeCommand, Response<int>>
     {
         private readonly IUnitTypeRepository _unitTypeRepository;
-        public UnitTypeCommandHandler(IUnitTypeRepository unitTypeRepository, IMediatorHandler bus) : base(bus)
+        public UnitTypeCommandHandler(IUnitTypeRepository unitTypeRepository) 
         {
             _unitTypeRepository = unitTypeRepository;
         }
@@ -23,7 +23,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var unitType = new Entities.UnitType()

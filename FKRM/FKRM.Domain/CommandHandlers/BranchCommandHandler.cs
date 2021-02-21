@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class BranchCommandHandler : CommandHandler,
+    public class BranchCommandHandler : 
         IRequestHandler<CreateBranchCommand, Response<int>>,
         IRequestHandler<DeleteBranchCommand, Response<int>>,
         IRequestHandler<UpdateBranchCommand, Response<int>>
     {
         private readonly IBranchRepository _branchRepository;
-        public BranchCommandHandler(IBranchRepository BranchRepository, IMediatorHandler bus) : base(bus)
+        public BranchCommandHandler(IBranchRepository BranchRepository) 
         {
             _branchRepository = BranchRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Branch = new Entities.Branch()

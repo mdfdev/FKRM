@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class EnrollmentCommandHandler : CommandHandler,
+    public class EnrollmentCommandHandler : 
         IRequestHandler<CreateEnrollmentCommand, Response<int>>,
         IRequestHandler<DeleteEnrollmentCommand, Response<int>>,
         IRequestHandler<UpdateEnrollmentCommand, Response<int>>
     {
         private readonly IEnrollmentRepository _enrollmentRepository;
-        public EnrollmentCommandHandler(IEnrollmentRepository EnrollmentRepository, IMediatorHandler bus) : base(bus)
+        public EnrollmentCommandHandler(IEnrollmentRepository EnrollmentRepository) 
         {
             _enrollmentRepository = EnrollmentRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Enrollment = new Entities.Enrollment()

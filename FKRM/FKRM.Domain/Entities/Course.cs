@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace FKRM.Domain.Entities
 {
@@ -30,6 +31,7 @@ namespace FKRM.Domain.Entities
         public Major Major { get; set; }
         public MarkingType MarkingType { get; set; }
         public Grade Grade { get; set; }
+        [JsonIgnore]
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

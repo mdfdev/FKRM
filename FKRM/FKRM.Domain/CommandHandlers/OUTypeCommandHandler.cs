@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class OUTypeCommandHandler : CommandHandler,
+    public class OUTypeCommandHandler : 
         IRequestHandler<CreateOUTypeCommand, Response<int>>,
         IRequestHandler<DeleteOUTypeCommand, Response<int>>,
         IRequestHandler<UpdateOUTypeCommand, Response<int>>
     {
         private readonly IOUTypeRepository _oUTypeRepository;
-        public OUTypeCommandHandler(IOUTypeRepository OUTypeRepository, IMediatorHandler bus) : base(bus)
+        public OUTypeCommandHandler(IOUTypeRepository OUTypeRepository)
         {
             _oUTypeRepository = OUTypeRepository;
         }
@@ -23,7 +23,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var OUType = new Entities.OUType()

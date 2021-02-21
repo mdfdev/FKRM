@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace FKRM.Domain.Entities
 {
@@ -15,6 +16,10 @@ namespace FKRM.Domain.Entities
         public string Phone { get; set; }
         public string Mobile { get; set; }
         public string NationalCode { get; set; }
+        public string Email { get; set; }
+        public string Bio { get; set; }
+        public string Image { get; set; }
+        [JsonIgnore]
         public ICollection<Enrollment> Enrollments { get; set; }
 
     }

@@ -5,7 +5,6 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
-using FKRM.Domain.Queries.Gender;
 using System;
 using System.Collections.Generic;
 

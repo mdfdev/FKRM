@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class CourseCommandHandler : CommandHandler,
+    public class CourseCommandHandler : 
         IRequestHandler<CreateCourseCommand, Response<int>>,
         IRequestHandler<DeleteCourseCommand, Response<int>>,
         IRequestHandler<UpdateCourseCommand, Response<int>>
     {
         private readonly ICourseRepository _courseRepository;
-        public CourseCommandHandler(ICourseRepository CourseRepository, IMediatorHandler bus) : base(bus)
+        public CourseCommandHandler(ICourseRepository CourseRepository) 
         {
             _courseRepository = CourseRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Course = new Entities.Course()

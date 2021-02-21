@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class MarkingTypeCommandHandler : CommandHandler,
+    public class MarkingTypeCommandHandler : 
         IRequestHandler<CreateMarkingTypeCommand, Response<int>>,
         IRequestHandler<DeleteMarkingTypeCommand, Response<int>>,
         IRequestHandler<UpdateMarkingTypeCommand, Response<int>>
     {
         private readonly IMarkingTypeRepository _markingTypeRepository;
-        public MarkingTypeCommandHandler(IMarkingTypeRepository MarkingTypeRepository, IMediatorHandler bus) : base(bus)
+        public MarkingTypeCommandHandler(IMarkingTypeRepository MarkingTypeRepository ) 
         {
             _markingTypeRepository = MarkingTypeRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var MarkingType = new Entities.MarkingType()

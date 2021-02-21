@@ -1,24 +1,20 @@
 ﻿using FKRM.Domain.Commands.School;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class SchoolCommandHandler : CommandHandler,
+    public class SchoolCommandHandler : 
         IRequestHandler<CreateSchoolCommand, Response<int>>,
         IRequestHandler<DeleteSchoolCommand, Response<int>>,
         IRequestHandler<UpdateSchoolCommand, Response<int>>
     {
         private readonly ISchoolRepository _schoolRepository;
-        public SchoolCommandHandler(ISchoolRepository SchoolRepository, IMediatorHandler bus) : base(bus)
+        public SchoolCommandHandler(ISchoolRepository SchoolRepository)
         {
             _schoolRepository = SchoolRepository;
         }
@@ -26,7 +22,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var School = new Entities.School()

@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class AcademicCalendarCommandHandler : CommandHandler,
+    public class AcademicCalendarCommandHandler : 
         IRequestHandler<CreateAcademicCalendarCommand, Response<int>>,
         IRequestHandler<DeleteAcademicCalendarCommand, Response<int>>,
         IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>
     {
         private readonly IAcademicCalendarRepository _academicCalendarRepository;
-        public AcademicCalendarCommandHandler(IAcademicCalendarRepository AcademicCalendarRepository, IMediatorHandler bus) : base(bus)
+        public AcademicCalendarCommandHandler(IAcademicCalendarRepository AcademicCalendarRepository) 
         {
             _academicCalendarRepository = AcademicCalendarRepository;
         }
@@ -26,7 +26,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var AcademicCalendar = new Entities.AcademicCalendar()

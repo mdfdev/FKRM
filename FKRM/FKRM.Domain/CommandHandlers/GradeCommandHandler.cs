@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class GradeCommandHandler : CommandHandler,
+    public class GradeCommandHandler : 
         IRequestHandler<CreateGradeCommand, Response<int>>,
         IRequestHandler<DeleteGradeCommand, Response<int>>,
         IRequestHandler<UpdateGradeCommand, Response<int>>
     {
         private readonly IGradeRepository _gradeRepository;
-        public GradeCommandHandler(IGradeRepository GradeRepository, IMediatorHandler bus) : base(bus)
+        public GradeCommandHandler(IGradeRepository GradeRepository)
         {
             _gradeRepository = GradeRepository;
         }
@@ -23,7 +23,6 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                NotifyValidationErrors(request);
                 return Task.FromResult(new Response<int>(400));
             }
             var Grade = new Entities.Grade()
