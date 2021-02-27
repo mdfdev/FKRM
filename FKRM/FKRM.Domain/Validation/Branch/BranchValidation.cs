@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.Branch;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.Branch
 {
@@ -11,8 +9,8 @@ namespace FKRM.Domain.Validation.Branch
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("Name cannot be empty")
-                .Length(2, 10).WithMessage("The name is between 2~10 characters");
+                .NotEmpty().WithMessage("نام شاخه نمی تواند خالی باشد")
+                .Length(3, 20).WithMessage("طول نام باشد بین 2~10 کاراکتر باشد");
         }
         protected void ValidateId()
         {

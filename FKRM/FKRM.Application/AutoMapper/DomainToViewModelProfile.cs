@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
+using FKRM.Application.Extension;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -12,8 +10,11 @@ namespace FKRM.Application.AutoMapper
         public DomainToViewModelProfile()
         {
             CreateMap<AcademicCalendar, AcademicCalendarViewModel>();
-            CreateMap<Area, AreaViewModel>();
-            CreateMap<Branch, BranchViewModel>();
+            CreateMap<Area, AreaViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()));
+            CreateMap<Branch, BranchViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Course, CourseViewModel>();
             CreateMap<Enrollment, EnrollmentViewModel>();
             CreateMap<Feature, FeatureViewModel>();

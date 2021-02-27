@@ -7,10 +7,9 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class GenderViewModel
+    public class GenderViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
+ 
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]
         public string Name { get; set; }

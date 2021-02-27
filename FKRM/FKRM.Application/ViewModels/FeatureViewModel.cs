@@ -7,10 +7,8 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class FeatureViewModel
+    public class FeatureViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]
         public string Name { get; set; }

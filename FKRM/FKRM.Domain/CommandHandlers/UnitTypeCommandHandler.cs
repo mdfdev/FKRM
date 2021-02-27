@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class UnitTypeCommandHandler : 
+    public class UnitTypeCommandHandler : CommandHandler,
         IRequestHandler<CreateUnitTypeCommand, Response<int>>,
         IRequestHandler<DeleteUnitTypeCommand, Response<int>>,
         IRequestHandler<UpdateUnitTypeCommand, Response<int>>

@@ -1,18 +1,19 @@
 ﻿using FKRM.Application.ViewModels;
+using FKRM.Domain.Core.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Interfaces
 {
     public interface IBranchService
     {
         BranchViewModel GetById(Guid id);
-        void Register(BranchViewModel branchViewModel);
+        Task<Response<int>> Register(BranchViewModel branchViewModel);
         IEnumerable<BranchViewModel> GetAll();
         IEnumerable<BranchViewModel> GetPagedResponse(int pageNumber, int pageSize);
-
-        void Update(BranchViewModel branchViewModel);
-        void Remove(Guid id);
+        Task<Response<int>> Update(BranchViewModel branchViewModel);
+        Task<Response<int>> Remove(Guid id);
     }
 }

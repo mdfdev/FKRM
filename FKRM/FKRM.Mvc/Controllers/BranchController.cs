@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class GenderController : BaseController<BranchController>
+    public class BranchController : BaseController<BranchController>
     {
-        private IGenderService _genderService;
+        private IBranchService _branchService;
 
-        public GenderController(IGenderService genderService, IToastNotification toastNotification) : base(toastNotification)
+        public BranchController(IBranchService branchService, IToastNotification toastNotification):base(toastNotification)
         {
-            _genderService = genderService;
+            _branchService = branchService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _genderService.GetAll());
+            return PartialView("_ViewAll", _branchService.GetAll());
         }
         public IActionResult Index()
         {
@@ -27,17 +27,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var genderViewModel = new GenderViewModel();
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", genderViewModel) });
+                var branchViewModel = new BranchViewModel();
+                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
             }
             else
             {
-                var genderViewModel = _genderService.GetById(id);
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", genderViewModel) });
+                var branchViewModel = _branchService.GetById(id);
+                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, GenderViewModel genderViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, BranchViewModel branchViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +45,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _genderService.Register(genderViewModel);
-                        if (response.Result.Data == 400)
+                        var response= _branchService.Register(branchViewModel);
+                        if (response.Result.Data==400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{genderViewModel.Name} ثبت شد.");
+                            NotifySuccess($"{branchViewModel.Name} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _genderService.Update(genderViewModel);
+                        var response =  _branchService.Update(branchViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{genderViewModel.Name} ویرایش شد.");
+                            NotifyInfo($"{branchViewModel.Name} ویرایش شد.");
                         }
                     }
                 }
@@ -73,12 +73,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _genderService.GetAll());
+                var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
                 return new JsonResult(new { isValid = true, html = html });
             }
             else
             {
-                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", genderViewModel);
+                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel);
                 return new JsonResult(new { isValid = false, html = html });
             }
         }
@@ -87,8 +87,8 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var name = _genderService.GetById(id).Name;
-                var response = _genderService.Remove(id);
+                var name = _branchService.GetById(id).Name;
+                var response=_branchService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -102,7 +102,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _genderService.GetAll());
+            var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
             return new JsonResult(new { isValid = true, html = html });
         }
     }

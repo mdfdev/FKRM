@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class UnitTypeViewModel
+    public class UnitTypeViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام واحد سازمانی")]
         public string Name { get; set; }

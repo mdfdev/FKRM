@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class StaffCommandHandler : IRequestHandler<CreateStaffCommand, Response<int>>,
+    public class StaffCommandHandler : CommandHandler,
+        IRequestHandler<CreateStaffCommand, Response<int>>,
         IRequestHandler<DeleteStaffCommand, Response<int>>,
         IRequestHandler<UpdateStaffCommand, Response<int>>
     {

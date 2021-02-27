@@ -7,12 +7,11 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class BranchViewModel
+    public class BranchViewModel : BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
+        [DisplayName("نام شاخه تحصیلی")]
         public string Name { get; set; }
     }
 }

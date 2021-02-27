@@ -5,6 +5,7 @@ using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Area;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Interfaces;
+using FKRM.Domain.Queries.Area;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,11 +27,13 @@ namespace FKRM.Application.Services
         public IEnumerable<AreaViewModel> GetAll()
         {
             return _areaRepository.GetAll().ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+            
         }
 
         public AreaViewModel GetById(Guid id)
         {
             return _autoMapper.Map<AreaViewModel>(_areaRepository.GetById(id));
+            
         }
 
         public void Register(AreaViewModel areaViewModel)

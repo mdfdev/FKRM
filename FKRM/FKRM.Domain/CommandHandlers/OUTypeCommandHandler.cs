@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class OUTypeCommandHandler : 
+    public class OUTypeCommandHandler : CommandHandler,
         IRequestHandler<CreateOUTypeCommand, Response<int>>,
         IRequestHandler<DeleteOUTypeCommand, Response<int>>,
         IRequestHandler<UpdateOUTypeCommand, Response<int>>

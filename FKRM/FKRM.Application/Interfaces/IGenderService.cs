@@ -1,18 +1,19 @@
 ﻿using FKRM.Application.ViewModels;
+using FKRM.Domain.Core.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Interfaces
 {
     public interface IGenderService
     {
         GenderViewModel GetById(Guid id);
-        void Register(GenderViewModel genderViewModel);
+        Task<Response<int>> Register(GenderViewModel genderViewModel);
         IEnumerable<GenderViewModel> GetAll();
         IEnumerable<GenderViewModel> GetPagedResponse(int pageNumber, int pageSize);
-
-        void Update(GenderViewModel genderViewModel);
-        void Remove(Guid id);
+        Task<Response<int>> Update(GenderViewModel genderViewModel);
+        Task<Response<int>> Remove(Guid id);
     }
 }

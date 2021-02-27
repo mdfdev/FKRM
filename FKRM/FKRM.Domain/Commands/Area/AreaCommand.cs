@@ -10,5 +10,6 @@ namespace FKRM.Domain.Commands.Area
         public Guid ID { get; protected set; }
 
         public string Name { get; protected set; }
+
     }
 }

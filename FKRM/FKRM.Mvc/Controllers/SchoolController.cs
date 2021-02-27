@@ -12,11 +12,9 @@ namespace FKRM.Mvc.Controllers
     public class SchoolController : BaseController<SchoolController>
     {
         private ISchoolService _schoolService;
-        private readonly IToastNotification _toastNotification;
-        public SchoolController(ISchoolService schoolService, IToastNotification toastNotification)
+        public SchoolController(ISchoolService schoolService, IToastNotification toastNotification):base(toastNotification)
         {
             _schoolService = schoolService;
-            _toastNotification = toastNotification;
         }
         public IActionResult LoadAll()
         {
@@ -24,7 +22,6 @@ namespace FKRM.Mvc.Controllers
         }
         public IActionResult Index()
         {
-            _toastNotification.AddAlertToastMessage("Same for success message");
             return View();
         }
         public JsonResult OnGetCreateOrEdit(Guid id = default(Guid))
@@ -50,17 +47,17 @@ namespace FKRM.Mvc.Controllers
                     if (id == Guid.Empty)
                     {
                         _schoolService.Register(schoolViewModel);
-                        _toastNotification.AddSuccessToastMessage($"پرسنل {schoolViewModel.Name} ثبت شد.");
+                       NotifySuccess($"پرسنل {schoolViewModel.Name} ثبت شد.");
                     }
                     else
                     {
                         _schoolService.Update(schoolViewModel);
-                        _toastNotification.AddInfoToastMessage($"پرسنل {schoolViewModel.Name} ویرایش شد.");
+                       NotifyInfo($"پرسنل {schoolViewModel.Name} ویرایش شد.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    _toastNotification.AddErrorToastMessage($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
                 var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
                 return new JsonResult(new { isValid = true, html = html });
@@ -77,11 +74,11 @@ namespace FKRM.Mvc.Controllers
             try
             {
                 _schoolService.Remove(id);
-                _toastNotification.AddInfoToastMessage($"پرسنل {id} حذف شد.");
+                NotifyInfo($"پرسنل {id} حذف شد.");
             }
             catch (Exception)
             {
-                _toastNotification.AddErrorToastMessage("حذف اطلاعات انجام نشد.");
+                NotifyError("حذف اطلاعات انجام نشد.");
             }
             var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
             return new JsonResult(new { isValid = true, html = html });

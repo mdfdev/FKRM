@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class RoomCommandHandler : 
+    public class RoomCommandHandler : CommandHandler,
         IRequestHandler<CreateRoomCommand, Response<int>>,
         IRequestHandler<DeleteRoomCommand, Response<int>>,
         IRequestHandler<UpdateRoomCommand, Response<int>>

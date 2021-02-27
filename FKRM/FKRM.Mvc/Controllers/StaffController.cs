@@ -10,11 +10,9 @@ namespace FKRM.Mvc.Controllers
     public class StaffController : BaseController<StaffController>
     {
         private IStaffService _staffService;
-        private readonly IToastNotification _toastNotification;
-        public StaffController(IStaffService staffService, IToastNotification toastNotification)
+        public StaffController(IStaffService staffService, IToastNotification toastNotification):base(toastNotification)
         {
             _staffService = staffService;
-            _toastNotification = toastNotification;
         }
         public IActionResult LoadAll()
         {
@@ -22,7 +20,6 @@ namespace FKRM.Mvc.Controllers
         }
         public IActionResult Index()
         {
-            _toastNotification.AddAlertToastMessage("Same for success message");
             return View();
         }
         public JsonResult OnGetCreateOrEdit(Guid id = default(Guid))
@@ -48,17 +45,17 @@ namespace FKRM.Mvc.Controllers
                     if (id == Guid.Empty)
                     {
                         _staffService.Register(staffViewModel);
-                        _toastNotification.AddSuccessToastMessage($"پرسنل {staffViewModel.FirstName} {staffViewModel.LastName} ثبت شد.");
+                        NotifySuccess($"پرسنل {staffViewModel.FirstName} {staffViewModel.LastName} ثبت شد.");
                     }
                     else
                     {
                         _staffService.Update(staffViewModel);
-                        _toastNotification.AddInfoToastMessage($"پرسنل {staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                        NotifyInfo($"پرسنل {staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    _toastNotification.AddErrorToastMessage($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
                 var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
                 return new JsonResult(new { isValid = true, html = html });
@@ -75,11 +72,11 @@ namespace FKRM.Mvc.Controllers
             try
             {
                 _staffService.Remove(id);
-                _toastNotification.AddInfoToastMessage($"پرسنل {id} حذف شد.");
+                NotifyInfo($"پرسنل {id} حذف شد.");
             }
             catch (Exception)
             {
-                _toastNotification.AddErrorToastMessage("حذف اطلاعات انجام نشد.");
+                NotifyError("حذف اطلاعات انجام نشد.");
             }
             var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
             return new JsonResult(new { isValid = true, html = html });

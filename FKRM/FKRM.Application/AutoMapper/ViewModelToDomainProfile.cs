@@ -18,6 +18,7 @@ using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
 using FKRM.Domain.Queries.Area;
+using System;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -26,9 +27,23 @@ namespace FKRM.Application.AutoMapper
         public ViewModelToDomainProfile()
         {
             CreateMap<AreaViewModel, GetAreaByIdQuery>().ConstructUsing(c => new  GetAreaByIdQuery(c.Id));
-            CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>().ConstructUsing(c => new CreateAcademicCalendarCommand(c.Name));
-            CreateMap<AreaViewModel, CreateAreaCommand>().ConstructUsing(c => new CreateAreaCommand(c.Name));
-            CreateMap<BranchViewModel, CreateBranchCommand>().ConstructUsing(c => new CreateBranchCommand(c.Name));
+            CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>().ConstructUsing(c => new CreateAcademicCalendarCommand(c.AcademicYear,c.AcademicQuarter));
+
+            CreateMap<AreaViewModel, CreateAreaCommand>()
+                //.ForPath(c => c.Address.Province, d => d.MapFrom(d => d.Branch))
+                .ConstructUsing(c => new CreateAreaCommand(c.Name));
+            CreateMap<AreaViewModel, UpdateAreaCommand>()
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new UpdateAreaCommand(c.Id, c.Name));
+
+            CreateMap<BranchViewModel, CreateBranchCommand>()
+                .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new CreateBranchCommand(c.Name));
+            CreateMap<BranchViewModel, UpdateBranchCommand>()
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new UpdateBranchCommand(c.Id,c.Name));
+
             CreateMap<CourseViewModel, CreateCourseCommand>().ConstructUsing(c => new CreateCourseCommand(c.Name));
             CreateMap<EnrollmentViewModel, CreateEnrollmentCommand>().ConstructUsing(c => new CreateEnrollmentCommand(c.Capacity));
             CreateMap<FeatureViewModel, CreateFeatureCommand>().ConstructUsing(c => new CreateFeatureCommand(c.Name));

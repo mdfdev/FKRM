@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class ScheduleCommandHandler : 
+    public class ScheduleCommandHandler : CommandHandler,
         IRequestHandler<CreateScheduleCommand, Response<int>>,
         IRequestHandler<DeleteScheduleCommand, Response<int>>,
         IRequestHandler<UpdateScheduleCommand, Response<int>>

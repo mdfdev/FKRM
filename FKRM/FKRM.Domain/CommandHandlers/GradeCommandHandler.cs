@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class GradeCommandHandler : 
+    public class GradeCommandHandler : CommandHandler,
         IRequestHandler<CreateGradeCommand, Response<int>>,
         IRequestHandler<DeleteGradeCommand, Response<int>>,
         IRequestHandler<UpdateGradeCommand, Response<int>>

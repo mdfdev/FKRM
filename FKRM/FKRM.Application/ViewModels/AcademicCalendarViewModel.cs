@@ -7,12 +7,13 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class AcademicCalendarViewModel
+    public class AcademicCalendarViewModel : BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
-        public string Name { get; set; }
+        [DisplayName("سال تحصیلی")]
+        public string AcademicYear { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("ترم تحصیلی")]
+        public string AcademicQuarter { get; set; }
     }
 }

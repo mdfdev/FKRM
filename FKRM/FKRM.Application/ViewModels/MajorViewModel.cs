@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class MajorViewModel
+    public class MajorViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         /// <summary>
         /// نام رشته
         /// </summary>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class GenderCommandHandler :
+    public class GenderCommandHandler : CommandHandler,
         IRequestHandler<CreateGenderCommand, Response<int>>,
         IRequestHandler<DeleteGenderCommand, Response<int>>,
         IRequestHandler<UpdateGenderCommand, Response<int>>

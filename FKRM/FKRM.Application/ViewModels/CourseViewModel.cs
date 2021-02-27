@@ -7,12 +7,19 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class CourseViewModel
+    public class CourseViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
+        [DisplayName("کد درس")]
+        public string Code { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("نام درس")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("تعداد واحد")]
+        public int Credits { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("حد نصاب قبولی")]
+        public int PassMark { get; set; }
     }
 }

@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class ScheduleViewModel
+    public class ScheduleViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]
         public int StartTime { get; set; }

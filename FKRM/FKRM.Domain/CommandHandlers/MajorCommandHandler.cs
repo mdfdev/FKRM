@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace FKRM.Domain.CommandHandlers
 {
-    public class MajorCommandHandler : IRequestHandler<CreateMajorCommand, Response<int>>,
+    public class MajorCommandHandler : CommandHandler,
+        IRequestHandler<CreateMajorCommand, Response<int>>,
         IRequestHandler<DeleteMajorCommand, Response<int>>,
         IRequestHandler<UpdateMajorCommand, Response<int>>
     {

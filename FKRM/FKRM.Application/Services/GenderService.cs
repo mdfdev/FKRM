@@ -4,9 +4,11 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
@@ -32,19 +34,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<GenderViewModel>(_genderRepository.GetById(id));
         }
 
-        public void Register(GenderViewModel genderViewModel)
+        public Task<Response<int>> Register(GenderViewModel genderViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateGenderCommand>(genderViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateGenderCommand>(genderViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteGenderCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteGenderCommand(id));
         }
 
-        public void Update(GenderViewModel genderViewModel)
+        public Task<Response<int>> Update(GenderViewModel genderViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
         }
         public IEnumerable<GenderViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {

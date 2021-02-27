@@ -7,12 +7,12 @@ using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class AreaViewModel
+    public class AreaViewModel:BaseViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
+      
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
+        [DisplayName("نام زمینه رشته")]
         public string Name { get; set; }
+
     }
 }
