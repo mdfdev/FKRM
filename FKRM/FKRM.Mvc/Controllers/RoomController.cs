@@ -3,21 +3,23 @@ using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class StaffController : BaseController<StaffController>
+    public class RoomController : BaseController<BranchController>
     {
-        private readonly IStaffService _staffService;
+        private readonly IRoomService _roomService;
 
-        public StaffController(IStaffService staffService, IToastNotification toastNotification) : base(toastNotification)
+        public RoomController(IRoomService roomService, IToastNotification toastNotification) : base(toastNotification)
         {
-            _staffService = staffService;
+            _roomService = roomService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _staffService.GetAll());
+            return PartialView("_ViewAll", _roomService.GetAll());
         }
         public IActionResult Index()
         {
@@ -27,17 +29,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var staffViewModel = new StaffViewModel();
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var roomViewModel = new RoomViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", roomViewModel) });
             }
             else
             {
-                var staffViewModel = _staffService.GetById(id);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var roomViewModel = _roomService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", roomViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, StaffViewModel staffViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, RoomViewModel roomViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +47,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _staffService.Register(staffViewModel);
+                        var response = _roomService.Register(roomViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
+                            NotifySuccess($"{roomViewModel.Name} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _staffService.Update(staffViewModel);
+                        var response = _roomService.Update(roomViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                            NotifyInfo($"{roomViewModel.Name} ویرایش شد.");
                         }
                     }
                 }
@@ -73,12 +75,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _roomService.GetAll());
                 return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", roomViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }
@@ -87,9 +89,8 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
-                var response = _staffService.Remove(id);
+                var name = _roomService.GetById(id).Name;
+                var response = _roomService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -103,7 +104,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _roomService.GetAll());
             return new JsonResult(new { isValid = true, html });
         }
     }

@@ -1,7 +1,9 @@
 ﻿using FKRM.Application.ViewModels;
+using FKRM.Domain.Core.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Interfaces
 {
@@ -10,11 +12,10 @@ namespace FKRM.Application.Interfaces
 
 
         GradeViewModel GetById(Guid id);
-        void Register(GradeViewModel gradeViewModel);
+        Task<Response<int>> Register(GradeViewModel gradeViewModel);
         IEnumerable<GradeViewModel> GetAll();
         IEnumerable<GradeViewModel> GetPagedResponse(int pageNumber, int pageSize);
-
-        void Update(GradeViewModel gradeViewModel);
-        void Remove(Guid id);
+        Task<Response<int>> Update(GradeViewModel gradeViewModel);
+        Task<Response<int>> Remove(Guid id);
     }
 }

@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Enrollment;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class EnrollmentService : IEnrollmentService
     {
-        private IEnrollmentRepository _enrollmentRepository;
+        private readonly IEnrollmentRepository _enrollmentRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public EnrollmentService(IEnrollmentRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -33,19 +35,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<EnrollmentViewModel>(_enrollmentRepository.GetById(id));
         }
 
-        public void Register(EnrollmentViewModel enrollmentViewModel)
+        public Task<Response<int>> Register(EnrollmentViewModel enrollmentViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateEnrollmentCommand>(enrollmentViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateEnrollmentCommand>(enrollmentViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteEnrollmentCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteEnrollmentCommand(id));
         }
 
-        public void Update(EnrollmentViewModel enrollmentViewModel)
+        public Task<Response<int>> Update(EnrollmentViewModel enrollmentViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateEnrollmentCommand>(enrollmentViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateEnrollmentCommand>(enrollmentViewModel));
         }
         public IEnumerable<EnrollmentViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {

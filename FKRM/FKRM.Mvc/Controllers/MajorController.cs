@@ -2,6 +2,7 @@
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,93 +10,103 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class MajorController : Controller
+    public class MajorController : BaseController<MajorController>
     {
-        private IMajorService _majorService;
-        public MajorController(IMajorService majorService)
+        private readonly IMajorService _majorService;
+
+        public MajorController(IMajorService majorService, IToastNotification toastNotification) : base(toastNotification)
         {
             _majorService = majorService;
         }
-        public ActionResult Index()
+        public IActionResult LoadAll()
         {
-            return View(_majorService.GetAll());
+            return PartialView("_ViewAll", _majorService.GetAll());
         }
-
-        // GET: MajorController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Index()
         {
             return View();
         }
-
-        // GET: MajorController/Create
-        public ActionResult Create()
+        public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
-            return View();
+            if (id == Guid.Empty)
+            {
+                var majorViewModel = new MajorViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", majorViewModel) });
+            }
+            else
+            {
+                var majorViewModel = _majorService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", majorViewModel) });
+            }
         }
-
-        // POST: MajorController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] MajorViewModel majorViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, MajorViewModel majorViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (id == Guid.Empty)
+                    {
+                        var response = _majorService.Register(majorViewModel);
+                        if (response.Result.Data == 400)
+                        {
+                            NotifyErrors(response.Result.Message);
+                        }
+                        else
+                        {
+                            NotifySuccess($"{majorViewModel.Name} ثبت شد.");
+
+                        }
+                    }
+                    else
+                    {
+                        var response = _majorService.Update(majorViewModel);
+                        if (response.Result.Data == 400)
+                        {
+                            NotifyErrors(response.Result.Message);
+                        }
+                        else
+                        {
+                            NotifyInfo($"{majorViewModel.Name} ویرایش شد.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                }
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _majorService.GetAll());
+                return new JsonResult(new { isValid = true, html });
+            }
+            else
+            {
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", majorViewModel);
+                return new JsonResult(new { isValid = false, html });
+            }
+        }
+        [HttpPost]
+        public async Task<JsonResult> OnPostDelete(Guid id)
         {
             try
             {
-                if (ModelState.IsValid)
+                var name = _majorService.GetById(id).Name;
+                var response = _majorService.Remove(id);
+                if (response.Result.Data == 400)
                 {
-                    _majorService.Register(majorViewModel);
-                    return RedirectToAction(nameof(Index));
+                    NotifyErrors(response.Result.Message);
+                }
+                else
+                {
+                    NotifyInfo($"{name} حذف شد.");
                 }
             }
-            catch (Exception /* ex */)
+            catch (Exception)
             {
-                //Log the error (uncomment ex variable name and write a log.
-                ModelState.AddModelError("", "Unable to save changes. " +
-                    "Try again, and if the problem persists " +
-                    "see your system administrator.");
+                NotifyError("حذف اطلاعات انجام نشد.");
             }
-            return View(majorViewModel);
-        }
-
-        // GET: MajorController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MajorController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MajorController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MajorController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _majorService.GetAll());
+            return new JsonResult(new { isValid = true, html });
         }
     }
 }

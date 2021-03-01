@@ -1,7 +1,6 @@
 ﻿using FKRM.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using NToastNotify;
 using System.Collections.Generic;
 
@@ -11,7 +10,7 @@ namespace FKRM.Mvc.Controllers
     {
         private IViewRenderService _viewRenderInstance;
         private readonly IToastNotification _toastNotification;
-        protected IViewRenderService _viewRenderer => _viewRenderInstance ??= HttpContext.RequestServices.GetService<IViewRenderService>();
+        protected IViewRenderService ViewRenderer => _viewRenderInstance ??= HttpContext.RequestServices.GetService<IViewRenderService>();
         public BaseController(IToastNotification toastNotification)
         {
             this._toastNotification = toastNotification;

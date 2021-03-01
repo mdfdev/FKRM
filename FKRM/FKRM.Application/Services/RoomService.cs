@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Room;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class RoomService : IRoomService
     {
-        private IRoomRepository _roomRepository;
+        private readonly IRoomRepository _roomRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public RoomService(IRoomRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -28,9 +30,9 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<RoomViewModel>(_roomRepository.GetById(id));
         }
 
-        public void Register(RoomViewModel roomViewModel)
+        public Task<Response<int>> Register(RoomViewModel roomViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
         }
 
         public IEnumerable<RoomViewModel> GetAll()
@@ -38,15 +40,15 @@ namespace FKRM.Application.Services
             return _roomRepository.GetAll().ProjectTo<RoomViewModel>(_autoMapper.ConfigurationProvider);
         }
 
-        public void Update(RoomViewModel roomViewModel)
+        public Task<Response<int>> Update(RoomViewModel roomViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateRoomCommand>(roomViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateRoomCommand>(roomViewModel));
 
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteRoomCommand(id));
+           return (Task<Response<int>>)_bus.SendCommand(new DeleteRoomCommand(id));
         }
 
         public IEnumerable<RoomViewModel> GetPagedResponse(int pageNumber, int pageSize)

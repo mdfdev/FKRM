@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Schedule;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class ScheduleService : IScheduleService
     {
-        private IScheduleRepository _scheduleRepository;
+        private readonly IScheduleRepository _scheduleRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public ScheduleService(IScheduleRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -32,19 +34,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<ScheduleViewModel>(_scheduleRepository.GetById(id));
         }
 
-        public void Register(ScheduleViewModel scheduleViewModel)
+        public Task<Response<int>> Register(ScheduleViewModel scheduleViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateScheduleCommand>(scheduleViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateScheduleCommand>(scheduleViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteScheduleCommand(id));
+           return (Task<Response<int>>)_bus.SendCommand(new DeleteScheduleCommand(id));
         }
 
-        public void Update(ScheduleViewModel scheduleViewModel)
+        public Task<Response<int>> Update(ScheduleViewModel scheduleViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateScheduleCommand>(scheduleViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateScheduleCommand>(scheduleViewModel));
         }
 
         public IEnumerable<ScheduleViewModel> GetPagedResponse(int pageNumber, int pageSize)

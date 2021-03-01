@@ -1,41 +1,47 @@
-﻿@model  IEnumerable< FKRM.Application.ViewModels.SchoolViewModel>
+﻿@model IEnumerable<FKRM.Application.ViewModels.SchoolViewModel>
 
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">مدرسه</h5>
+            </div>
 
-    <h1>Index</h1>
+        </div>
+    </div>
+    <div class="card-body bg-light px-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+                    <a class="btn btn-falcon-default btn-sm" onclick="jQueryModalGet('/School/OnGetCreateOrEdit','مدرسه جدید')">
+                        <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
+                        <span class="d-none d-sm-inline-block ml-1">جدید</span>
+                    </a>
+                    <a id="reload" class="btn btn-falcon-default btn-sm">
+                        <span class="fas fa-bolt" data-fa-transform="shrink-3 down-2"></span>
+                        <span class="d-none d-sm-inline-block ml-1">بارگذاری مجدد</span>
+                    </a>
+                </div>
+                <div id="viewAll" class="card-body table-responsive">
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    ردیف
-                </th>
-                <th>
-                    نام
-                </th>
-                <th>
-                    کد
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#schoolTable").DataTable();
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/school/LoadAll');
+        }
+    </script>
+}

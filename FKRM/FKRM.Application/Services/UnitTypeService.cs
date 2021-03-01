@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.UnitType;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class UnitTypeService : IUnitTypeService
     {
-        private IUnitTypeRepository _unitTypeRepository;
+        private readonly IUnitTypeRepository _unitTypeRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public UnitTypeService(IUnitTypeRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -32,19 +34,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<UnitTypeViewModel>(_unitTypeRepository.GetById(id));
         }
 
-        public void Register(UnitTypeViewModel unitTypeViewModel)
+        public Task<Response<int>> Register(UnitTypeViewModel unitTypeViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateUnitTypeCommand>(unitTypeViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateUnitTypeCommand>(unitTypeViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteUnitTypeCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteUnitTypeCommand(id));
         }
 
-        public void Update(UnitTypeViewModel unitTypeViewModel)
+        public Task<Response<int>> Update(UnitTypeViewModel unitTypeViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateUnitTypeCommand>(unitTypeViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateUnitTypeCommand>(unitTypeViewModel));
         }
 
         public IEnumerable<UnitTypeViewModel> GetPagedResponse(int pageNumber, int pageSize)

@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<FKRM.Application.ViewModels.MajorViewModel>
 
-@{
-    ViewData["Title"] = "رشته ها";
-}
 <div class="card mb-3">
     <div class="card-header">
         <div class="row align-items-center justify-content-between">
             <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
-                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">رشته ها</h5>
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">پرسنل</h5>
             </div>
 
         </div>
@@ -16,65 +13,35 @@
         <div class="row">
             <div class="col-12">
                 <div class="col-6 col-sm-auto ml-auto text-right pl-0">
-                    <a class="btn btn-falcon-default btn-sm" asp-action="create">
+                    <a class="btn btn-falcon-default btn-sm" onclick="jQueryModalGet('/Major/OnGetCreateOrEdit','رشته جدید')">
                         <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
                         <span class="d-none d-sm-inline-block ml-1">جدید</span>
                     </a>
+                    <a id="reload" class="btn btn-falcon-default btn-sm">
+                        <span class="fas fa-bolt" data-fa-transform="shrink-3 down-2"></span>
+                        <span class="d-none d-sm-inline-block ml-1">بارگذاری مجدد</span>
+                    </a>
                 </div>
-                <table class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
-                    <thead class="bg-200">
-                        <tr>
-                            <th class="sort">
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th class="sort">
-                                @Html.DisplayNameFor(model => model.ComputerCode)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ComputerCode)
-                                </td>
-                                <td class="align-middle white-space-nowrap">
-                                    <div class="dropdown text-sans-serif">
-                                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
-                                                data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
-                                            <span class="fas fa-ellipsis-h fs--1"></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
-                                            <div class="bg-white py-2">
-                                                @Html.ActionLink("جزئیات", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "dropdown-item" })
-                                                @Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "dropdown-item" })
-                                                <div class="dropdown-divider"></div>
-                                                @Html.ActionLink("حذف", "Delete", new { /* id=item.PrimaryKey */ },new { @class = "dropdown-item text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                    <tfoot class="bg-200">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ComputerCode)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div id="viewAll" class="card-body table-responsive">
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#majorTable").DataTable();
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/major/LoadAll');
+        }
+    </script>
+}

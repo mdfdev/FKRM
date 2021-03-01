@@ -1,17 +1,19 @@
 ﻿using FKRM.Application.ViewModels;
+using FKRM.Domain.Core.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Interfaces
 {
     public interface IAcademicCalendarService
     {
         AcademicCalendarViewModel GetById(Guid id);
-        void Register(AcademicCalendarViewModel academicCalendarViewModel);
+        Task<Response<int>> Register(AcademicCalendarViewModel academicCalendarViewModel);
         IEnumerable<AcademicCalendarViewModel> GetAll();
         IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize);
-        void Update(AcademicCalendarViewModel academicCalendarViewModel);
-        void Remove(Guid id);
+        Task<Response<int>> Update(AcademicCalendarViewModel academicCalendarViewModel);
+        Task<Response<int>> Remove(Guid id);
     }
 }

@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class MajorService : IMajorService
     {
-        private IMajorRepository _majorRepository;
+        private readonly IMajorRepository _majorRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public MajorService(IMajorRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -28,9 +30,9 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<MajorViewModel>(_majorRepository.GetById(id));
         }
 
-        public void Register(MajorViewModel majorViewModel)
+        public Task<Response<int>> Register(MajorViewModel majorViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateMajorCommand>(majorViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateMajorCommand>(majorViewModel));
         }
 
         public IEnumerable<MajorViewModel> GetAll()
@@ -39,14 +41,14 @@ namespace FKRM.Application.Services
 
         }
 
-        public void Update(MajorViewModel majorViewModel)
+        public Task<Response<int>> Update(MajorViewModel majorViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateMajorCommand>(majorViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateMajorCommand>(majorViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteMajorCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteMajorCommand(id));
         }
 
         public IEnumerable<MajorViewModel> GetPagedResponse(int pageNumber, int pageSize)

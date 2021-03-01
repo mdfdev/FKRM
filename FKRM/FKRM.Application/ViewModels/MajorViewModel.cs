@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
+    /// <summary>
+    /// رشته
+    /// </summary>
     public class MajorViewModel:BaseViewModel
     {
         /// <summary>

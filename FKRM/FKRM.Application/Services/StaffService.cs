@@ -4,6 +4,7 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace FKRM.Application.Services
 {
     public class StaffService : IStaffService
     {
-        private IStaffRepository _staffRepository;
+        private readonly IStaffRepository _staffRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public StaffService(IStaffRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -33,19 +34,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<StaffViewModel>(_staffRepository.GetById(id));
         }
 
-        public void Register(StaffViewModel staffViewModel)
+        public Task<Response<int>> Register(StaffViewModel staffViewModel)
         {
-             _bus.SendCommand(_autoMapper.Map<CreateStaffCommand>(staffViewModel));
+             return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateStaffCommand>(staffViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteStaffCommand(id));
+           return (Task<Response<int>>)_bus.SendCommand(new DeleteStaffCommand(id));
         }
 
-        public void Update(StaffViewModel staffViewModel)
+        public Task<Response<int>> Update(StaffViewModel staffViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateStaffCommand>(staffViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateStaffCommand>(staffViewModel));
         }
 
         public IEnumerable<StaffViewModel> GetPagedResponse(int pageNumber, int pageSize)

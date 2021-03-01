@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Course;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class CourseService : ICourseService
     {
-        private ICourseRepository _courseRepository;
+        private readonly ICourseRepository _courseRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public CourseService(ICourseRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -33,19 +35,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<CourseViewModel>(_courseRepository.GetById(id));
         }
 
-        public void Register(CourseViewModel branchViewModel)
+        public Task<Response<int>> Register(CourseViewModel branchViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(branchViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(branchViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteCourseCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteCourseCommand(id));
         }
 
-        public void Update(CourseViewModel courseViewModel)
+        public Task<Response<int>> Update(CourseViewModel courseViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
         }
         public IEnumerable<CourseViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {

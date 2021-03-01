@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class SchoolService : ISchoolService
     {
-        private ISchoolRepository _schoolRepository;
+        private readonly ISchoolRepository _schoolRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public SchoolService(ISchoolRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -32,19 +34,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<SchoolViewModel>(_schoolRepository.GetById(id));
         }
 
-        public void Register(SchoolViewModel schoolViewModel)
+        public Task<Response<int>> Register(SchoolViewModel schoolViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateSchoolCommand>(schoolViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateSchoolCommand>(schoolViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteSchoolCommand(id));
+           return (Task<Response<int>>)_bus.SendCommand(new DeleteSchoolCommand(id));
         }
 
-        public void Update(SchoolViewModel schoolViewModel)
+        public Task<Response<int>> Update(SchoolViewModel schoolViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
         }
 
         public IEnumerable<SchoolViewModel> GetPagedResponse(int pageNumber, int pageSize)

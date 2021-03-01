@@ -9,26 +9,57 @@ namespace FKRM.Application.AutoMapper
     {
         public DomainToViewModelProfile()
         {
-            CreateMap<AcademicCalendar, AcademicCalendarViewModel>();
+            CreateMap<AcademicCalendar, AcademicCalendarViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Area, AreaViewModel>()
-                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()));
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Branch, BranchViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
-            CreateMap<Course, CourseViewModel>();
-            CreateMap<Enrollment, EnrollmentViewModel>();
-            CreateMap<Feature, FeatureViewModel>();
-            CreateMap<Gender,GenderViewModel>();
-            CreateMap<Grade, GradeViewModel>();
-            CreateMap<Group, GroupViewModel>();
-            CreateMap<Major, MajorViewModel>();
-            CreateMap<MarkingType, MarkingTypeViewModel>();
-            CreateMap<OUType, OUTypeViewModel>();
-            CreateMap<Room,  RoomViewModel>();
-            CreateMap<Schedule, ScheduleViewModel>();
-            CreateMap<School, SchoolViewModel>();
-            CreateMap<Staff, StaffViewModel>();
-            CreateMap<UnitType, UnitTypeViewModel>();
+            CreateMap<Course, CourseViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Enrollment, EnrollmentViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Feature, FeatureViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Gender,GenderViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Grade, GradeViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Group, GroupViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Major, MajorViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<MarkingType, MarkingTypeViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<OUType, OUTypeViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Room,  RoomViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Schedule, ScheduleViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<School, SchoolViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<Staff, StaffViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<UnitType, UnitTypeViewModel>()
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
         }
     }
 }

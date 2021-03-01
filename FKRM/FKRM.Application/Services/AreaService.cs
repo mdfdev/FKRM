@@ -4,17 +4,19 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Area;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using FKRM.Domain.Queries.Area;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class AreaService : IAreaService
     {
-        private IAreaRepository _areaRepository;
+        private readonly IAreaRepository _areaRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public AreaService(IAreaRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -36,19 +38,19 @@ namespace FKRM.Application.Services
             
         }
 
-        public void Register(AreaViewModel areaViewModel)
+        public Task<Response<int>> Register(AreaViewModel areaViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateAreaCommand>(areaViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateAreaCommand>(areaViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteAreaCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteAreaCommand(id));
         }
 
-        public void Update(AreaViewModel areaViewModel)
+        public Task<Response<int>> Update(AreaViewModel areaViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
+           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
         }
 
         public IEnumerable<AreaViewModel> GetPagedResponse(int pageNumber, int pageSize)

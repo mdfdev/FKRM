@@ -4,10 +4,12 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.AcademicCalendar;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
@@ -33,19 +35,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<AcademicCalendarViewModel>(_academicCalendarRepository.GetById(id));
         }
 
-        public void Register(AcademicCalendarViewModel academicCalendarViewModel)
+        public Task<Response<int>> Register(AcademicCalendarViewModel academicCalendarViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateAcademicCalendarCommand>(academicCalendarViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateAcademicCalendarCommand>(academicCalendarViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteAcademicCalendarCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteAcademicCalendarCommand(id));
         }
 
-        public void Update(AcademicCalendarViewModel academicCalendarViewModel)
+        public Task<Response<int>> Update(AcademicCalendarViewModel academicCalendarViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(academicCalendarViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateAcademicCalendarCommand>(academicCalendarViewModel));
         }
         public IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {

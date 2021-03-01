@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class StaffController : BaseController<StaffController>
+    public class CourseController : BaseController<CourseController>
     {
-        private readonly IStaffService _staffService;
+        private readonly ICourseService _courseService;
 
-        public StaffController(IStaffService staffService, IToastNotification toastNotification) : base(toastNotification)
+        public CourseController(ICourseService courseService, IToastNotification toastNotification) : base(toastNotification)
         {
-            _staffService = staffService;
+            _courseService = courseService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _staffService.GetAll());
+            return PartialView("_ViewAll", _courseService.GetAll());
         }
         public IActionResult Index()
         {
@@ -27,17 +27,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var staffViewModel = new StaffViewModel();
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var courseViewModel = new CourseViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", courseViewModel) });
             }
             else
             {
-                var staffViewModel = _staffService.GetById(id);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var courseViewModel = _courseService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", courseViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, StaffViewModel staffViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, CourseViewModel courseViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +45,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _staffService.Register(staffViewModel);
+                        var response = _courseService.Register(courseViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
+                            NotifySuccess($"{courseViewModel.Name} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _staffService.Update(staffViewModel);
+                        var response = _courseService.Update(courseViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                            NotifyInfo($"{courseViewModel.Name} ویرایش شد.");
                         }
                     }
                 }
@@ -73,12 +73,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _courseService.GetAll());
                 return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", courseViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }
@@ -87,9 +87,8 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
-                var response = _staffService.Remove(id);
+                var name = _courseService.GetById(id).Name;
+                var response = _courseService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -103,7 +102,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _courseService.GetAll());
             return new JsonResult(new { isValid = true, html });
         }
     }

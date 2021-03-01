@@ -3,21 +3,23 @@ using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class StaffController : BaseController<StaffController>
+    public class FeatureController : BaseController<FeatureController>
     {
-        private readonly IStaffService _staffService;
+        private readonly IFeatureService _featureService;
 
-        public StaffController(IStaffService staffService, IToastNotification toastNotification) : base(toastNotification)
+        public FeatureController(IFeatureService featureService, IToastNotification toastNotification) : base(toastNotification)
         {
-            _staffService = staffService;
+            _featureService = featureService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _staffService.GetAll());
+            return PartialView("_ViewAll", _featureService.GetAll());
         }
         public IActionResult Index()
         {
@@ -27,17 +29,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var staffViewModel = new StaffViewModel();
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var featureViewModel = new FeatureViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", featureViewModel) });
             }
             else
             {
-                var staffViewModel = _staffService.GetById(id);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var featureViewModel = _featureService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", featureViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, StaffViewModel staffViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, FeatureViewModel featureViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +47,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _staffService.Register(staffViewModel);
+                        var response = _featureService.Register(featureViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
+                            NotifySuccess($"{featureViewModel.Name} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _staffService.Update(staffViewModel);
+                        var response = _featureService.Update(featureViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                            NotifyInfo($"{featureViewModel.Name} ویرایش شد.");
                         }
                     }
                 }
@@ -73,12 +75,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _featureService.GetAll());
                 return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", featureViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }
@@ -87,9 +89,8 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
-                var response = _staffService.Remove(id);
+                var name = _featureService.GetById(id).Name;
+                var response = _featureService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -103,7 +104,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _featureService.GetAll());
             return new JsonResult(new { isValid = true, html });
         }
     }

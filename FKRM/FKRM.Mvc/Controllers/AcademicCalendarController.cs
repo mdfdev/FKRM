@@ -3,21 +3,23 @@ using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class StaffController : BaseController<StaffController>
+    public class AcademicCalendarController : BaseController<AcademicCalendarController>
     {
-        private readonly IStaffService _staffService;
+        private readonly IAcademicCalendarService _academicCalendarService;
 
-        public StaffController(IStaffService staffService, IToastNotification toastNotification) : base(toastNotification)
+        public AcademicCalendarController(IAcademicCalendarService academicCalendarService, IToastNotification toastNotification) : base(toastNotification)
         {
-            _staffService = staffService;
+            _academicCalendarService = academicCalendarService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _staffService.GetAll());
+            return PartialView("_ViewAll", _academicCalendarService.GetAll());
         }
         public IActionResult Index()
         {
@@ -27,17 +29,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var staffViewModel = new StaffViewModel();
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var academicCalendarViewModel = new AcademicCalendarViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", academicCalendarViewModel) });
             }
             else
             {
-                var staffViewModel = _staffService.GetById(id);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var academicCalendarViewModel = _academicCalendarService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", academicCalendarViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, StaffViewModel staffViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, AcademicCalendarViewModel academicCalendarViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +47,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _staffService.Register(staffViewModel);
+                        var response = _academicCalendarService.Register(academicCalendarViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
+                            NotifySuccess($"{academicCalendarViewModel.AcademicYear} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _staffService.Update(staffViewModel);
+                        var response = _academicCalendarService.Update(academicCalendarViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                            NotifyInfo($"{academicCalendarViewModel.AcademicYear} {academicCalendarViewModel.AcademicQuarter} ویرایش شد.");
                         }
                     }
                 }
@@ -73,12 +75,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _academicCalendarService.GetAll());
                 return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", academicCalendarViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }
@@ -87,9 +89,9 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
-                var response = _staffService.Remove(id);
+                var tmp = _academicCalendarService.GetById(id);
+                var name = $"{tmp.AcademicYear} {tmp.AcademicQuarter}";
+                var response = _academicCalendarService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -103,7 +105,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _academicCalendarService.GetAll());
             return new JsonResult(new { isValid = true, html });
         }
     }

@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.Feature;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class FeatureService : IFeatureService
     {
-        private IFeatureRepository _featureRepository;
+        private readonly IFeatureRepository _featureRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public FeatureService(IFeatureRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -33,19 +35,19 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<FeatureViewModel>(_featureRepository.GetById(id));
         }
 
-        public void Register(FeatureViewModel featureViewModel)
+        public Task<Response<int>> Register(FeatureViewModel featureViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateFeatureCommand>(featureViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateFeatureCommand>(featureViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteFeatureCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteFeatureCommand(id));
         }
 
-        public void Update(FeatureViewModel featureViewModel)
+        public Task<Response<int>> Update(FeatureViewModel featureViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateFeatureCommand>(featureViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateFeatureCommand>(featureViewModel));
         }
 
         public IEnumerable<FeatureViewModel> GetPagedResponse(int pageNumber, int pageSize)

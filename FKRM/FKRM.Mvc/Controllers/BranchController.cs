@@ -9,7 +9,7 @@ namespace FKRM.Mvc.Controllers
 {
     public class BranchController : BaseController<BranchController>
     {
-        private IBranchService _branchService;
+        private readonly IBranchService _branchService;
 
         public BranchController(IBranchService branchService, IToastNotification toastNotification):base(toastNotification)
         {
@@ -23,17 +23,17 @@ namespace FKRM.Mvc.Controllers
         {
             return View();
         }
-        public JsonResult OnGetCreateOrEdit(Guid id = default(Guid))
+        public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             if (id == Guid.Empty)
             {
                 var branchViewModel = new BranchViewModel();
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
             }
             else
             {
                 var branchViewModel = _branchService.GetById(id);
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });
             }
         }
         [HttpPost]
@@ -73,13 +73,13 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
-                return new JsonResult(new { isValid = true, html = html });
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
+                return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel);
-                return new JsonResult(new { isValid = false, html = html });
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel);
+                return new JsonResult(new { isValid = false, html });
             }
         }
         [HttpPost]
@@ -102,8 +102,8 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
-            return new JsonResult(new { isValid = true, html = html });
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
+            return new JsonResult(new { isValid = true, html });
         }
     }
 }

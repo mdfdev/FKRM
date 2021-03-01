@@ -11,8 +11,9 @@ namespace FKRM.Mvc.Controllers
 {
     public class SchoolController : BaseController<SchoolController>
     {
-        private ISchoolService _schoolService;
-        public SchoolController(ISchoolService schoolService, IToastNotification toastNotification):base(toastNotification)
+        private readonly ISchoolService _schoolService;
+
+        public SchoolController(ISchoolService schoolService, IToastNotification toastNotification) : base(toastNotification)
         {
             _schoolService = schoolService;
         }
@@ -24,17 +25,17 @@ namespace FKRM.Mvc.Controllers
         {
             return View();
         }
-        public JsonResult OnGetCreateOrEdit(Guid id = default(Guid))
+        public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             if (id == Guid.Empty)
             {
                 var schoolViewModel = new SchoolViewModel();
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
             else
             {
                 var schoolViewModel = _schoolService.GetById(id);
-                return new JsonResult(new { isValid = true, html = _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
         }
         [HttpPost]
@@ -46,26 +47,41 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        _schoolService.Register(schoolViewModel);
-                       NotifySuccess($"پرسنل {schoolViewModel.Name} ثبت شد.");
+                        var response = _schoolService.Register(schoolViewModel);
+                        if (response.Result.Data == 400)
+                        {
+                            NotifyErrors(response.Result.Message);
+                        }
+                        else
+                        {
+                            NotifySuccess($"{schoolViewModel.Name} ثبت شد.");
+
+                        }
                     }
                     else
                     {
-                        _schoolService.Update(schoolViewModel);
-                       NotifyInfo($"پرسنل {schoolViewModel.Name} ویرایش شد.");
+                        var response = _schoolService.Update(schoolViewModel);
+                        if (response.Result.Data == 400)
+                        {
+                            NotifyErrors(response.Result.Message);
+                        }
+                        else
+                        {
+                            NotifyInfo($"{schoolViewModel.Name} ویرایش شد.");
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
-                return new JsonResult(new { isValid = true, html = html });
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
+                return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel);
-                return new JsonResult(new { isValid = false, html = html });
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel);
+                return new JsonResult(new { isValid = false, html });
             }
         }
         [HttpPost]
@@ -73,15 +89,23 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                _schoolService.Remove(id);
-                NotifyInfo($"پرسنل {id} حذف شد.");
+                var name = _schoolService.GetById(id).Name;
+                var response = _schoolService.Remove(id);
+                if (response.Result.Data == 400)
+                {
+                    NotifyErrors(response.Result.Message);
+                }
+                else
+                {
+                    NotifyInfo($"{name} حذف شد.");
+                }
             }
             catch (Exception)
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
-            return new JsonResult(new { isValid = true, html = html });
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _schoolService.GetAll());
+            return new JsonResult(new { isValid = true, html });
         }
     }
 }

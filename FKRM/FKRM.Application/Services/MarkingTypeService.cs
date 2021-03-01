@@ -4,16 +4,18 @@ using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Commands.MarkingType;
 using FKRM.Domain.Core.Bus;
+using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class MarkingTypeService : IMarkingTypeService
     {
-        private IMarkingTypeRepository _markingTypeRepository;
+        private readonly IMarkingTypeRepository _markingTypeRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public MarkingTypeService(IMarkingTypeRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -28,9 +30,9 @@ namespace FKRM.Application.Services
             return _autoMapper.Map<MarkingTypeViewModel>(_markingTypeRepository.GetById(id));
         }
 
-        public void Register(MarkingTypeViewModel markingTypeViewModel)
+        public Task<Response<int>> Register(MarkingTypeViewModel markingTypeViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateMarkingTypeCommand>(markingTypeViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateMarkingTypeCommand>(markingTypeViewModel));
         }
 
         public IEnumerable<MarkingTypeViewModel> GetAll()
@@ -38,14 +40,14 @@ namespace FKRM.Application.Services
             return _markingTypeRepository.GetAll().ProjectTo<MarkingTypeViewModel>(_autoMapper.ConfigurationProvider);
         }
 
-        public void Update(MarkingTypeViewModel markingTypeViewModel)
+        public Task<Response<int>> Update(MarkingTypeViewModel markingTypeViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<UpdateMarkingTypeCommand>(markingTypeViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateMarkingTypeCommand>(markingTypeViewModel));
         }
 
-        public void Remove(Guid id)
+        public Task<Response<int>> Remove(Guid id)
         {
-            _bus.SendCommand(new DeleteMarkingTypeCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteMarkingTypeCommand(id));
         }
         public IEnumerable<MarkingTypeViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {
