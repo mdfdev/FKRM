@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.Enrollment;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.Enrollment
 {
@@ -11,7 +9,7 @@ namespace FKRM.Domain.Validation.Enrollment
         protected void ValidateName()
         {
             RuleFor(c => c.Capacity)
-                .GreaterThan(0).WithMessage("Name cannot be empty");
+                .GreaterThan(0).WithMessage("ظرفیت الزامی می باشد");
         }
         protected void ValidateId()
         {

@@ -8,14 +8,13 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
 {
     public class BranchService : IBranchService
     {
-        private IBranchRepository _branchRepository;
+        private readonly IBranchRepository _branchRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         public BranchService(IBranchRepository repository, IMediatorHandler bus, IMapper mapper)
@@ -39,7 +38,7 @@ namespace FKRM.Application.Services
         }
         public Task<Response<int>> Update(BranchViewModel branchViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateBranchCommand>(branchViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateBranchCommand>(branchViewModel));
         }
 
         public IEnumerable<BranchViewModel> GetPagedResponse(int pageNumber, int pageSize)

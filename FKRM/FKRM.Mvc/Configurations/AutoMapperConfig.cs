@@ -4,11 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FKRM.Mvc.Configurations
 {
-    public static  class AutoMapperConfig
+    public static class AutoMapperConfig
     {
         public static void RegisterAutoMapper(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof (AutoMapperConfiguration));
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
             AutoMapperConfiguration.RegisterMappings();
         }
     }

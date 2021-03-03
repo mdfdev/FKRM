@@ -1,7 +1,5 @@
 ﻿using FKRM.Domain.Validation.UnitType;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.UnitType
 {

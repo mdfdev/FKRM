@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.OUType;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.OUType;
 
 namespace FKRM.Domain.Commands.OUType
 {
-    public class CreateOUTypeCommand: OUTypeCommand
+    public class CreateOUTypeCommand : OUTypeCommand
     {
         public CreateOUTypeCommand(string name)
         {

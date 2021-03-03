@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.Major;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.Major
 {
@@ -10,9 +8,7 @@ namespace FKRM.Domain.Validation.Major
     {
         protected void ValidateName()
         {
-            RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("Name cannot be empty")
-                .Length(2, 10).WithMessage("The name is between 2~10 characters");
+            RuleFor(c => c.Name).NotEmpty().WithMessage("نام الزامی می باشد").Length(3, 20).WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

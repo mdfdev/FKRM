@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IGradeRepository:IRepository<Grade>
+    public interface IGradeRepository : IRepository<Grade>
     {
 
     }

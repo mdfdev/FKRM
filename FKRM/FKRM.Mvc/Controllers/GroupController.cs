@@ -1,6 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
@@ -10,10 +11,11 @@ namespace FKRM.Mvc.Controllers
     public class GroupController : BaseController<GroupController>
     {
         private readonly IGroupService _groupService;
-
-        public GroupController(IGroupService groupService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IAreaService _areaService;
+        public GroupController(IGroupService groupService,IAreaService areaService, IToastNotification toastNotification) : base(toastNotification)
         {
             _groupService = groupService;
+            _areaService = areaService;
         }
         public IActionResult LoadAll()
         {
@@ -28,11 +30,15 @@ namespace FKRM.Mvc.Controllers
             if (id == Guid.Empty)
             {
                 var groupViewModel = new GroupViewModel();
+                var areaViewModels = _areaService.GetAll();
+                groupViewModel.Areas = new SelectList(areaViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", groupViewModel) });
             }
             else
             {
                 var groupViewModel = _groupService.GetById(id);
+                var areaViewModels = _areaService.GetAll();
+                groupViewModel.Areas = new SelectList(areaViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", groupViewModel) });
             }
         }

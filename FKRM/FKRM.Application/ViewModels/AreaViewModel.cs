@@ -1,18 +1,20 @@
-﻿using FKRM.Domain.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace FKRM.Application.ViewModels
 {
-    public class AreaViewModel:BaseViewModel
+    public class AreaViewModel : BaseViewModel
     {
-      
+
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام زمینه رشته")]
+        [DisplayName("زمینه")]
         public string Name { get; set; }
+        [DisplayName("شاخه")]
+        public string Branch { get; set; }
+        public Guid BranchId { get; set; }
+        public SelectList Branches { get; set; }
 
     }
 }

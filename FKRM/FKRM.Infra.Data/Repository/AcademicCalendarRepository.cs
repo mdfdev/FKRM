@@ -4,9 +4,9 @@ using FKRM.Infra.Data.Context;
 
 namespace FKRM.Infra.Data.Repository
 {
-    public class AcademicCalendarRepository :Repository<AcademicCalendar>, IAcademicCalendarRepository
+    public class AcademicCalendarRepository : Repository<AcademicCalendar>, IAcademicCalendarRepository
     {
-        public AcademicCalendarRepository(SchoolDBContext context):base(context)
+        public AcademicCalendarRepository(SchoolDBContext context) : base(context)
         {
         }
     }

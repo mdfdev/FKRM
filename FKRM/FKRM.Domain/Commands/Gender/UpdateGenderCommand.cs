@@ -3,9 +3,9 @@ using System;
 
 namespace FKRM.Domain.Commands.Gender
 {
-    public class UpdateGenderCommand:GenderCommand
+    public class UpdateGenderCommand : GenderCommand
     {
-        public UpdateGenderCommand(Guid id,string name)
+        public UpdateGenderCommand(Guid id, string name)
         {
             ID = id;
             Name = name;

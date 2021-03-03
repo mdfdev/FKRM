@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IScheduleRepository:IRepository<Schedule>
+    public interface IScheduleRepository : IRepository<Schedule>
     {
     }
 }

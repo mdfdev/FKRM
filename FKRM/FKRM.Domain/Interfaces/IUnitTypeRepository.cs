@@ -3,7 +3,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IUnitTypeRepository:IRepository<UnitType>
+    public interface IUnitTypeRepository : IRepository<UnitType>
     {
     }
 }

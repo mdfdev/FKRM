@@ -17,7 +17,7 @@ namespace FKRM.Application.Services
         private readonly IGenderRepository _genderRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
-        public GenderService(IGenderRepository repository,IMediatorHandler bus,IMapper mapper)
+        public GenderService(IGenderRepository repository, IMediatorHandler bus, IMapper mapper)
         {
             _genderRepository = repository;
             _bus = bus;
@@ -46,7 +46,7 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Update(GenderViewModel genderViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateGenderCommand>(genderViewModel));
         }
         public IEnumerable<GenderViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {

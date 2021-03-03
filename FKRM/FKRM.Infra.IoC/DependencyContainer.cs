@@ -6,6 +6,7 @@ using FKRM.Domain.Commands.Area;
 using FKRM.Domain.Commands.Branch;
 using FKRM.Domain.Commands.Course;
 using FKRM.Domain.Commands.Enrollment;
+using FKRM.Domain.Commands.Feature;
 using FKRM.Domain.Commands.Gender;
 using FKRM.Domain.Commands.Grade;
 using FKRM.Domain.Commands.Group;
@@ -39,7 +40,7 @@ namespace FKRM.Infra.IoC
 
 
             //Domain InMemoryBus MediatR
-            services.AddScoped<IMediatorHandler,InMemoryBus>();
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             //Domain Handler
             services.AddScoped<IRequestHandler<CreateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
@@ -63,6 +64,10 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateFeatureCommand, Response<int>>, FeatureCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateFeatureCommand, Response<int>>, FeatureCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteFeatureCommand, Response<int>>, FeatureCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateGenderCommand, Response<int>>, GenderCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateGenderCommand, Response<int>>, GenderCommandHandler>();
@@ -108,7 +113,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
 
-            
+
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();
@@ -125,7 +130,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IOUTypeService, OUTypeService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IScheduleService, ScheduleService>();
-            services.AddScoped<ISchoolService,SchoolService>();
+            services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IUnitTypeService, UnitTypeService>();
 

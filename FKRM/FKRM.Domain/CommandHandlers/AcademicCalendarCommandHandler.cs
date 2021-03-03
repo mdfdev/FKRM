@@ -1,12 +1,8 @@
 ﻿using FKRM.Domain.Commands.AcademicCalendar;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>
     {
         private readonly IAcademicCalendarRepository _academicCalendarRepository;
-        public AcademicCalendarCommandHandler(IAcademicCalendarRepository AcademicCalendarRepository) 
+        public AcademicCalendarCommandHandler(IAcademicCalendarRepository AcademicCalendarRepository)
         {
             _academicCalendarRepository = AcademicCalendarRepository;
         }
@@ -26,11 +22,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var AcademicCalendar = new Entities.AcademicCalendar()
             {
-                AcademicYear = request.AcademicYear
+                AcademicYear = request.AcademicYear,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _academicCalendarRepository.Add(AcademicCalendar);
             return Task.FromResult(new Response<int>(200));
@@ -51,6 +49,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateAcademicCalendarCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _academicCalendarRepository.GetById(request.ID);
 
             if (entity == null)
@@ -60,6 +62,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.AcademicYear = request.AcademicYear;
+                entity.ModifiedDate = request.ModifiedDate;
                 _academicCalendarRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

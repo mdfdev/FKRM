@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Room;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Room;
 
 namespace FKRM.Domain.Commands.Room
 {
-    public class CreateRoomCommand: RoomCommand
+    public class CreateRoomCommand : RoomCommand
     {
         public CreateRoomCommand(string name)
         {

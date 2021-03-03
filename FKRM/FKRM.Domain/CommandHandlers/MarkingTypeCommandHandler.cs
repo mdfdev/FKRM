@@ -1,12 +1,8 @@
 ﻿using FKRM.Domain.Commands.MarkingType;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateMarkingTypeCommand, Response<int>>
     {
         private readonly IMarkingTypeRepository _markingTypeRepository;
-        public MarkingTypeCommandHandler(IMarkingTypeRepository MarkingTypeRepository ) 
+        public MarkingTypeCommandHandler(IMarkingTypeRepository MarkingTypeRepository)
         {
             _markingTypeRepository = MarkingTypeRepository;
         }
@@ -26,11 +22,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var MarkingType = new Entities.MarkingType()
             {
-                Name = request.Name
+                Name = request.Name,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _markingTypeRepository.Add(MarkingType);
             return Task.FromResult(new Response<int>(200));
@@ -51,6 +49,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateMarkingTypeCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _markingTypeRepository.GetById(request.ID);
 
             if (entity == null)
@@ -60,6 +62,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.ModifiedDate = request.ModifiedDate;
                 _markingTypeRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

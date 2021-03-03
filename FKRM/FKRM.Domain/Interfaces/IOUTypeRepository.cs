@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IOUTypeRepository:IRepository<OUType>
+    public interface IOUTypeRepository : IRepository<OUType>
     {
     }
 }

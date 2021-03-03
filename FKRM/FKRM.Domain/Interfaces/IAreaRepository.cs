@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IAreaRepository :IRepository<Area>
+    public interface IAreaRepository : IRepository<Area>
     {
 
     }

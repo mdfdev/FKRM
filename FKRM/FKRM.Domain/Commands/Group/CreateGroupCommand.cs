@@ -1,15 +1,14 @@
 ﻿using FKRM.Domain.Validation.Group;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Group
 {
-    public class CreateGroupCommand:GroupCommand
+    public class CreateGroupCommand : GroupCommand
     {
-        public CreateGroupCommand(string name)
+        public CreateGroupCommand(string name, Guid areaId)
         {
             Name = name;
+            AreaId = areaId;
         }
         public override bool IsValid()
         {

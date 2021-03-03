@@ -4,9 +4,9 @@ using FKRM.Infra.Data.Context;
 
 namespace FKRM.Infra.Data.Repository
 {
-    public class BranchRepository :Repository<Branch>, IBranchRepository
+    public class BranchRepository : Repository<Branch>, IBranchRepository
     {
-        public BranchRepository(SchoolDBContext context):base(context)
+        public BranchRepository(SchoolDBContext context) : base(context)
         {
         }
     }

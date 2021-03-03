@@ -6,7 +6,7 @@ namespace FKRM.Infra.Data.Repository
 {
     public class UnitTypeRepository : Repository<UnitType>, IUnitTypeRepository
     {
-        public UnitTypeRepository(SchoolDBContext context):base(context)
+        public UnitTypeRepository(SchoolDBContext context) : base(context)
         {
         }
     }

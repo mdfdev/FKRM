@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.Schedule;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.Schedule
 {
@@ -11,7 +9,7 @@ namespace FKRM.Domain.Validation.Schedule
         protected void ValidateName()
         {
             RuleFor(c => c.StartTime)
-                .GreaterThan(0).WithMessage("Name cannot be empty");
+                .GreaterThan(0).WithMessage("زمان شروع الزامی می باشد");
         }
         protected void ValidateId()
         {

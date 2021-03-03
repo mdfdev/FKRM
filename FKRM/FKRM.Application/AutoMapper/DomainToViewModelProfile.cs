@@ -5,7 +5,7 @@ using FKRM.Domain.Entities;
 
 namespace FKRM.Application.AutoMapper
 {
-    public class DomainToViewModelProfile:Profile
+    public class DomainToViewModelProfile : Profile
     {
         public DomainToViewModelProfile()
         {
@@ -13,6 +13,7 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Area, AreaViewModel>()
+                .ForMember(cd => cd.Branch, opt => opt.MapFrom(c => c.Branch.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Branch, BranchViewModel>()
@@ -27,13 +28,15 @@ namespace FKRM.Application.AutoMapper
             CreateMap<Feature, FeatureViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
-            CreateMap<Gender,GenderViewModel>()
+            CreateMap<Gender, GenderViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Grade, GradeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Group, GroupViewModel>()
+                .ForMember(cd => cd.Area, opt => opt.MapFrom(c => c.Area.Name))
+                .ForMember(cd => cd.Branch, opt => opt.MapFrom(c => c.Area.Branch.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Major, MajorViewModel>()
@@ -45,7 +48,7 @@ namespace FKRM.Application.AutoMapper
             CreateMap<OUType, OUTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
-            CreateMap<Room,  RoomViewModel>()
+            CreateMap<Room, RoomViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Schedule, ScheduleViewModel>()

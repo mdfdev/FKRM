@@ -8,7 +8,6 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
@@ -32,7 +31,7 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Register(RoomViewModel roomViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateRoomCommand>(roomViewModel));
         }
 
         public IEnumerable<RoomViewModel> GetAll()
@@ -48,7 +47,7 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Remove(Guid id)
         {
-           return (Task<Response<int>>)_bus.SendCommand(new DeleteRoomCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteRoomCommand(id));
         }
 
         public IEnumerable<RoomViewModel> GetPagedResponse(int pageNumber, int pageSize)

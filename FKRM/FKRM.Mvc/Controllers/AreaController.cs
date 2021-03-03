@@ -1,10 +1,9 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
@@ -12,10 +11,12 @@ namespace FKRM.Mvc.Controllers
     public class AreaController : BaseController<AreaController>
     {
         private readonly IAreaService _areaService;
+        private readonly IBranchService _branchService;
 
-        public AreaController(IAreaService areaService, IToastNotification toastNotification) : base(toastNotification)
+        public AreaController(IAreaService areaService,IBranchService branchService, IToastNotification toastNotification) : base(toastNotification)
         {
             _areaService = areaService;
+            _branchService = branchService;
         }
         public IActionResult LoadAll()
         {
@@ -30,11 +31,15 @@ namespace FKRM.Mvc.Controllers
             if (id == Guid.Empty)
             {
                 var areaViewModel = new AreaViewModel();
+                var branchViewModels =_branchService.GetAll();
+                areaViewModel.Branches = new SelectList(branchViewModels,"Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", areaViewModel) });
             }
             else
             {
                 var areaViewModel = _areaService.GetById(id);
+                var branchViewModels = _branchService.GetAll();
+                areaViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", areaViewModel) });
             }
         }

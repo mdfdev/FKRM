@@ -1,7 +1,5 @@
 ﻿using FKRM.Domain.Validation.Course;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Course
 {

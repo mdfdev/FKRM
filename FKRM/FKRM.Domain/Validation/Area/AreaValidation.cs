@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.Area;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.Area
 {
@@ -13,9 +11,9 @@ namespace FKRM.Domain.Validation.Area
             RuleFor(c => c.Name)
                 .NotNull()
                 .NotEmpty()
-                .WithMessage("Name cannot be empty")
-                .Length(2, 10)
-                .WithMessage("The name is between 2~10 characters");
+                .WithMessage("نام الزامی می باشد")
+                .Length(3, 20)
+                .WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

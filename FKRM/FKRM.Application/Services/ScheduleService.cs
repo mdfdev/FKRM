@@ -8,7 +8,6 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
@@ -41,7 +40,7 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Remove(Guid id)
         {
-           return (Task<Response<int>>)_bus.SendCommand(new DeleteScheduleCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteScheduleCommand(id));
         }
 
         public Task<Response<int>> Update(ScheduleViewModel scheduleViewModel)

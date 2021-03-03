@@ -14,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateScheduleCommand, Response<int>>
     {
         private readonly IScheduleRepository _scheduleRepository;
-        public ScheduleCommandHandler(IScheduleRepository ScheduleRepository) 
+        public ScheduleCommandHandler(IScheduleRepository ScheduleRepository)
         {
             _scheduleRepository = ScheduleRepository;
         }
@@ -22,11 +22,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var Schedule = new Entities.Schedule()
             {
-                StartTime = request.StartTime
+                StartTime = request.StartTime,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _scheduleRepository.Add(Schedule);
             return Task.FromResult(new Response<int>(200));
@@ -47,6 +49,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateScheduleCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _scheduleRepository.GetById(request.ID);
 
             if (entity == null)
@@ -56,6 +62,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.StartTime = request.StartTime;
+                entity.ModifiedDate = request.ModifiedDate;
                 _scheduleRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

@@ -22,11 +22,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var School = new Entities.School()
             {
-                Name = request.Name
+                Name = request.Name,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _schoolRepository.Add(School);
             return Task.FromResult(new Response<int>(200));
@@ -35,20 +37,20 @@ namespace FKRM.Domain.CommandHandlers
         public Task<Response<int>> Handle(DeleteSchoolCommand request, CancellationToken cancellationToken)
         {
             var entity = _schoolRepository.GetById(request.ID);
-
             if (entity == null)
             {
                 throw new ApiException($"گزینه مورد نظر یافت نشد.");
             }
-
             _schoolRepository.Remove(request.ID);
             return Task.FromResult(new Response<int>(200));
         }
-
         public Task<Response<int>> Handle(UpdateSchoolCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _schoolRepository.GetById(request.ID);
-
             if (entity == null)
             {
                 throw new ApiException($"گزینه مورد نظر یافت نشد.");
@@ -56,6 +58,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.ModifiedDate = request.ModifiedDate;
                 _schoolRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

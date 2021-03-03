@@ -1,13 +1,8 @@
 ﻿using FKRM.Domain.Commands.Branch;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
-using FluentValidation.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateBranchCommand, Response<int>>
     {
         private readonly IBranchRepository _branchRepository;
-        public BranchCommandHandler(IBranchRepository BranchRepository) 
+        public BranchCommandHandler(IBranchRepository BranchRepository)
         {
             _branchRepository = BranchRepository;
         }
@@ -33,13 +28,13 @@ namespace FKRM.Domain.CommandHandlers
             {
                 Name = request.Name,
                 ModifiedDate = request.ModifiedDate,
-                AddedDate=request.AddedDate
+                AddedDate = request.AddedDate
             };
             _branchRepository.Add(Branch);
             return Task.FromResult(new Response<int>(200));
         }
 
- 
+
 
         public Task<Response<int>> Handle(DeleteBranchCommand request, CancellationToken cancellationToken)
         {
@@ -56,6 +51,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateBranchCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _branchRepository.GetById(request.ID);
 
             if (entity == null)

@@ -1,7 +1,5 @@
 ﻿using FKRM.Domain.Core.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Group
 {
@@ -10,5 +8,6 @@ namespace FKRM.Domain.Commands.Group
         public Guid ID { get; protected set; }
 
         public string Name { get; protected set; }
+        public Guid AreaId { get; set; }
     }
 }

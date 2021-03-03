@@ -1,16 +1,15 @@
 ﻿using FKRM.Domain.Validation.AcademicCalendar;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.AcademicCalendar
 {
-    public class UpdateAcademicCalendarCommand: AcademicCalendarCommand
+    public class UpdateAcademicCalendarCommand : AcademicCalendarCommand
     {
-        public UpdateAcademicCalendarCommand(Guid id,string academicYear)
+        public UpdateAcademicCalendarCommand(Guid id, string academicYear, string academicQuarter)
         {
             ID = id;
             AcademicYear = academicYear;
+            AcademicQuarter = academicQuarter;
         }
         public override bool IsValid()
         {

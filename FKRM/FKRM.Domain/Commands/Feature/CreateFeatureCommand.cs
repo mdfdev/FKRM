@@ -1,8 +1,4 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Feature;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Feature;
 
 namespace FKRM.Domain.Commands.Feature
 {

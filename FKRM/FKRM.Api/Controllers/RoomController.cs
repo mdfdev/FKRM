@@ -2,9 +2,6 @@
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FKRM.Api.Controllers
 {
@@ -15,7 +12,7 @@ namespace FKRM.Api.Controllers
         private readonly IRoomService _roomService;
         public RoomController(IRoomService roomService)
         {
-            _roomService =roomService;
+            _roomService = roomService;
         }
         [HttpGet]
         public IActionResult GetAll()

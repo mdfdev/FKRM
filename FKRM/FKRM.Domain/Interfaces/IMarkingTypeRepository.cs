@@ -2,8 +2,8 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IMarkingTypeRepository:IRepository<MarkingType>
+    public interface IMarkingTypeRepository : IRepository<MarkingType>
     {
-       
+
     }
 }

@@ -1,12 +1,8 @@
 ﻿using FKRM.Domain.Commands.Group;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateGroupCommand, Response<int>>
     {
         private readonly IGroupRepository _groupRepository;
-        public GroupCommandHandler(IGroupRepository GroupRepository) 
+        public GroupCommandHandler(IGroupRepository GroupRepository)
         {
             _groupRepository = GroupRepository;
         }
@@ -26,11 +22,14 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var Group = new Entities.Group()
             {
-                Name = request.Name
+                Name = request.Name,
+                AreaId=request.AreaId,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _groupRepository.Add(Group);
             return Task.FromResult(new Response<int>(200));
@@ -51,6 +50,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateGroupCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _groupRepository.GetById(request.ID);
 
             if (entity == null)
@@ -60,6 +63,8 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.AreaId = request.AreaId;
+                entity.ModifiedDate = request.ModifiedDate;
                 _groupRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

@@ -1,17 +1,12 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.School;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.School;
 
 namespace FKRM.Domain.Commands.School
 {
-    public class CreateSchoolCommand: SchoolCommand
+    public class CreateSchoolCommand : SchoolCommand
     {
-        public CreateSchoolCommand(Guid id,string name)
+        public CreateSchoolCommand(string name)
         {
             Name = name;
-            ID = id;
         }
         public override bool IsValid()
         {

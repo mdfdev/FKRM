@@ -1,12 +1,8 @@
 ﻿using FKRM.Domain.Commands.Area;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateAreaCommand, Response<int>>
     {
         private readonly IAreaRepository _areaRepository;
-        public AreaCommandHandler(IAreaRepository areaRepository) 
+        public AreaCommandHandler(IAreaRepository areaRepository)
         {
             _areaRepository = areaRepository;
         }
@@ -26,11 +22,14 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var area = new Entities.Area()
             {
-                Name = request.Name
+                Name = request.Name,
+                BranchId =  request.BranchId ,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _areaRepository.Add(area);
             return Task.FromResult(new Response<int>(200));
@@ -44,13 +43,16 @@ namespace FKRM.Domain.CommandHandlers
             {
                 throw new ApiException($"گزینه مورد نظر یافت نشد.");
             }
-
             _areaRepository.Remove(request.ID);
             return Task.FromResult(new Response<int>(200));
         }
 
         public Task<Response<int>> Handle(UpdateAreaCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _areaRepository.GetById(request.ID);
 
             if (entity == null)
@@ -60,6 +62,8 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.BranchId = request.BranchId;
+                entity.ModifiedDate = request.ModifiedDate;
                 _areaRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

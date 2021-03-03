@@ -1,11 +1,9 @@
 ﻿using FKRM.Domain.Core.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Grade
 {
-    public abstract class GradeCommand:Command
+    public abstract class GradeCommand : Command
     {
         public Guid ID { get; protected set; }
 

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FKRM.Application.ViewModels.UnitTypeViewModel>
+
+<table id="staffTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+    <thead class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var unitType in Model)
+        {
+            <tr>
+                <td>
+                    @unitType.Name
+                </td>
+                <td>
+                    @unitType.AddedDate
+                </td>
+                <td>
+                    @unitType.ModifiedDate
+                </td>
+               
+                <td class="align-middle white-space-nowrap">
+                    <div class="dropdown text-sans-serif">
+                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
+                                data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-ellipsis-h fs--1"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                            <div class="bg-white py-2">
+                                <a onclick="jQueryModalGet('/unittype/OnGetCreateOrEdit?id=@unitType.Id','ویرایش اطلاعات نوع اداره')"
+                                   class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
+                                <div class="dropdown-divider"></div>
+                                <form id="form_delete_@unitType.Id" asp-controller="UnitType" method="post"
+                                      asp-action="OnPostDelete" asp-route-id="@unitType.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <a href="javascript:$('#form_delete_@unitType.Id').submit();" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i>  حذف</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#unittypeTable").DataTable();
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FKRM.Application.ViewModels.FeatureViewModel>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
+                <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">ویژگی مدرسه</h5>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body bg-light px-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-6 col-sm-auto ml-auto text-right pl-0">
+                    <a class="btn btn-falcon-default btn-sm" onclick="jQueryModalGet('/Feature/OnGetCreateOrEdit','ویژگی جدید')">
+                        <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
+                        <span class="d-none d-sm-inline-block ml-1">جدید</span>
+                    </a>
+                    <a id="reload" class="btn btn-falcon-default btn-sm">
+                        <span class="fas fa-bolt" data-fa-transform="shrink-3 down-2"></span>
+                        <span class="d-none d-sm-inline-block ml-1">بارگذاری مجدد</span>
+                    </a>
+                </div>
+                <div id="viewAll" class="card-body table-responsive">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#featureTable").DataTable();
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/feature/LoadAll');
+        }
+    </script>
+}

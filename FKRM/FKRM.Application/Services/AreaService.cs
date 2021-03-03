@@ -6,10 +6,8 @@ using FKRM.Domain.Commands.Area;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
-using FKRM.Domain.Queries.Area;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
@@ -29,13 +27,13 @@ namespace FKRM.Application.Services
         public IEnumerable<AreaViewModel> GetAll()
         {
             return _areaRepository.GetAll().ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
-            
+
         }
 
         public AreaViewModel GetById(Guid id)
         {
             return _autoMapper.Map<AreaViewModel>(_areaRepository.GetById(id));
-            
+
         }
 
         public Task<Response<int>> Register(AreaViewModel areaViewModel)
@@ -50,12 +48,12 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Update(AreaViewModel areaViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateAreaCommand>(areaViewModel));
         }
 
         public IEnumerable<AreaViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {
-            return _areaRepository.GetPagedReponse(pageNumber,pageSize).ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+            return _areaRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

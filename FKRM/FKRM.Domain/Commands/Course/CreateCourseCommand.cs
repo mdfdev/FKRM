@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Course;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Course;
 
 namespace FKRM.Domain.Commands.Course
 {
-    public class CreateCourseCommand: CourseCommand
+    public class CreateCourseCommand : CourseCommand
     {
         public CreateCourseCommand(string name)
         {

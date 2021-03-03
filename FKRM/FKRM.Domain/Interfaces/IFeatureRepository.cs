@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IFeatureRepository:IRepository<Feature>
+    public interface IFeatureRepository : IRepository<Feature>
     {
 
     }

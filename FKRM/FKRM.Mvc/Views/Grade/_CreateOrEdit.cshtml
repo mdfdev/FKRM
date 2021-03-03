@@ -1,10 +1,10 @@
-﻿@model FKRM.Application.ViewModels.BranchViewModel
-<form id="create-form" method="post" asp-controller="Branch" asp-action="OnPostCreateOrEdit" 
+﻿@model FKRM.Application.ViewModels.GradeViewModel
+<form id="create-form" method="post" asp-controller="Grade" asp-action="OnPostCreateOrEdit" 
       asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">نام شاخه</label>
+                <label class="col-md-3 col-form-label">نام پایه تحصیلی</label>
                 <div class="col-md-9">
                     <input type="text" asp-for="Name" name="Name" class="form-control">
                     <span asp-validation-for="Name" class="text-danger"></span>

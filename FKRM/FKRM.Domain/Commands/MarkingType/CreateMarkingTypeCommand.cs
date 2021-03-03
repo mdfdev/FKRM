@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.MarkingType;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.MarkingType;
 
 namespace FKRM.Domain.Commands.MarkingType
 {
-    public class CreateMarkingTypeCommand: MarkingTypeCommand
+    public class CreateMarkingTypeCommand : MarkingTypeCommand
     {
         public CreateMarkingTypeCommand(string name)
         {

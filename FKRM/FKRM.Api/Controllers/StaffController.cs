@@ -12,7 +12,7 @@ namespace FKRM.Api.Controllers
         private readonly IStaffService _staffService;
         public StaffController(IStaffService staffService)
         {
-            _staffService =staffService;
+            _staffService = staffService;
         }
         [HttpGet]
         public IActionResult GetAll()

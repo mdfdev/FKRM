@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FKRM.Application.ViewModels.AcademicCalendarViewModel>
+
+<table id="staffTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+    <thead class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AcademicYear)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AcademicQuarter)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+
+        @foreach (var academicCalendar in Model)
+        {
+            <tr>
+                <td>
+                    @academicCalendar.AcademicYear
+                </td>
+                <td>
+                    @academicCalendar.AcademicQuarter
+                </td>
+                <td>
+                    @academicCalendar.AddedDate
+                </td>
+                <td>
+                    @academicCalendar.ModifiedDate
+                </td>
+                <td class="align-middle white-space-nowrap">
+                    <div class="dropdown text-sans-serif">
+                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
+                                data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-ellipsis-h fs--1"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                            <div class="bg-white py-2">
+                                <a onclick="jQueryModalGet('/academiccalendar/OnGetCreateOrEdit?id=@academicCalendar.Id','ویرایش اطلاعات نوبت تحصیلی')"
+                                   class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
+                                <div class="dropdown-divider"></div>
+                                <form id="form_delete_@academicCalendar.Id" asp-controller="AcademicCalendar" method="post"
+                                      asp-action="OnPostDelete" asp-route-id="@academicCalendar.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <a href="javascript:$('#form_delete_@academicCalendar.Id').submit();" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i>  حذف</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#academiccalendarTable").DataTable();
+    });
+</script>

@@ -1,10 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class StaffViewModel:BaseViewModel
+    /// <summary>
+    /// برنامه زمانبندی
+    /// </summary>
+    public class StaffViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]

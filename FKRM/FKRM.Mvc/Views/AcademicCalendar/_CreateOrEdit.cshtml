@@ -1,0 +1,34 @@
+﻿@model FKRM.Application.ViewModels.AcademicCalendarViewModel
+<form id="create-form" method="post" asp-controller="AcademicCalendar" asp-action="OnPostCreateOrEdit" 
+      asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">سال تحصیلی</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="AcademicYear" name="AcademicYear" class="form-control">
+                    <span asp-validation-for="AcademicYear" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">نیم سال تحصیلی</label>
+                <div class="col-md-9">
+                    <input type="text" as asp-for="AcademicQuarter" name="AcademicQuarter" class="form-control">
+                    <span asp-validation-for="AcademicQuarter" class="text-danger"></span>
+                </div>
+            </div>
+          
+            <div class="form-group row">
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+        <button type="submit" class="btn btn-success">ذخیره</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

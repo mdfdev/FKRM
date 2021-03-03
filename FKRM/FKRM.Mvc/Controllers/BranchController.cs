@@ -11,7 +11,7 @@ namespace FKRM.Mvc.Controllers
     {
         private readonly IBranchService _branchService;
 
-        public BranchController(IBranchService branchService, IToastNotification toastNotification):base(toastNotification)
+        public BranchController(IBranchService branchService, IToastNotification toastNotification) : base(toastNotification)
         {
             _branchService = branchService;
         }
@@ -45,8 +45,8 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response= _branchService.Register(branchViewModel);
-                        if (response.Result.Data==400)
+                        var response = _branchService.Register(branchViewModel);
+                        if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
@@ -58,7 +58,7 @@ namespace FKRM.Mvc.Controllers
                     }
                     else
                     {
-                        var response =  _branchService.Update(branchViewModel);
+                        var response = _branchService.Update(branchViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
@@ -88,7 +88,7 @@ namespace FKRM.Mvc.Controllers
             try
             {
                 var name = _branchService.GetById(id).Name;
-                var response=_branchService.Remove(id);
+                var response = _branchService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);

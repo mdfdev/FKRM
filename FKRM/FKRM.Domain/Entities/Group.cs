@@ -1,7 +1,6 @@
 ﻿using FKRM.Domain.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Entities
 {
@@ -12,6 +11,7 @@ namespace FKRM.Domain.Entities
     {
         public string Name { get; set; }
         public Area Area { get; set; }
+        public Guid AreaId { get; set; }
         public ICollection<Major> Majors { get; set; }
     }
 }

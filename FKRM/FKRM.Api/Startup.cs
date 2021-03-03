@@ -4,17 +4,10 @@ using FKRM.Infra.IoC;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FKRM.Api
 {
@@ -30,12 +23,14 @@ namespace FKRM.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SchoolDBContext>(options => {
+            services.AddDbContext<SchoolDBContext>(options =>
+            {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDBConnection"));
             });
             services.AddControllers();
-            services.AddSwaggerGen(c=> {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title="School Api",Version="v1"  });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "School Api", Version = "v1" });
             });
             services.AddMediatR(typeof(Startup));
             services.RegisterAutoMapper();
@@ -53,9 +48,10 @@ namespace FKRM.Api
             app.UseHttpsRedirection();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c=> {
+            app.UseSwaggerUI(c =>
+            {
                 c.DisplayRequestDuration();
-                c.SwaggerEndpoint("/swagger/v1/swagger.json","School Api v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "School Api v1");
             });
 
             app.UseRouting();

@@ -3,9 +3,6 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +20,10 @@ namespace FKRM.Domain.CommandHandlers
         }
         public Task<Response<int>> Handle(UpdateMajorCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _majorRepository.GetById(request.ID);
 
             if (entity == null)
@@ -32,6 +33,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.ModifiedDate = request.ModifiedDate;
                 _majorRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }
@@ -52,13 +54,19 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(CreateMajorCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var major = new Entities.Major()
             {
                 Name = request.Name,
                 ComputerCode = request.ComputerCode,
                 RequiredCredit = request.RequiredCredit,
                 GraduationCredits = request.GraduationCredits,
-                OptionalElectiveCredit = request.OptionalElectiveCredit
+                OptionalElectiveCredit = request.OptionalElectiveCredit,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _majorRepository.Add(major);
             return Task.FromResult(new Response<int>(200));

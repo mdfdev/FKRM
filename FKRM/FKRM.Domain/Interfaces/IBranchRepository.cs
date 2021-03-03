@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IBranchRepository:IRepository<Branch>
+    public interface IBranchRepository : IRepository<Branch>
     {
 
     }

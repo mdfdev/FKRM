@@ -51,47 +51,45 @@ namespace FKRM.Mvc.Services
                     _actionContext.ActionContext.ActionDescriptor
                 );
 
-            using (var sw = new StringWriter())
+            using var sw = new StringWriter();
+            var result = _razorViewEngine.FindPage(actionContext, pageName);
+
+            if (result.Page == null)
             {
-                var result = _razorViewEngine.FindPage(actionContext, pageName);
-
-                if (result.Page == null)
-                {
-                    throw new ArgumentNullException($"The page {pageName} cannot be found.");
-                }
-
-                var view = new RazorView(_razorViewEngine,
-                    _activator,
-                    new List<IRazorPage>(),
-                    result.Page,
-                    HtmlEncoder.Default,
-                    new DiagnosticListener("ViewRenderService"));
-
-                var viewContext = new ViewContext(
-                    actionContext,
-                    view,
-                    new ViewDataDictionary<T>(new EmptyModelMetadataProvider(), new ModelStateDictionary())
-                    {
-                        Model = model
-                    },
-                    new TempDataDictionary(
-                        _httpContext.HttpContext,
-                        _tempDataProvider
-                    ),
-                    sw,
-                    new HtmlHelperOptions()
-                );
-
-                var page = (result.Page);
-
-                page.ViewContext = viewContext;
-
-                _activator.Activate(page, viewContext);
-
-                await page.ExecuteAsync();
-
-                return sw.ToString();
+                throw new ArgumentNullException($"The page {pageName} cannot be found.");
             }
+
+            var view = new RazorView(_razorViewEngine,
+                _activator,
+                new List<IRazorPage>(),
+                result.Page,
+                HtmlEncoder.Default,
+                new DiagnosticListener("ViewRenderService"));
+
+            var viewContext = new ViewContext(
+                actionContext,
+                view,
+                new ViewDataDictionary<T>(new EmptyModelMetadataProvider(), new ModelStateDictionary())
+                {
+                    Model = model
+                },
+                new TempDataDictionary(
+                    _httpContext.HttpContext,
+                    _tempDataProvider
+                ),
+                sw,
+                new HtmlHelperOptions()
+            );
+
+            var page = (result.Page);
+
+            page.ViewContext = viewContext;
+
+            _activator.Activate(page, viewContext);
+
+            await page.ExecuteAsync();
+
+            return sw.ToString();
         }
 
         private IRazorPage FindPage(ActionContext actionContext, string pageName)

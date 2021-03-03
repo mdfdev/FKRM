@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Schedule;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Schedule;
 
 namespace FKRM.Domain.Commands.Schedule
 {
-    public class CreateScheduleCommand: ScheduleCommand
+    public class CreateScheduleCommand : ScheduleCommand
     {
         public CreateScheduleCommand(int startTime)
         {

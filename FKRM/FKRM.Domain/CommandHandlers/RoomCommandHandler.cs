@@ -1,5 +1,4 @@
 ﻿using FKRM.Domain.Commands.Room;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
@@ -15,7 +14,7 @@ namespace FKRM.Domain.CommandHandlers
         IRequestHandler<UpdateRoomCommand, Response<int>>
     {
         private readonly IRoomRepository _roomRepository;
-        public RoomCommandHandler(IRoomRepository RoomRepository) 
+        public RoomCommandHandler(IRoomRepository RoomRepository)
         {
             _roomRepository = RoomRepository;
         }
@@ -23,11 +22,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var Room = new Entities.Room()
             {
-                Name = request.Name
+                Name = request.Name,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _roomRepository.Add(Room);
             return Task.FromResult(new Response<int>(200));
@@ -48,6 +49,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateRoomCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _roomRepository.GetById(request.ID);
 
             if (entity == null)
@@ -57,6 +62,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.ModifiedDate = request.ModifiedDate;
                 _roomRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

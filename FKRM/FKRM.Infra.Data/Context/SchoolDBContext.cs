@@ -1,13 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using FKRM.Domain.Entities;
+﻿using FKRM.Domain.Entities;
 using FKRM.Infra.Data.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace FKRM.Infra.Data.Context
 {
-    public class SchoolDBContext:DbContext
+    public class SchoolDBContext : DbContext
     {
         public DbSet<AcademicCalendar> AcademicCalendars { get; set; }
         public DbSet<Area> Areas { get; set; }
@@ -27,12 +24,12 @@ namespace FKRM.Infra.Data.Context
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
 
-   
-     
-    
- 
 
-        public  SchoolDBContext(DbContextOptions options):base(options)
+
+
+
+
+        public SchoolDBContext(DbContextOptions options) : base(options)
         {
 
         }

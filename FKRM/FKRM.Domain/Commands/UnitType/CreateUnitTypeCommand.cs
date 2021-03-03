@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.UnitType;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.UnitType;
 
 namespace FKRM.Domain.Commands.UnitType
 {
-    public class CreateUnitTypeCommand: UnitTypeCommand
+    public class CreateUnitTypeCommand : UnitTypeCommand
     {
         public CreateUnitTypeCommand(string name)
         {

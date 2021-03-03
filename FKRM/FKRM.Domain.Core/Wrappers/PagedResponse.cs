@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FKRM.Domain.Core.Wrappers
+﻿namespace FKRM.Domain.Core.Wrappers
 {
     public class PagedResponse<T> : Response<T>
     {

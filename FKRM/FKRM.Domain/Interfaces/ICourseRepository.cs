@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface ICourseRepository:IRepository<Course>
+    public interface ICourseRepository : IRepository<Course>
     {
 
     }

@@ -2,7 +2,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IRoomRepository:IRepository<Room>
+    public interface IRoomRepository : IRepository<Room>
     {
     }
 }

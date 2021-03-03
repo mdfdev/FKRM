@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class SchoolViewModel:BaseViewModel
+    public class SchoolViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]

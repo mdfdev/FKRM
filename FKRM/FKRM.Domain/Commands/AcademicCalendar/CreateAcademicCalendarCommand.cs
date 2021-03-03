@@ -1,14 +1,10 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.AcademicCalendar;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.AcademicCalendar;
 
 namespace FKRM.Domain.Commands.AcademicCalendar
 {
     public class CreateAcademicCalendarCommand : AcademicCalendarCommand
     {
-        public CreateAcademicCalendarCommand(string academicYear,string academicQuarter)
+        public CreateAcademicCalendarCommand(string academicYear, string academicQuarter)
         {
             AcademicYear = academicYear;
             AcademicYear = academicQuarter;

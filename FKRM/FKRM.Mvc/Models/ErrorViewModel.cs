@@ -1,5 +1,3 @@
-using System;
-
 namespace FKRM.Mvc.Models
 {
     public class ErrorViewModel

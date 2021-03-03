@@ -1,8 +1,6 @@
 ﻿using FKRM.Domain.Commands.School;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Validation.School
 {
@@ -11,7 +9,7 @@ namespace FKRM.Domain.Validation.School
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("Name cannot be empty")
+                .NotEmpty().WithMessage("نام مدرسه الزامی می باشد")
                 .Length(2, 10).WithMessage("The name is between 2~10 characters");
         }
         protected void ValidateId()

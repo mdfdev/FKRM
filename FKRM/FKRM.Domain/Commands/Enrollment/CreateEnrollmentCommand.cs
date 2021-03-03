@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Enrollment;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Enrollment;
 
 namespace FKRM.Domain.Commands.Enrollment
 {
-    public class CreateEnrollmentCommand: EnrollmentCommand
+    public class CreateEnrollmentCommand : EnrollmentCommand
     {
         public CreateEnrollmentCommand(int capacity)
         {

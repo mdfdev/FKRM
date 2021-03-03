@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Branch;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Branch;
 
 namespace FKRM.Domain.Commands.Branch
 {
-    public class CreateBranchCommand: BranchCommand
+    public class CreateBranchCommand : BranchCommand
     {
         public CreateBranchCommand(string name)
         {

@@ -3,7 +3,7 @@
 
 namespace FKRM.Domain.Interfaces
 {
-    public interface IStaffRepository:IRepository<Staff>
+    public interface IStaffRepository : IRepository<Staff>
     {
     }
 }

@@ -56,7 +56,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("BranchId")
+                    b.Property<Guid>("BranchId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
@@ -279,7 +279,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("AreaId")
+                    b.Property<Guid>("AreaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
@@ -568,7 +568,9 @@ namespace FKRM.Infra.Data.Migrations
                 {
                     b.HasOne("FKRM.Domain.Entities.Branch", "Branch")
                         .WithMany("Areas")
-                        .HasForeignKey("BranchId");
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.Course", b =>
@@ -613,7 +615,9 @@ namespace FKRM.Infra.Data.Migrations
                 {
                     b.HasOne("FKRM.Domain.Entities.Area", "Area")
                         .WithMany("Groups")
-                        .HasForeignKey("AreaId");
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.Major", b =>

@@ -4,9 +4,9 @@ using FKRM.Infra.Data.Context;
 
 namespace FKRM.Infra.Data.Repository
 {
-    public class EnrollmentRepository :Repository<Enrollment>, IEnrollmentRepository
+    public class EnrollmentRepository : Repository<Enrollment>, IEnrollmentRepository
     {
-        public EnrollmentRepository(SchoolDBContext context):base(context)
+        public EnrollmentRepository(SchoolDBContext context) : base(context)
         {
         }
     }

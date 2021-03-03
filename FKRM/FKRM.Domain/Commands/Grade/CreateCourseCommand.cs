@@ -1,12 +1,8 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Grade;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Grade;
 
 namespace FKRM.Domain.Commands.Grade
 {
-    public class CreateGradeCommand: GradeCommand
+    public class CreateGradeCommand : GradeCommand
     {
         public CreateGradeCommand(string name)
         {

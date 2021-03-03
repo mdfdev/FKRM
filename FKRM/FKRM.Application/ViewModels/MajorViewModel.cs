@@ -1,23 +1,22 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
     /// <summary>
     /// رشته
     /// </summary>
-    public class MajorViewModel:BaseViewModel
+    public class MajorViewModel : BaseViewModel
     {
         /// <summary>
         /// نام رشته
         /// </summary>
-        [Display(Name = "نام رشته",Prompt = "نام رشته")]
+        [Display(Name = "نام رشته", Prompt = "نام رشته")]
         [Required(ErrorMessage = "(*)")]
         public string Name { get; set; }
         /// <summary>
         /// کد رایانه ای
         /// </summary>
-        [Display(Name = "کد رایانه ای",Prompt = "کد رایانه ای")]
+        [Display(Name = "کد رایانه ای", Prompt = "کد رایانه ای")]
         [Required(ErrorMessage = "(*)")]
         public string ComputerCode { get; set; }
         /// <summary>
@@ -33,7 +32,7 @@ namespace FKRM.Application.ViewModels
         /// <summary>
         /// تعداد واحد فارغ التحصیلی
         /// </summary>
-        [Display(Name = "تعداد واحد فارغ التحصیلی",Prompt = "تعداد واحد فارغ التحصیلی")]
+        [Display(Name = "تعداد واحد فارغ التحصیلی", Prompt = "تعداد واحد فارغ التحصیلی")]
         public int GraduationCredits { get; set; }
     }
 }

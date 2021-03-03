@@ -1,5 +1,4 @@
 ﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
@@ -24,11 +23,13 @@ namespace FKRM.Domain.CommandHandlers
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(new Response<int>(400));
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
             var gender = new Entities.Gender()
             {
-                Name = request.Name
+                Name = request.Name,
+                ModifiedDate = request.ModifiedDate,
+                AddedDate = request.AddedDate
             };
             _genderRepository.Add(gender);
             return Task.FromResult(new Response<int>(200));
@@ -49,6 +50,10 @@ namespace FKRM.Domain.CommandHandlers
 
         public Task<Response<int>> Handle(UpdateGenderCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                return Task.FromResult(new Response<int>(400, GetErrors(request)));
+            }
             var entity = _genderRepository.GetById(request.ID);
 
             if (entity == null)
@@ -58,6 +63,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.ModifiedDate = request.ModifiedDate;
                 _genderRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

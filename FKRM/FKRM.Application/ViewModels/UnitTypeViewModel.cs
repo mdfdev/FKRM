@@ -1,10 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class UnitTypeViewModel:BaseViewModel
+    /// <summary>
+    /// نوع اداره
+    /// </summary>
+    public class UnitTypeViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام واحد سازمانی")]

@@ -1,15 +1,14 @@
 ﻿using FKRM.Domain.Validation.Area;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Area
 {
-    public class CreateAreaCommand:AreaCommand
+    public class CreateAreaCommand : AreaCommand
     {
-        public CreateAreaCommand(string name)
+        public CreateAreaCommand(string name,Guid branchId)
         {
             Name = name;
+            BranchId = branchId;
         }
         public override bool IsValid()
         {

@@ -35,7 +35,8 @@ namespace FKRM.Mvc
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SchoolIdentityDBConnection")));
 
-            services.AddDbContext<SchoolDBContext>(options => {
+            services.AddDbContext<SchoolDBContext>(options =>
+            {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDBConnection"));
             });
 

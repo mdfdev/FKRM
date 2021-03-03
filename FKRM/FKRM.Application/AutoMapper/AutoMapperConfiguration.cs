@@ -6,7 +6,8 @@ namespace FKRM.Application.AutoMapper
     {
         public static MapperConfiguration RegisterMappings()
         {
-            return new MapperConfiguration(cfg=> {
+            return new MapperConfiguration(cfg =>
+            {
                 cfg.AddProfile(new DomainToViewModelProfile());
                 cfg.AddProfile(new ViewModelToDomainProfile());
             });

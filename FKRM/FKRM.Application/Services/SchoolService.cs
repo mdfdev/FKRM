@@ -8,7 +8,6 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
@@ -36,17 +35,17 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Register(SchoolViewModel schoolViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateSchoolCommand>(schoolViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateSchoolCommand>(schoolViewModel));
         }
 
         public Task<Response<int>> Remove(Guid id)
         {
-           return (Task<Response<int>>)_bus.SendCommand(new DeleteSchoolCommand(id));
+            return (Task<Response<int>>)_bus.SendCommand(new DeleteSchoolCommand(id));
         }
 
         public Task<Response<int>> Update(SchoolViewModel schoolViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<UpdateSchoolCommand>(schoolViewModel));
         }
 
         public IEnumerable<SchoolViewModel> GetPagedResponse(int pageNumber, int pageSize)

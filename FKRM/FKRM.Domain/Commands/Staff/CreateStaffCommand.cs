@@ -1,14 +1,10 @@
-﻿using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Validation.Staff;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FKRM.Domain.Validation.Staff;
 
 namespace FKRM.Domain.Commands.Staff
 {
-    public class CreateStaffCommand: StaffCommand
+    public class CreateStaffCommand : StaffCommand
     {
-        public CreateStaffCommand(string fname,string lname,string phone,string mobile,string nationalcode)
+        public CreateStaffCommand(string fname, string lname, string phone, string mobile, string nationalcode)
         {
             FirstName = fname;
             LastName = lname;

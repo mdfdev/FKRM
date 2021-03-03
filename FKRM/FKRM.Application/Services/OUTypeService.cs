@@ -8,7 +8,6 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services
@@ -32,7 +31,7 @@ namespace FKRM.Application.Services
 
         public Task<Response<int>> Register(OUTypeViewModel oUTypeViewModel)
         {
-           return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateOUTypeCommand>(oUTypeViewModel));
+            return (Task<Response<int>>)_bus.SendCommand(_autoMapper.Map<CreateOUTypeCommand>(oUTypeViewModel));
         }
 
         public IEnumerable<OUTypeViewModel> GetAll()

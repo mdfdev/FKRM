@@ -1,10 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
-    public class RoomViewModel:BaseViewModel
+    /// <summary>
+    /// کلاس
+    /// </summary>
+    public class RoomViewModel : BaseViewModel
     {
 
         [Required(ErrorMessage = "(*)")]

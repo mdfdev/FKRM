@@ -1,9 +1,6 @@
 ﻿using FKRM.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Infra.Data.Configuration
 {
@@ -21,6 +18,12 @@ namespace FKRM.Infra.Data.Configuration
             builder
             .Property(b => b.Name)
             .IsRequired();
+
+            builder
+                .HasOne(s => s.Branch)
+                .WithMany(g => g.Areas)
+                .HasForeignKey(s => s.BranchId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

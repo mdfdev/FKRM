@@ -1,7 +1,5 @@
 ﻿using FKRM.Domain.Validation.Room;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FKRM.Domain.Commands.Room
 {

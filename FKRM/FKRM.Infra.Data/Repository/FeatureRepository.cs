@@ -4,11 +4,11 @@ using FKRM.Infra.Data.Context;
 
 namespace FKRM.Infra.Data.Repository
 {
-    public class FeatureRepository :Repository<Feature>, IFeatureRepository
+    public class FeatureRepository : Repository<Feature>, IFeatureRepository
     {
-        public FeatureRepository(SchoolDBContext context):base(context)
+        public FeatureRepository(SchoolDBContext context) : base(context)
         {
-            
+
         }
     }
 }
