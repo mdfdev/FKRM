@@ -14,7 +14,9 @@ namespace FKRM.Application.ViewModels
         public string Area { get; set; }
         [DisplayName("شاخه")]
         public string Branch { get; set; }
+        public Guid BranchId { get; set; }
         public Guid AreaId { get; set; }
-        public SelectList Areas { get; set; }
+        //public SelectList Areas { get; set; }
+        public SelectList Branches { get; set; }
     }
 }

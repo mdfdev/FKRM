@@ -9,6 +9,7 @@ namespace FKRM.Application.Interfaces
     public interface IAreaService
     {
         AreaViewModel GetById(Guid id);
+        IEnumerable<AreaViewModel> GetByBranchId(Guid id);
         Task<Response<int>> Register(AreaViewModel areaViewModel);
         IEnumerable<AreaViewModel> GetAll();
         IEnumerable<AreaViewModel> GetPagedResponse(int pageNumber, int pageSize);

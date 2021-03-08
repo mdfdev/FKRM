@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
 {
@@ -34,5 +37,20 @@ namespace FKRM.Application.ViewModels
         /// </summary>
         [Display(Name = "تعداد واحد فارغ التحصیلی", Prompt = "تعداد واحد فارغ التحصیلی")]
         public int GraduationCredits { get; set; }
+
+
+
+        [DisplayName("شاخه")]
+        public string Branch { get; set; }
+        [DisplayName("زمینه")]
+        public string Area { get; set; }
+        [DisplayName("گروه")]
+        public string Group { get; set; }
+        public Guid BranchId { get; set; }
+        public Guid AreaId { get; set; }
+        public Guid GroupId { get; set; }
+        public SelectList Branches { get; set; }
+        public SelectList Areas { get; set; }
+        public SelectList Groups { get; set; }
     }
 }

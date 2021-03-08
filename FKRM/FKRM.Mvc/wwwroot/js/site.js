@@ -52,7 +52,7 @@
         }
     }
     jQueryModalDelete = form => {
-        if (confirm('Are you sure to delete this record ?')) {
+        if (confirm('آیا از حذف این رکورد اطمینان دارید؟')) {
             try {
                 $.ajax({
                     type: 'POST',

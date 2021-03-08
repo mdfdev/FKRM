@@ -52,5 +52,10 @@ namespace FKRM.Application.Services
         {
             return _groupRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<GroupViewModel>(_autoMapper.ConfigurationProvider);
         }
+
+        public IEnumerable<GroupViewModel> GetByAreaId(Guid id)
+        {
+            return _groupRepository.GetAllByAreaId(id).ProjectTo<GroupViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

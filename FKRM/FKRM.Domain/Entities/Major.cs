@@ -1,6 +1,6 @@
 ﻿using FKRM.Domain.Common;
+using System;
 using System.Collections.Generic;
-
 namespace FKRM.Domain.Entities
 {
     /// <summary>
@@ -29,6 +29,7 @@ namespace FKRM.Domain.Entities
         /// </summary>
         public int GraduationCredits { get; set; }
         public Group Group { get; set; }
+        public Guid GroupId { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
 }

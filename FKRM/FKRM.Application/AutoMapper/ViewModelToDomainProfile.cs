@@ -131,10 +131,10 @@ namespace FKRM.Application.AutoMapper
             CreateMap<MajorViewModel, CreateMajorCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateMajorCommand(c.Name, c.ComputerCode, c.RequiredCredit, c.OptionalElectiveCredit, c.GraduationCredits));
+                .ConstructUsing(c => new CreateMajorCommand(c.Name, c.ComputerCode, c.RequiredCredit, c.OptionalElectiveCredit, c.GraduationCredits, c.GroupId));
             CreateMap<MajorViewModel, UpdateMajorCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateMajorCommand(c.Id, c.Name, c.ComputerCode, c.RequiredCredit, c.OptionalElectiveCredit, c.GraduationCredits));
+                .ConstructUsing(c => new UpdateMajorCommand(c.Id, c.Name, c.ComputerCode, c.RequiredCredit, c.OptionalElectiveCredit, c.GraduationCredits,c.GroupId));
             CreateMap<MajorViewModel, DeleteMajorCommand>()
                 .ConstructUsing(c => new DeleteMajorCommand(c.Id));
 

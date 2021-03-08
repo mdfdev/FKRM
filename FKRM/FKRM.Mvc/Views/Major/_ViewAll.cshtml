@@ -7,6 +7,27 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="sort">
+                @Html.DisplayNameFor(model => model.ComputerCode)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.RequiredCredit)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.OptionalElectiveCredit)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.GraduationCredits)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Group)
+            </th>
+            <th class="sort">
                 @Html.DisplayNameFor(model => model.AddedDate)
             </th>
             <th class="sort">
@@ -21,6 +42,27 @@
         <tr>
             <td>
                 @major.Name
+            </td>
+            <td>
+                @major.ComputerCode
+            </td>
+            <td>
+                @major.RequiredCredit
+            </td>
+            <td>
+                @major.OptionalElectiveCredit
+            </td>
+            <td>
+                @major.GraduationCredits
+            </td>
+            <td>
+                @major.Branch
+            </td>
+            <td>
+                @major.Area
+            </td>
+            <td>
+                @major.Group
             </td>
             <td>
                 @major.AddedDate

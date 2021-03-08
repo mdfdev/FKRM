@@ -1,33 +1,33 @@
 ﻿@model FKRM.Application.ViewModels.CourseViewModel
-<form id="create-form" method="post" asp-controller="Course" asp-action="OnPostCreateOrEdit" 
+<form id="create-form" method="post" asp-controller="Course" asp-action="OnPostCreateOrEdit"
       asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">نام درس</label>
                 <div class="col-md-9">
-                    <input type="text" asp-for="Name" name="Name" class="form-control">
+                    <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="نام درس">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">کد درس</label>
                 <div class="col-md-9">
-                    <input type="text" asp-for="Code" name="Code" class="form-control">
+                    <input type="text" asp-for="Code" name="Code" class="form-control" placeholder="کد درس">
                     <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">تعداد واحد</label>
                 <div class="col-md-9">
-                    <input type="number" asp-for="Credits" maxlength="6" name="Credits" class="form-control">
+                    <input type="number" asp-for="Credits" maxlength="6" name="Credits" class="form-control" placeholder="تعداد واحد">
                     <span asp-validation-for="Credits" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">حد نصاب قبولی</label>
                 <div class="col-md-9">
-                    <input type="number" asp-for="PassMark" maxlength="2" name="PassMark" class="form-control">
+                    <input type="number" asp-for="PassMark" maxlength="2" name="PassMark" class="form-control" placeholder="حد نصاب قبولی">
                     <span asp-validation-for="PassMark" class="text-danger"></span>
                 </div>
             </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+    <div class="modal-footer">
         <button type="submit" class="btn btn-success">ذخیره</button>
         <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
     </div>

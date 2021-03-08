@@ -6,7 +6,7 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">نام</label>
                 <div class="col-md-9">
-                    <input type="text" asp-for="StartTime" name="StartTime" class="form-control">
+                    <input type="text" asp-for="StartTime" name="StartTime" class="form-control" placeholder="نام">
                     <span asp-validation-for="StartTime" class="text-danger"></span>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+    <div class="modal-footer">
         <button type="submit" class="btn btn-success">ذخیره</button>
         <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
     </div>

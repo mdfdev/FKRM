@@ -5,7 +5,7 @@ namespace FKRM.Domain.Commands.Major
 {
     public class UpdateMajorCommand : MajorCommand
     {
-        public UpdateMajorCommand(Guid id, string name, string computerCode, int requiredCredit, int optionalElectiveCredit, int graduationCredits)
+        public UpdateMajorCommand(Guid id, string name, string computerCode, int requiredCredit, int optionalElectiveCredit, int graduationCredits, Guid groupId)
         {
             ID = id;
             Name = name;
@@ -13,6 +13,7 @@ namespace FKRM.Domain.Commands.Major
             RequiredCredit = requiredCredit;
             OptionalElectiveCredit = optionalElectiveCredit;
             GraduationCredits = graduationCredits;
+            GroupId = groupId;
         }
         public override bool IsValid()
         {

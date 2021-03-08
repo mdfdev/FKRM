@@ -1,6 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
@@ -10,9 +11,10 @@ namespace FKRM.Mvc.Controllers
     public class MajorController : BaseController<MajorController>
     {
         private readonly IMajorService _majorService;
-
-        public MajorController(IMajorService majorService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IBranchService _branchService;
+        public MajorController(IMajorService majorService, IBranchService branchService , IToastNotification toastNotification) : base(toastNotification)
         {
+            _branchService = branchService;
             _majorService = majorService;
         }
         public IActionResult LoadAll()
@@ -28,11 +30,15 @@ namespace FKRM.Mvc.Controllers
             if (id == Guid.Empty)
             {
                 var majorViewModel = new MajorViewModel();
+                var branchViewModels = _branchService.GetAll();
+                majorViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", majorViewModel) });
             }
             else
             {
                 var majorViewModel = _majorService.GetById(id);
+                var branchViewModels = _branchService.GetAll();
+                majorViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", majorViewModel) });
             }
         }

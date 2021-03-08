@@ -33,7 +33,6 @@ namespace FKRM.Application.Services
         public AreaViewModel GetById(Guid id)
         {
             return _autoMapper.Map<AreaViewModel>(_areaRepository.GetById(id));
-
         }
 
         public Task<Response<int>> Register(AreaViewModel areaViewModel)
@@ -54,6 +53,11 @@ namespace FKRM.Application.Services
         public IEnumerable<AreaViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {
             return _areaRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public IEnumerable<AreaViewModel> GetByBranchId(Guid id)
+        {
+            return _areaRepository.GetAllByBranchId(id).ProjectTo<AreaViewModel>(_autoMapper.ConfigurationProvider);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace FKRM.Mvc.Controllers
     public class GroupController : BaseController<GroupController>
     {
         private readonly IGroupService _groupService;
-        private readonly IAreaService _areaService;
-        public GroupController(IGroupService groupService,IAreaService areaService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IBranchService _branchService;
+        public GroupController(IGroupService groupService ,IBranchService branchService, IToastNotification toastNotification) : base(toastNotification)
         {
             _groupService = groupService;
-            _areaService = areaService;
+            _branchService = branchService;
         }
         public IActionResult LoadAll()
         {
@@ -25,20 +25,25 @@ namespace FKRM.Mvc.Controllers
         {
             return View();
         }
+        public JsonResult GetGroupList(Guid AreaId)
+        {
+            var GroupList = _groupService.GetByAreaId(AreaId);
+            return Json(GroupList);
+        }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             if (id == Guid.Empty)
             {
                 var groupViewModel = new GroupViewModel();
-                var areaViewModels = _areaService.GetAll();
-                groupViewModel.Areas = new SelectList(areaViewModels, "Id", "Name", null, null);
+                var branchViewModels = _branchService.GetAll();
+                groupViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", groupViewModel) });
             }
             else
             {
                 var groupViewModel = _groupService.GetById(id);
-                var areaViewModels = _areaService.GetAll();
-                groupViewModel.Areas = new SelectList(areaViewModels, "Id", "Name", null, null);
+                var branchViewModels = _branchService.GetAll();
+                groupViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", groupViewModel) });
             }
         }

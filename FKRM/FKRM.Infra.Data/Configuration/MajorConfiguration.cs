@@ -18,6 +18,12 @@ namespace FKRM.Infra.Data.Configuration
             builder
             .Property(b => b.Name)
             .IsRequired();
+
+            builder
+               .HasOne(s => s.Group)
+               .WithMany(g => g.Majors)
+               .HasForeignKey(s => s.GroupId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
@@ -25,6 +26,11 @@ namespace FKRM.Mvc.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public JsonResult GetAreaList(Guid BranchId)
+        {
+            var AreaList = _areaService.GetByBranchId(BranchId);
+            return Json(AreaList);
         }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {

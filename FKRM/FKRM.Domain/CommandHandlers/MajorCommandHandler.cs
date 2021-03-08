@@ -34,6 +34,7 @@ namespace FKRM.Domain.CommandHandlers
             {
                 entity.Name = request.Name;
                 entity.ModifiedDate = request.ModifiedDate;
+                entity.GroupId = request.GroupId;
                 _majorRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }
@@ -66,7 +67,8 @@ namespace FKRM.Domain.CommandHandlers
                 GraduationCredits = request.GraduationCredits,
                 OptionalElectiveCredit = request.OptionalElectiveCredit,
                 ModifiedDate = request.ModifiedDate,
-                AddedDate = request.AddedDate
+                AddedDate = request.AddedDate,
+                GroupId = request.GroupId
             };
             _majorRepository.Add(major);
             return Task.FromResult(new Response<int>(200));

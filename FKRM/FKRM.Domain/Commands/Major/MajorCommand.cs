@@ -12,5 +12,7 @@ namespace FKRM.Domain.Commands.Major
         public int RequiredCredit { get; protected set; }
         public int OptionalElectiveCredit { get; protected set; }
         public int GraduationCredits { get; protected set; }
+        public Guid GroupId { get; set; }
+
     }
 }

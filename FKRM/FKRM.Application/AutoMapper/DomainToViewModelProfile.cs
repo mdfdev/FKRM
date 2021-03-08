@@ -40,6 +40,9 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Major, MajorViewModel>()
+                .ForMember(cd => cd.Branch, opt => opt.MapFrom(c => c.Group.Area.Branch.Name))
+                .ForMember(cd => cd.Area, opt => opt.MapFrom(c => c.Group.Area.Name))
+                .ForMember(cd => cd.Group, opt => opt.MapFrom(c => c.Group.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<MarkingType, MarkingTypeViewModel>()
