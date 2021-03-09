@@ -25,6 +25,11 @@ namespace FKRM.Mvc.Controllers
         {
             return View();
         }
+        public JsonResult GetMajorList(Guid GroupId)
+        {
+            var MajorList = _majorService.GetByGroupId(GroupId);
+            return Json(MajorList);
+        }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             if (id == Guid.Empty)
@@ -58,7 +63,7 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifySuccess($"{majorViewModel.Name} ثبت شد.");
+                            NotifySuccess($"{majorViewModel.Name} ثبت شد");
 
                         }
                     }
@@ -71,13 +76,13 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifyInfo($"{majorViewModel.Name} ویرایش شد.");
+                            NotifyInfo($"{majorViewModel.Name} ویرایش شد");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                    NotifyError($"عملیات مورد نظر انجام نشد:{ex.Message}");
                 }
                 var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _majorService.GetAll());
                 return new JsonResult(new { isValid = true, html });
@@ -101,12 +106,12 @@ namespace FKRM.Mvc.Controllers
                 }
                 else
                 {
-                    NotifyInfo($"{name} حذف شد.");
+                    NotifyInfo($"{name} حذف شد");
                 }
             }
             catch (Exception)
             {
-                NotifyError("حذف اطلاعات انجام نشد.");
+                NotifyError("حذف اطلاعات انجام نشد");
             }
             var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _majorService.GetAll());
             return new JsonResult(new { isValid = true, html });

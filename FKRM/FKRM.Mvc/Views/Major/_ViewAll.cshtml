@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<FKRM.Application.ViewModels.MajorViewModel>
 
-<table id="branchTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+<table id="majorTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
     <thead class="bg-200">
         <tr>
             <th class="sort">
@@ -95,6 +95,14 @@
 </table>
 <script>
     $(document).ready(function () {
-        $("#majorTable").DataTable();
+        $("#majorTable").DataTable({
+            order: [[5, 'asc'], [6, 'asc'], [7, 'asc']],
+            columnDefs: [
+                {
+                    "targets": [8, 9],
+                    "visible": false
+                }
+            ],
+        });
     });
 </script>

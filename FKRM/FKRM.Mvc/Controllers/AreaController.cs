@@ -65,7 +65,7 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifySuccess($"{areaViewModel.Name} ثبت شد.");
+                            NotifySuccess($"{areaViewModel.Name} ثبت شد");
 
                         }
                     }
@@ -78,13 +78,13 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifyInfo($"{areaViewModel.Name} ویرایش شد.");
+                            NotifyInfo($"{areaViewModel.Name} ویرایش شد");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                    NotifyError($"عملیات مورد نظر انجام نشد{ex.Message}");
                 }
                 var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _areaService.GetAll());
                 return new JsonResult(new { isValid = true, html });
@@ -108,12 +108,12 @@ namespace FKRM.Mvc.Controllers
                 }
                 else
                 {
-                    NotifyInfo($"{name} حذف شد.");
+                    NotifyInfo($"{name} حذف شد");
                 }
             }
             catch (Exception)
             {
-                NotifyError("حذف اطلاعات انجام نشد.");
+                NotifyError("حذف اطلاعات انجام نشد");
             }
             var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _areaService.GetAll());
             return new JsonResult(new { isValid = true, html });

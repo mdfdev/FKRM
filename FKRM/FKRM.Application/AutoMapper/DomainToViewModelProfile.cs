@@ -20,6 +20,12 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Course, CourseViewModel>()
+                .ForMember(cd => cd.Branch, opt => opt.MapFrom(c => c.Major.Group.Area.Branch.Name))
+                .ForMember(cd => cd.Area, opt => opt.MapFrom(c => c.Major.Group.Area.Name))
+                .ForMember(cd => cd.Group, opt => opt.MapFrom(c => c.Major.Group.Name))
+                .ForMember(cd => cd.Major, opt => opt.MapFrom(c => c.Major.Name))
+                .ForMember(cd => cd.Grade, opt => opt.MapFrom(c => c.Grade.Name))
+                .ForMember(cd => cd.MarkingType, opt => opt.MapFrom(c => c.MarkingType.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Enrollment, EnrollmentViewModel>()

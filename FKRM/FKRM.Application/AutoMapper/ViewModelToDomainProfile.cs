@@ -61,7 +61,7 @@ namespace FKRM.Application.AutoMapper
             CreateMap<CourseViewModel, CreateCourseCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateCourseCommand(c.Name));
+                .ConstructUsing(c => new CreateCourseCommand(c.Name,c.Code,c.Credits,c.PassMark,c.MajorId,c.GradeId,c.MarkingTypeId));
             CreateMap<CourseViewModel, UpdateCourseCommand>()
                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                .ConstructUsing(c => new UpdateCourseCommand(c.Id, c.Name));

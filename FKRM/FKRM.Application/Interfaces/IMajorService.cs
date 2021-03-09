@@ -11,6 +11,8 @@ namespace FKRM.Application.Interfaces
         MajorViewModel GetById(Guid id);
         Task<Response<int>> Register(MajorViewModel majorViewModel);
         IEnumerable<MajorViewModel> GetAll();
+        IEnumerable<MajorViewModel> GetByGroupId(Guid id);
+
         IEnumerable<MajorViewModel> GetPagedResponse(int pageNumber, int pageSize);
         Task<Response<int>> Update(MajorViewModel majorViewModel);
         Task<Response<int>> Remove(Guid id);

@@ -31,7 +31,10 @@ namespace FKRM.Domain.CommandHandlers
                 ModifiedDate = request.ModifiedDate,
                 AddedDate = request.AddedDate,
                 Credits = request.Credits,
-                PassMark = request.PassMark
+                PassMark = request.PassMark,
+                MajorId = request.MajorId,
+                GradeId = request.GradeId,
+                MarkingTypeId = request.MarkingTypeId
             };
             _courseRepository.Add(Course);
             return Task.FromResult(new Response<int>(200));
@@ -64,6 +67,12 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.Name = request.Name;
+                entity.Code = request.Code;
+                entity.PassMark = request.PassMark;
+                entity.Credits = request.Credits;
+                entity.MajorId = request.MajorId;
+                entity.GradeId = request.GradeId;
+                entity.MarkingTypeId = request.MarkingTypeId;
                 entity.ModifiedDate = request.ModifiedDate;
                 _courseRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));

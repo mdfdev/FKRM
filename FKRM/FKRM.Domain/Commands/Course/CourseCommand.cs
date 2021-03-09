@@ -10,5 +10,9 @@ namespace FKRM.Domain.Commands.Course
         public string Code { get; protected set; }
         public int Credits { get; protected set; }
         public int PassMark { get; protected set; }
+        public Guid MajorId { get; set; }
+        public Guid GradeId { get; set; }
+        public Guid MarkingTypeId { get; set; }
+
     }
 }

@@ -4,14 +4,16 @@ using FKRM.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FKRM.Infra.Data.Migrations
 {
     [DbContext(typeof(SchoolDBContext))]
-    partial class SchoolDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210309094606_991219")]
+    partial class _991219
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +117,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("GradeId")
+                    b.Property<Guid?>("GradeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
@@ -124,7 +126,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<Guid>("MajorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MarkingTypeId")
+                    b.Property<Guid?>("MarkingTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -577,9 +579,7 @@ namespace FKRM.Infra.Data.Migrations
                 {
                     b.HasOne("FKRM.Domain.Entities.Grade", "Grade")
                         .WithMany("Courses")
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GradeId");
 
                     b.HasOne("FKRM.Domain.Entities.Major", "Major")
                         .WithMany("Courses")
@@ -589,9 +589,7 @@ namespace FKRM.Infra.Data.Migrations
 
                     b.HasOne("FKRM.Domain.Entities.MarkingType", "MarkingType")
                         .WithMany("Courses")
-                        .HasForeignKey("MarkingTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MarkingTypeId");
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>

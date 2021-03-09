@@ -4,35 +4,91 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">نام درس</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">نام درس</label>
+                <div class="col-md-8">
                     <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="نام درس">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">کد درس</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">کد درس</label>
+                <div class="col-md-8">
                     <input type="text" asp-for="Code" name="Code" class="form-control" placeholder="کد درس">
                     <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">تعداد واحد</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">تعداد واحد</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="Credits" maxlength="6" name="Credits" class="form-control" placeholder="تعداد واحد">
                     <span asp-validation-for="Credits" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">حد نصاب قبولی</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">حد نصاب قبولی</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="PassMark" maxlength="2" name="PassMark" class="form-control" placeholder="حد نصاب قبولی">
                     <span asp-validation-for="PassMark" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-3">
+                <label class="col-md-4 col-form-label">شاخه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="BranchId" class="custom-select custom-select-sm mb-3" id="BranchId" asp-for="BranchId" asp-items="@Model.Branches">
+                        </select>
+                    </div>
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">زمینه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="AreaId" class="custom-select custom-select-sm mb-3" id="AreaId" asp-for="AreaId" asp-items="@Model.Areas">
+                        </select>
+                    </div>
+                    <span asp-validation-for="AreaId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">گروه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="GroupId" class="custom-select custom-select-sm mb-3" id="GroupId" asp-for="GroupId" asp-items="@Model.Groups">
+                        </select>
+                    </div>
+                    <span asp-validation-for="GroupId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">رشته</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="MajorId" class="custom-select custom-select-sm mb-3" id="MajorId" asp-for="MajorId">
+                        </select>
+                    </div>
+                    <span asp-validation-for="MajorId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">پایه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="GradeId" class="custom-select custom-select-sm mb-3" id="GradeId" asp-for="GradeId" asp-items="@Model.Grades">
+                        </select>
+                    </div>
+                    <span asp-validation-for="GradeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">مدل نمره دهی</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="MarkingTypeId" class="custom-select custom-select-sm mb-3" id="MarkingTypeId" asp-for="MarkingTypeId" asp-items="@Model.MarkingTypes">
+                        </select>
+                    </div>
+                    <span asp-validation-for="MarkingTypeId" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -43,5 +99,64 @@
     </div>
 </form>
 <script type="text/javascript" language=javascript>
-    $.validator.unobtrusive.parse(document);
+    $(document).ready(function () {
+        $("#GradeId").select({
+            placeholder: "انتخاب پایه...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#MarkingTypeId").select({
+            placeholder: "انتخاب مدل نمره دهی...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#BranchId").select({
+            placeholder: "انتخاب شاخه...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        }).on('change', function (e) {
+            $.get("/Area/GetAreaList", { BranchId: $("#BranchId").val() }, function (data) {
+                $("#AreaId").empty();
+                $("#GroupId").empty();
+                $.each(data, function (index, row) {
+                    $("#AreaId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            });
+        });
+
+        $("#AreaId").select({
+            placeholder: "انتخاب زمینه...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        }).on('change', function (e) {
+            $.get("/Group/GetGroupList", { AreaId: $("#AreaId").val() }, function (data) {
+                $("#GroupId").empty();
+                $.each(data, function (index, row) {
+                    $("#GroupId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            });
+        });
+        $("#GroupId").select({
+            placeholder: "انتخاب گروه...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        }).on('change', function (e) {
+            $.get("/Major/GetMajorList", { GroupId: $("#GroupId").val() }, function (data) {
+                $("#MajorId").empty();
+                $.each(data, function (index, row) {
+                    $("#MajorId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            });
+        });
+    });
 </script>

@@ -18,6 +18,24 @@ namespace FKRM.Infra.Data.Configuration
             builder
             .Property(b => b.Name)
             .IsRequired();
+
+            builder
+               .HasOne(s => s.Major)
+               .WithMany(g => g.Courses)
+               .HasForeignKey(s => s.MajorId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+              .HasOne(s => s.MarkingType)
+              .WithMany(g => g.Courses)
+              .HasForeignKey(s => s.MarkingTypeId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+              .HasOne(s => s.Grade)
+              .WithMany(g => g.Courses)
+              .HasForeignKey(s => s.GradeId)
+              .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

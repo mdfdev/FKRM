@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -26,8 +27,11 @@ namespace FKRM.Domain.Entities
         /// </summary>
         public int PassMark { get; set; }
 
+        public Guid MajorId { get; set; }
         public Major Major { get; set; }
+        public Guid MarkingTypeId { get; set; }
         public MarkingType MarkingType { get; set; }
+        public Guid GradeId { get; set; }
         public Grade Grade { get; set; }
         [JsonIgnore]
         public ICollection<Enrollment> Enrollments { get; set; }

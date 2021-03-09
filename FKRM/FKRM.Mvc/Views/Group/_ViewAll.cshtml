@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<FKRM.Application.ViewModels.GroupViewModel>
-<table id="staffTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+<table id="groupTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
     <thead class="bg-200">
         <tr>
             <th class="sort">
@@ -64,6 +64,19 @@
 </table>
 <script>
     $(document).ready(function () {
-        $("#groupTable").DataTable();
+        $("#groupTable").DataTable({
+            order: [[2, 'asc'], [1, 'asc']],
+            "columnDefs": [
+                {
+                    "targets": [3],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [4],
+                    "visible": false
+                }
+            ]
+        });
     });
 </script>

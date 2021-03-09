@@ -53,6 +53,14 @@
 </table>
 <script>
     $(document).ready(function () {
-        $("#branchTable").DataTable();
+        $("#branchTable").DataTable({
+            "order": [[0, "asc"]],
+            columnDefs: [
+                {
+                    "targets": [1, 2],
+                    "visible": false
+                }
+            ],
+        } );
     });
 </script>

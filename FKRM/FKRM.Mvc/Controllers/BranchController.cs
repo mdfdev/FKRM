@@ -52,7 +52,7 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifySuccess($"{branchViewModel.Name} ثبت شد.");
+                            NotifySuccess($"{branchViewModel.Name} ثبت شد");
 
                         }
                     }
@@ -65,13 +65,13 @@ namespace FKRM.Mvc.Controllers
                         }
                         else
                         {
-                            NotifyInfo($"{branchViewModel.Name} ویرایش شد.");
+                            NotifyInfo($"{branchViewModel.Name} ویرایش شد");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                    NotifyError($"عملیات مورد نظر انجام نشد:{ex.Message}");
                 }
                 var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
                 return new JsonResult(new { isValid = true, html });
@@ -95,12 +95,12 @@ namespace FKRM.Mvc.Controllers
                 }
                 else
                 {
-                    NotifyInfo($"{name} حذف شد.");
+                    NotifyInfo($"{name} حذف شد");
                 }
             }
             catch (Exception)
             {
-                NotifyError("حذف اطلاعات انجام نشد.");
+                NotifyError("حذف اطلاعات انجام نشد");
             }
             var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _branchService.GetAll());
             return new JsonResult(new { isValid = true, html });

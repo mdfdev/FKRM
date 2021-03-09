@@ -2,45 +2,45 @@
 <form id="create-form" method="post" asp-controller="Major" asp-action="OnPostCreateOrEdit" 
       asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">رشته تحصیلی</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">رشته تحصیلی</label>
+                <div class="col-md-8">
                     <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="نام رشته">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">کد رایانه ای</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">کد رایانه ای</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="ComputerCode" name="ComputerCode" class="form-control" placeholder="کد رایانه ای">
                     <span asp-validation-for="ComputerCode" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">تعداد واحد الزامی</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">تعداد واحد الزامی</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="RequiredCredit" name="RequiredCredit" class="form-control" placeholder="تعداد واحد الزامی">
                     <span asp-validation-for="RequiredCredit" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">تعداد واحد اختیاری یا انتخابی</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">تعداد واحد اختیاری یا انتخابی</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="OptionalElectiveCredit" name="OptionalElectiveCredit" class="form-control" placeholder="کد رایانه ای">
                     <span asp-validation-for="OptionalElectiveCredit" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">تعداد واحد فارغ التحصیلی</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">تعداد واحد فارغ التحصیلی</label>
+                <div class="col-md-8">
                     <input type="number" asp-for="GraduationCredits" name="GraduationCredits" class="form-control" placeholder="کد رایانه ای">
                     <span asp-validation-for="GraduationCredits" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">شاخه</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">شاخه</label>
+                <div class="col-md-8">
                     <div class="input-group">
                         <select name="BranchId" class="custom-select custom-select-sm mb-3" id="BranchId" asp-for="BranchId" asp-items="@Model.Branches">
                         </select>
@@ -49,8 +49,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">زمینه</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">زمینه</label>
+                <div class="col-md-8">
                     <div class="input-group">
                         <select name="AreaId" class="custom-select custom-select-sm mb-3" id="AreaId" asp-for="AreaId" asp-items="@Model.Areas">
                         </select>
@@ -59,8 +59,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">گروه</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">گروه</label>
+                <div class="col-md-8">
                     <div class="input-group">
                         <select name="GroupId" class="custom-select custom-select-sm mb-3" id="GroupId" asp-for="GroupId">
                         </select>

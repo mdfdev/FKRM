@@ -1,6 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
@@ -10,10 +11,15 @@ namespace FKRM.Mvc.Controllers
     public class CourseController : BaseController<CourseController>
     {
         private readonly ICourseService _courseService;
-
-        public CourseController(ICourseService courseService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IBranchService _branchService;
+        private readonly IGradeService _gradeService;
+        private readonly IMarkingTypeService _markingTypeService;
+        public CourseController(ICourseService courseService, IBranchService branchService, IGradeService gradeService, IMarkingTypeService markingTypeService , IToastNotification toastNotification) : base(toastNotification)
         {
             _courseService = courseService;
+            _branchService = branchService;
+            _gradeService = gradeService;
+            _markingTypeService = markingTypeService;
         }
         public IActionResult LoadAll()
         {
@@ -28,11 +34,23 @@ namespace FKRM.Mvc.Controllers
             if (id == Guid.Empty)
             {
                 var courseViewModel = new CourseViewModel();
+                var branchViewModels = _branchService.GetAll();
+                var gradeViewModels= _gradeService.GetAll();
+                var markingTypeViewModels = _markingTypeService.GetAll();
+                courseViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
+                courseViewModel.Grades = new SelectList(gradeViewModels, "Id", "Name", null, null);
+                courseViewModel.MarkingTypes = new SelectList(markingTypeViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", courseViewModel) });
             }
             else
             {
                 var courseViewModel = _courseService.GetById(id);
+                var branchViewModels = _branchService.GetAll();
+                var gradeViewModels = _gradeService.GetAll();
+                var markingTypeViewModels = _markingTypeService.GetAll();
+                courseViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
+                courseViewModel.Grades = new SelectList(gradeViewModels, "Id", "Name", null, null);
+                courseViewModel.MarkingTypes = new SelectList(markingTypeViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", courseViewModel) });
             }
         }
