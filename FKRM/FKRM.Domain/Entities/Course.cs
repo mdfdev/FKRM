@@ -26,6 +26,14 @@ namespace FKRM.Domain.Entities
         /// حد نصاب قبولی
         /// </summary>
         public int PassMark { get; set; }
+        /// <summary>
+        /// ساعت هفتگی عملی
+        /// </summary>
+        public int PracticalWeeklyHours { get; set; }
+        /// <summary>
+        /// ساعت هفتگی عملی
+        /// </summary>
+        public int TheoreticalWeeklyHours { get; set; }
 
         public Guid MajorId { get; set; }
         public Major Major { get; set; }

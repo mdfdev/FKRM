@@ -19,6 +19,12 @@ namespace FKRM.Application.ViewModels
         [Required(ErrorMessage = "(*)")]
         [DisplayName("حد نصاب قبولی")]
         public int PassMark { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("ساعت هفتگی عملی")]
+        public int PracticalWeeklyHours { get; set; }
+        [Required(ErrorMessage = "(*)")]
+        [DisplayName("ساعت هفتگی نظری")]
+        public int TheoreticalWeeklyHours { get; set; }
         [DisplayName("شاخه")]
         public string Branch { get; set; }
         [DisplayName("زمینه")]

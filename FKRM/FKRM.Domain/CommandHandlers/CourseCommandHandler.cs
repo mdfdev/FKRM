@@ -34,7 +34,9 @@ namespace FKRM.Domain.CommandHandlers
                 PassMark = request.PassMark,
                 MajorId = request.MajorId,
                 GradeId = request.GradeId,
-                MarkingTypeId = request.MarkingTypeId
+                MarkingTypeId = request.MarkingTypeId,
+                PracticalWeeklyHours = request.PracticalWeeklyHours,
+                TheoreticalWeeklyHours = request.TheoreticalWeeklyHours
             };
             _courseRepository.Add(Course);
             return Task.FromResult(new Response<int>(200));

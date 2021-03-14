@@ -27,8 +27,13 @@ namespace FKRM.Domain.CommandHandlers
             var School = new Entities.School()
             {
                 Name = request.Name,
+                Code = request.Code,
                 ModifiedDate = request.ModifiedDate,
-                AddedDate = request.AddedDate
+                AddedDate = request.AddedDate,
+                GenderId = request.GenderId,
+                FeatureId = request.FeatureId,
+                UnitTypeId = request.UnitTypeId,
+                OUTypeId = request.OUTypeId
             };
             _schoolRepository.Add(School);
             return Task.FromResult(new Response<int>(200));
@@ -59,6 +64,10 @@ namespace FKRM.Domain.CommandHandlers
             {
                 entity.Name = request.Name;
                 entity.ModifiedDate = request.ModifiedDate;
+                entity.GenderId = request.GenderId;
+                entity.FeatureId = request.FeatureId;
+                entity.UnitTypeId = request.UnitTypeId;
+                entity.OUTypeId = request.OUTypeId;
                 _schoolRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

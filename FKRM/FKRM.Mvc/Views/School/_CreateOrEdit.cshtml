@@ -4,15 +4,57 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label class="col-md-3 col-form-label">نام مدرسه</label>
-                <div class="col-md-9">
+                <label class="col-md-4 col-form-label">نام مدرسه</label>
+                <div class="col-md-8">
                     <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="نام مدرسه">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
-           
             <div class="form-group row">
-                <div class="col-md-3">
+                <label class="col-md-4 col-form-label">کد مدرسه</label>
+                <div class="col-md-8">
+                    <input type="text" asp-for="Code" name="Code" class="form-control" placeholder="کد مدرسه">
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">جنسیت</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="GenderId" class="custom-select custom-select-sm mb-3" id="GenderId" asp-for="GenderId" asp-items="@Model.Genders">
+                        </select>
+                    </div>
+                    <span asp-validation-for="GenderId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">ویژگی مدرسه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="FeatureId" class="custom-select custom-select-sm mb-3" id="FeatureId" asp-for="FeatureId" asp-items="@Model.Features">
+                        </select>
+                    </div>
+                    <span asp-validation-for="FeatureId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">نوع واحد سازمانی</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="OUTypeId" class="custom-select custom-select-sm mb-3" id="OUTypeId" asp-for="OUTypeId" asp-items="@Model.OUTypes">
+                        </select>
+                    </div>
+                    <span asp-validation-for="OUTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">نوع اداره</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="UnitTypeId" class="custom-select custom-select-sm mb-3" id="UnitTypeId" asp-for="UnitTypeId" asp-items="@Model.UnitTypes">
+                        </select>
+                    </div>
+                    <span asp-validation-for="UnitTypeId" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -24,4 +66,34 @@
 </form>
 <script type="text/javascript" language=javascript>
     $.validator.unobtrusive.parse(document);
+    $(document).ready(function () {
+        $("#GenderId").select({
+            placeholder: "انتخاب جنسیت...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#FeatureId").select({
+            placeholder: "انتخاب ویژگی مدرسه...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#OUTypeId").select({
+            placeholder: "انتخاب نوع واحد سازمانی...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#UnitTypeId").select({
+            placeholder: "انتخاب نوع اداره...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+    });
 </script>

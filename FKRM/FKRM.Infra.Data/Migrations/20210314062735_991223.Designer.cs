@@ -4,14 +4,16 @@ using FKRM.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FKRM.Infra.Data.Migrations
 {
     [DbContext(typeof(SchoolDBContext))]
-    partial class SchoolDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210314062735_991223")]
+    partial class _991223
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -465,10 +467,10 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("FeatureId")
+                    b.Property<Guid?>("FeatureId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("GenderId")
+                    b.Property<Guid?>("GenderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IPAddress")
@@ -480,10 +482,10 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("OUTypeId")
+                    b.Property<Guid?>("OUTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UnitTypeId")
+                    b.Property<Guid?>("UnitTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -652,27 +654,19 @@ namespace FKRM.Infra.Data.Migrations
                 {
                     b.HasOne("FKRM.Domain.Entities.Feature", "Feature")
                         .WithMany("Schools")
-                        .HasForeignKey("FeatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FeatureId");
 
                     b.HasOne("FKRM.Domain.Entities.Gender", "Gender")
                         .WithMany("Schools")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
 
                     b.HasOne("FKRM.Domain.Entities.OUType", "OUType")
                         .WithMany("Schools")
-                        .HasForeignKey("OUTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OUTypeId");
 
                     b.HasOne("FKRM.Domain.Entities.UnitType", "UnitType")
                         .WithMany("Schools")
-                        .HasForeignKey("UnitTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UnitTypeId");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,6 +16,12 @@
                 @Html.DisplayNameFor(model => model.PassMark)
             </th>
             <th class="sort">
+                @Html.DisplayNameFor(model => model.PracticalWeeklyHours)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.TheoreticalWeeklyHours)
+            </th>
+            <th class="sort">
                 @Html.DisplayNameFor(model => model.Branch)
             </th>
             <th class="sort">
@@ -58,6 +64,12 @@
             </td>
             <td>
                 @course.PassMark
+            </td>
+            <td>
+                @course.PracticalWeeklyHours
+            </td>
+            <td>
+                @course.TheoreticalWeeklyHours
             </td>
             <td>
                 @course.Branch

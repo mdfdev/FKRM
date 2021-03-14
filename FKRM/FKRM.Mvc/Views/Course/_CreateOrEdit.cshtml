@@ -32,6 +32,20 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label class="col-md-4 col-form-label">ساعت هفتگی عملی</label>
+                <div class="col-md-8">
+                    <input type="number" asp-for="PracticalWeeklyHours" maxlength="2" name="PracticalWeeklyHours" class="form-control" placeholder="ساعت هفتگی عملی">
+                    <span asp-validation-for="PracticalWeeklyHours" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">ساعت هفتگی نظری</label>
+                <div class="col-md-8">
+                    <input type="number" asp-for="TheoreticalWeeklyHours" maxlength="2" name="TheoreticalWeeklyHours" class="form-control" placeholder="ساعت هفتگی نظری">
+                    <span asp-validation-for="TheoreticalWeeklyHours" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="col-md-4 col-form-label">شاخه</label>
                 <div class="col-md-8">
                     <div class="input-group">

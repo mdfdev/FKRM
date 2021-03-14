@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace FKRM.Domain.Entities
@@ -20,9 +21,13 @@ namespace FKRM.Domain.Entities
         /// </summary>
         public string Code { get; set; }
         public Gender Gender { get; set; }
+        public Guid GenderId { get; set; }
         public Feature Feature { get; set; }
+        public Guid FeatureId { get; set; }
         public OUType OUType { get; set; }
+        public Guid OUTypeId { get; set; }
         public UnitType UnitType { get; set; }
+        public Guid UnitTypeId { get; set; }
         public ICollection<Room> Rooms { get; set; }
     }
 }

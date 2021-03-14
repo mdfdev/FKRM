@@ -31,7 +31,7 @@ namespace FKRM.Domain.Validation.Course
                 .NotEmpty()
                 .WithMessage("کد درس الزامی می باشد.")
                 .GreaterThanOrEqualTo(1)
-                .LessThanOrEqualTo(6)
+                .LessThanOrEqualTo(8)
                 .WithMessage("تعداد واحد درس بین 1~6 می باشد");
         }
         protected void ValidatePassMark()
