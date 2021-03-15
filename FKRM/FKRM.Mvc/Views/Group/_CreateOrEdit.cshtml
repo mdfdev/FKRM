@@ -39,7 +39,15 @@
 </form>
 <script type="text/javascript" language=javascript>
     $(document).ready(function () {
-        //$.validator.unobtrusive.parse(document);
+        function GetAreas() {
+            $.get("/Area/GetAreaList", { BranchId: $("#BranchId").val() }, function (data) {
+                $("#AreaId").empty();
+                $.each(data, function (index, row) {
+                    $("#AreaId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            });
+        };
+        GetArea();
         $("#BranchId").select({
             placeholder: "انتخاب شاخه...",
             theme: "bootstrap4",
@@ -47,12 +55,7 @@
                 return m;
             }
         }).on('change', function (e) {
-            $.get("/Area/GetAreaList", { BranchId: $("#BranchId").val() }, function (data) {
-                $("#AreaId").empty();
-                $.each(data, function (index, row) {
-                    $("#AreaId").append("<option value='" + row.id + "'>" + row.name + "</option>")
-                });
-            });
+            GetAreas();
         });
     });
 </script>

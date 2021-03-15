@@ -64,7 +64,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new CreateCourseCommand(c.Name,c.Code,c.Credits,c.PassMark,c.MajorId,c.GradeId,c.MarkingTypeId,c.PracticalWeeklyHours,c.TheoreticalWeeklyHours));
             CreateMap<CourseViewModel, UpdateCourseCommand>()
                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-               .ConstructUsing(c => new UpdateCourseCommand(c.Id, c.Name));
+               .ConstructUsing(c => new UpdateCourseCommand(c.Id, c.Name,c.Code,c.Credits,c.PassMark,c.MajorId,c.GradeId,c.MarkingTypeId,c.PracticalWeeklyHours,c.TheoreticalWeeklyHours));
             CreateMap<CourseViewModel, DeleteCourseCommand>()
                .ConstructUsing(c => new DeleteCourseCommand(c.Id));
 
@@ -184,7 +184,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new CreateSchoolCommand(c.Name, c.Code, c.GenderId, c.FeatureId, c.UnitTypeId, c.OUTypeId));
             CreateMap<SchoolViewModel, UpdateSchoolCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateSchoolCommand(c.Id, c.Name));
+                .ConstructUsing(c => new UpdateSchoolCommand(c.Id, c.Name,c.Code,c.GenderId,c.FeatureId,c.UnitTypeId,c.OUTypeId));
             CreateMap<SchoolViewModel, DeleteSchoolCommand>()
                 .ConstructUsing(c => new DeleteSchoolCommand(c.Id));
 

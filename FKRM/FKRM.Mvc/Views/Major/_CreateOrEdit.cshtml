@@ -76,7 +76,26 @@
     </div>
 </form>
 <script type="text/javascript" language=javascript>
+
     $(document).ready(function () {
+        function GetAreas() {
+            $.get("/Area/GetAreaList", { BranchId: $("#BranchId").val() }, function (data) {
+                $("#AreaId").empty();
+                $.each(data, function (index, row) {
+                    $("#AreaId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+                GetGroups();
+            });
+        };
+        function GetGroups() {
+            $.get("/Group/GetGroupList", { AreaId: $("#AreaId").val() }, function (data) {
+                $("#GroupId").empty();
+                $.each(data, function (index, row) {
+                    $("#GroupId").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                });
+            });
+        };
+        GetAreas();
         $("#BranchId").select({
             placeholder: "انتخاب شاخه...",
             theme: "bootstrap4",
@@ -84,13 +103,7 @@
                 return m;
             }
         }).on('change', function (e) {
-            $.get("/Area/GetAreaList", { BranchId: $("#BranchId").val() }, function (data) {
-                $("#AreaId").empty();
-                $("#GroupId").empty();
-                $.each(data, function (index, row) {
-                    $("#AreaId").append("<option value='" + row.id + "'>" + row.name + "</option>")
-                });
-            });
+            GetAreas();
         });
 
         $("#AreaId").select({
@@ -100,12 +113,7 @@
                 return m;
             }
         }).on('change', function (e) {
-            $.get("/Group/GetGroupList", { AreaId: $("#AreaId").val() }, function (data) {
-                $("#GroupId").empty();
-                $.each(data, function (index, row) {
-                    $("#GroupId").append("<option value='" + row.id + "'>" + row.name + "</option>")
-                });
-            });
+            GetGroups();
         });
     });
 </script>
