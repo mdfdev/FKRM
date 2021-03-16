@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
@@ -10,7 +12,11 @@ namespace FKRM.Application.ViewModels
     {
 
         [Required(ErrorMessage = "(*)")]
-        [DisplayName("نام")]
+        [DisplayName("نام کلاس")]
         public string Name { get; set; }
+        [DisplayName("مدرسه")]
+        public string School { get; set; }
+        public Guid SchoolId { get; set; }
+        public SelectList Schools { get; set; }
     }
 }

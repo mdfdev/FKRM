@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace FKRM.Domain.Entities
@@ -12,5 +13,6 @@ namespace FKRM.Domain.Entities
 
         public ICollection<Enrollment> Enrollments { get; set; }
         public School School { get; set; }
+        public Guid SchoolId { get; set; }
     }
 }

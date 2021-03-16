@@ -1,6 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace FKRM.Mvc.Controllers
     public class RoomController : BaseController<BranchController>
     {
         private readonly IRoomService _roomService;
+        private readonly ISchoolService _schoolService;
 
-        public RoomController(IRoomService roomService, IToastNotification toastNotification) : base(toastNotification)
+        public RoomController(IRoomService roomService,ISchoolService schoolService, IToastNotification toastNotification) : base(toastNotification)
         {
             _roomService = roomService;
+            _schoolService = schoolService;
         }
         public IActionResult LoadAll()
         {
@@ -28,11 +31,15 @@ namespace FKRM.Mvc.Controllers
             if (id == Guid.Empty)
             {
                 var roomViewModel = new RoomViewModel();
+                var schoolViewModels = _schoolService.GetAll();
+                roomViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", roomViewModel) });
             }
             else
             {
                 var roomViewModel = _roomService.GetById(id);
+                var schoolViewModels = _schoolService.GetAll();
+                roomViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", roomViewModel) });
             }
         }

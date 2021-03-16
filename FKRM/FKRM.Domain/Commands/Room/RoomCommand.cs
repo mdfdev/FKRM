@@ -8,5 +8,6 @@ namespace FKRM.Domain.Commands.Room
         public Guid ID { get; protected set; }
 
         public string Name { get; protected set; }
+        public Guid SchoolId { get; protected set; }
     }
 }

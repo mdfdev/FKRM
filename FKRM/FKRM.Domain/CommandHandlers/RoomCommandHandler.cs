@@ -27,6 +27,7 @@ namespace FKRM.Domain.CommandHandlers
             var Room = new Entities.Room()
             {
                 Name = request.Name,
+                SchoolId=request.SchoolId,
                 ModifiedDate = request.ModifiedDate,
                 AddedDate = request.AddedDate
             };
@@ -63,6 +64,7 @@ namespace FKRM.Domain.CommandHandlers
             {
                 entity.Name = request.Name;
                 entity.ModifiedDate = request.ModifiedDate;
+                entity.SchoolId = request.SchoolId;
                 _roomRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

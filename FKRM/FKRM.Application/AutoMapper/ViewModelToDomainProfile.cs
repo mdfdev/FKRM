@@ -161,7 +161,7 @@ namespace FKRM.Application.AutoMapper
             CreateMap<RoomViewModel, CreateRoomCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateRoomCommand(c.Name));
+                .ConstructUsing(c => new CreateRoomCommand(c.Name,c.SchoolId));
             CreateMap<RoomViewModel, UpdateRoomCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ConstructUsing(c => new UpdateRoomCommand(c.Id, c.Name));

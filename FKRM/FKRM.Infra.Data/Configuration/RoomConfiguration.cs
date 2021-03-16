@@ -18,6 +18,12 @@ namespace FKRM.Infra.Data.Configuration
             builder
             .Property(b => b.Name)
             .IsRequired();
+
+            builder
+               .HasOne(s => s.School)
+               .WithMany(g => g.Rooms)
+               .HasForeignKey(s => s.SchoolId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
