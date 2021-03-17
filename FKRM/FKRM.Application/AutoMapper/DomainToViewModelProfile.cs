@@ -61,7 +61,7 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.School, opt => opt.MapFrom(c => c.School.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
-            CreateMap<Schedule, ScheduleViewModel>()
+            CreateMap<JobTitle, JobTitleViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<School, SchoolViewModel>()
@@ -72,6 +72,7 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Staff, StaffViewModel>()
+                .ForMember(cd => cd.JobTitle, opt => opt.MapFrom(c => c.JobTitle.Title))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<UnitType, UnitTypeViewModel>()

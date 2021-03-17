@@ -9,8 +9,8 @@ namespace FKRM.Api.Controllers
     [Route("api/[controller]")]
     public class ScheduleController : Controller
     {
-        private readonly IScheduleService _scheduleService;
-        public ScheduleController(IScheduleService scheduleService)
+        private readonly IJobTitleService _scheduleService;
+        public ScheduleController(IJobTitleService scheduleService)
         {
             _scheduleService = scheduleService;
         }
@@ -27,13 +27,13 @@ namespace FKRM.Api.Controllers
             return Ok(Schedule);
         }
         [HttpPost]
-        public IActionResult Post([FromBody] ScheduleViewModel scheduleViewModel)
+        public IActionResult Post([FromBody] JobTitleViewModel scheduleViewModel)
         {
             _scheduleService.Register(scheduleViewModel);
             return Ok(scheduleViewModel);
         }
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] ScheduleViewModel scheduleViewModel)
+        public IActionResult Put(Guid id, [FromBody] JobTitleViewModel scheduleViewModel)
         {
             if (id != scheduleViewModel.Id)
             {

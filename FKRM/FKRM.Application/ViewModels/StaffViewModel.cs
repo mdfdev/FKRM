@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FKRM.Application.ViewModels
@@ -23,5 +25,9 @@ namespace FKRM.Application.ViewModels
         [Required(ErrorMessage = "(*)")]
         [DisplayName("کدملی")]
         public string NationalCode { get; set; }
+        [DisplayName("عنوان شغلی")]
+        public string JobTitle { get; set; }
+        public Guid JobTitleId { get; set; }
+        public SelectList JobTitles { get; set; }
     }
 }

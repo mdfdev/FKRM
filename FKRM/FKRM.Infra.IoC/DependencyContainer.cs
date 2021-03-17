@@ -14,7 +14,7 @@ using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Commands.MarkingType;
 using FKRM.Domain.Commands.OUType;
 using FKRM.Domain.Commands.Room;
-using FKRM.Domain.Commands.Schedule;
+using FKRM.Domain.Commands.JobTitle;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
@@ -97,9 +97,9 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateRoomCommand, Response<int>>, RoomCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteRoomCommand, Response<int>>, RoomCommandHandler>();
 
-            services.AddScoped<IRequestHandler<CreateScheduleCommand, Response<int>>, ScheduleCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateScheduleCommand, Response<int>>, ScheduleCommandHandler>();
-            services.AddScoped<IRequestHandler<DeleteScheduleCommand, Response<int>>, ScheduleCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateJobTitleCommand, Response<int>>, JobTitleCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateJobTitleCommand, Response<int>>, JobTitleCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteJobTitleCommand, Response<int>>, JobTitleCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateSchoolCommand, Response<int>>, SchoolCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateSchoolCommand, Response<int>>, SchoolCommandHandler>();
@@ -129,7 +129,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMarkingTypeService, MarkingTypeService>();
             services.AddScoped<IOUTypeService, OUTypeService>();
             services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IScheduleService, ScheduleService>();
+            services.AddScoped<IJobTitleService, JobTitleService>();
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IUnitTypeService, UnitTypeService>();
@@ -149,7 +149,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMarkingTypeRepository, MarkingTypeRepository>();
             services.AddScoped<IOUTypeRepository, OUTypeRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IScheduleRepository, ScheduleRepository>();
+            services.AddScoped<IJobTitleRepository, JobTitleRepository>();
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IUnitTypeRepository, UnitTypeRepository>();

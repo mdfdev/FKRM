@@ -1,26 +1,23 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class StaffController : BaseController<StaffController>
+    public class JobTitleController : BaseController<JobTitleController>
     {
-        private readonly IStaffService _staffService;
         private readonly IJobTitleService _jobTitleService;
 
-        public StaffController(IStaffService staffService,IJobTitleService jobTitleService, IToastNotification toastNotification) : base(toastNotification)
+        public JobTitleController(IJobTitleService jobTitleService, IToastNotification toastNotification) : base(toastNotification)
         {
-            _staffService = staffService;
             _jobTitleService = jobTitleService;
         }
         public IActionResult LoadAll()
         {
-            return PartialView("_ViewAll", _staffService.GetAll());
+            return PartialView("_ViewAll", _jobTitleService.GetAll());
         }
         public IActionResult Index()
         {
@@ -30,21 +27,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var staffViewModel = new StaffViewModel();
-                var jobTitleViewModels = _jobTitleService.GetAll();
-                staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var scheduleViewModel = new JobTitleViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel) });
             }
             else
             {
-                var staffViewModel = _staffService.GetById(id);
-                var jobTitleViewModels = _jobTitleService.GetAll();
-                staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
+                var scheduleViewModel = _jobTitleService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, StaffViewModel staffViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, JobTitleViewModel scheduleViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -52,27 +45,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _staffService.Register(staffViewModel);
+                        var response = _jobTitleService.Register(scheduleViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
+                            NotifySuccess($"{scheduleViewModel.Title} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _staffService.Update(staffViewModel);
+                        var response = _jobTitleService.Update(scheduleViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{staffViewModel.FirstName} {staffViewModel.LastName} ویرایش شد.");
+                            NotifyInfo($"{scheduleViewModel.Title} ویرایش شد.");
                         }
                     }
                 }
@@ -80,12 +73,12 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _jobTitleService.GetAll());
                 return new JsonResult(new { isValid = true, html });
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }
@@ -94,9 +87,8 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
-                var response = _staffService.Remove(id);
+                var name = _jobTitleService.GetById(id).Title;
+                var response = _jobTitleService.Remove(id);
                 if (response.Result.Data == 400)
                 {
                     NotifyErrors(response.Result.Message);
@@ -110,7 +102,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _jobTitleService.GetAll());
             return new JsonResult(new { isValid = true, html });
         }
     }

@@ -13,7 +13,7 @@ using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Commands.MarkingType;
 using FKRM.Domain.Commands.OUType;
 using FKRM.Domain.Commands.Room;
-using FKRM.Domain.Commands.Schedule;
+using FKRM.Domain.Commands.JobTitle;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
@@ -121,10 +121,10 @@ namespace FKRM.Application.AutoMapper
             CreateMap<StaffViewModel, CreateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode));
+                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));
             CreateMap<StaffViewModel, UpdateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode));
+                .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));
             CreateMap<StaffViewModel, DeleteStaffCommand>()
                 .ConstructUsing(c => new DeleteStaffCommand(c.Id));
 
@@ -168,15 +168,15 @@ namespace FKRM.Application.AutoMapper
             CreateMap<RoomViewModel, DeleteRoomCommand>()
                 .ConstructUsing(c => new DeleteRoomCommand(c.Id));
 
-            CreateMap<ScheduleViewModel, CreateScheduleCommand>()
+            CreateMap<JobTitleViewModel, CreateJobTitleCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateScheduleCommand(c.StartTime));
-            CreateMap<ScheduleViewModel, UpdateScheduleCommand>()
+                .ConstructUsing(c => new CreateJobTitleCommand(c.Title));
+            CreateMap<JobTitleViewModel, UpdateJobTitleCommand>()
                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-               .ConstructUsing(c => new UpdateScheduleCommand(c.Id, c.StartTime));
-            CreateMap<ScheduleViewModel, DeleteScheduleCommand>()
-               .ConstructUsing(c => new DeleteScheduleCommand(c.Id));
+               .ConstructUsing(c => new UpdateJobTitleCommand(c.Id, c.Title));
+            CreateMap<JobTitleViewModel, DeleteJobTitleCommand>()
+               .ConstructUsing(c => new DeleteJobTitleCommand(c.Id));
 
             CreateMap<SchoolViewModel, CreateSchoolCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))

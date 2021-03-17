@@ -11,5 +11,6 @@ namespace FKRM.Domain.Commands.Staff
         public string Phone { get; protected set; }
         public string Mobile { get; protected set; }
         public string NationalCode { get; protected set; }
+        public Guid JobTitleId { get; protected set; }
     }
 }

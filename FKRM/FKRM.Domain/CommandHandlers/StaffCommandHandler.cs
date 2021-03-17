@@ -36,6 +36,7 @@ namespace FKRM.Domain.CommandHandlers
                 entity.Phone = request.Phone;
                 entity.NationalCode = request.NationalCode;
                 entity.ModifiedDate = request.ModifiedDate;
+                entity.JobTitleId = request.JobTitleId;
                 _staffRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }
@@ -60,6 +61,7 @@ namespace FKRM.Domain.CommandHandlers
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
+                JobTitleId = request.JobTitleId,
                 Phone = request.Phone,
                 Mobile = request.Mobile,
                 NationalCode = request.NationalCode,

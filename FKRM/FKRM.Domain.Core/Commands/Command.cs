@@ -9,6 +9,7 @@ namespace FKRM.Domain.Core.Commands
     {
         public DateTime AddedDate { get; protected set; }
         public DateTime ModifiedDate { get; protected set; }
+        public string IPAddress { get; protected set; }
         public ValidationResult ValidationResult { get; set; }
         public string MessageType { get; protected set; }
         public abstract bool IsValid();

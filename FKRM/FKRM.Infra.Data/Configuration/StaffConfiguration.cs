@@ -22,6 +22,11 @@ namespace FKRM.Infra.Data.Configuration
             builder
                 .Property(b => b.LastName)
                 .IsRequired();
+
+            builder
+                .HasOne(s => s.JobTitle)
+                .WithMany(g => g.Staffs)
+                .HasForeignKey(s => s.JobTitleId);
         }
     }
 }

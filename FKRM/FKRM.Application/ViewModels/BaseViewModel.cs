@@ -13,5 +13,7 @@ namespace FKRM.Application.ViewModels
         public virtual String AddedDate { get; set; }
         [DisplayName("تاریخ ویرایش")]
         public virtual String ModifiedDate { get; set; }
+        [DisplayName("آدرس IP")]
+        public virtual String IPAddress { get; set; }
     }
 }

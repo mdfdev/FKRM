@@ -11,8 +11,9 @@ namespace FKRM.Domain.Entities
         public Course Course { get; set; }
         public Room Room { get; set; }
         public int Capacity { get; set; }
+        public int DayOfTheWeek { get; set; }
+        public int StartTime { get; set; }
+        public int During { get; set; }
         public AcademicCalendar AcademicCalendar { get; set; }
-        public Schedule Schedule { get; set; }
-
     }
 }

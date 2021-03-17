@@ -27,6 +27,7 @@ namespace FKRM.Domain.CommandHandlers
             var AcademicCalendar = new Entities.AcademicCalendar()
             {
                 AcademicYear = request.AcademicYear,
+                AcademicQuarter=request.AcademicQuarter,
                 ModifiedDate = request.ModifiedDate,
                 AddedDate = request.AddedDate
             };
@@ -62,6 +63,7 @@ namespace FKRM.Domain.CommandHandlers
             else
             {
                 entity.AcademicYear = request.AcademicYear;
+                entity.AcademicQuarter = request.AcademicQuarter;
                 entity.ModifiedDate = request.ModifiedDate;
                 _academicCalendarRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
