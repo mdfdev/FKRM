@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Common;
+using System;
 
 namespace FKRM.Domain.Entities
 {
@@ -7,13 +8,13 @@ namespace FKRM.Domain.Entities
     /// </summary>
     public class Enrollment : BaseEntity
     {
-        public Staff Staff { get; set; }
         public Course Course { get; set; }
-        public Room Room { get; set; }
+        public Guid CourseId { get; set; }
         public int Capacity { get; set; }
         public int DayOfTheWeek { get; set; }
         public int StartTime { get; set; }
         public int During { get; set; }
-        public AcademicCalendar AcademicCalendar { get; set; }
+        public WorkedFor WorkedFor { get; set; }
+        public Guid WorkedForId { get; set; }
     }
 }

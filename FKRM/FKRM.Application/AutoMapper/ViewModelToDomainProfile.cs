@@ -12,13 +12,13 @@ using FKRM.Domain.Commands.Group;
 using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Commands.MarkingType;
 using FKRM.Domain.Commands.OUType;
-using FKRM.Domain.Commands.Room;
 using FKRM.Domain.Commands.JobTitle;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
 using FKRM.Domain.Commands.UnitType;
 using FKRM.Domain.Queries.Area;
 using System;
+using FKRM.Domain.Commands.WorkedFor;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -158,16 +158,6 @@ namespace FKRM.Application.AutoMapper
             CreateMap<OUTypeViewModel, DeleteOUTypeCommand>()
                 .ConstructUsing(c => new DeleteOUTypeCommand(c.Id));
 
-            CreateMap<RoomViewModel, CreateRoomCommand>()
-                .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateRoomCommand(c.Name,c.SchoolId));
-            CreateMap<RoomViewModel, UpdateRoomCommand>()
-                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateRoomCommand(c.Id, c.Name));
-            CreateMap<RoomViewModel, DeleteRoomCommand>()
-                .ConstructUsing(c => new DeleteRoomCommand(c.Id));
-
             CreateMap<JobTitleViewModel, CreateJobTitleCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -197,6 +187,14 @@ namespace FKRM.Application.AutoMapper
                .ConstructUsing(c => new UpdateUnitTypeCommand(c.Id, c.Name));
             CreateMap<UnitTypeViewModel, DeleteUnitTypeCommand>()
                .ConstructUsing(c => new DeleteUnitTypeCommand(c.Id));
+
+            CreateMap<WorkedForViewModel, CreateWorkedForCommand>()
+                .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now));
+            CreateMap<WorkedForViewModel, UpdateWorkedForCommand>()
+               .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now));
+            CreateMap<WorkedForViewModel, DeleteWorkedForCommand>()
+               .ConstructUsing(c => new DeleteWorkedForCommand(c.Id));
         }
     }
 }

@@ -4,14 +4,16 @@ using FKRM.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FKRM.Infra.Data.Migrations
 {
     [DbContext(typeof(SchoolDBContext))]
-    partial class SchoolDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210406074649_14000117")]
+    partial class _14000117
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,13 +162,16 @@ namespace FKRM.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AcademicCalendarId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CourseId")
+                    b.Property<Guid?>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DayOfTheWeek")
@@ -181,17 +186,19 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("StaffId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("StartTime")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("WorkedForId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AcademicCalendarId");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("WorkedForId");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Enrollments");
                 });
@@ -547,41 +554,6 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("UnitTypes");
                 });
 
-            modelBuilder.Entity("FKRM.Domain.Entities.WorkedFor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AcademicCalendarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IPAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("SchoolId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StaffId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AcademicCalendarId");
-
-                    b.HasIndex("SchoolId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("WorkedFors");
-                });
-
             modelBuilder.Entity("FKRM.Domain.Entities.Area", b =>
                 {
                     b.HasOne("FKRM.Domain.Entities.Branch", "Branch")
@@ -614,17 +586,17 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
                 {
+                    b.HasOne("FKRM.Domain.Entities.AcademicCalendar", "AcademicCalendar")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("AcademicCalendarId");
+
                     b.HasOne("FKRM.Domain.Entities.Course", "Course")
                         .WithMany("Enrollments")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
-                    b.HasOne("FKRM.Domain.Entities.WorkedFor", "WorkedFor")
+                    b.HasOne("FKRM.Domain.Entities.Staff", "Staff")
                         .WithMany("Enrollments")
-                        .HasForeignKey("WorkedForId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.Group", b =>
@@ -677,27 +649,6 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.JobTitle", "JobTitle")
                         .WithMany("Staffs")
                         .HasForeignKey("JobTitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FKRM.Domain.Entities.WorkedFor", b =>
-                {
-                    b.HasOne("FKRM.Domain.Entities.AcademicCalendar", "AcademicCalendar")
-                        .WithMany("WorkedFors")
-                        .HasForeignKey("AcademicCalendarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FKRM.Domain.Entities.School", "School")
-                        .WithMany("WorkedFors")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FKRM.Domain.Entities.Staff", "Staff")
-                        .WithMany("WorkedFors")
-                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

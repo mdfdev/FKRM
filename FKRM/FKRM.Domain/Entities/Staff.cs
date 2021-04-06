@@ -25,7 +25,7 @@ namespace FKRM.Domain.Entities
         public JobTitle JobTitle { get; set; }
         public Guid JobTitleId { get; set; }
         [JsonIgnore]
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<WorkedFor> WorkedFors { get; set; }
 
     }
 }

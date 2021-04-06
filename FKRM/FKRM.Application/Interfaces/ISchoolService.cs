@@ -11,6 +11,7 @@ namespace FKRM.Application.Interfaces
         SchoolViewModel GetById(Guid id);
         Task<Response<int>> Register(SchoolViewModel schoolViewModel);
         IEnumerable<SchoolViewModel> GetAll();
+        IEnumerable<SchoolViewModel> GetAllWithCode();
         IEnumerable<SchoolViewModel> GetPagedResponse(int pageNumber, int pageSize);
 
         Task<Response<int>> Update(SchoolViewModel schoolViewModel);

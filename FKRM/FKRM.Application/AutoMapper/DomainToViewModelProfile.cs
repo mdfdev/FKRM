@@ -57,10 +57,7 @@ namespace FKRM.Application.AutoMapper
             CreateMap<OUType, OUTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
-            CreateMap<Room, RoomViewModel>()
-                .ForMember(cd => cd.School, opt => opt.MapFrom(c => c.School.Name))
-                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
-                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+           
             CreateMap<JobTitle, JobTitleViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
@@ -78,6 +75,10 @@ namespace FKRM.Application.AutoMapper
             CreateMap<UnitType, UnitTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+
+            CreateMap<WorkedFor, WorkedForViewModel>()
+               .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+               .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
         }
     }
 }

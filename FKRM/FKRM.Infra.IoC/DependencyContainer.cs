@@ -13,7 +13,6 @@ using FKRM.Domain.Commands.Group;
 using FKRM.Domain.Commands.Major;
 using FKRM.Domain.Commands.MarkingType;
 using FKRM.Domain.Commands.OUType;
-using FKRM.Domain.Commands.Room;
 using FKRM.Domain.Commands.JobTitle;
 using FKRM.Domain.Commands.School;
 using FKRM.Domain.Commands.Staff;
@@ -30,6 +29,7 @@ using FKRM.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
+using FKRM.Domain.Commands.WorkedFor;
 
 namespace FKRM.Infra.IoC
 {
@@ -93,9 +93,6 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
 
-            services.AddScoped<IRequestHandler<CreateRoomCommand, Response<int>>, RoomCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateRoomCommand, Response<int>>, RoomCommandHandler>();
-            services.AddScoped<IRequestHandler<DeleteRoomCommand, Response<int>>, RoomCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateJobTitleCommand, Response<int>>, JobTitleCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateJobTitleCommand, Response<int>>, JobTitleCommandHandler>();
@@ -113,7 +110,9 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
 
-
+            services.AddScoped<IRequestHandler<CreateWorkedForCommand, Response<int>>, WorkedForCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateWorkedForCommand, Response<int>>, WorkedForCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteWorkedForCommand, Response<int>>, WorkedForCommandHandler>();
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();
@@ -128,12 +127,11 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMajorService, MajorService>();
             services.AddScoped<IMarkingTypeService, MarkingTypeService>();
             services.AddScoped<IOUTypeService, OUTypeService>();
-            services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IJobTitleService, JobTitleService>();
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IUnitTypeService, UnitTypeService>();
-
+            services.AddScoped<IWorkedForService, WorkedForService>();
 
             //Infra.Data.Layer
             services.AddScoped<IAcademicCalendarRepository, AcademicCalendarRepository>();
@@ -148,11 +146,11 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMajorRepository, MajorRepository>();
             services.AddScoped<IMarkingTypeRepository, MarkingTypeRepository>();
             services.AddScoped<IOUTypeRepository, OUTypeRepository>();
-            services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IJobTitleRepository, JobTitleRepository>();
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IUnitTypeRepository, UnitTypeRepository>();
+            services.AddScoped<IWorkedForRepository,WorkedForRepository>();
             services.AddScoped<SchoolDBContext>();
 
 

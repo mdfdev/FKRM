@@ -53,5 +53,10 @@ namespace FKRM.Application.Services
             return _schoolRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
 
         }
+
+        public IEnumerable<SchoolViewModel> GetAllWithCode()
+        {
+            return _schoolRepository.GetAllWithCode().ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

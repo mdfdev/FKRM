@@ -19,11 +19,10 @@ namespace FKRM.Infra.Data.Context
         public DbSet<Major> Majors { get; set; }
         public DbSet<MarkingType> MarkingTypes { get; set; }
         public DbSet<OUType> OUTypes { get; set; }
-        public DbSet<Room> Rooms { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
-
+        public DbSet<WorkedFor> WorkedFors { get; set; }
 
 
 
@@ -56,10 +55,10 @@ namespace FKRM.Infra.Data.Context
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MajorConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MarkingTypeConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OUTypeConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RoomConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SchoolConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StaffConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UnitTypeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkedForConfiguration).Assembly);
         }
         #endregion
     }
