@@ -29,5 +29,13 @@ namespace FKRM.Application.ViewModels
         public string JobTitle { get; set; }
         public Guid JobTitleId { get; set; }
         public SelectList JobTitles { get; set; }
+
+        public string School { get; set; }
+        public Guid SchoolId { get; set; }
+        public SelectList Schools { get; set; }
+
+        public string AcademicCalendar { get; set; }
+        public Guid AcademicCalendarId { get; set; }
+        public SelectList AcademicCalendars { get; set; }
     }
 }

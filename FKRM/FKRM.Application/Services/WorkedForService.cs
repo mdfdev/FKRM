@@ -2,13 +2,12 @@
 using AutoMapper.QueryableExtensions;
 using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands.WorkedFor;
+using FKRM.Application.Commands.WorkedFor;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Application.Services

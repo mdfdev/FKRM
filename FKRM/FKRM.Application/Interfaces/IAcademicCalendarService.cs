@@ -11,6 +11,8 @@ namespace FKRM.Application.Interfaces
         AcademicCalendarViewModel GetById(Guid id);
         Task<Response<int>> Register(AcademicCalendarViewModel academicCalendarViewModel);
         IEnumerable<AcademicCalendarViewModel> GetAll();
+        IEnumerable<AcademicCalendarViewModel> GetAllWithTitle();
+
         IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize);
         Task<Response<int>> Update(AcademicCalendarViewModel academicCalendarViewModel);
         Task<Response<int>> Remove(Guid id);

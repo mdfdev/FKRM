@@ -2,13 +2,14 @@
 using AutoMapper.QueryableExtensions;
 using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands.Staff;
+using FKRM.Application.Commands.Staff;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FKRM.Domain.Queries.Staff;
 
 namespace FKRM.Application.Services
 {
@@ -23,6 +24,7 @@ namespace FKRM.Application.Services
             _bus = bus;
             _autoMapper = mapper;
         }
+
         public IEnumerable<StaffViewModel> GetAll()
         {
             return _staffRepository.GetAll().ProjectTo<StaffViewModel>(_autoMapper.ConfigurationProvider);
@@ -52,6 +54,11 @@ namespace FKRM.Application.Services
         {
             return _staffRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<StaffViewModel>(_autoMapper.ConfigurationProvider);
 
+        }
+
+        public  Task<Response<IEnumerable<StaffViewModel>>> GetAllData(Guid id)
+        {
+            return   _bus.Send(new GetStaffAllData(id));
         }
     }
 }

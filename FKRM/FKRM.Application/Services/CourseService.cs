@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands.Course;
+using FKRM.Application.Commands.Course;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;

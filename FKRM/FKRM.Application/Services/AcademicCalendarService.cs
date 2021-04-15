@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands.AcademicCalendar;
+using FKRM.Application.Commands.AcademicCalendar;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
@@ -51,6 +51,12 @@ namespace FKRM.Application.Services
         public IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {
             return _academicCalendarRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public IEnumerable<AcademicCalendarViewModel> GetAllWithTitle()
+        {
+            return _academicCalendarRepository.GetAllWithTitle().ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
+
         }
     }
 }

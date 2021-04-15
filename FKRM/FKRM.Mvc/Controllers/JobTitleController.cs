@@ -27,17 +27,17 @@ namespace FKRM.Mvc.Controllers
         {
             if (id == Guid.Empty)
             {
-                var scheduleViewModel = new JobTitleViewModel();
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel) });
+                var jobTitleViewModel = new JobTitleViewModel();
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", jobTitleViewModel) });
             }
             else
             {
-                var scheduleViewModel = _jobTitleService.GetById(id);
-                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel) });
+                var jobTitleViewModel = _jobTitleService.GetById(id);
+                return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", jobTitleViewModel) });
             }
         }
         [HttpPost]
-        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, JobTitleViewModel scheduleViewModel)
+        public async Task<JsonResult> OnPostCreateOrEdit(Guid id, JobTitleViewModel jobTitleViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,27 +45,27 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id == Guid.Empty)
                     {
-                        var response = _jobTitleService.Register(scheduleViewModel);
+                        var response = _jobTitleService.Register(jobTitleViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifySuccess($"{scheduleViewModel.Title} ثبت شد.");
+                            NotifySuccess($"{jobTitleViewModel.Title} ثبت شد.");
 
                         }
                     }
                     else
                     {
-                        var response = _jobTitleService.Update(scheduleViewModel);
+                        var response = _jobTitleService.Update(jobTitleViewModel);
                         if (response.Result.Data == 400)
                         {
                             NotifyErrors(response.Result.Message);
                         }
                         else
                         {
-                            NotifyInfo($"{scheduleViewModel.Title} ویرایش شد.");
+                            NotifyInfo($"{jobTitleViewModel.Title} ویرایش شد.");
                         }
                     }
                 }
@@ -78,7 +78,7 @@ namespace FKRM.Mvc.Controllers
             }
             else
             {
-                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", scheduleViewModel);
+                var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", jobTitleViewModel);
                 return new JsonResult(new { isValid = false, html });
             }
         }

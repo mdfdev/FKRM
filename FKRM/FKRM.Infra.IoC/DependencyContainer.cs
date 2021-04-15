@@ -1,35 +1,36 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.Services;
-using FKRM.Domain.CommandHandlers;
-using FKRM.Domain.Commands.AcademicCalendar;
-using FKRM.Domain.Commands.Area;
-using FKRM.Domain.Commands.Branch;
-using FKRM.Domain.Commands.Course;
-using FKRM.Domain.Commands.Enrollment;
-using FKRM.Domain.Commands.Feature;
-using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Commands.Grade;
-using FKRM.Domain.Commands.Group;
-using FKRM.Domain.Commands.Major;
-using FKRM.Domain.Commands.MarkingType;
-using FKRM.Domain.Commands.OUType;
-using FKRM.Domain.Commands.JobTitle;
-using FKRM.Domain.Commands.School;
-using FKRM.Domain.Commands.Staff;
-using FKRM.Domain.Commands.UnitType;
+using FKRM.Application.CommandHandlers;
+using FKRM.Application.Commands.AcademicCalendar;
+using FKRM.Application.Commands.Area;
+using FKRM.Application.Commands.Branch;
+using FKRM.Application.Commands.Course;
+using FKRM.Application.Commands.Enrollment;
+using FKRM.Application.Commands.Feature;
+using FKRM.Application.Commands.Gender;
+using FKRM.Application.Commands.Grade;
+using FKRM.Application.Commands.Group;
+using FKRM.Application.Commands.Major;
+using FKRM.Application.Commands.MarkingType;
+using FKRM.Application.Commands.OUType;
+using FKRM.Application.Commands.JobTitle;
+using FKRM.Application.Commands.School;
+using FKRM.Application.Commands.Staff;
+using FKRM.Application.Commands.UnitType;
 using FKRM.Domain.Core.Bus;
 using FKRM.Domain.Core.Wrappers;
-using FKRM.Domain.Entities;
 using FKRM.Domain.Interfaces;
-using FKRM.Domain.Queries.Area;
-using FKRM.Domain.QueryHandlers;
 using FKRM.Infra.Bus;
 using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using FKRM.Domain.Commands.WorkedFor;
+using FKRM.Application.Commands.WorkedFor;
+using FKRM.Domain.Queries.Staff;
+using System.Collections.Generic;
+using FKRM.Application.ViewModels;
+using FKRM.Domain.QueryHandlers;
 
 namespace FKRM.Infra.IoC
 {
@@ -50,8 +51,9 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateAreaCommand, Response<int>>, AreaCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateAreaCommand, Response<int>>, AreaCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteAreaCommand, Response<int>>, AreaCommandHandler>();
-            services.AddScoped<IRequestHandler<GetAreaByIdQuery, Response<Area>>, AreaQueryHandler>();
-            services.AddScoped<IRequestHandler<GetAllAreaQuery, Response<IQueryable<Area>>>, AreaQueryHandler>();
+
+            //services.AddScoped<IRequestHandler<GetAreaByIdQuery, Response<Area>>, AreaQueryHandler>();
+            //services.AddScoped<IRequestHandler<GetAllAreaQuery, Response<IQueryable<Area>>>, AreaQueryHandler>();
 
             services.AddScoped<IRequestHandler<CreateBranchCommand, Response<int>>, BranchCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateBranchCommand, Response<int>>, BranchCommandHandler>();
@@ -105,6 +107,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, StaffCommandHandler>();
+            services.AddScoped<IRequestHandler<GetStaffAllData, Response<IEnumerable<StaffViewModel>>>, StaffQueryHandler>();
 
             services.AddScoped<IRequestHandler<CreateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();

@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Core.Commands;
+using MediatR;
 using System.Threading.Tasks;
 
 namespace FKRM.Domain.Core.Bus
@@ -7,7 +8,6 @@ namespace FKRM.Domain.Core.Bus
     {
         Task SendCommand<T>(T command) where T : Command;
 
-        //Task<Response<TReturn>> SendQuery<T,TReturn>(T query) where T : Query<T> where TReturn : class, new();
-
+        Task<TResponse> Send<TResponse>(IRequest<TResponse> request);
     }
 }

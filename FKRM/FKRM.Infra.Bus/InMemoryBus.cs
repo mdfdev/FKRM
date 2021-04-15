@@ -13,6 +13,12 @@ namespace FKRM.Infra.Bus
         {
             _mediator = mediator;
         }
+
+        public Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
+        {
+            return _mediator.Send(request);
+        }
+
         public Task SendCommand<T>(T command) where T : Command
         {
             return _mediator.Send(command);

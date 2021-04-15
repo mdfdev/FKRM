@@ -1,24 +1,23 @@
 ﻿using AutoMapper;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.Commands.AcademicCalendar;
-using FKRM.Domain.Commands.Area;
-using FKRM.Domain.Commands.Branch;
-using FKRM.Domain.Commands.Course;
-using FKRM.Domain.Commands.Enrollment;
-using FKRM.Domain.Commands.Feature;
-using FKRM.Domain.Commands.Gender;
-using FKRM.Domain.Commands.Grade;
-using FKRM.Domain.Commands.Group;
-using FKRM.Domain.Commands.Major;
-using FKRM.Domain.Commands.MarkingType;
-using FKRM.Domain.Commands.OUType;
-using FKRM.Domain.Commands.JobTitle;
-using FKRM.Domain.Commands.School;
-using FKRM.Domain.Commands.Staff;
-using FKRM.Domain.Commands.UnitType;
-using FKRM.Domain.Queries.Area;
+using FKRM.Application.Commands.AcademicCalendar;
+using FKRM.Application.Commands.Area;
+using FKRM.Application.Commands.Branch;
+using FKRM.Application.Commands.Course;
+using FKRM.Application.Commands.Enrollment;
+using FKRM.Application.Commands.Feature;
+using FKRM.Application.Commands.Gender;
+using FKRM.Application.Commands.Grade;
+using FKRM.Application.Commands.Group;
+using FKRM.Application.Commands.Major;
+using FKRM.Application.Commands.MarkingType;
+using FKRM.Application.Commands.OUType;
+using FKRM.Application.Commands.JobTitle;
+using FKRM.Application.Commands.School;
+using FKRM.Application.Commands.Staff;
+using FKRM.Application.Commands.UnitType;
 using System;
-using FKRM.Domain.Commands.WorkedFor;
+using FKRM.Application.Commands.WorkedFor;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -26,7 +25,7 @@ namespace FKRM.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
-            CreateMap<AreaViewModel, GetAreaByIdQuery>().ConstructUsing(c => new GetAreaByIdQuery(c.Id));
+            //CreateMap<AreaViewModel, GetAreaByIdQuery>().ConstructUsing(c => new GetAreaByIdQuery(c.Id));
 
             CreateMap<AcademicCalendarViewModel, CreateAcademicCalendarCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -121,7 +120,7 @@ namespace FKRM.Application.AutoMapper
             CreateMap<StaffViewModel, CreateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));
+                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode, c.JobTitleId, c.SchoolId, c.AcademicCalendarId));
             CreateMap<StaffViewModel, UpdateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));

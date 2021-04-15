@@ -12,8 +12,9 @@ namespace FKRM.Application.Interfaces
         Task<Response<int>> Register(StaffViewModel staffViewModel);
         IEnumerable<StaffViewModel> GetAll();
         IEnumerable<StaffViewModel> GetPagedResponse(int pageNumber, int pageSize);
-
         Task<Response<int>> Update(StaffViewModel staffViewModel);
         Task<Response<int>> Remove(Guid id);
+
+        Task<Response<IEnumerable<StaffViewModel>>>  GetAllData(Guid id);
     }
 }

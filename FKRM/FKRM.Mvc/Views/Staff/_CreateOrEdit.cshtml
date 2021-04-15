@@ -51,6 +51,26 @@
                     <span asp-validation-for="JobTitleId" class="text-danger"></span>
                 </div>
             </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">مدرسه</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="SchoolId" class="custom-select custom-select-sm mb-3" id="SchoolId" asp-for="SchoolId" asp-items="@Model.Schools">
+                        </select>
+                    </div>
+                    <span asp-validation-for="SchoolId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">سال تحصیلی</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <select name="AcademicCalendarId" class="custom-select custom-select-sm mb-3" id="AcademicCalendarId" asp-for="AcademicCalendarId" asp-items="@Model.AcademicCalendars">
+                        </select>
+                    </div>
+                    <span asp-validation-for="AcademicCalendarId" class="text-danger"></span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -62,6 +82,20 @@
     $(document).ready(function () {
         $("#JobTitleId").select({
             placeholder: "انتخاب عنوان شغلی...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#SchoolId").select({
+            placeholder: "انتخاب مدرسه ...",
+            theme: "bootstrap4",
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+        $("#AcademicCalendarId").select({
+            placeholder: "انتخاب سال تحصیلی ...",
             theme: "bootstrap4",
             escapeMarkup: function (m) {
                 return m;
