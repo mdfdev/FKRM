@@ -9,6 +9,9 @@ namespace FKRM.Application.Validation.Staff
             ValidateId();
             ValidateFirstName();
             ValidateLastName();
+            ValidateMobile();
+            ValidateNationalID();
+            ValidatePhone();
         }
     }
 }

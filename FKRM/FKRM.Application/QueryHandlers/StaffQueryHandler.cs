@@ -47,7 +47,7 @@ namespace FKRM.Domain.QueryHandlers
                     FirstName = p.p.p.st.FirstName,
                     LastName = p.p.p.st.LastName,
                     School = p.p.sc.Name,
-                    AcademicCalendar = p.ac.AcademicYear + " - " + p.ac.AcademicQuarter,
+                    AcademicCalendar = p.ac.AcademicQuarter + " " + p.ac.AcademicYear,
                     JobTitle = p.p.p.st.JobTitle.Title,
                     Mobile = p.p.p.st.Mobile,
                     Phone = p.p.p.st.Phone,

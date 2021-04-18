@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
@@ -28,8 +29,10 @@ namespace FKRM.Mvc.Controllers
         }
         public IActionResult Index()
         {
+            PersianCalendar pc = new PersianCalendar();
+            var pYear = pc.GetYear(DateTime.Today).ToString();
             var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
-            ViewData["AcademicCalendars"] = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", null, null);
+            ViewData["AcademicCalendars"] = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", _academicCalendarService.GetByYear(pYear).Id, null);
             return View();
         }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
@@ -40,7 +43,10 @@ namespace FKRM.Mvc.Controllers
                 var jobTitleViewModels = _jobTitleService.GetAll();
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
-                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", null, null);
+
+                PersianCalendar pc = new PersianCalendar();
+                var pYear = pc.GetYear(DateTime.Today).ToString();
+                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear",_academicCalendarService.GetByYear(pYear).Id , null);
                 staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
                 staffViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });

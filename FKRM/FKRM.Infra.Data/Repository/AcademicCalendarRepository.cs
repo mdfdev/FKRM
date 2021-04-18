@@ -19,8 +19,13 @@ namespace FKRM.Infra.Data.Repository
             return _academicCalendars.Select(p => new AcademicCalendar()
             {
                 Id = p.Id,
-                AcademicYear = p.AcademicYear + " - " + p.AcademicQuarter
+                AcademicYear = p.AcademicQuarter + " " + p.AcademicYear
             });
+        }
+
+        public AcademicCalendar GetByYear(string year)
+        {
+            return _academicCalendars.Where(p=>p.AcademicYear.EndsWith(year)).FirstOrDefault();
         }
     }
 }

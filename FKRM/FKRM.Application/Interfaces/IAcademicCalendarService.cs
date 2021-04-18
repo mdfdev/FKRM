@@ -11,6 +11,7 @@ namespace FKRM.Application.Interfaces
         AcademicCalendarViewModel GetById(Guid id);
         Task<Response<int>> Register(AcademicCalendarViewModel academicCalendarViewModel);
         IEnumerable<AcademicCalendarViewModel> GetAll();
+        AcademicCalendarViewModel GetByYear(string year);
         IEnumerable<AcademicCalendarViewModel> GetAllWithTitle();
 
         IEnumerable<AcademicCalendarViewModel> GetPagedResponse(int pageNumber, int pageSize);

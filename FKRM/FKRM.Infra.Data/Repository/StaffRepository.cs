@@ -2,6 +2,7 @@
 using FKRM.Domain.Interfaces;
 using FKRM.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace FKRM.Infra.Data.Repository
@@ -16,6 +17,14 @@ namespace FKRM.Infra.Data.Repository
             _workedFors = context.Set<WorkedFor>();
         }
 
- 
+        public Staff Get(string ncode, Guid academicCalendarId)
+        {
+            return
+                _staffs
+                .Join(_workedFors, st => st.Id, w => w.StaffId, (st, w) => new { st, w })
+                .Where(p => p.st.NationalCode.CompareTo(ncode) == 0 && p.w.AcademicCalendarId == academicCalendarId)
+                .Select(p => p.st)
+                .FirstOrDefault();
+        }
     }
 }

@@ -58,5 +58,11 @@ namespace FKRM.Application.Services
             return _academicCalendarRepository.GetAllWithTitle().ProjectTo<AcademicCalendarViewModel>(_autoMapper.ConfigurationProvider);
 
         }
+
+        public AcademicCalendarViewModel GetByYear(string year)
+        {
+            return _autoMapper.Map<AcademicCalendarViewModel>(_academicCalendarRepository.GetByYear(year));
+
+        }
     }
 }

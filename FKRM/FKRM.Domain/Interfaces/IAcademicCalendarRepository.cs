@@ -6,5 +6,6 @@ namespace FKRM.Domain.Interfaces
     public interface IAcademicCalendarRepository : IRepository<AcademicCalendar>
     {
         IQueryable<AcademicCalendar> GetAllWithTitle();
+        AcademicCalendar GetByYear(string year);
     }
 }

@@ -21,7 +21,7 @@
                 <label class="col-md-4 col-form-label">موبایل</label>
                 <div class="col-md-8">
 
-                    <input type="text" as asp-for="Mobile" name="Mobile" class="form-control" placeholder="موبایل">
+                    <input type="text" as asp-for="Mobile" name="Mobile" class="form-control" maxlength="11" placeholder="موبایل">
                     <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <label class="col-md-4 col-form-label">تلفن</label>
                 <div class="col-md-8">
 
-                    <input type="text" as asp-for="Phone" name="Phone" class="form-control" placeholder="تلفن">
+                    <input type="text" as asp-for="Phone" name="Phone" class="form-control" maxlength="11" placeholder="تلفن">
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <label class="col-md-4 col-form-label">کدملی</label>
                 <div class="col-md-8">
 
-                    <input type="text" as asp-for="NationalCode" name="NationalCode" class="form-control" placeholder="کد ملی">
+                    <input type="text" as asp-for="NationalCode" name="NationalCode" class="form-control" maxlength="10" placeholder="کد ملی">
                     <span asp-validation-for="NationalCode" class="text-danger"></span>
                 </div>
             </div>

@@ -61,6 +61,10 @@ namespace FKRM.Application.CommandHandlers
             {
                 return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
+            if (_staffRepository.Get(request.NationalCode,request.AcademicCalendarId)!=null)
+            {
+                return Task.FromResult(new Response<int>(400, new List<string>() { "ثبت اطلاعات تکراری!!!" }));
+            }
             var staff = new Domain.Entities.Staff()
             {
                 FirstName = request.FirstName,

@@ -22,7 +22,7 @@
                         <span class="d-none d-sm-inline-block ml-1">بارگذاری مجدد</span>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <div class="form-group">
                         <label for="AcademicCalendarID" class="control-label">سال تحصیلی</label>
                         <select id="AcademicCalendarID" class="form-control" asp-items="ViewBag.AcademicCalendars">
@@ -41,18 +41,19 @@
     <script src="~/js/site.js"></script>
     <script>
         $(document).ready(function () {
+            var selected;
             $("#staffTable").DataTable();
-            loadData();
+            //loadData();
             $('#reload').on('click', function () {
-                loadData();
+                loadData(selected);
             });
             $('#AcademicCalendarID').change(function () {
-                var selected =$("#AcademicCalendarID option:selected").val();
-                $('#viewAll').load('/staff/LoadAll/' + selected);
+                selected =$("#AcademicCalendarID option:selected").val();
+                loadData(selected);
             });
         });
-        function loadData() {
-            $('#viewAll').load('/staff/LoadAll');
+        function loadData(s) {
+            $('#viewAll').load('/staff/LoadAll/' + s);
         }
     </script>
 }
