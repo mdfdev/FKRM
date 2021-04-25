@@ -16,5 +16,7 @@ namespace FKRM.Application.Interfaces
         Task<Response<int>> Remove(Guid id);
 
         Task<Response<IEnumerable<StaffViewModel>>>  GetAllData(Guid id);
+        Task<Response<StaffViewModel>> GetAllDataById(Guid id);
+        Task<Response<StaffViewModel>> GetAllDataByNid(string nid);
     }
 }

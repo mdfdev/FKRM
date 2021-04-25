@@ -4,16 +4,24 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
+                <label class="col-md-4 col-form-label">کدملی</label>
+                <div class="col-md-8">
+
+                    <input type="text" as asp-for="NationalCode" autocomplete="off" name="NationalCode" class="form-control" maxlength="10" placeholder="کد ملی">
+                    <span asp-validation-for="NationalCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="col-md-4 col-form-label">نام</label>
                 <div class="col-md-8">
-                    <input type="text" asp-for="FirstName" name="FirstName" class="form-control" placeholder="نام">
+                    <input type="text" asp-for="FirstName" autocomplete="off" name="FirstName" class="form-control" placeholder="نام">
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-4 col-form-label">نام خانوادگی</label>
                 <div class="col-md-8">
-                    <input type="text" as asp-for="LastName" name="LastName" class="form-control" placeholder="نام خانوادگی">
+                    <input type="text" as asp-for="LastName" autocomplete="off" name="LastName" class="form-control" placeholder="نام خانوادگی">
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
@@ -21,7 +29,7 @@
                 <label class="col-md-4 col-form-label">موبایل</label>
                 <div class="col-md-8">
 
-                    <input type="text" as asp-for="Mobile" name="Mobile" class="form-control" maxlength="11" placeholder="موبایل">
+                    <input type="text" as asp-for="Mobile" autocomplete="off" name="Mobile" class="form-control" maxlength="11" placeholder="موبایل">
                     <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
             </div>
@@ -29,18 +37,11 @@
                 <label class="col-md-4 col-form-label">تلفن</label>
                 <div class="col-md-8">
 
-                    <input type="text" as asp-for="Phone" name="Phone" class="form-control" maxlength="11" placeholder="تلفن">
+                    <input type="text" as asp-for="Phone" autocomplete="off" name="Phone" class="form-control" maxlength="11" placeholder="تلفن">
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-md-4 col-form-label">کدملی</label>
-                <div class="col-md-8">
 
-                    <input type="text" as asp-for="NationalCode" name="NationalCode" class="form-control" maxlength="10" placeholder="کد ملی">
-                    <span asp-validation-for="NationalCode" class="text-danger"></span>
-                </div>
-            </div>
             <div class="form-group row">
                 <label class="col-md-4 col-form-label">عنوان شغلی</label>
                 <div class="col-md-8">
@@ -80,6 +81,50 @@
 </form>
 <script type="text/javascript" language=javascript>
     $(document).ready(function () {
+        $('#NationalCode').blur(function () {
+            var nid = $("#NationalCode").val();
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Staff/GetStaff/' + nid,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res != null) {
+                            $("#FirstName").val(res.firstName);
+                            $("#LastName").val(res.lastName);
+                            $("#Mobile").val(res.mobile);
+                            $("#Phone").val(res.phone);
+
+                            $("#JobTitleId option").filter(function () {
+                                return this.text == res.jobTitle;
+                            }).attr('selected', true)
+
+                            $("#AcademicCalendarId option").filter(function () {
+                                return this.text == res.academicCalendar;
+                            }).attr('selected', true)
+
+                            $("#SchoolId option").filter(function () {
+                                return this.text.includes(res.school);
+                            }).attr('selected', true)
+                        } else {
+                            $("#FirstName").val('');
+                            $("#LastName").val('');
+                            $("#Mobile").val('');
+                            $("#Phone").val('');
+                        }
+                        
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                })
+                //to prevent default form submit event
+                return false;
+            } catch (ex) {
+                console.log(ex)
+            }
+        });
         $("#JobTitleId").select({
             placeholder: "انتخاب عنوان شغلی...",
             theme: "bootstrap4",

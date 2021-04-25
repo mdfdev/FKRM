@@ -25,12 +25,11 @@ using FKRM.Infra.Data.Context;
 using FKRM.Infra.Data.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 using FKRM.Application.Commands.WorkedFor;
-using FKRM.Domain.Queries.Staff;
 using System.Collections.Generic;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.QueryHandlers;
+using FKRM.Application.Queries.Staff;
 
 namespace FKRM.Infra.IoC
 {
@@ -108,6 +107,8 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteStaffCommand, Response<int>>, StaffCommandHandler>();
             services.AddScoped<IRequestHandler<GetStaffAllData, Response<IEnumerable<StaffViewModel>>>, StaffQueryHandler>();
+            services.AddScoped<IRequestHandler<GetAllDataById, Response<StaffViewModel>>, StaffQueryHandler>();
+            services.AddScoped<IRequestHandler<GetAllDataByNid, Response<StaffViewModel>>, StaffQueryHandler>();
 
             services.AddScoped<IRequestHandler<CreateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();

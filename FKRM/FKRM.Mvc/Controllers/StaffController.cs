@@ -35,6 +35,10 @@ namespace FKRM.Mvc.Controllers
             ViewData["AcademicCalendars"] = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", _academicCalendarService.GetByYear(pYear).Id, null);
             return View();
         }
+        public JsonResult GetStaff(string id)
+        {
+            return new JsonResult(_staffService.GetAllDataByNid(id).Result.Data);
+        }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             if (id == Guid.Empty)
@@ -100,7 +104,7 @@ namespace FKRM.Mvc.Controllers
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
                 }
-                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+                var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAllData(staffViewModel.AcademicCalendarId).Result.Data);
                 return new JsonResult(new { isValid = true, html });
             }
             else
@@ -112,10 +116,12 @@ namespace FKRM.Mvc.Controllers
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(Guid id)
         {
+            Guid acId = Guid.Empty;
             try
             {
-                var tmp = _staffService.GetById(id);
-                var name = $"{tmp.FirstName} {tmp.LastName}";
+                var tmp = _staffService.GetAllDataById(id);
+                acId = tmp.Result.Data.AcademicCalendarId;
+                var name = $"{tmp.Result.Data.FirstName} {tmp.Result.Data.LastName}";
                 var response = _staffService.Remove(id);
                 if (response.Result.Data == 400)
                 {
@@ -130,7 +136,7 @@ namespace FKRM.Mvc.Controllers
             {
                 NotifyError("حذف اطلاعات انجام نشد.");
             }
-            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAllData(acId).Result.Data);
             return new JsonResult(new { isValid = true, html });
         }
     }

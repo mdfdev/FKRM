@@ -9,7 +9,7 @@ using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FKRM.Domain.Queries.Staff;
+using FKRM.Application.Queries.Staff;
 
 namespace FKRM.Application.Services
 {
@@ -59,6 +59,17 @@ namespace FKRM.Application.Services
         public  Task<Response<IEnumerable<StaffViewModel>>> GetAllData(Guid id)
         {
             return   _bus.Send(new GetStaffAllData(id));
+        }
+
+        public Task<Response<StaffViewModel>> GetAllDataById(Guid id)
+        {
+            return _bus.Send(new GetAllDataById(id));
+
+        }
+
+        public Task<Response<StaffViewModel>> GetAllDataByNid(string nid)
+        {
+            return _bus.Send(new GetAllDataByNid(nid));
         }
     }
 }

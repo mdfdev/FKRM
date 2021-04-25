@@ -3,17 +3,16 @@ using FKRM.Domain.Core.Wrappers;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace FKRM.Application.Queries.Staff
 {
-    public class GetStaffAllData: IRequest<Response<IEnumerable<StaffViewModel>>>
+   public class GetAllDataByNid : IRequest<Response<StaffViewModel>>
     {
-        public Guid Id { get; set; }
-        public GetStaffAllData(Guid id)
+        public string NId { get; set; }
+        public GetAllDataByNid(string nid)
         {
-            Id = id;
+            NId = nid;
         }
     }
 }

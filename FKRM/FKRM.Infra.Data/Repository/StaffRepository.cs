@@ -26,5 +26,14 @@ namespace FKRM.Infra.Data.Repository
                 .Select(p => p.st)
                 .FirstOrDefault();
         }
+
+        public Staff Get(string ncode)
+        {
+            return
+               _staffs
+               .Where(p => p.NationalCode.CompareTo(ncode) == 0)
+               .Select(p => p)
+               .FirstOrDefault();
+        }
     }
 }

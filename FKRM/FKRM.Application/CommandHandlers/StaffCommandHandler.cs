@@ -14,9 +14,11 @@ namespace FKRM.Application.CommandHandlers
         IRequestHandler<UpdateStaffCommand, Response<int>>
     {
         private readonly IStaffRepository _staffRepository;
-        public StaffCommandHandler(IStaffRepository staffRepository )
+        private readonly IWorkedForRepository _workedForRepository;
+        public StaffCommandHandler(IStaffRepository staffRepository ,IWorkedForRepository workedForRepository)
         {
             _staffRepository = staffRepository;
+            _workedForRepository = workedForRepository;
         }
         public Task<Response<int>> Handle(UpdateStaffCommand request, CancellationToken cancellationToken)
         {
@@ -38,9 +40,6 @@ namespace FKRM.Application.CommandHandlers
                 entity.NationalCode = request.NationalCode;
                 entity.ModifiedDate = request.ModifiedDate;
                 entity.JobTitleId = request.JobTitleId;
-
-
-              
                 _staffRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }
@@ -61,29 +60,45 @@ namespace FKRM.Application.CommandHandlers
             {
                 return Task.FromResult(new Response<int>(400, GetErrors(request)));
             }
-            if (_staffRepository.Get(request.NationalCode,request.AcademicCalendarId)!=null)
+            if (_staffRepository.Get(request.NationalCode, request.AcademicCalendarId) != null)
             {
                 return Task.FromResult(new Response<int>(400, new List<string>() { "ثبت اطلاعات تکراری!!!" }));
             }
-            var staff = new Domain.Entities.Staff()
+            else if (_staffRepository.Get(request.NationalCode) != null)
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                JobTitleId = request.JobTitleId,
-                Phone = request.Phone,
-                Mobile = request.Mobile,
-                NationalCode = request.NationalCode,
-                ModifiedDate = request.ModifiedDate,
-                AddedDate = request.AddedDate,
-                WorkedFors = new List<Domain.Entities.WorkedFor>
+                var st = _staffRepository.Get(request.NationalCode);
+                _workedForRepository.Add(new Domain.Entities.WorkedFor()
+                {
+                    StaffId = st.Id,
+                    AcademicCalendarId = request.AcademicCalendarId,
+                    SchoolId = request.SchoolId
+                });
+            }
+            else
+            {
+
+
+                var staff = new Domain.Entities.Staff()
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    JobTitleId = request.JobTitleId,
+                    Phone = request.Phone,
+                    Mobile = request.Mobile,
+                    NationalCode = request.NationalCode,
+                    ModifiedDate = request.ModifiedDate,
+                    AddedDate = request.AddedDate,
+                    WorkedFors = new List<Domain.Entities.WorkedFor>
                 {
                     new Domain.Entities.WorkedFor {
                         SchoolId=request.SchoolId,
                         AcademicCalendarId = request.AcademicCalendarId
                     }
                 }
-            };
-            _staffRepository.Add(staff);
+                };
+                _staffRepository.Add(staff);
+            }
+            
 
             return Task.FromResult(new Response<int>(200));
         }
