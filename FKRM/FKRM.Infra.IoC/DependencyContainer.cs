@@ -28,8 +28,9 @@ using Microsoft.Extensions.DependencyInjection;
 using FKRM.Application.Commands.WorkedFor;
 using System.Collections.Generic;
 using FKRM.Application.ViewModels;
-using FKRM.Domain.QueryHandlers;
 using FKRM.Application.Queries.Staff;
+using FKRM.Application.QueryHandlers;
+using FKRM.Application.Queries.Major;
 
 namespace FKRM.Infra.IoC
 {
@@ -85,6 +86,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateMajorCommand, Response<int>>, MajorCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateMajorCommand, Response<int>>, MajorCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteMajorCommand, Response<int>>, MajorCommandHandler>();
+            services.AddScoped<IRequestHandler<GetMajorStatistics, Response<IEnumerable<ChartViewModel>>>, MajorQueryHandler>();
 
             services.AddScoped<IRequestHandler<CreateMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();

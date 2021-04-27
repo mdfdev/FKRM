@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FKRM.Domain.QueryHandlers
+namespace FKRM.Application.QueryHandlers
 {
     public class StaffQueryHandler : 
         IRequestHandler<GetStaffAllData, Response<IEnumerable<StaffViewModel>>>,

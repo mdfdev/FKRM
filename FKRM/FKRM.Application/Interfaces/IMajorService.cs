@@ -16,5 +16,8 @@ namespace FKRM.Application.Interfaces
         IEnumerable<MajorViewModel> GetPagedResponse(int pageNumber, int pageSize);
         Task<Response<int>> Update(MajorViewModel majorViewModel);
         Task<Response<int>> Remove(Guid id);
+        int Count();
+
+        Task<Response<IEnumerable<ChartViewModel>>> GetMajorStatistics();
     }
 }

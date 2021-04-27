@@ -58,5 +58,11 @@ namespace FKRM.Application.Services
         {
             return _schoolRepository.GetAllWithCode().ProjectTo<SchoolViewModel>(_autoMapper.ConfigurationProvider);
         }
+
+        public int Count()
+        {
+            return _schoolRepository.Count();
+                 
+        }
     }
 }

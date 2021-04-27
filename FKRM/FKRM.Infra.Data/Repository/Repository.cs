@@ -62,5 +62,10 @@ namespace FKRM.Infra.Data.Repository
              .Skip((pageNumber - 1) * pageSize)
              .Take(pageSize);
         }
+
+        public int Count()
+        {
+            return DbSet.Count();
+        }
     }
 }

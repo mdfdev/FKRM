@@ -18,5 +18,7 @@ namespace FKRM.Application.Interfaces
         Task<Response<IEnumerable<StaffViewModel>>>  GetAllData(Guid id);
         Task<Response<StaffViewModel>> GetAllDataById(Guid id);
         Task<Response<StaffViewModel>> GetAllDataByNid(string nid);
+
+        int Count();
     }
 }

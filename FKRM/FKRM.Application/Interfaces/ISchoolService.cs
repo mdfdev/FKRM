@@ -16,5 +16,6 @@ namespace FKRM.Application.Interfaces
 
         Task<Response<int>> Update(SchoolViewModel schoolViewModel);
         Task<Response<int>> Remove(Guid id);
+        int Count();
     }
 }

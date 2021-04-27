@@ -1,5 +1,99 @@
-﻿@{
+﻿@using FKRM.Mvc.Views.Shared.Components.Statistics;
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Home Page";
 }
+
+
+@(await Component.InvokeAsync<StatisticsViewComponent>())
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var myChart = window.echarts.init(document.getElementById('echart-doughnut'));
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Major/GetStats',
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res != null) {
+                            option = {
+                                title: {
+                                    text: 'سهم رشته ها',
+                                    subtext: 'بر اساس شاخه',
+                                    left: 'center'
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                },
+                                legend: {
+                                    top: 'bottom',
+                                    left: 'center'
+                                },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        mark: { show: true },
+                                        restore: { show: true },
+                                        saveAsImage: { show: true }
+                                    }
+                                },
+                                series: [
+                                    {
+                                        name: 'سهم رشته ها',
+                                        type: 'pie',
+                                        radius: ['40%', '70%'],
+                                        avoidLabelOverlap: false,
+                                        itemStyle: {
+                                            borderRadius: 10,
+                                            borderColor: '#fff',
+                                            borderWidth: 2
+                                        },
+                                        label: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '20',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        },
+                                        data: res.sort(function (a, b) { return a.value - b.value; }),
+                                        animationType: 'scale',
+                                        animationEasing: 'elasticOut',
+                                        animationDelay: function (idx) {
+                                            return Math.random() * 200;
+                                        }
+                                    }
+                                ]
+                            };
+
+                            myChart.setOption(option);
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                })
+                //to prevent default form submit event
+                return false;
+            } catch (ex) {
+                console.log(ex)
+            }
+            
+
+        });
+    </script>
+}
+
 

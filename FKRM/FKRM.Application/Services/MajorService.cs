@@ -9,6 +9,7 @@ using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FKRM.Application.Queries.Major;
 
 namespace FKRM.Application.Services
 {
@@ -58,6 +59,17 @@ namespace FKRM.Application.Services
         public IEnumerable<MajorViewModel> GetByGroupId(Guid id)
         {
             return _majorRepository.GetAllByGroupId(id).ProjectTo<MajorViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public int Count()
+        {
+            return _majorRepository.Count();
+        }
+
+        public Task<Response<IEnumerable<ChartViewModel>>> GetMajorStatistics()
+        {
+            return _bus.Send(new GetMajorStatistics());
+
         }
     }
 }

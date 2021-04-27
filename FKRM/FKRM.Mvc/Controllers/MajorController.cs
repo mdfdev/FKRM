@@ -17,6 +17,10 @@ namespace FKRM.Mvc.Controllers
             _branchService = branchService;
             _majorService = majorService;
         }
+        public JsonResult GetStats()
+        {
+            return new JsonResult(_majorService.GetMajorStatistics().Result.Data);
+        }
         public IActionResult LoadAll()
         {
             return PartialView("_ViewAll", _majorService.GetAll());

@@ -71,5 +71,10 @@ namespace FKRM.Application.Services
         {
             return _bus.Send(new GetAllDataByNid(nid));
         }
+
+        public int Count()
+        {
+            return _staffRepository.Count();
+        }
     }
 }

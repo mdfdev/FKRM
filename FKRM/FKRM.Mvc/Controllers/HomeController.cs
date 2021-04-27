@@ -1,21 +1,34 @@
-﻿using FKRM.Mvc.Models;
+﻿using FKRM.Application.Interfaces;
+using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NToastNotify;
 using System.Diagnostics;
 
 namespace FKRM.Mvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController<HomeController> 
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IStaffService _staffService;
+        private readonly ISchoolService _schoolService;
+        private readonly IMajorService _majorService;
+        public HomeController(ILogger<HomeController> logger, 
+            ISchoolService schoolService,
+            IMajorService majorService,
+            IStaffService staffService,IToastNotification toastNotification) : base(toastNotification)
         {
             _logger = logger;
+            _majorService = majorService;
+            _schoolService = schoolService;
+            _staffService = staffService;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Staffs = _staffService.Count();
+            ViewBag.Schools = _schoolService.Count();
+            ViewBag.Majors = _majorService.Count();
             return View();
         }
 

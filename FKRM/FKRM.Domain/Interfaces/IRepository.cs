@@ -18,5 +18,7 @@ namespace FKRM.Domain.Interfaces
         int SaveChanges();
         IQueryable<TEntity> GetPagedReponse(int pageNumber, int pageSize);
 
+        int Count();
+
     }
 }
