@@ -28,6 +28,9 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.MarkingType, opt => opt.MapFrom(c => c.MarkingType.Name))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
+            CreateMap<District, DistrictViewModel>()
+              .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
+              .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<Enrollment, EnrollmentViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
@@ -62,6 +65,7 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<School, SchoolViewModel>()
+                .ForMember(cd => cd.District, opt => opt.MapFrom(c => c.District.Name))
                 .ForMember(cd => cd.Gender, opt => opt.MapFrom(c => c.Gender.Name))
                 .ForMember(cd => cd.Feature, opt => opt.MapFrom(c => c.Feature.Name))
                 .ForMember(cd => cd.OUType, opt => opt.MapFrom(c => c.OUType.Name))

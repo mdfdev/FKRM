@@ -7,6 +7,7 @@ namespace FKRM.Application.Validation.School
         public CreateSchoolCommandValidation()
         {
             ValidateName();
+            ValidateCode();
         }
     }
 }

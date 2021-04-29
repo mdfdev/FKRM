@@ -10,13 +10,13 @@ namespace FKRM.Application.Validation.School
         {
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("نام مدرسه الزامی می باشد")
-                .Length(3, 30).WithMessage("طول نام باید بین 2~30  کاراکتر باشد");
+                .Length(5, 100).WithMessage("طول نام باید بین 5~100 کاراکتر باشد");
         }
         protected void ValidateCode()
         {
             RuleFor(c => c.Code)
                 .NotEmpty().WithMessage("کد مدرسه الزامی می باشد")
-                .Length(3, 15).WithMessage("کد باید بین 3~15  کاراکتر باشد");
+                .Length(8).WithMessage("طول کد باید 8 کاراکتر باشد");
         }
         protected void ValidateId()
         {

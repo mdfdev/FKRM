@@ -4,6 +4,9 @@
     <thead class="bg-200">
         <tr>
             <th class="sort">
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th class="sort">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="sort">
@@ -34,6 +37,9 @@
         @foreach (var school in Model)
         {
         <tr>
+            <td>
+                @school.District
+            </td>
             <td>
                 @school.Name
             </td>
@@ -66,7 +72,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
                         <div class="bg-white py-2">
-                            <a onclick="jQueryModalGet('/school/OnGetCreateOrEdit?id=@school.Id','ویرایش اطلاعات شاخه')"
+                            <a onclick="jQueryModalGet('/school/OnGetCreateOrEdit?id=@school.Id','ویرایش اطلاعات مدرسه')"
                                class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
                             <div class="dropdown-divider"></div>
                             <form id="form_delete_@school.Id" asp-controller="School" method="post"

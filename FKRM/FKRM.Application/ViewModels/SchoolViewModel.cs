@@ -7,6 +7,8 @@ namespace FKRM.Application.ViewModels
 {
     public class SchoolViewModel : BaseViewModel
     {
+        [DisplayName("منطقه")]
+        public string District { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("نام")]
         public string Name { get; set; }
@@ -25,11 +27,12 @@ namespace FKRM.Application.ViewModels
         public Guid UnitTypeId { get; set; }
         public Guid FeatureId { get; set; }
         public Guid OUTypeId { get; set; }
+        public Guid DistrictId { get; set; }
         public SelectList Genders { get; set; }
         public SelectList OUTypes { get; set; }
         public SelectList Features { get; set; }
         public SelectList UnitTypes { get; set; }
-
+        public SelectList Districts { get; set; }
 
 
     }

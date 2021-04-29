@@ -8,6 +8,7 @@ namespace FKRM.Application.Validation.School
         {
             ValidateId();
             ValidateName();
+            ValidateCode();
         }
     }
 }

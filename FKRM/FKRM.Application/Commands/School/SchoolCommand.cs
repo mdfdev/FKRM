@@ -12,6 +12,6 @@ namespace FKRM.Application.Commands.School
         public Guid FeatureId { get; protected set; }
         public Guid OUTypeId { get; protected set; }
         public Guid UnitTypeId { get; protected set; }
-
+        public Guid DistrictId { get; protected set; }
     }
 }

@@ -18,6 +18,7 @@ using FKRM.Application.Commands.Staff;
 using FKRM.Application.Commands.UnitType;
 using System;
 using FKRM.Application.Commands.WorkedFor;
+using FKRM.Application.Commands.District;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -36,7 +37,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateAcademicCalendarCommand(c.Id, c.AcademicYear, c.AcademicQuarter));
             CreateMap<AcademicCalendarViewModel, DeleteAcademicCalendarCommand>()
                 .ConstructUsing(c => new DeleteAcademicCalendarCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<AreaViewModel, CreateAreaCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -46,7 +47,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateAreaCommand(c.Id, c.Name));
             CreateMap<AreaViewModel, DeleteAreaCommand>()
                 .ConstructUsing(c => new DeleteAreaCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<BranchViewModel, CreateBranchCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -56,7 +57,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateBranchCommand(c.Id, c.Name));
             CreateMap<BranchViewModel, DeleteBranchCommand>()
                 .ConstructUsing(c => new DeleteBranchCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<CourseViewModel, CreateCourseCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -66,7 +67,17 @@ namespace FKRM.Application.AutoMapper
                .ConstructUsing(c => new UpdateCourseCommand(c.Id, c.Name,c.Code,c.Credits,c.PassMark,c.MajorId,c.GradeId,c.MarkingTypeId,c.PracticalWeeklyHours,c.TheoreticalWeeklyHours));
             CreateMap<CourseViewModel, DeleteCourseCommand>()
                .ConstructUsing(c => new DeleteCourseCommand(c.Id));
-
+            //---------------------------------------------------
+            CreateMap<DistrictViewModel, CreateDistrictCommand>()
+                .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new CreateDistrictCommand(c.Name));
+            CreateMap<DistrictViewModel, UpdateDistrictCommand>()
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new UpdateDistrictCommand(c.Id, c.Name));
+            CreateMap<DistrictViewModel, DeleteDistrictCommand>()
+                .ConstructUsing(c => new DeleteDistrictCommand(c.Id));
+            //---------------------------------------------------
             CreateMap<EnrollmentViewModel, CreateEnrollmentCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -76,7 +87,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateEnrollmentCommand(c.Id, c.Capacity));
             CreateMap<EnrollmentViewModel, DeleteEnrollmentCommand>()
                 .ConstructUsing(c => new DeleteEnrollmentCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<FeatureViewModel, CreateFeatureCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -86,7 +97,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateFeatureCommand(c.Id, c.Name));
             CreateMap<FeatureViewModel, DeleteFeatureCommand>()
                 .ConstructUsing(c => new DeleteFeatureCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<GenderViewModel, CreateGenderCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -96,7 +107,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateGenderCommand(c.Id, c.Name));
             CreateMap<GenderViewModel, DeleteGenderCommand>()
                 .ConstructUsing(c => new DeleteGenderCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<GradeViewModel, CreateGradeCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -106,7 +117,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateGradeCommand(c.Id, c.Name));
             CreateMap<GradeViewModel, DeleteGradeCommand>()
                 .ConstructUsing(c => new DeleteGradeCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<GroupViewModel, CreateGroupCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -116,7 +127,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateGroupCommand(c.Id, c.Name));
             CreateMap<GroupViewModel, DeleteGroupCommand>()
                 .ConstructUsing(c => new DeleteGroupCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<StaffViewModel, CreateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -126,7 +137,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));
             CreateMap<StaffViewModel, DeleteStaffCommand>()
                 .ConstructUsing(c => new DeleteStaffCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<MajorViewModel, CreateMajorCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -136,7 +147,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateMajorCommand(c.Id, c.Name, c.ComputerCode, c.RequiredCredit, c.OptionalElectiveCredit, c.GraduationCredits,c.GroupId));
             CreateMap<MajorViewModel, DeleteMajorCommand>()
                 .ConstructUsing(c => new DeleteMajorCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<MarkingTypeViewModel, CreateMarkingTypeCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -146,7 +157,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateMarkingTypeCommand(c.Id, c.Name));
             CreateMap<MarkingTypeViewModel, DeleteMarkingTypeCommand>()
                 .ConstructUsing(c => new DeleteMarkingTypeCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<OUTypeViewModel, CreateOUTypeCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -156,7 +167,7 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateOUTypeCommand(c.Id, c.Name));
             CreateMap<OUTypeViewModel, DeleteOUTypeCommand>()
                 .ConstructUsing(c => new DeleteOUTypeCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<JobTitleViewModel, CreateJobTitleCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -166,17 +177,17 @@ namespace FKRM.Application.AutoMapper
                .ConstructUsing(c => new UpdateJobTitleCommand(c.Id, c.Title));
             CreateMap<JobTitleViewModel, DeleteJobTitleCommand>()
                .ConstructUsing(c => new DeleteJobTitleCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<SchoolViewModel, CreateSchoolCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateSchoolCommand(c.Name, c.Code, c.GenderId, c.FeatureId, c.UnitTypeId, c.OUTypeId));
+                .ConstructUsing(c => new CreateSchoolCommand(c.Name, c.Code, c.GenderId, c.FeatureId, c.UnitTypeId, c.OUTypeId,c.DistrictId));
             CreateMap<SchoolViewModel, UpdateSchoolCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ConstructUsing(c => new UpdateSchoolCommand(c.Id, c.Name,c.Code,c.GenderId,c.FeatureId,c.UnitTypeId,c.OUTypeId));
             CreateMap<SchoolViewModel, DeleteSchoolCommand>()
                 .ConstructUsing(c => new DeleteSchoolCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<UnitTypeViewModel, CreateUnitTypeCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
@@ -186,7 +197,7 @@ namespace FKRM.Application.AutoMapper
                .ConstructUsing(c => new UpdateUnitTypeCommand(c.Id, c.Name));
             CreateMap<UnitTypeViewModel, DeleteUnitTypeCommand>()
                .ConstructUsing(c => new DeleteUnitTypeCommand(c.Id));
-
+            //---------------------------------------------------
             CreateMap<WorkedForViewModel, CreateWorkedForCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now));

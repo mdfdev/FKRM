@@ -15,8 +15,16 @@ namespace FKRM.Mvc.Controllers
         private readonly IFeatureService _featureService;
         private readonly IOUTypeService _oUTypeService;
         private readonly IUnitTypeService _unitTypeService;
-        public SchoolController(ISchoolService schoolService,IUnitTypeService unitTypeService,IOUTypeService oUTypeService,IFeatureService featureService,IGenderService genderService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IDistrictService _districtService;
+        public SchoolController(ISchoolService schoolService,
+            IDistrictService districtService,
+            IUnitTypeService unitTypeService,
+            IOUTypeService oUTypeService,
+            IFeatureService featureService,
+            IGenderService genderService,
+            IToastNotification toastNotification) : base(toastNotification)
         {
+            _districtService = districtService;
             _unitTypeService = unitTypeService;
             _schoolService = schoolService;
             _genderService = genderService;
@@ -44,7 +52,8 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.OUTypes = new SelectList(oUTypeViewModels, "Id", "Name", null, null);
                 var unitTypeViewModels = _unitTypeService.GetAll();
                 schoolViewModel.UnitTypes = new SelectList(unitTypeViewModels, "Id", "Name", null, null);
-
+                var districtViewModels = _districtService.GetAll();
+                schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
             else
@@ -58,6 +67,8 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.OUTypes = new SelectList(oUTypeViewModels, "Id", "Name", null, null);
                 var unitTypeViewModels = _unitTypeService.GetAll();
                 schoolViewModel.UnitTypes = new SelectList(unitTypeViewModels, "Id", "Name", null, null);
+                var districtViewModels = _districtService.GetAll();
+                schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
         }

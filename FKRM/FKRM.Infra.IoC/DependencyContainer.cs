@@ -31,6 +31,7 @@ using FKRM.Application.ViewModels;
 using FKRM.Application.Queries.Staff;
 using FKRM.Application.QueryHandlers;
 using FKRM.Application.Queries.Major;
+using FKRM.Application.Commands.District;
 
 namespace FKRM.Infra.IoC
 {
@@ -62,6 +63,10 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateCourseCommand, Response<int>>, CourseCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCourseCommand, Response<int>>, CourseCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteCourseCommand, Response<int>>, CourseCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateDistrictCommand, Response<int>>, DistrictCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateDistrictCommand, Response<int>>, DistrictCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteDistrictCommand, Response<int>>, DistrictCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateEnrollmentCommand, Response<int>>, EnrollmentCommandHandler>();
@@ -125,6 +130,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<IBranchService, BranchService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IDistrictService, DistrictService>();
             services.AddScoped<IEnrollmentService, EnrollmentService>();
             services.AddScoped<IFeatureService, FeatureService>();
             services.AddScoped<IGenderService, GenderService>();
@@ -144,6 +150,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<IBranchRepository, BranchRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
             services.AddScoped<IFeatureRepository, FeatureRepository>();
             services.AddScoped<IGenderRepository, GenderRepository>();

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FKRM.Infra.Data.Migrations
 {
     [DbContext(typeof(SchoolDBContext))]
-    [Migration("20210317100235_991227")]
-    partial class _991227
+    [Migration("20210429072657_14000209")]
+    partial class _14000209
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,13 +156,34 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
+            modelBuilder.Entity("FKRM.Domain.Entities.District", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AcademicCalendarId")
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Districts");
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedDate")
@@ -171,7 +192,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("CourseId")
+                    b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DayOfTheWeek")
@@ -186,24 +207,17 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("RoomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("StaffId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("StartTime")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<Guid>("WorkedForId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("AcademicCalendarId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("RoomId");
-
-                    b.HasIndex("StaffId");
+                    b.HasIndex("WorkedForId");
 
                     b.ToTable("Enrollments");
                 });
@@ -425,35 +439,6 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("OUTypes");
                 });
 
-            modelBuilder.Entity("FKRM.Domain.Entities.Room", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IPAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SchoolId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SchoolId");
-
-                    b.ToTable("Rooms");
-                });
-
             modelBuilder.Entity("FKRM.Domain.Entities.School", b =>
                 {
                     b.Property<Guid>("Id")
@@ -465,6 +450,9 @@ namespace FKRM.Infra.Data.Migrations
 
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("DistrictId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("FeatureId")
                         .HasColumnType("uniqueidentifier");
@@ -488,6 +476,8 @@ namespace FKRM.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DistrictId");
 
                     b.HasIndex("FeatureId");
 
@@ -588,6 +578,41 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("UnitTypes");
                 });
 
+            modelBuilder.Entity("FKRM.Domain.Entities.WorkedFor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AcademicCalendarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("SchoolId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StaffId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcademicCalendarId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("WorkedFors");
+                });
+
             modelBuilder.Entity("FKRM.Domain.Entities.Area", b =>
                 {
                     b.HasOne("FKRM.Domain.Entities.Branch", "Branch")
@@ -620,21 +645,17 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
                 {
-                    b.HasOne("FKRM.Domain.Entities.AcademicCalendar", "AcademicCalendar")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("AcademicCalendarId");
-
                     b.HasOne("FKRM.Domain.Entities.Course", "Course")
                         .WithMany("Enrollments")
-                        .HasForeignKey("CourseId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("FKRM.Domain.Entities.Room", "Room")
+                    b.HasOne("FKRM.Domain.Entities.WorkedFor", "WorkedFor")
                         .WithMany("Enrollments")
-                        .HasForeignKey("RoomId");
-
-                    b.HasOne("FKRM.Domain.Entities.Staff", "Staff")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("StaffId");
+                        .HasForeignKey("WorkedForId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.Group", b =>
@@ -655,17 +676,14 @@ namespace FKRM.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FKRM.Domain.Entities.Room", b =>
-                {
-                    b.HasOne("FKRM.Domain.Entities.School", "School")
-                        .WithMany("Rooms")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FKRM.Domain.Entities.School", b =>
                 {
+                    b.HasOne("FKRM.Domain.Entities.District", "District")
+                        .WithMany("Schools")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FKRM.Domain.Entities.Feature", "Feature")
                         .WithMany("Schools")
                         .HasForeignKey("FeatureId")
@@ -696,6 +714,27 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.JobTitle", "JobTitle")
                         .WithMany("Staffs")
                         .HasForeignKey("JobTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.WorkedFor", b =>
+                {
+                    b.HasOne("FKRM.Domain.Entities.AcademicCalendar", "AcademicCalendar")
+                        .WithMany("WorkedFors")
+                        .HasForeignKey("AcademicCalendarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FKRM.Domain.Entities.School", "School")
+                        .WithMany("WorkedFors")
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FKRM.Domain.Entities.Staff", "Staff")
+                        .WithMany("WorkedFors")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

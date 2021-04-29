@@ -28,6 +28,10 @@ namespace FKRM.Domain.Entities
         public Guid OUTypeId { get; set; }
         public UnitType UnitType { get; set; }
         public Guid UnitTypeId { get; set; }
+
+        public Guid DistrictId { get; set; }
+        public District District { get; set; }
+
         public ICollection<WorkedFor> WorkedFors { get; set; }
 
     }

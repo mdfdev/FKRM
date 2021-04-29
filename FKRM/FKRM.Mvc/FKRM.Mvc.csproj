@@ -29,6 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\District\Index.cshtml" />
+    <None Include="Views\District\_CreateOrEdit.cshtml" />
+    <None Include="Views\District\_ViewAll.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\AcademicCalendar\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

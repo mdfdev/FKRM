@@ -11,7 +11,8 @@
 {
     <script>
         $(document).ready(function () {
-            var myChart = window.echarts.init(document.getElementById('echart-doughnut'));
+            var myChartpie = window.echarts.init(document.getElementById('echart-pie-majors'));
+            var myCharttreemap = window.echarts.init(document.getElementById('echart-treemap-majors'));
             try {
                 $.ajax({
                     type: 'GET',
@@ -20,7 +21,7 @@
                     processData: false,
                     success: function (res) {
                         if (res != null) {
-                            option = {
+                            option1 = {
                                 title: {
                                     text: 'سهم رشته ها',
                                     subtext: 'بر اساس شاخه',
@@ -77,7 +78,40 @@
                                 ]
                             };
 
-                            myChart.setOption(option);
+                            myChartpie.setOption(option1);
+
+                            option2 = {
+                                title: {
+                                    text: 'سهم رشته ها',
+                                    subtext: 'بر اساس شاخه',
+                                    left: 'center'
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b} : {c}'
+                                },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        mark: { show: true },
+                                        restore: { show: true },
+                                        saveAsImage: { show: true }
+                                    }
+                                },
+                                series: [{
+                                    name: 'سهم رشته ها',
+                                    type: 'treemap',
+                                    label: {
+                                        show: true,
+                                        formatter: '{b}'
+                                    },
+                                    itemStyle: {
+                                        borderColor: '#fff'
+                                    },
+                                    data: res.sort(function (a, b) { return a.value - b.value; })
+                                }]
+                            };
+                            myCharttreemap.setOption(option2);
                         }
 
                     },

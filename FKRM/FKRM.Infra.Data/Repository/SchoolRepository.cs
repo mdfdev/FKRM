@@ -16,13 +16,16 @@ namespace FKRM.Infra.Data.Repository
 
         public IQueryable<School> GetAllWithCode()
         {
-            return _schools.Select(p => new School() { Id = p.Id, 
+            return _schools.Select(p => new School()
+            {
+                Id = p.Id,
                 Name = p.Name + " - " + p.Code,
                 Gender = p.Gender,
                 Feature = p.Feature,
-                OUType = p.OUType, 
-                UnitType = p.UnitType, 
-                Code = p.Code 
+                OUType = p.OUType,
+                UnitType = p.UnitType,
+                Code = p.Code,
+                District = p.District
             });
         }
     }

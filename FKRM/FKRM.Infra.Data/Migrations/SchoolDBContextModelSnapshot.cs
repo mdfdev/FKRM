@@ -154,6 +154,30 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("FKRM.Domain.Entities.District", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Districts");
+                });
+
             modelBuilder.Entity("FKRM.Domain.Entities.Enrollment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -425,6 +449,9 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("DistrictId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("FeatureId")
                         .HasColumnType("uniqueidentifier");
 
@@ -447,6 +474,8 @@ namespace FKRM.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DistrictId");
 
                     b.HasIndex("FeatureId");
 
@@ -647,6 +676,12 @@ namespace FKRM.Infra.Data.Migrations
 
             modelBuilder.Entity("FKRM.Domain.Entities.School", b =>
                 {
+                    b.HasOne("FKRM.Domain.Entities.District", "District")
+                        .WithMany("Schools")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FKRM.Domain.Entities.Feature", "Feature")
                         .WithMany("Schools")
                         .HasForeignKey("FeatureId")

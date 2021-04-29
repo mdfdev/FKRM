@@ -21,7 +21,7 @@
         <div class="card-body position-relative">
             <h6>رشته ها</h6>
             <div class="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-info" data-countup='{"count":@ViewBag.Majors,"format":"comma","prefix":""}'>0</div>
-            <a class="font-weight-semi-bold fs--1 text-nowrap" asp-action="index" asp-controller="grade">نمایش<span class="fas fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+            <a class="font-weight-semi-bold fs--1 text-nowrap" asp-action="index" asp-controller="major">نمایش<span class="fas fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
-                        <div id="echart-doughnut" style="height: 362px; width: 362px;" data-echart-responsive="true"></div>
+                        <div id="echart-pie-majors" style="height: 362px; width: 362px;" data-echart-responsive="true"></div>
                     </div>
                 </div>
             </div>
@@ -43,12 +43,12 @@
     </div>
     <div class="card mb-3">
         <div class="card-header">
-            <h5 class="mb-0">Bar Chart</h5>
+            <h5 class="mb-0">سهم رشته ها</h5>
         </div>
         <div class="card-body bg-light">
             <div class="row">
                 <div class="col-12">
-                    <div class="echart-bar-top-products" style="height: 300px;" data-echart-responsive="true"></div>
+                    <div id="echart-treemap-majors" style="height: 300px;" data-echart-responsive="true"></div>
                 </div>
             </div>
         </div>

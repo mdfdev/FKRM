@@ -10,6 +10,7 @@ namespace FKRM.Infra.Data.Context
         public DbSet<Area> Areas { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<District> Districts { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Gender> Genders { get; set; }
@@ -46,6 +47,7 @@ namespace FKRM.Infra.Data.Context
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AreaConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BranchConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CourseConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DistrictConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EnrollmentConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeatureConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(GenderConfiguration).Assembly);
