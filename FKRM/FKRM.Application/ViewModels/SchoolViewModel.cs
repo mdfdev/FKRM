@@ -23,17 +23,20 @@ namespace FKRM.Application.ViewModels
         public string Feature { get; set; }
         [DisplayName("نوع اداره")]
         public string UnitType { get; set; }
+        [DisplayName("مدرسه اصلی")]
+        public string ParentSchool { get; set; }
         public Guid GenderId { get; set; }
         public Guid UnitTypeId { get; set; }
         public Guid FeatureId { get; set; }
         public Guid OUTypeId { get; set; }
         public Guid DistrictId { get; set; }
+        public Guid ParentSchoolId { get; set; }
         public SelectList Genders { get; set; }
         public SelectList OUTypes { get; set; }
         public SelectList Features { get; set; }
         public SelectList UnitTypes { get; set; }
         public SelectList Districts { get; set; }
-
+        public SelectList ParentSchools { get; set; }
 
     }
 }

@@ -181,10 +181,10 @@ namespace FKRM.Application.AutoMapper
             CreateMap<SchoolViewModel, CreateSchoolCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateSchoolCommand(c.Name, c.Code, c.GenderId, c.FeatureId, c.UnitTypeId, c.OUTypeId,c.DistrictId));
+                .ConstructUsing(c => new CreateSchoolCommand(c.Name, c.Code, c.GenderId, c.FeatureId, c.UnitTypeId, c.OUTypeId,c.DistrictId,c.ParentSchoolId));
             CreateMap<SchoolViewModel, UpdateSchoolCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateSchoolCommand(c.Id, c.Name,c.Code,c.GenderId,c.FeatureId,c.UnitTypeId,c.OUTypeId));
+                .ConstructUsing(c => new UpdateSchoolCommand(c.Id, c.Name,c.Code,c.GenderId,c.FeatureId,c.UnitTypeId,c.OUTypeId,c.DistrictId, c.ParentSchoolId));
             CreateMap<SchoolViewModel, DeleteSchoolCommand>()
                 .ConstructUsing(c => new DeleteSchoolCommand(c.Id));
             //---------------------------------------------------

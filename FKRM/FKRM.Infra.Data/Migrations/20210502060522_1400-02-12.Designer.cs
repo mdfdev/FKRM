@@ -4,14 +4,16 @@ using FKRM.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FKRM.Infra.Data.Migrations
 {
     [DbContext(typeof(SchoolDBContext))]
-    partial class SchoolDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210502060522_1400-02-12")]
+    partial class _14000212
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -470,7 +472,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<Guid>("OUTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SubsidiaryId")
+                    b.Property<Guid?>("SubsidiaryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UnitTypeId")
@@ -707,9 +709,7 @@ namespace FKRM.Infra.Data.Migrations
 
                     b.HasOne("FKRM.Domain.Entities.School", "Subsidiary")
                         .WithMany()
-                        .HasForeignKey("SubsidiaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubsidiaryId");
 
                     b.HasOne("FKRM.Domain.Entities.UnitType", "UnitType")
                         .WithMany("Schools")

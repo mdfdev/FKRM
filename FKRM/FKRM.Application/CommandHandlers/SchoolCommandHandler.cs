@@ -34,7 +34,8 @@ namespace FKRM.Application.CommandHandlers
                 FeatureId = request.FeatureId,
                 UnitTypeId = request.UnitTypeId,
                 OUTypeId = request.OUTypeId,
-                DistrictId = request.DistrictId
+                DistrictId = request.DistrictId,
+                SubsidiaryId = request.ParentSchoolId
             };
             _schoolRepository.Add(School);
             return Task.FromResult(new Response<int>(200));
@@ -70,6 +71,7 @@ namespace FKRM.Application.CommandHandlers
                 entity.UnitTypeId = request.UnitTypeId;
                 entity.OUTypeId = request.OUTypeId;
                 entity.DistrictId = request.DistrictId;
+                entity.SubsidiaryId = request.ParentSchoolId;
                 _schoolRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

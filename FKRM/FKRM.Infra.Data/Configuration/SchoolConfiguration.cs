@@ -34,6 +34,10 @@ namespace FKRM.Infra.Data.Configuration
                .WithMany(g => g.Schools)
                .HasForeignKey(s => s.UnitTypeId)
                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasOne(x => x.Subsidiary)
+                .WithMany();
         }
     }
 }

@@ -54,6 +54,8 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.UnitTypes = new SelectList(unitTypeViewModels, "Id", "Name", null, null);
                 var districtViewModels = _districtService.GetAll();
                 schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
+                var schoolViewModels = _schoolService.GetAllWithCode();
+                schoolViewModel.ParentSchools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
             else
@@ -69,6 +71,8 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.UnitTypes = new SelectList(unitTypeViewModels, "Id", "Name", null, null);
                 var districtViewModels = _districtService.GetAll();
                 schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
+                var schoolViewModels = _schoolService.GetAllWithCode();
+                schoolViewModel.ParentSchools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
         }
