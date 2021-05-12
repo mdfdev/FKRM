@@ -24,8 +24,9 @@ namespace FKRM.Domain.Entities
         public string Image { get; set; }
         public JobTitle JobTitle { get; set; }
         public Guid JobTitleId { get; set; }
-        [JsonIgnore]
+     
         public ICollection<WorkedFor> WorkedFors { get; set; }
+        public ICollection<StaffEducationalBackground> StaffEducationalBackgrounds { get; set; }
 
     }
 }

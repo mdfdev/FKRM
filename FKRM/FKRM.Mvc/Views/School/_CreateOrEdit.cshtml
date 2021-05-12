@@ -1,5 +1,5 @@
 ﻿@model FKRM.Application.ViewModels.SchoolViewModel
-<form id="create-form" method="post" asp-controller="School" asp-action="OnPostCreateOrEdit" 
+<form id="create-form" method="post" asp-controller="School" asp-action="OnPostCreateOrEdit"
       asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
@@ -68,15 +68,24 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <div class="custom-control custom-switch">
+                        <input class="custom-control-input" asp-for="HasParentSchool" id="HasParentSchool" type="checkbox">
+                        <label class="custom-control-label" for="HasParentSchool">هنرستان وابسته</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+
                 <label class="col-md-4 col-form-label">مدرسه اصلی</label>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="input-group">
-                        <select name="ParentSchoolId" class="custom-select custom-select-sm mb-3" id="DistrictId" asp-for="ParentSchoolId" asp-items="@Model.ParentSchools">
+                        <select name="ParentSchoolId" disabled class="form-control selectpicker mb-3" id="ParentSchoolId" asp-for="ParentSchoolId" asp-items="@Model.ParentSchools">
                         </select>
                     </div>
                     <span asp-validation-for="ParentSchoolId" class="text-danger"></span>
                 </div>
-                <label class="col-md-2">در صورت وابسته بودن، هنرستان مورد نظر را انتخاب نمایید</label>
             </div>
         </div>
     </div>
@@ -86,8 +95,17 @@
     </div>
 </form>
 <script type="text/javascript" language=javascript>
-    $.validator.unobtrusive.parse(document);
     $(document).ready(function () {
+        $('#HasParentSchool').change(function () {
+            if ($(this).prop('checked')) {
+                $("#ParentSchoolId").prop("disabled", false);
+            } else {
+                $("#ParentSchoolId").prop("disabled", true);
+            }
+        })
+
+
+
         $("#DistrictId").select({
             placeholder: "انتخاب منطقه...",
             theme: "bootstrap4",

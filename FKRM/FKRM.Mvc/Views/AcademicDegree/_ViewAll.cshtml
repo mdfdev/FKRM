@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FKRM.Application.ViewModels.AcademicDegreeViewModel>
+
+<table id="academicDegreeTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+    <thead class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var academicDegree in Model)
+        {
+        <tr>
+            <td>
+                @academicDegree.Name
+            </td>
+            <td>
+                @academicDegree.AddedDate
+            </td>
+            <td>
+                @academicDegree.ModifiedDate
+            </td>
+            <td class="align-middle white-space-nowrap">
+                <div class="dropdown text-sans-serif">
+                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
+                            data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-ellipsis-h fs--1"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                        <div class="bg-white py-2">
+                            <a onclick="jQueryModalGet('/academicdegree/OnGetCreateOrEdit?id=@academicDegree.Id','ویرایش اطلاعات مقطع تحصیلی')"
+                               class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
+                            <div class="dropdown-divider"></div>
+                            <form id="form_delete_@academicDegree.Id" asp-controller="AcademicDegree" method="post"
+                                  asp-action="OnPostDelete" asp-route-id="@academicDegree.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@academicDegree.Id').submit();" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i>  حذف</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#academicDegreeTable").DataTable({
+            "order": [[0, "asc"]],
+            columnDefs: [
+                {
+                    "targets": [1, 2],
+                    "visible": false
+                }
+            ],
+        } );
+    });
+</script>

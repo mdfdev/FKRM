@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FKRM.Infra.Data.Migrations
 {
-    public partial class _14000209 : Migration
+    public partial class _14000222 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,36 @@ namespace FKRM.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AcademicCalendars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AcademicDegrees",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    AddedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
+                    IPAddress = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AcademicDegrees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AcademicMajors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    AddedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
+                    IPAddress = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AcademicMajors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,7 +207,7 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.BranchId,
                         principalTable: "Branches",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,7 +240,7 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.JobTitleId,
                         principalTable: "JobTitles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,11 +257,19 @@ namespace FKRM.Infra.Data.Migrations
                     FeatureId = table.Column<Guid>(nullable: false),
                     OUTypeId = table.Column<Guid>(nullable: false),
                     UnitTypeId = table.Column<Guid>(nullable: false),
-                    DistrictId = table.Column<Guid>(nullable: false)
+                    DistrictId = table.Column<Guid>(nullable: false),
+                    SubsidiaryId = table.Column<Guid>(nullable: true),
+                    BranchId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Schools", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schools_Branches_BranchId",
+                        column: x => x.BranchId,
+                        principalTable: "Branches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Schools_Districts_DistrictId",
                         column: x => x.DistrictId,
@@ -243,25 +281,31 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.FeatureId,
                         principalTable: "Features",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Schools_Genders_GenderId",
                         column: x => x.GenderId,
                         principalTable: "Genders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Schools_OUTypes_OUTypeId",
                         column: x => x.OUTypeId,
                         principalTable: "OUTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Schools_Schools_SubsidiaryId",
+                        column: x => x.SubsidiaryId,
+                        principalTable: "Schools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Schools_UnitTypes_UnitTypeId",
                         column: x => x.UnitTypeId,
                         principalTable: "UnitTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -282,6 +326,41 @@ namespace FKRM.Infra.Data.Migrations
                         name: "FK_Groups_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StaffEducationalBackgrounds",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    AddedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
+                    IPAddress = table.Column<string>(nullable: true),
+                    AcademicDegreeId = table.Column<Guid>(nullable: false),
+                    AcademicMajorId = table.Column<Guid>(nullable: false),
+                    StaffId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StaffEducationalBackgrounds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StaffEducationalBackgrounds_AcademicDegrees_AcademicDegreeId",
+                        column: x => x.AcademicDegreeId,
+                        principalTable: "AcademicDegrees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StaffEducationalBackgrounds_AcademicMajors_AcademicMajorId",
+                        column: x => x.AcademicMajorId,
+                        principalTable: "AcademicMajors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StaffEducationalBackgrounds_Staffs_StaffId",
+                        column: x => x.StaffId,
+                        principalTable: "Staffs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -344,7 +423,7 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.GroupId,
                         principalTable: "Groups",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -373,19 +452,19 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.GradeId,
                         principalTable: "Grades",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Courses_Majors_MajorId",
                         column: x => x.MajorId,
                         principalTable: "Majors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Courses_MarkingTypes_MarkingTypeId",
                         column: x => x.MarkingTypeId,
                         principalTable: "MarkingTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -411,13 +490,13 @@ namespace FKRM.Infra.Data.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Enrollments_WorkedFors_WorkedForId",
                         column: x => x.WorkedForId,
                         principalTable: "WorkedFors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -461,6 +540,11 @@ namespace FKRM.Infra.Data.Migrations
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schools_BranchId",
+                table: "Schools",
+                column: "BranchId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schools_DistrictId",
                 table: "Schools",
                 column: "DistrictId");
@@ -481,9 +565,29 @@ namespace FKRM.Infra.Data.Migrations
                 column: "OUTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schools_SubsidiaryId",
+                table: "Schools",
+                column: "SubsidiaryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schools_UnitTypeId",
                 table: "Schools",
                 column: "UnitTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StaffEducationalBackgrounds_AcademicDegreeId",
+                table: "StaffEducationalBackgrounds",
+                column: "AcademicDegreeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StaffEducationalBackgrounds_AcademicMajorId",
+                table: "StaffEducationalBackgrounds",
+                column: "AcademicMajorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StaffEducationalBackgrounds_StaffId",
+                table: "StaffEducationalBackgrounds",
+                column: "StaffId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Staffs_JobTitleId",
@@ -512,10 +616,19 @@ namespace FKRM.Infra.Data.Migrations
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
+                name: "StaffEducationalBackgrounds");
+
+            migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "WorkedFors");
+
+            migrationBuilder.DropTable(
+                name: "AcademicDegrees");
+
+            migrationBuilder.DropTable(
+                name: "AcademicMajors");
 
             migrationBuilder.DropTable(
                 name: "Grades");

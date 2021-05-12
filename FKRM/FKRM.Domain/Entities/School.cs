@@ -33,8 +33,11 @@ namespace FKRM.Domain.Entities
         public District District { get; set; }
 
         public School Subsidiary { get; set; }
-        public Guid SubsidiaryId { get; set; }
+        public Guid? SubsidiaryId { get; set; }
         public ICollection<WorkedFor> WorkedFors { get; set; }
+
+        public Guid BranchId { get; set; }
+        public Branch Branch { get; set; }
 
     }
 }

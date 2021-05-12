@@ -15,29 +15,36 @@ namespace FKRM.Infra.Data.Configuration
                .HasOne(s => s.Gender)
                .WithMany(g => g.Schools)
                .HasForeignKey(s => s.GenderId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .HasOne(s => s.Feature)
                .WithMany(g => g.Schools)
                .HasForeignKey(s => s.FeatureId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .HasOne(s => s.OUType)
                .WithMany(g => g.Schools)
                .HasForeignKey(s => s.OUTypeId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .HasOne(s => s.UnitType)
                .WithMany(g => g.Schools)
                .HasForeignKey(s => s.UnitTypeId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasOne(x => x.Subsidiary)
-                .WithMany();
+                .WithMany()
+                .HasForeignKey(x=>x.SubsidiaryId);
+
+            builder
+                .HasOne(s => s.Branch)
+                .WithMany(g => g.Schools)
+                .HasForeignKey(s => s.BranchId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

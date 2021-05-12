@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<FKRM.Application.ViewModels.BranchViewModel>
-
-<table id="branchTable" class="table table-sm table-dashboard data-table no-wrap mb-0 fs--1 w-100">
+<table id="branchTable" class="table table-hover table-sm table-striped data-table no-wrap mb-0 fs--1 w-100">
     <thead class="bg-200">
         <tr>
             <th class="sort">
@@ -18,42 +17,55 @@
     <tbody class="bg-white">
         @foreach (var branch in Model)
         {
-        <tr>
-            <td>
-                @branch.Name
-            </td>
-            <td>
-                @branch.AddedDate
-            </td>
-            <td>
-                @branch.ModifiedDate
-            </td>
-            <td class="align-middle white-space-nowrap">
-                <div class="dropdown text-sans-serif">
-                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
-                            data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-ellipsis-h fs--1"></span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
-                        <div class="bg-white py-2">
-                            <a onclick="jQueryModalGet('/branch/OnGetCreateOrEdit?id=@branch.Id','ویرایش اطلاعات شاخه')"
-                               class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
-                            <div class="dropdown-divider"></div>
-                            <form id="form_delete_@branch.Id" asp-controller="Branch" method="post"
-                                  asp-action="OnPostDelete" asp-route-id="@branch.Id" onsubmit="return jQueryModalDelete(this)">
-                                <a href="javascript:$('#form_delete_@branch.Id').submit();" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i>  حذف</a>
-                            </form>
-                        </div>
+            <tr class="hover-actions-trigger hover-shadow">
+                <td>
+                    @branch.Name
+                </td>
+                <td>
+                    @branch.AddedDate
+                </td>
+                <td>
+                    @branch.ModifiedDate
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm hover-actions r-0" role="group">
+
+                        <form id="form_delete_@branch.Id" asp-controller="Branch" method="post"
+                              asp-action="OnPostDelete" asp-route-id="@branch.Id" onsubmit="return jQueryModalDelete(this)">
+                            <a href="javascript:$('#form_delete_@branch.Id').submit();" data-placement="top" class="btn btn-light">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </form>
+
+                        <button class="btn btn-light" onclick="jQueryModalGet('/branch/OnGetCreateOrEdit?id=@branch.Id','ویرایش اطلاعات شاخه')"
+                                type="button" data-placement="top" title="ویرایش">
+                            <span class="fas fa-edit"></span>
+                        </button>
+                        <a class="btn btn-light"  title="Snooze"><span class="fas fa-clock"></span></a>
                     </div>
-                </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
+    <tfoot class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
 <script>
     $(document).ready(function () {
         $("#branchTable").DataTable({
+            responsive: true,
             "order": [[0, "asc"]],
             columnDefs: [
                 {
@@ -61,6 +73,6 @@
                     "visible": false
                 }
             ],
-        } );
+        });
     });
 </script>

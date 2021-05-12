@@ -30,6 +30,7 @@ namespace FKRM.Application.ViewModels
         public Guid FeatureId { get; set; }
         public Guid OUTypeId { get; set; }
         public Guid DistrictId { get; set; }
+        public bool HasParentSchool { get; set; }
         public Guid ParentSchoolId { get; set; }
         public SelectList Genders { get; set; }
         public SelectList OUTypes { get; set; }

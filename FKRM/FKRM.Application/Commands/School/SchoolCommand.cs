@@ -14,5 +14,6 @@ namespace FKRM.Application.Commands.School
         public Guid UnitTypeId { get; protected set; }
         public Guid DistrictId { get; protected set; }
         public Guid ParentSchoolId { get; protected set; }
+        public bool HasParentSchool { get; protected set; }
     }
 }

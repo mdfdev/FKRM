@@ -26,7 +26,10 @@ namespace FKRM.Infra.Data.Configuration
             builder
                 .HasOne(s => s.JobTitle)
                 .WithMany(g => g.Staffs)
-                .HasForeignKey(s => s.JobTitleId);
+                .HasForeignKey(s => s.JobTitleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+           
         }
     }
 }

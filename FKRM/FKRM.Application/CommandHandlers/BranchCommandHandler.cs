@@ -3,6 +3,7 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,20 +34,24 @@ namespace FKRM.Application.CommandHandlers
             _branchRepository.Add(Branch);
             return Task.FromResult(new Response<int>(200));
         }
-
-
-
         public Task<Response<int>> Handle(DeleteBranchCommand request, CancellationToken cancellationToken)
         {
-            var entity = _branchRepository.GetById(request.ID);
-
-            if (entity == null)
+            try
             {
-                throw new ApiException($"گزینه مورد نظر یافت نشد.");
-            }
+                var entity = _branchRepository.GetById(request.ID);
 
-            _branchRepository.Remove(request.ID);
-            return Task.FromResult(new Response<int>(200));
+                if (entity == null)
+                {
+                    throw new ApiException($"گزینه مورد نظر یافت نشد.");
+                }
+
+                _branchRepository.Remove(request.ID);
+                return Task.FromResult(new Response<int>(200));
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(new Response<int>(400, new System.Collections.Generic.List<string>() { $"گزینه مورد نظر حذف نشد." }));
+            }
         }
 
         public Task<Response<int>> Handle(UpdateBranchCommand request, CancellationToken cancellationToken)

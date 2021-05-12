@@ -19,9 +19,9 @@
                         <span class="nav-link-text"> داشبورد</span></div>
                     </a>
                 </li>
-                <li class="nav-item @(new string[]{"Staff"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"active":"")">
+                <li class="nav-item">
                     <a class="nav-link dropdown-indicator" href="#home" data-toggle="collapse" role="button"
-                       aria-expanded="@(new string[]{ "Staff"}.Contains( ViewContext.RouteData.Values["controller"].ToString()))?" true":"false")" aria-controls="home">
+                       aria-expanded="@(new string[]{"AcademicDegree","AcademicMajor", "Staff"}.Contains( ViewContext.RouteData.Values["controller"].ToString()))?" true":"false")" aria-controls="home">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon">
                                 <span class="fas fa-user-friends"></span>
@@ -29,10 +29,10 @@
                             <span class="nav-link-text">پرسنل</span>
                         </div>
                     </a>
-                    <ul class="nav collapse @(new string[]{ "Staff"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="home" data-parent="#navbarVerticalCollapse">
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Staff"?"active":"")">
-                            <a class="nav-link" asp-action="index" asp-controller="staff">اطلاعات</a>
-                        </li>
+                    <ul class="nav collapse @(new string[]{"AcademicDegree","AcademicMajor", "Staff"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="home" data-parent="#navbarVerticalCollapse">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Staff"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="staff">اطلاعات</a></li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="AcademicDegree"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="academicdegree">مقطع تحصیلی دانشگاهی</a></li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="AcademicMajor"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="academicmajor">رشته تحصیلی دانشگاهی</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -47,7 +47,7 @@
                             <span class="nav-link-text">تنظیمات</span>
                         </div>
                     </a>
-                    <ul class="nav collapse @(new string[]{  "Major","Group","Course","District","School","Gender","Feature","OUType","JobTitle",
+                    <ul class="nav collapse @(new string[]{ "Major","Group","Course","District","School","Gender","Feature","OUType","JobTitle",
                                                   "UnitType","MarkingType","AcademicCalendar","Branch","Area","Grade"}.Contains(ViewContext.RouteData.Values["controller"].ToString())?"show":"")" id="pages" data-parent="#navbarVerticalCollapse">
                         <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Course"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="course">درس</a></li>
                         <li class="nav-item">
@@ -61,6 +61,7 @@
                                 <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="Feature"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="feature">ویژگی مدرسه</a></li>
                                 <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="OUType"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="outype">واحد سازمانی</a></li>
                                 <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString()=="UnitType"?"active":"")"><a class="nav-link" asp-action="index" asp-controller="unittype">نوع اداره</a></li>
+                      
                             </ul>
                         </li>
                         <li class="nav-item">

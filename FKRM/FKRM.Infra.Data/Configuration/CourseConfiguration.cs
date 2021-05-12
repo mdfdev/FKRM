@@ -23,19 +23,19 @@ namespace FKRM.Infra.Data.Configuration
                .HasOne(s => s.Major)
                .WithMany(g => g.Courses)
                .HasForeignKey(s => s.MajorId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder
               .HasOne(s => s.MarkingType)
               .WithMany(g => g.Courses)
               .HasForeignKey(s => s.MarkingTypeId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Restrict);
 
             builder
               .HasOne(s => s.Grade)
               .WithMany(g => g.Courses)
               .HasForeignKey(s => s.GradeId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

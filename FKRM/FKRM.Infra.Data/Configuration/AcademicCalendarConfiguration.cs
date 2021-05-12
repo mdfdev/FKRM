@@ -9,15 +9,15 @@ namespace FKRM.Infra.Data.Configuration
         public void Configure(EntityTypeBuilder<AcademicCalendar> builder)
         {
             builder
-              .HasKey(b => b.Id);
+                .HasKey(b => b.Id);
 
             builder
                 .Property(b => b.Id)
                 .ValueGeneratedOnAdd();
 
             builder
-            .Property(b => b.AcademicYear)
-            .IsRequired();
+                .Property(b => b.AcademicYear)
+                .IsRequired();
 
             builder
                 .Property(b => b.AcademicQuarter)

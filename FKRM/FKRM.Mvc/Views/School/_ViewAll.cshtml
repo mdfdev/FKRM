@@ -25,6 +25,9 @@
                 @Html.DisplayNameFor(model => model.OUType)
             </th>
             <th class="sort">
+                @Html.DisplayNameFor(model => model.ParentSchool)
+            </th>
+            <th class="sort">
                 @Html.DisplayNameFor(model => model.AddedDate)
             </th>
             <th class="sort">
@@ -57,6 +60,9 @@
             </th>
             <th>
                 @school.OUType
+            </th>
+            <th>
+                @school.ParentSchool
             </th>
             <td>
                 @school.AddedDate

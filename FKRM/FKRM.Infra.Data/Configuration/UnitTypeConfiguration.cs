@@ -16,9 +16,9 @@ namespace FKRM.Infra.Data.Configuration
                 .ValueGeneratedOnAdd();
 
             builder
-            .Property(b => b.Name)
-            .HasMaxLength(255)
-            .IsRequired();
+                .Property(b => b.Name)
+                .HasMaxLength(255)
+                .IsRequired();
         }
     }
 }

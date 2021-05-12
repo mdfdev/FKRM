@@ -16,19 +16,21 @@ namespace FKRM.Infra.Data.Configuration
                 .ValueGeneratedOnAdd();
 
             builder
-            .Property(b => b.Capacity)
-            .IsRequired();
+                .Property(b => b.Capacity)
+                .IsRequired();
 
 
             builder
               .HasOne(s => s.WorkedFor)
               .WithMany(g => g.Enrollments)
-              .HasForeignKey(s => s.WorkedForId);
+              .HasForeignKey(s => s.WorkedForId)
+              .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasOne(s => s.Course)
                 .WithMany(g => g.Enrollments)
-                .HasForeignKey(s => s.CourseId);
+                .HasForeignKey(s => s.CourseId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

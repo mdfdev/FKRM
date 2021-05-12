@@ -21,17 +21,20 @@ namespace FKRM.Infra.Data.Configuration
             builder
                 .HasOne(s => s.AcademicCalendar)
                 .WithMany(g => g.WorkedFors)
-                .HasForeignKey(s => s.AcademicCalendarId);
+                .HasForeignKey(s => s.AcademicCalendarId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                .HasOne(s => s.Staff)
                .WithMany(g => g.WorkedFors)
-               .HasForeignKey(s => s.StaffId);
+               .HasForeignKey(s => s.StaffId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             builder
                .HasOne(s => s.School)
                .WithMany(g => g.WorkedFors)
-               .HasForeignKey(s => s.SchoolId);
+               .HasForeignKey(s => s.SchoolId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

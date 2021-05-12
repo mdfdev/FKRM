@@ -6,10 +6,9 @@
             <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
                 <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">پرسنل</h5>
             </div>
-
         </div>
     </div>
-    <div class="card-body bg-light px-0">
+    <div class="card-body bg-light px-0 pt-0">
         <div class="row">
             <div class="col-12">
                 <div class="col-6 col-sm-auto ml-auto text-right pl-0">
@@ -29,8 +28,10 @@
                         </select>
                     </div>
                 </div>
-                <div id="viewAll" class="card-body table-responsive">
+                <div class="dashboard-data-table">
+                    <div id="viewAll" class="table-responsive">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,7 +49,7 @@
                 loadData(selected);
             });
             $('#AcademicCalendarID').change(function () {
-                selected =$("#AcademicCalendarID option:selected").val();
+                selected = $("#AcademicCalendarID option:selected").val();
                 loadData(selected);
             });
         });

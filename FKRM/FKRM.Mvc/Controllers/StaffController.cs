@@ -41,6 +41,8 @@ namespace FKRM.Mvc.Controllers
         }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
+            PersianCalendar pc = new PersianCalendar();
+            var pYear = pc.GetYear(DateTime.Today).ToString();
             if (id == Guid.Empty)
             {
                 var staffViewModel = new StaffViewModel();
@@ -48,8 +50,7 @@ namespace FKRM.Mvc.Controllers
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
 
-                PersianCalendar pc = new PersianCalendar();
-                var pYear = pc.GetYear(DateTime.Today).ToString();
+              
                 staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear",_academicCalendarService.GetByYear(pYear).Id , null);
                 staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
                 staffViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
@@ -61,7 +62,7 @@ namespace FKRM.Mvc.Controllers
                 var jobTitleViewModels = _jobTitleService.GetAll();
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
-                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", null, null);
+                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", _academicCalendarService.GetByYear(pYear).Id, null);
                 staffViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });

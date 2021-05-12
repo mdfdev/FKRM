@@ -10,5 +10,7 @@ namespace FKRM.Domain.Entities
     {
         public string Name { get; set; }
         public ICollection<Area> Areas { get; set; }
+
+        public ICollection<School> Schools { get; set; }
     }
 }

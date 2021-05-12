@@ -1,5 +1,5 @@
 ﻿@model FKRM.Application.ViewModels.StaffViewModel
-<form id="create-form" method="post" asp-controller="Staff" asp-action="OnPostCreateOrEdit" 
+<form id="create-form" method="post" asp-controller="Staff" asp-action="OnPostCreateOrEdit"
       asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
@@ -73,6 +73,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card-body bg-light px-0">
+                <div class="row">
+                    <table class="table table-sm  data-table no-wrap ">
+                        <thead class="bg-200">
+                            <tr><th class="sort">مدرک تحصیلی</th><th class="sort">رشته تحصیلی</th></tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr><td>کارشناسی</td><td>کامپیوتر</td></tr>
+                            <tr><td>دکترا</td><td>نرم افزار</td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-success">ذخیره</button>
@@ -113,7 +129,7 @@
                             $("#Mobile").val('');
                             $("#Phone").val('');
                         }
-                        
+
                     },
                     error: function (err) {
                         console.log(err)

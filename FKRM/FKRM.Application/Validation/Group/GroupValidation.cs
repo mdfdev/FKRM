@@ -10,7 +10,7 @@ namespace FKRM.Application.Validation.Group
         {
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("نام الزامی می باشد")
-                .Length(3, 20).WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
+                .Length(3, 40).WithMessage("طول نام باید بین 3~40 کاراکتر باشد");
         }
         protected void ValidateId()
         {

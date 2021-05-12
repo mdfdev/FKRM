@@ -47,6 +47,52 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("AcademicCalendars");
                 });
 
+            modelBuilder.Entity("FKRM.Domain.Entities.AcademicDegree", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AcademicDegrees");
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.AcademicMajor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AcademicMajors");
+                });
+
             modelBuilder.Entity("FKRM.Domain.Entities.Area", b =>
                 {
                     b.Property<Guid>("Id")
@@ -446,6 +492,9 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
@@ -470,13 +519,15 @@ namespace FKRM.Infra.Data.Migrations
                     b.Property<Guid>("OUTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SubsidiaryId")
+                    b.Property<Guid?>("SubsidiaryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UnitTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
 
                     b.HasIndex("DistrictId");
 
@@ -556,6 +607,41 @@ namespace FKRM.Infra.Data.Migrations
                     b.ToTable("Staffs");
                 });
 
+            modelBuilder.Entity("FKRM.Domain.Entities.StaffEducationalBackground", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AcademicDegreeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AcademicMajorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("StaffId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcademicDegreeId");
+
+                    b.HasIndex("AcademicMajorId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("StaffEducationalBackgrounds");
+                });
+
             modelBuilder.Entity("FKRM.Domain.Entities.UnitType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -621,7 +707,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Branch", "Branch")
                         .WithMany("Areas")
                         .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -630,19 +716,19 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Grade", "Grade")
                         .WithMany("Courses")
                         .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.Major", "Major")
                         .WithMany("Courses")
                         .HasForeignKey("MajorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.MarkingType", "MarkingType")
                         .WithMany("Courses")
                         .HasForeignKey("MarkingTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -651,13 +737,13 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.WorkedFor", "WorkedFor")
                         .WithMany("Enrollments")
                         .HasForeignKey("WorkedForId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -666,7 +752,7 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Area", "Area")
                         .WithMany("Groups")
                         .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -675,12 +761,18 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Group", "Group")
                         .WithMany("Majors")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.School", b =>
                 {
+                    b.HasOne("FKRM.Domain.Entities.Branch", "Branch")
+                        .WithMany("Schools")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("FKRM.Domain.Entities.District", "District")
                         .WithMany("Schools")
                         .HasForeignKey("DistrictId")
@@ -690,31 +782,29 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Feature", "Feature")
                         .WithMany("Schools")
                         .HasForeignKey("FeatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.Gender", "Gender")
                         .WithMany("Schools")
                         .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.OUType", "OUType")
                         .WithMany("Schools")
                         .HasForeignKey("OUTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FKRM.Domain.Entities.School", "Subsidiary")
                         .WithMany()
-                        .HasForeignKey("SubsidiaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubsidiaryId");
 
                     b.HasOne("FKRM.Domain.Entities.UnitType", "UnitType")
                         .WithMany("Schools")
                         .HasForeignKey("UnitTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -723,6 +813,27 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.JobTitle", "JobTitle")
                         .WithMany("Staffs")
                         .HasForeignKey("JobTitleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.StaffEducationalBackground", b =>
+                {
+                    b.HasOne("FKRM.Domain.Entities.AcademicDegree", "AcademicDegree")
+                        .WithMany("staffEducationalBackgrounds")
+                        .HasForeignKey("AcademicDegreeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FKRM.Domain.Entities.AcademicMajor", "AcademicMajor")
+                        .WithMany("staffEducationalBackgrounds")
+                        .HasForeignKey("AcademicMajorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FKRM.Domain.Entities.Staff", "Staff")
+                        .WithMany("StaffEducationalBackgrounds")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

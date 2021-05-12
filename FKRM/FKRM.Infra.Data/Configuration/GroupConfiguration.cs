@@ -16,14 +16,14 @@ namespace FKRM.Infra.Data.Configuration
                 .ValueGeneratedOnAdd();
 
             builder
-            .Property(b => b.Name)
-            .IsRequired();
+                .Property(b => b.Name)
+                .IsRequired();
 
             builder
                 .HasOne(s => s.Area)
                 .WithMany(g => g.Groups)
                 .HasForeignKey(s => s.AreaId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

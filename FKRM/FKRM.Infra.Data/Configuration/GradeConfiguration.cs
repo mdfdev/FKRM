@@ -16,8 +16,8 @@ namespace FKRM.Infra.Data.Configuration
                 .ValueGeneratedOnAdd();
 
             builder
-            .Property(b => b.Name)
-            .IsRequired();
+                .Property(b => b.Name)
+                .IsRequired();
         }
     }
 }

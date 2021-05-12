@@ -25,7 +25,8 @@ namespace FKRM.Infra.Data.Repository
                 OUType = p.OUType,
                 UnitType = p.UnitType,
                 Code = p.Code,
-                District = p.District
+                District = p.District,
+                Subsidiary = p.Subsidiary
             });
         }
     }

@@ -32,6 +32,8 @@ using FKRM.Application.Queries.Staff;
 using FKRM.Application.QueryHandlers;
 using FKRM.Application.Queries.Major;
 using FKRM.Application.Commands.District;
+using FKRM.Application.Commands.AcademicDegree;
+using FKRM.Application.Commands.AcademicMajor;
 
 namespace FKRM.Infra.IoC
 {
@@ -48,6 +50,14 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<CreateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateAcademicDegreeCommand, Response<int>>, AcademicDegreeCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateAcademicDegreeCommand, Response<int>>, AcademicDegreeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteAcademicDegreeCommand, Response<int>>, AcademicDegreeCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateAcademicMajorCommand, Response<int>>, AcademicMajorCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateAcademicMajorCommand, Response<int>>, AcademicMajorCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteAcademicMajorCommand, Response<int>>, AcademicMajorCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateAreaCommand, Response<int>>, AreaCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateAreaCommand, Response<int>>, AreaCommandHandler>();
@@ -127,6 +137,8 @@ namespace FKRM.Infra.IoC
 
             //Application Layer
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();
+            services.AddScoped<IAcademicDegreeService, AcademicDegreeService>();
+            services.AddScoped<IAcademicMajorService, AcademicMajorService>();
             services.AddScoped<IAreaService, AreaService>();
             services.AddScoped<IBranchService, BranchService>();
             services.AddScoped<ICourseService, CourseService>();
@@ -147,6 +159,8 @@ namespace FKRM.Infra.IoC
 
             //Infra.Data.Layer
             services.AddScoped<IAcademicCalendarRepository, AcademicCalendarRepository>();
+            services.AddScoped<IAcademicDegreeRepository, AcademicDegreeRepository>();
+            services.AddScoped<IAcademicMajorRepository, AcademicMajorRepository>();
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<IBranchRepository, BranchRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
@@ -162,6 +176,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IJobTitleRepository, JobTitleRepository>();
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IStaffRepository, StaffRepository>();
+            services.AddScoped<IStaffEducationalBackgroundRepository,StaffEducationalBackgroundRepository>();
             services.AddScoped<IUnitTypeRepository, UnitTypeRepository>();
             services.AddScoped<IWorkedForRepository,WorkedForRepository>();
             services.AddScoped<SchoolDBContext>();
