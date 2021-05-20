@@ -34,7 +34,8 @@ namespace FKRM.Application.CommandHandlers
                 FeatureId = request.FeatureId,
                 UnitTypeId = request.UnitTypeId,
                 OUTypeId = request.OUTypeId,
-                DistrictId = request.DistrictId
+                DistrictId = request.DistrictId,
+                BranchId = request.BranchId
             };
             if (request.HasParentSchool)
             {
@@ -79,6 +80,7 @@ namespace FKRM.Application.CommandHandlers
                 entity.OUTypeId = request.OUTypeId;
                 entity.DistrictId = request.DistrictId;
                 entity.SubsidiaryId = request.ParentSchoolId;
+                entity.BranchId = request.BranchId;
                 _schoolRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }

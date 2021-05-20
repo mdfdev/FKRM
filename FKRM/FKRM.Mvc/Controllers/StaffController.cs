@@ -23,6 +23,10 @@ namespace FKRM.Mvc.Controllers
             _academicCalendarService = academicCalendarService;
             _jobTitleService = jobTitleService;
         }
+        public JsonResult Profile(Guid id)
+        {
+            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("Profile", _staffService.GetAllDataById(id).Result.Data) });
+        }
         public IActionResult LoadAll(Guid id)
         {
             return PartialView("_ViewAll", _staffService.GetAllData(id).Result.Data);
@@ -30,7 +34,7 @@ namespace FKRM.Mvc.Controllers
         public IActionResult Index()
         {
             PersianCalendar pc = new PersianCalendar();
-            var pYear = pc.GetYear(DateTime.Today).ToString();
+            var pYear = pc.GetYear(DateTime.Now).ToString();
             var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
             ViewData["AcademicCalendars"] = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", _academicCalendarService.GetByYear(pYear).Id, null);
             return View();
@@ -42,7 +46,7 @@ namespace FKRM.Mvc.Controllers
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             PersianCalendar pc = new PersianCalendar();
-            var pYear = pc.GetYear(DateTime.Today).ToString();
+            var pYear = pc.GetYear(DateTime.Now).ToString();
             if (id == Guid.Empty)
             {
                 var staffViewModel = new StaffViewModel();

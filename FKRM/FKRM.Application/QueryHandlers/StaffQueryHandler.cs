@@ -43,7 +43,7 @@ namespace FKRM.Application.QueryHandlers
                 .Join(academicCalendars.Where(n => n.Id == request.Id), p => p.p.w.AcademicCalendarId, ac => ac.Id, (p, ac) => new { p, ac })
                 .Select(p => new StaffViewModel
                 {
-                    Id = p.p.p.w.Id,
+                    Id = p.p.p.st.Id,
                     FirstName = p.p.p.st.FirstName,
                     LastName = p.p.p.st.LastName,
                     School = p.p.sc.Name,
@@ -62,10 +62,10 @@ namespace FKRM.Application.QueryHandlers
             var schools = _schoolRepository.GetAll();
             var academicCalendars = _academicCalendarRepository.GetAll();
             return Task.FromResult(new Response<StaffViewModel>(
-                staffs
-                .Join(workedFors.Where(p => p.Id == request.Id), st => st.Id, w => w.StaffId, (st, w) => new { st, w })
+                staffs.Where(p => p.Id == request.Id)
+                .Join(workedFors, st => st.Id, w => w.StaffId, (st, w) => new { st, w })
                 .Join(schools, p => p.w.SchoolId, sc => sc.Id, (p, sc) => new { p, sc })
-                .Join(academicCalendars.Where(n => n.Id == request.Id), p => p.p.w.AcademicCalendarId, ac => ac.Id, (p, ac) => new { p, ac })
+                .Join(academicCalendars, p => p.p.w.AcademicCalendarId, ac => ac.Id, (p, ac) => new { p, ac })
                 .Select(p => new StaffViewModel
                 {
                     Id = p.p.p.w.Id,
@@ -78,6 +78,7 @@ namespace FKRM.Application.QueryHandlers
                     Phone = p.p.p.st.Phone,
                     NationalCode = p.p.p.st.NationalCode
                 }).FirstOrDefault()));
+            
         }
 
         public Task<Response<StaffViewModel>> Handle(GetAllDataByNid request, CancellationToken cancellationToken)

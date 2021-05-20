@@ -71,6 +71,7 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToShamsiDateTime()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToShamsiDateTime()));
             CreateMap<School, SchoolViewModel>()
+                .ForMember(cd => cd.Branch, opt => opt.MapFrom(c => c.Branch.Name))
                 .ForMember(cd => cd.ParentSchool, opt => opt.MapFrom(c => c.Subsidiary.Name))
                 .ForMember(cd => cd.District, opt => opt.MapFrom(c => c.District.Name))
                 .ForMember(cd => cd.Gender, opt => opt.MapFrom(c => c.Gender.Name))

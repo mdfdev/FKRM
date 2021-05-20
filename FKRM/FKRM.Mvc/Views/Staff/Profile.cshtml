@@ -1,0 +1,45 @@
+﻿@model FKRM.Application.ViewModels.StaffViewModel
+<div class="card mb-3">
+    <div class="card-header position-relative min-vh-25 mb-7">
+        <div class="bg-holder rounded-soft rounded-bottom-0" style="background-image:url(../img/generic/4.jpg);"></div>
+        <div class="avatar avatar-5xl avatar-profile"><img class="rounded-circle img-thumbnail shadow-sm" src="~/img/team/profile.jpg" width="200" alt="" /></div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-8">
+                <h4 class="mb-1"> @Model.FirstName @Model.LastName<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="right" title="Verified" data-fa-transform="shrink-4 down-2"></small></h4>
+                <h5 class="fs-0 font-weight-normal">@Model.School</h5>
+                <p class="text-500">@Model.JobTitle</p>
+                <button class="btn btn-falcon-primary btn-sm px-3" type="button">Following</button>
+                <button class="btn btn-falcon-default btn-sm px-3 ml-2" type="button">Message</button>
+                <hr class="border-dashed my-4 d-lg-none" />
+            </div>
+            <div class="col pl-2 pl-lg-3">
+                <a class="media align-items-center mb-2" href="#">
+                    <span class="fas fa-user-circle fs-4 mr-2 text-700"></span>
+                    <div class="media-body">
+                        <h6 class="mb-0">@Model.Phone</h6>
+                    </div>
+                </a><a class="media align-items-center mb-2" href="#">
+                    <img class="d-flex align-self-center mr-2" src="../img/logos/g.png" alt="Generic placeholder image" width="30" />
+                    <div class="media-body">
+                        <h6 class="mb-0">@Model.NationalCode</h6>
+                    </div>
+                </a><a class="media align-items-center mb-2" href="#">
+                    <img class="d-flex align-self-center mr-2" src="../img/logos/apple.png" alt="Generic placeholder image" width="30" />
+                    <div class="media-body">
+                        <h6 class="mb-0">Apple</h6>
+                    </div>
+                </a><a class="media align-items-center mb-2" href="#">
+                    <img class="d-flex align-self-center mr-2" src="../img/logos/hp.png" alt="Generic placeholder image" width="30" />
+                    <div class="media-body">
+                        <h6 class="mb-0">@Model.AddedDate</h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">بازگشت</button>
+    </div>
+</div>

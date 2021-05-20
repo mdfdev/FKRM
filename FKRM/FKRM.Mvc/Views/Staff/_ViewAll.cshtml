@@ -68,7 +68,9 @@
                         <button class="btn btn-light" onclick="jQueryModalGet('/staff/OnGetCreateOrEdit?id=@staff.Id','ویرایش اطلاعات پرسنل')" type="button" title="ویرایش">
                             <span class="fas fa-edit"></span>
                         </button>
-                        <button class="btn btn-light" title="Snooze"><span class="fas fa-clock"></span></button>
+                        <button class="btn btn-light" onclick="jQueryModalGet('/staff/Profile?id=@staff.Id','اطلاعات پرسنل')" type="button" title="جزئیات">
+                            <span class="fas fa-info-circle"></span>
+                        </button>
                     </div>
                 </td>
             </tr>

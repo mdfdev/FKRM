@@ -1,6 +1,8 @@
 ﻿using FKRM.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
 
 namespace FKRM.Infra.Data.Configuration
 {
@@ -8,6 +10,7 @@ namespace FKRM.Infra.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Branch> builder)
         {
+
             builder
                .HasKey(b => b.Id);
 
@@ -18,6 +21,10 @@ namespace FKRM.Infra.Data.Configuration
             builder
                 .Property(b => b.Name)
                 .IsRequired();
+
+
+
+
         }
     }
 }

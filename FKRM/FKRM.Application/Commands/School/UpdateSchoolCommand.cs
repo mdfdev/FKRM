@@ -5,7 +5,17 @@ namespace FKRM.Application.Commands.School
 {
     public class UpdateSchoolCommand : SchoolCommand
     {
-        public UpdateSchoolCommand(Guid id, string name, string code, Guid genderId, Guid featureId, Guid unitTypeId, Guid oUTypeId, Guid districtId, Guid parentSchoolId,bool hasParentSchool)
+        public UpdateSchoolCommand(Guid id, 
+            string name, 
+            string code,
+            Guid genderId, 
+            Guid featureId, 
+            Guid unitTypeId, 
+            Guid oUTypeId, 
+            Guid districtId, 
+            Guid parentSchoolId,
+            bool hasParentSchool,
+            Guid branchId)
         {
             ID = id;
             Name = name;
@@ -17,6 +27,7 @@ namespace FKRM.Application.Commands.School
             DistrictId = districtId;
             ParentSchoolId = parentSchoolId;
             HasParentSchool = hasParentSchool;
+            BranchId = branchId;
         }
         public override bool IsValid()
         {

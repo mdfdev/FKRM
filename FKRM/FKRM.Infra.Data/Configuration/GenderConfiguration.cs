@@ -1,7 +1,7 @@
 ﻿using FKRM.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using System;
 
 namespace FKRM.Infra.Data.Configuration
 {
@@ -20,6 +20,8 @@ namespace FKRM.Infra.Data.Configuration
                 .Property(b => b.Name)
                 .HasMaxLength(5)
                 .IsRequired();
+
+        
 
         }
     }

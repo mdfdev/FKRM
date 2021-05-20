@@ -16,12 +16,14 @@ namespace FKRM.Mvc.Controllers
         private readonly IOUTypeService _oUTypeService;
         private readonly IUnitTypeService _unitTypeService;
         private readonly IDistrictService _districtService;
+        private readonly IBranchService _branchService;
         public SchoolController(ISchoolService schoolService,
             IDistrictService districtService,
             IUnitTypeService unitTypeService,
             IOUTypeService oUTypeService,
             IFeatureService featureService,
             IGenderService genderService,
+            IBranchService branchService,
             IToastNotification toastNotification) : base(toastNotification)
         {
             _districtService = districtService;
@@ -30,6 +32,7 @@ namespace FKRM.Mvc.Controllers
             _genderService = genderService;
             _featureService = featureService;
             _oUTypeService = oUTypeService;
+            _branchService = branchService;
         }
         public IActionResult LoadAll()
         {
@@ -56,6 +59,10 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 schoolViewModel.ParentSchools = new SelectList(schoolViewModels, "Id", "Name", null, null);
+
+                var branchViewModels = _branchService.GetAll();
+                schoolViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
+
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
             else
@@ -73,6 +80,8 @@ namespace FKRM.Mvc.Controllers
                 schoolViewModel.Districts = new SelectList(districtViewModels, "Id", "Name", null, null);
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 schoolViewModel.ParentSchools = new SelectList(schoolViewModels, "Id", "Name", null, null);
+                var branchViewModels = _branchService.GetAll();
+                schoolViewModel.Branches = new SelectList(branchViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", schoolViewModel) });
             }
         }
