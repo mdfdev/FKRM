@@ -45,5 +45,22 @@ namespace FKRM.Application.Validation.Staff
             RuleFor(c => c.ID)
                 .NotEqual(Guid.Empty);
         }
+        protected void ValidateEmail()
+        {
+            RuleFor(c => c.Email)
+                .EmailAddress();
+        }
+        protected void ValidateBirthDate()
+        {
+            RuleFor(c => c.BirthDate)
+                .NotEmpty()
+                .WithMessage("تاریخ تولد الزامی می باشد");
+        }
+        protected void ValidateHiringDate()
+        {
+            RuleFor(c => c.HiringDate)
+                .NotEmpty()
+                .WithMessage("تاریخ اشتغال به کار الزامی می باشد");
+        }
     }
 }

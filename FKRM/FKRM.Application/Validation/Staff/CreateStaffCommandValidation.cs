@@ -11,6 +11,8 @@ namespace FKRM.Application.Validation.Staff
             ValidateMobile();
             ValidateNationalID();
             ValidatePhone();
+            ValidateBirthDate();
+            ValidateHiringDate();
         }
     }
 }

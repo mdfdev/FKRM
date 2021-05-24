@@ -74,18 +74,37 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card-body bg-light px-0">
-                <div class="row">
-                    <table class="table table-sm  data-table no-wrap ">
-                        <thead class="bg-200">
-                            <tr><th class="sort">مدرک تحصیلی</th><th class="sort">رشته تحصیلی</th></tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            <tr><td>کارشناسی</td><td>کامپیوتر</td></tr>
-                            <tr><td>دکترا</td><td>نرم افزار</td></tr>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">تاریخ تولد</label>
+                <div class="col-md-8">
+                    <input as asp-for="BirthDate" autocomplete="off" class="form-control datetimepicker" name="BirthDate" 
+                           type="text" placeholder="dd/mm/yy" data-options='{"dateFormat":"d/m/y"}'>
 
-                        </tbody>
-                    </table>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">تاریخ اشتغال به کار</label>
+                <div class="col-md-8">
+                    <input as asp-for="HiringDate" autocomplete="off" class="form-control datetimepicker" name="HiringDate"
+                           type="text" placeholder="dd/mm/yy" data-options='{"dateFormat":"d/m/y"}'>
+                    <span asp-validation-for="HiringDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">ایمیل</label>
+                <div class="col-md-8">
+
+                    <input type="email" as asp-for="Email" autocomplete="off" name="Email" class="form-control" placeholder="ایمیل">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">بیوگرافی</label>
+                <div class="col-md-8">
+
+                    <textarea  as asp-for="Bio" autocomplete="off" name="Bio" class="form-control" rows="3" placeholder="بیوگرافی"></textarea>
+                    <span asp-validation-for="Bio" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -97,6 +116,14 @@
 </form>
 <script type="text/javascript" language=javascript>
     $(document).ready(function () {
+        $("#BirthDate").pDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValueType: 'persian'
+        });
+        $("#HiringDate").pDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValueType: 'persian'
+        });
         $('#NationalCode').blur(function () {
             var nid = $("#NationalCode").val();
             try {
@@ -111,7 +138,12 @@
                             $("#LastName").val(res.lastName);
                             $("#Mobile").val(res.mobile);
                             $("#Phone").val(res.phone);
-
+                            $("#BirthDate").val(res.birthdate);
+                            $("#HiringDate").val(res.hiringdate);
+                            $("#Email").val(res.email);
+                            $("#Bio").val(res.bio);
+                            $("#BirthDate").val(res.birthDate);
+                            $("#HiringDate").val(res.hiringDate);
                             $("#JobTitleId option").filter(function () {
                                 return this.text == res.jobTitle;
                             }).attr('selected', true)
@@ -128,6 +160,10 @@
                             $("#LastName").val('');
                             $("#Mobile").val('');
                             $("#Phone").val('');
+                            $("#BirthDate").val('');
+                            $("#HiringDate").val('');
+                            $("#Email").val('');
+                            $("#Bio").val('');
                         }
 
                     },

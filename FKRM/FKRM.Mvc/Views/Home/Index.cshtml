@@ -24,6 +24,12 @@
                         if (res != null) {
                             option1 = {
                                 title: {
+                                    textStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
+                                    subtextStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
                                     text: 'سهم رشته ها',
                                     subtext: 'بر اساس شاخه',
                                     left: 'center'
@@ -34,7 +40,10 @@
                                 },
                                 legend: {
                                     top: 'bottom',
-                                    left: 'center'
+                                    left: 'center',
+                                    textStyle: {
+                                        fontFamily: "IRANSans"
+                                    }
                                 },
                                 toolbox: {
                                     show: true,
@@ -56,6 +65,7 @@
                                             borderWidth: 2
                                         },
                                         label: {
+                                            fontFamily: "IRANSans",
                                             show: false,
                                             position: 'center'
                                         },
@@ -64,6 +74,11 @@
                                                 show: true,
                                                 fontSize: '20',
                                                 fontWeight: 'bold'
+                                            }
+                                        },
+                                        tooltip: {
+                                            textStyle: {
+                                                fontFamily: "IRANSans"
                                             }
                                         },
                                         labelLine: {
@@ -83,6 +98,12 @@
 
                             option2 = {
                                 title: {
+                                    textStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
+                                    subtextStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
                                     text: 'سهم رشته ها',
                                     subtext: 'بر اساس شاخه',
                                     left: 'center'
@@ -103,11 +124,17 @@
                                     name: 'سهم رشته ها',
                                     type: 'treemap',
                                     label: {
+                                        fontFamily: "IRANSans",
                                         show: true,
                                         formatter: '{b}'
                                     },
                                     itemStyle: {
                                         borderColor: '#fff'
+                                    },
+                                    tooltip: {
+                                        textStyle: {
+                                            fontFamily: "IRANSans"
+                                        }
                                     },
                                     data: res.sort(function (a, b) { return a.value - b.value; })
                                 }]

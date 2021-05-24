@@ -10,32 +10,28 @@
                 <h4 class="mb-1"> @Model.FirstName @Model.LastName<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="right" title="Verified" data-fa-transform="shrink-4 down-2"></small></h4>
                 <h5 class="fs-0 font-weight-normal">@Model.School</h5>
                 <p class="text-500">@Model.JobTitle</p>
-                <button class="btn btn-falcon-primary btn-sm px-3" type="button">Following</button>
-                <button class="btn btn-falcon-default btn-sm px-3 ml-2" type="button">Message</button>
+
                 <hr class="border-dashed my-4 d-lg-none" />
+                <p class="text-500">@Model.Bio</p>
             </div>
             <div class="col pl-2 pl-lg-3">
-                <a class="media align-items-center mb-2" href="#">
-                    <span class="fas fa-user-circle fs-4 mr-2 text-700"></span>
-                    <div class="media-body">
-                        <h6 class="mb-0">@Model.Phone</h6>
-                    </div>
-                </a><a class="media align-items-center mb-2" href="#">
-                    <img class="d-flex align-self-center mr-2" src="../img/logos/g.png" alt="Generic placeholder image" width="30" />
-                    <div class="media-body">
-                        <h6 class="mb-0">@Model.NationalCode</h6>
-                    </div>
-                </a><a class="media align-items-center mb-2" href="#">
-                    <img class="d-flex align-self-center mr-2" src="../img/logos/apple.png" alt="Generic placeholder image" width="30" />
-                    <div class="media-body">
-                        <h6 class="mb-0">Apple</h6>
-                    </div>
-                </a><a class="media align-items-center mb-2" href="#">
-                    <img class="d-flex align-self-center mr-2" src="../img/logos/hp.png" alt="Generic placeholder image" width="30" />
-                    <div class="media-body">
-                        <h6 class="mb-0">@Model.AddedDate</h6>
-                    </div>
-                </a>
+                <p>
+                    <span class="fas fa-phone-square-alt"></span> @Model.Phone
+                </p>
+                <p>
+                    <span class="fas fa-mobile-alt"></span> @Model.Mobile
+                </p>
+                <p>
+                    <span class="fas fa-birthday-cake"></span> @Model.BirthDate <span>-</span>@Model.Age
+                </p>
+                <p>
+                    <span class="fas fa-hourglass-start"></span> @Model.HiringDate
+                </p>
+                <p>
+                    <span class="fas fa-address-card"></span> @Model.Email
+                </p>
+
+
             </div>
         </div>
     </div>

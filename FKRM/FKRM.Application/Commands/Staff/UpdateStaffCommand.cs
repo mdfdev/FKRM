@@ -5,7 +5,8 @@ namespace FKRM.Application.Commands.Staff
 {
     public class UpdateStaffCommand : StaffCommand
     {
-        public UpdateStaffCommand(Guid id, string fname, string lname, string phone, string mobile, string nationalcode, Guid jobtitleId)
+        public UpdateStaffCommand(Guid id, string fname, string lname, string phone, string mobile, string nationalcode, Guid jobtitleId,
+            string birthDate, string hiringDate, string email, string bio)
         {
             ID = id;
             FirstName = fname;
@@ -14,6 +15,10 @@ namespace FKRM.Application.Commands.Staff
             Mobile = mobile;
             NationalCode = nationalcode;
             JobTitleId = jobtitleId;
+            BirthDate = birthDate;
+            HiringDate = hiringDate;
+            Email = email;
+            Bio = bio;
         }
         public override bool IsValid()
         {

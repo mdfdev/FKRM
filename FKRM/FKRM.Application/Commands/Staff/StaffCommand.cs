@@ -14,6 +14,9 @@ namespace FKRM.Application.Commands.Staff
         public Guid JobTitleId { get; protected set; }
         public Guid SchoolId { get; protected set; }
         public Guid AcademicCalendarId { get; protected set; }
-
+        public string BirthDate { get; set; }
+        public string HiringDate { get; set; }
+        public string Email { get; set; }
+        public string Bio { get; set; }
     }
 }

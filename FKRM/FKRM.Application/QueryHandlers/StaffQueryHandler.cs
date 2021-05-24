@@ -1,8 +1,10 @@
-﻿using FKRM.Application.Queries.Staff;
+﻿using FKRM.Application.Extension;
+using FKRM.Application.Queries.Staff;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Interfaces;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -51,6 +53,8 @@ namespace FKRM.Application.QueryHandlers
                     JobTitle = p.p.p.st.JobTitle.Title,
                     Mobile = p.p.p.st.Mobile,
                     Phone = p.p.p.st.Phone,
+                    BirthDate = p.p.p.st.BirthDate.ToPersianDate(),
+                    HiringDate = p.p.p.st.HiringDate.ToPersianDate(),
                     NationalCode = p.p.p.st.NationalCode
                 })));
         }
@@ -76,7 +80,12 @@ namespace FKRM.Application.QueryHandlers
                     JobTitle = p.p.p.st.JobTitle.Title,
                     Mobile = p.p.p.st.Mobile,
                     Phone = p.p.p.st.Phone,
-                    NationalCode = p.p.p.st.NationalCode
+                    NationalCode = p.p.p.st.NationalCode,
+                    BirthDate = p.p.p.st.BirthDate.ToPersianDate(),
+                    HiringDate = p.p.p.st.HiringDate.ToPersianDate(),
+                    Bio = p.p.p.st.Bio,
+                    Email = p.p.p.st.Email,
+                    Age = DateTime.Now.Subtract(p.p.p.st.BirthDate).ToPersianString()
                 }).FirstOrDefault()));
             
         }
@@ -92,7 +101,7 @@ namespace FKRM.Application.QueryHandlers
                 .Join(workedFors, st => st.Id, w => w.StaffId, (st, w) => new { st, w })
                 .Join(schools, p => p.w.SchoolId, sc => sc.Id, (p, sc) => new { p, sc })
                 .Join(academicCalendars, p => p.p.w.AcademicCalendarId, ac => ac.Id, (p, ac) => new { p, ac })
-                .OrderByDescending(p=>p.p.p.w.Id)
+                .OrderByDescending(p => p.p.p.w.Id)
                 .Select(p => new StaffViewModel
                 {
                     Id = p.p.p.w.Id,
@@ -103,7 +112,11 @@ namespace FKRM.Application.QueryHandlers
                     JobTitle = p.p.p.st.JobTitle.Title,
                     Mobile = p.p.p.st.Mobile,
                     Phone = p.p.p.st.Phone,
-                    NationalCode = p.p.p.st.NationalCode
+                    NationalCode = p.p.p.st.NationalCode,
+                    BirthDate = p.p.p.st.BirthDate.ToPersianDate(),
+                    HiringDate = p.p.p.st.HiringDate.ToPersianDate(),
+                    Bio = p.p.p.st.Bio,
+                    Email = p.p.p.st.Email
                 }).FirstOrDefault()));
         }
     }

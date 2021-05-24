@@ -37,5 +37,16 @@ namespace FKRM.Application.ViewModels
         public string AcademicCalendar { get; set; }
         public Guid AcademicCalendarId { get; set; }
         public SelectList AcademicCalendars { get; set; }
+
+        [DisplayName("تاریخ تولد")]
+        public string BirthDate { get; set; }
+        [DisplayName("تاریخ اشتغال به کار")]
+        public string HiringDate { get; set; }
+        [DisplayName("ایمیل")]
+        public string Email { get; set; }
+        [DisplayName("بیوگرافی")]
+        public string Bio { get; set; }
+        [DisplayName("سن")]
+        public string Age { get; set; }
     }
 }

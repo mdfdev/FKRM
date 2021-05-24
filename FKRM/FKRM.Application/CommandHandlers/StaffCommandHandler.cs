@@ -3,9 +3,13 @@ using FKRM.Domain.Core.Wrappers;
 using FKRM.Domain.Exceptions;
 using FKRM.Domain.Interfaces;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+
+using FKRM.Application.Extension;
+
 namespace FKRM.Application.CommandHandlers
 {
     public class StaffCommandHandler : CommandHandler,
@@ -15,7 +19,7 @@ namespace FKRM.Application.CommandHandlers
     {
         private readonly IStaffRepository _staffRepository;
         private readonly IWorkedForRepository _workedForRepository;
-        public StaffCommandHandler(IStaffRepository staffRepository ,IWorkedForRepository workedForRepository)
+        public StaffCommandHandler(IStaffRepository staffRepository, IWorkedForRepository workedForRepository)
         {
             _staffRepository = staffRepository;
             _workedForRepository = workedForRepository;
@@ -40,6 +44,10 @@ namespace FKRM.Application.CommandHandlers
                 entity.NationalCode = request.NationalCode;
                 entity.ModifiedDate = request.ModifiedDate;
                 entity.JobTitleId = request.JobTitleId;
+                entity.BirthDate = Convert.ToDateTime(request.BirthDate);
+                entity.HiringDate = Convert.ToDateTime(request.HiringDate);
+                entity.Email = request.Email;
+                entity.Bio = request.Email;
                 _staffRepository.Update(entity);
                 return Task.FromResult(new Response<int>(200));
             }
@@ -76,8 +84,6 @@ namespace FKRM.Application.CommandHandlers
             }
             else
             {
-
-
                 var staff = new Domain.Entities.Staff()
                 {
                     FirstName = request.FirstName,
@@ -88,18 +94,20 @@ namespace FKRM.Application.CommandHandlers
                     NationalCode = request.NationalCode,
                     ModifiedDate = request.ModifiedDate,
                     AddedDate = request.AddedDate,
+                    BirthDate = request.BirthDate.PersianToEnglish().ToGeorgianDate(),
+                    HiringDate = request.HiringDate.PersianToEnglish().ToGeorgianDate(),
+                    Email = request.Email,
+                    Bio = request.Bio,
                     WorkedFors = new List<Domain.Entities.WorkedFor>
-                {
-                    new Domain.Entities.WorkedFor {
-                        SchoolId=request.SchoolId,
-                        AcademicCalendarId = request.AcademicCalendarId
+                    {
+                        new Domain.Entities.WorkedFor {
+                            SchoolId=request.SchoolId,
+                            AcademicCalendarId = request.AcademicCalendarId
+                        }
                     }
-                }
                 };
                 _staffRepository.Add(staff);
             }
-            
-
             return Task.FromResult(new Response<int>(200));
         }
     }

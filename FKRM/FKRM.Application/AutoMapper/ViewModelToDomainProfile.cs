@@ -163,10 +163,12 @@ namespace FKRM.Application.AutoMapper
             CreateMap<StaffViewModel, CreateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode, c.JobTitleId, c.SchoolId, c.AcademicCalendarId));
+                .ConstructUsing(c => new CreateStaffCommand(c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode, c.JobTitleId, c.SchoolId, c.AcademicCalendarId,
+                c.BirthDate,c.HiringDate,c.Email,c.Bio));
             CreateMap<StaffViewModel, UpdateStaffCommand>()
                 .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
-                .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId));
+                .ConstructUsing(c => new UpdateStaffCommand(c.Id, c.FirstName, c.LastName, c.Phone, c.Mobile, c.NationalCode,c.JobTitleId,
+                c.BirthDate, c.HiringDate, c.Email, c.Bio));
             CreateMap<StaffViewModel, DeleteStaffCommand>()
                 .ConstructUsing(c => new DeleteStaffCommand(c.Id));
             //---------------------------------------------------
