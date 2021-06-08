@@ -1,0 +1,80 @@
+﻿@model IEnumerable<UserRolesViewModel>
+<table id="roleTable" class="table table-hover table-sm table-striped data-table no-wrap mb-0 fs--1 w-100">
+    <thead class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th class="sort">
+                نقش ها
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        @foreach (var user in Model)
+        {
+        <tr class="hover-actions-trigger hover-shadow">
+            <td>
+                @user.FirstName
+            </td>
+            <td>
+                @user.LastName
+            </td>
+            <td>
+                @user.UserName
+            </td>
+            <td>@string.Join(" , ", user.Roles.ToList())</td>
+
+            <td>
+                <div class="btn-group btn-group-sm hover-actions r-0" role="group">
+
+                    <form id="form_delete_@user.UserId" asp-controller="RoleManager" method="post"
+                          asp-action="OnPostDelete" asp-route-id="@user.UserId" onsubmit="return jQueryModalDelete(this)">
+                        <a href="javascript:$('#form_delete_@user.UserId').submit();" data-placement="top" class="btn btn-light">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </form>
+
+                    <button class="btn btn-light" onclick="jQueryModalGet('/userroles/OnGetCreateOrEdit?id=@user.UserId', 'ویرایش کاربر')"
+                            type="button" data-placement="top" title="ویرایش">
+                        <span class="fas fa-edit"></span>
+                    </button>
+                    <a class="btn btn-light" title="Snooze"><span class="fas fa-clock"></span></a>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot class="bg-200">
+        <tr>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th class="sort">
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th class="sort">
+                نقش ها
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#userTable").DataTable({
+            responsive: true,
+            "order": [[0, "asc"]]           
+        });
+    });
+</script>

@@ -1,43 +1,34 @@
-﻿<div class="dropdown-menu dropdown-menu-right dropdown-menu-card" aria-labelledby="navbarDropdownNotification">
+﻿@model IEnumerable<FKRM.Application.ViewModels.NotificationViewModel>
+<div class="dropdown-menu dropdown-menu-right dropdown-menu-card" aria-labelledby="navbarDropdownNotification">
     <div class="card card-notification shadow-none" style="max-width: 20rem">
         <div class="card-header">
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto">
-                    <h6 class="card-header-title mb-0">Notifications</h6>
+                    <h6 class="card-header-title mb-0">پیام ها</h6>
                 </div>
-                <div class="col-auto"><a class="card-link font-weight-normal" href="#">Mark all as read</a></div>
             </div>
         </div>
         <div class="list-group list-group-flush font-weight-normal fs--1">
-            <div class="list-group-title border-bottom">NEW</div>
-            <div class="list-group-item">
-                <a class="notification notification-flush bg-200" href="#!">
-                    <div class="notification-avatar">
-                        <div class="avatar avatar-2xl mr-3">
-                            <img class="rounded-circle" src="~/img/team/1-thumb.png" alt="" />
+            <div class="list-group-title border-bottom">جدید</div>
+            @foreach (var notification in Model)
+            {
+                <div class="list-group-item">
+                    <a class="notification notification-flush bg-200" href="#!">
+                        <div class="notification-avatar">
+                            <div class="avatar avatar-2xl mr-3">
+                                <img class="rounded-circle" src="~/img/team/3-thumb.png" alt="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="notification-body">
-                        <p class="mb-1"><strong>Emma Watson</strong> replied to your comment : "Hello world 😍"</p>
-                        <span class="notification-time"><span class="mr-1" role="img" aria-label="Emoji">💬</span>Just now</span>
-                    </div>
-                </a>
-            </div>
-            <div class="list-group-title">EARLIER</div>
-            <div class="list-group-item">
-                <a class="notification notification-flush" href="#!">
-                    <div class="notification-avatar">
-                        <div class="avatar avatar-2xl mr-3">
-                            <img class="rounded-circle" src="~/img/icons/weather-sm.jpg" alt="" />
+                        <div class="notification-body">
+                            <p class="mb-1"><strong>@notification.Subject</strong> @notification.Body</p>
+                            <span class="notification-time">
+                            <span class="mr-1" role="img" aria-label="Emoji">💬</span>
+                            @notification.AddedDate</span>
                         </div>
-                    </div>
-                    <div class="notification-body">
-                        <p class="mb-1">The forecast today shows a low of 20&#8451; in California. See today's weather.</p>
-                        <span class="notification-time"><span class="mr-1" role="img" aria-label="Emoji">🌤️</span>1d</span>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            }
         </div>
-        <div class="card-footer text-center border-top"><a class="card-link d-block" href="pages/notifications.html">View all</a></div>
+        <div class="card-footer text-center border-top"><a class="card-link d-block" asp-action="index" asp-controller="notification">دیگر پیام ها</a></div>
     </div>
 </div>

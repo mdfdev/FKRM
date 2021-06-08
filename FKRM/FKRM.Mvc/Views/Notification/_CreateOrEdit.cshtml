@@ -1,0 +1,30 @@
+﻿@model FKRM.Application.ViewModels.NotificationViewModel
+<form id="create-form" method="post" asp-controller="Notification" asp-action="OnPostCreateOrEdit"
+      asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">عنوان</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Subject" name="Subject" class="form-control" placeholder="عنوان پیام">
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">متن</label>
+                <div class="col-md-9">
+
+                    <textarea as asp-for="Body" autocomplete="off" name="Body" class="form-control" rows="4" placeholder="متن پیام"></textarea>
+                    <span asp-validation-for="Body" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">ذخیره</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

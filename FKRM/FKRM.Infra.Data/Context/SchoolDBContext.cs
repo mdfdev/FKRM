@@ -24,6 +24,8 @@ namespace FKRM.Infra.Data.Context
         public DbSet<Major> Majors { get; set; }
         public DbSet<MarkingType> MarkingTypes { get; set; }
         public DbSet<OUType> OUTypes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NotificationRecipient> NotificationRecipients { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<StaffEducationalBackground> StaffEducationalBackgrounds { get; set; }
@@ -63,6 +65,8 @@ namespace FKRM.Infra.Data.Context
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobTitleConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MajorConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MarkingTypeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationRecipientConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OUTypeConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SchoolConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StaffConfiguration).Assembly);

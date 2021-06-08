@@ -1,5 +1,6 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Mvc.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NToastNotify;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 
 namespace FKRM.Mvc.Controllers
 {
+    [Authorize(Roles = "Basic")]
     public class HomeController : BaseController<HomeController> 
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,6 +28,7 @@ namespace FKRM.Mvc.Controllers
 
         public IActionResult Index()
         {
+
             ViewBag.Staffs = _staffService.Count();
             ViewBag.Schools = _schoolService.Count();
             ViewBag.Majors = _majorService.Count();

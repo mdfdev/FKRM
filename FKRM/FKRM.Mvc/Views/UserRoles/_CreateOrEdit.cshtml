@@ -1,0 +1,47 @@
+﻿@model RegisterUserViewModel
+<form id="create-form" method="post"  asp-controller="UserRoles" 
+      asp-action="OnPostCreate" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">نام</label>
+                <div class="col-md-8">
+                    <input type="text" asp-for="FirstName" name="FirstName" class="form-control" placeholder="نام" autocomplete="off">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">نام خانوادگی</label>
+                <div class="col-md-8">
+                    <input type="text" asp-for="LastName" name="LastName" class="form-control" placeholder="نام خانوادگی" autocomplete="off">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">کد پرسنلی</label>
+                <div class="col-md-8">
+                    <input type="text" asp-for="EmployeeId" name="EmployeeId" class="form-control" placeholder="کد پرسنلی" autocomplete="off">
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">کلمه عبور</label>
+                <div class="col-md-8">
+                    <input type="password" asp-for="Password" name="Password" class="form-control" placeholder="کلمه عبور" autocomplete="off">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">تکرار کلمه عبور</label>
+                <div class="col-md-8">
+                    <input type="password" asp-for="ConfirmPassword" name="ConfirmPassword" class="form-control" placeholder="تکرار کلمه عبور" autocomplete="off">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">ذخیره</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
+    </div>
+</form>

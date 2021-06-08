@@ -21,6 +21,7 @@ using FKRM.Application.Commands.WorkedFor;
 using FKRM.Application.Commands.District;
 using FKRM.Application.Commands.AcademicDegree;
 using FKRM.Application.Commands.AcademicMajor;
+using FKRM.Application.Commands.Notification;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -191,6 +192,18 @@ namespace FKRM.Application.AutoMapper
                 .ConstructUsing(c => new UpdateMarkingTypeCommand(c.Id, c.Name));
             CreateMap<MarkingTypeViewModel, DeleteMarkingTypeCommand>()
                 .ConstructUsing(c => new DeleteMarkingTypeCommand(c.Id));
+            //--------------------------------------------------
+            CreateMap<NotificationViewModel, CreateNotificationCommand>()
+              .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
+              .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+              .ConstructUsing(c => new CreateNotificationCommand(c.Subject,c.Body));
+
+            CreateMap<NotificationViewModel, UpdateNotificationCommand>()
+                .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+                .ConstructUsing(c => new UpdateNotificationCommand(c.Id, c.Subject,c.Body));
+
+            CreateMap<NotificationViewModel, DeleteNotificationCommand>()
+                .ConstructUsing(c => new DeleteNotificationCommand(c.Id));
             //---------------------------------------------------
             CreateMap<OUTypeViewModel, CreateOUTypeCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))

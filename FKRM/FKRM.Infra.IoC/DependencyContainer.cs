@@ -34,6 +34,7 @@ using FKRM.Application.Queries.Major;
 using FKRM.Application.Commands.District;
 using FKRM.Application.Commands.AcademicDegree;
 using FKRM.Application.Commands.AcademicMajor;
+using FKRM.Application.Commands.Notification;
 
 namespace FKRM.Infra.IoC
 {
@@ -107,6 +108,10 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<UpdateMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteMarkingTypeCommand, Response<int>>, MarkingTypeCommandHandler>();
 
+            services.AddScoped<IRequestHandler<CreateNotificationCommand, Response<int>>, NotificationCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateNotificationCommand, Response<int>>, NotificationCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteNotificationCommand, Response<int>>, NotificationCommandHandler>();
+
             services.AddScoped<IRequestHandler<CreateOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteOUTypeCommand, Response<int>>, OUTypeCommandHandler>();
@@ -150,6 +155,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<IMajorService, MajorService>();
             services.AddScoped<IMarkingTypeService, MarkingTypeService>();
+            services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IOUTypeService, OUTypeService>();
             services.AddScoped<IJobTitleService, JobTitleService>();
             services.AddScoped<ISchoolService, SchoolService>();
@@ -172,6 +178,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<IMajorRepository, MajorRepository>();
             services.AddScoped<IMarkingTypeRepository, MarkingTypeRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IOUTypeRepository, OUTypeRepository>();
             services.AddScoped<IJobTitleRepository, JobTitleRepository>();
             services.AddScoped<ISchoolRepository, SchoolRepository>();

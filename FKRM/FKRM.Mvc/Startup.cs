@@ -3,8 +3,10 @@ using FKRM.Infra.IoC;
 using FKRM.Mvc.Abstractions;
 using FKRM.Mvc.Configurations;
 using FKRM.Mvc.Data;
+using FKRM.Mvc.Models;
 using FKRM.Mvc.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NToastNotify;
+using System;
 
 namespace FKRM.Mvc
 {
@@ -33,15 +36,22 @@ namespace FKRM.Mvc
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("SchoolIdentityDBConnection")));
+                    Configuration.GetConnectionString("SchoolIdentityDBConnection"))
+                );
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.AddDbContext<SchoolDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolDBConnection"));
             });
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+           //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+           //     .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMediatR(typeof(Startup));

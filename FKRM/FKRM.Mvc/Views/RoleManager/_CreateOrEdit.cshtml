@@ -1,0 +1,22 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+<form id="create-form" method="post" asp-controller="RoleManager" asp-action="OnPostCreateOrEdit"
+      asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">نام نقش</label>
+                <div class="col-md-9">
+                    <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="نام نقش">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">ذخیره</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">انصراف</button>
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

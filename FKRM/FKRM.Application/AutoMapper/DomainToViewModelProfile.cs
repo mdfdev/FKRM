@@ -63,6 +63,12 @@ namespace FKRM.Application.AutoMapper
             CreateMap<MarkingType, MarkingTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
+
+            CreateMap<Notification, NotificationViewModel>()
+                .ForMember(cd => cd.ParentNotification, opt => opt.MapFrom(c => c.ParentNotification.Subject))
+                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPriorDate()))
+                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
+
             CreateMap<OUType, OUTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));

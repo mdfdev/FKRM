@@ -48,7 +48,7 @@ namespace FKRM.Application.CommandHandlers
                 _branchRepository.Remove(request.ID);
                 return Task.FromResult(new Response<int>(200));
             }
-            catch (Exception ex)
+            catch 
             {
                 return Task.FromResult(new Response<int>(400, new System.Collections.Generic.List<string>() { $"گزینه مورد نظر حذف نشد." }));
             }

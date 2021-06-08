@@ -49,18 +49,18 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8e023969-c12e-490d-8fe0-8a2e808ae136"),
+                            Id = new Guid("af6c38d9-b502-47a1-ab9a-26d872b1fa51"),
                             AcademicQuarter = "ضمن سال",
                             AcademicYear = "99-1400",
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(6300),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(4400),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("4bca8e79-e904-4560-a8e4-51cc655417fb"),
+                            Id = new Guid("1e90b7e2-ddfc-46e8-98c2-92ea5bb63bb4"),
                             AcademicQuarter = "ضمن سال",
                             AcademicYear = "1400-99",
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(7229),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(5471),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -90,43 +90,43 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2dac1281-ec3f-40da-bd2f-64b340af17f5"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3325),
+                            Id = new Guid("24ff36db-16cb-4ced-b896-2440e4e5b3bc"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1341),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "زیر دیپلم"
                         },
                         new
                         {
-                            Id = new Guid("08e61b73-17ea-4e9c-a929-ba20480d7ff7"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3826),
+                            Id = new Guid("a545012d-a63c-4cc7-b02d-8d2a0830a86b"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1847),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دیپلم"
                         },
                         new
                         {
-                            Id = new Guid("c2fc79cd-7c54-48b2-b4e8-dc8e82a3fadd"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3853),
+                            Id = new Guid("0b39b879-b4de-4494-a96b-5d0b90c60797"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1877),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کاردانی"
                         },
                         new
                         {
-                            Id = new Guid("ba46d1f5-a720-4759-a631-3855a0cd3583"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3867),
+                            Id = new Guid("2210e675-cba5-4c18-b328-6d3cd380ee33"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1891),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کارشناسی"
                         },
                         new
                         {
-                            Id = new Guid("37ae7e84-fbdc-47ee-a737-67f3cfa92291"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3900),
+                            Id = new Guid("6adca930-06d0-4c77-be73-26fcfc9a4161"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1904),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کارشناسی ارشد"
                         },
                         new
                         {
-                            Id = new Guid("d28c1064-c003-4e72-943e-7099893fd7c6"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(3914),
+                            Id = new Guid("c4026b08-2fc8-4815-a3b6-032a72b29815"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(1917),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دکترا"
                         });
@@ -157,218 +157,218 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("12cf44ee-218f-40b3-95c1-0974912cb7fc"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(4633),
+                            Id = new Guid("b842e627-7f7b-49b5-a4d5-af7cf983fdc6"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(2602),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی شهرسازی"
                         },
                         new
                         {
-                            Id = new Guid("bb1722d8-709d-4ab7-b773-98e5186cc08f"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5130),
+                            Id = new Guid("559ebfcb-cee9-4cb6-8a1a-e7e52a1f234c"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3085),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "علوم كامپیوتر"
                         },
                         new
                         {
-                            Id = new Guid("ff6cac6a-3dc6-40c4-8daf-2d7b038d6f4f"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5160),
+                            Id = new Guid("1ccb8411-afe5-420a-82a8-a5c79ff2dcd9"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3113),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی معماری"
                         },
                         new
                         {
-                            Id = new Guid("c1efa639-04e8-490c-8807-8bd164b2ad36"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5174),
+                            Id = new Guid("b71acc43-1a6f-4aad-a1a5-f39c6604ba12"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3146),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "حسابداری"
                         },
                         new
                         {
-                            Id = new Guid("08947126-1b12-44f5-9ded-0f222ef67464"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5188),
+                            Id = new Guid("9d3a0faf-8a76-4c97-992c-a25f7f916e7f"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3160),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "زبان و ادبیات فارسی"
                         },
                         new
                         {
-                            Id = new Guid("2299186c-7b23-4447-b01d-98183c5649ee"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5201),
+                            Id = new Guid("cbeca3f2-04cb-4340-91c1-210dc163f028"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3172),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی نفت"
                         },
                         new
                         {
-                            Id = new Guid("9ce02389-83a3-49d2-80c1-b76e1f59e5fd"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5232),
+                            Id = new Guid("e94f842f-d10c-46c0-bd6d-63952b5de5b8"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3185),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی شیمی"
                         },
                         new
                         {
-                            Id = new Guid("abe390a6-2565-45fe-a169-561d77025236"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5246),
+                            Id = new Guid("0482655b-335d-49c7-8f7c-70809931c899"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3199),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی صنایع"
                         },
                         new
                         {
-                            Id = new Guid("e9d53532-3cc0-4199-b02b-7ef2ad7b25bf"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5260),
+                            Id = new Guid("f56722b1-77fe-4b21-9ae4-37898932bd9f"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3212),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی مکانیک"
                         },
                         new
                         {
-                            Id = new Guid("e2cb3c48-04c9-4c6b-83f0-29443aabdc43"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5273),
+                            Id = new Guid("8aa73822-b100-4b1c-a263-5e9379c90c00"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3225),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "بیوتکنولوژی"
                         },
                         new
                         {
-                            Id = new Guid("290392c8-41a4-48d8-800b-511c20311a17"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5287),
+                            Id = new Guid("4cb47565-2b49-408a-a8db-bb56dd2f4381"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3238),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "زیست‌فناوری"
                         },
                         new
                         {
-                            Id = new Guid("c7535d97-60dc-456b-9e43-4b3e23b2ce48"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5301),
+                            Id = new Guid("d8dc5a91-3607-4dab-b1f3-91c004d2b9f4"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3265),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "نانوشیمی"
                         },
                         new
                         {
-                            Id = new Guid("e74c9549-a0c9-4cc3-8185-a46b6c9980db"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5314),
+                            Id = new Guid("dd5f8a55-18b5-4574-b31b-0ec6b8449bf6"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3278),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کارآفرینی"
                         },
                         new
                         {
-                            Id = new Guid("723b7fc6-0316-45dc-8148-74c7bc12d5e0"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5328),
+                            Id = new Guid("edac3087-37fe-4012-94a8-57f5cb43d50c"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3291),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مدیریت دولتی"
                         },
                         new
                         {
-                            Id = new Guid("02a1b97a-ed00-4ebf-82d9-88cf626098ce"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5355),
+                            Id = new Guid("1d1a70d2-3b14-44dd-907b-e7e37bf33170"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3304),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مدیریت فناوری اطلاعات"
                         },
                         new
                         {
-                            Id = new Guid("896b2d25-1490-4572-aada-824d68966f77"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5368),
+                            Id = new Guid("9e2065bf-d974-4712-a927-e509ee72c5e0"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3317),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مدیریت آموزشی"
                         },
                         new
                         {
-                            Id = new Guid("ab8e6929-fa3a-487f-bf8e-0d26ada4e8d8"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5381),
+                            Id = new Guid("defd340e-4126-4384-9586-4acbef8fd16b"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3330),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مدیریت بازرگانی"
                         },
                         new
                         {
-                            Id = new Guid("b7b60c4d-a4c6-40d8-9903-6ff51f1310c7"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5393),
+                            Id = new Guid("676b9ae9-f16c-4732-abca-897522faef7c"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3342),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی معماری"
                         },
                         new
                         {
-                            Id = new Guid("89f93d2e-55c0-47ec-b3a7-89b81b0630c0"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5406),
+                            Id = new Guid("6ca57202-a95a-46e4-93d7-fac424f1e0b7"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3486),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "معماری"
                         },
                         new
                         {
-                            Id = new Guid("c0a41281-b4b1-4e3d-a739-bc1ee3521534"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5419),
+                            Id = new Guid("4d6cb932-5642-4fa6-94f3-16b1d4dd6478"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3515),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "معماری داخلی"
                         },
                         new
                         {
-                            Id = new Guid("838f907f-fabe-4cb1-a2e9-c45dde98f6a9"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5431),
+                            Id = new Guid("b1cff67c-2100-4e93-be03-064a3c492508"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3528),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "فناوری نانو"
                         },
                         new
                         {
-                            Id = new Guid("8b1f1fbc-9e68-43fc-8e24-b66e9d6c2346"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5444),
+                            Id = new Guid("d34df692-18ac-4de6-9903-0bd9b1de2a49"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3541),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی برق"
                         },
                         new
                         {
-                            Id = new Guid("04a9fd03-a373-4235-84e8-d9b5e8bcc7f7"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5470),
+                            Id = new Guid("2d2cb090-bb08-4bf6-b02e-55a4f2a4fe4f"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3553),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی پزشکی"
                         },
                         new
                         {
-                            Id = new Guid("d41f615d-c01e-43ad-ba1e-c2616b14fb63"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5483),
+                            Id = new Guid("5ac8c69b-de7c-4457-b48b-178eecc549a9"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3566),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی فناوری اطلاعات"
                         },
                         new
                         {
-                            Id = new Guid("d256c9b2-b7ee-4891-9091-c9567f9f21d1"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5496),
+                            Id = new Guid("415641a8-062d-41d7-9302-8e3fa9448eae"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3579),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی عمران"
                         },
                         new
                         {
-                            Id = new Guid("8ed810b2-0194-4317-9779-11eef926c6f7"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5510),
+                            Id = new Guid("9318b539-8f2a-419f-ba68-325f6ca0e5f8"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3592),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی مواد"
                         },
                         new
                         {
-                            Id = new Guid("2601589d-a36b-4f96-9953-ddf8468f1255"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5522),
+                            Id = new Guid("7cb0e290-4d98-44ce-8782-755fcef2134e"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3605),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مهندسی متالورژی و مواد"
                         },
                         new
                         {
-                            Id = new Guid("c61454c5-6dc7-45e7-a529-97852ee854cf"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5535),
+                            Id = new Guid("50eebb6c-bf78-4299-a943-9d849bfa37d8"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3631),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "عکاسی"
                         },
                         new
                         {
-                            Id = new Guid("c7fd5e7b-bb15-433d-8a2a-f15b0ea9d29c"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5548),
+                            Id = new Guid("6631f747-1493-4794-80a4-f47a7230ac7a"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3644),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "هنرهای تجسمی"
                         },
                         new
                         {
-                            Id = new Guid("06d94a44-1bb7-43a2-8304-3216ef0a8de5"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5561),
+                            Id = new Guid("5a3ed057-fc12-42e1-b811-25fb573e99ee"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3657),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "نقاشی"
                         },
                         new
                         {
-                            Id = new Guid("a466ffa5-fe97-4790-8a32-c6b29bf7f8b5"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(5587),
+                            Id = new Guid("4129d304-83e5-439f-9f4c-8eefe0eab484"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(3670),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ارتباط تصویری"
                         });
@@ -429,22 +429,22 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e360b088-509c-4cfe-b2b2-4e702e037942"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 190, DateTimeKind.Local).AddTicks(4773),
+                            Id = new Guid("b80e44f7-bb97-4501-b64e-45c793d835df"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 586, DateTimeKind.Local).AddTicks(2499),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "فنی و حرفه ای"
                         },
                         new
                         {
-                            Id = new Guid("9d44a511-4591-4c85-885e-4908bf79f550"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 193, DateTimeKind.Local).AddTicks(8443),
+                            Id = new Guid("ebe814c8-de30-4d72-9956-c1d9f0ace80a"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 590, DateTimeKind.Local).AddTicks(5435),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کاردانش"
                         },
                         new
                         {
-                            Id = new Guid("63348c4c-5f4a-42ed-99a3-3dde1345fb85"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 193, DateTimeKind.Local).AddTicks(8506),
+                            Id = new Guid("513fda9d-777f-43c3-98aa-093ca948aebc"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 590, DateTimeKind.Local).AddTicks(5509),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "نظری"
                         });
@@ -530,106 +530,106 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e3f1a4fc-f1bd-451f-8c6c-43fadefad80b"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(3702),
+                            Id = new Guid("2f08ecba-d38a-44df-9f37-a19629779767"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2166),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ناحیه 1"
                         },
                         new
                         {
-                            Id = new Guid("333ab799-531b-4df3-be73-a5bb1d7b93cf"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4444),
+                            Id = new Guid("4ecb374b-04d3-468e-a206-d8534379daa1"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2733),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ناحیه 2"
                         },
                         new
                         {
-                            Id = new Guid("aaa36b5b-a27b-4e39-898c-1a96ddf876b8"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4512),
+                            Id = new Guid("e4d3f774-b6f6-4210-b9f5-3af804a57d09"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2765),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "آشتیان"
                         },
                         new
                         {
-                            Id = new Guid("8efd621b-4f92-4880-be94-cbfec4b0ac84"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4527),
+                            Id = new Guid("9ea8af71-c2e8-4f22-a350-aa79b50b28cb"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2782),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "تفرش"
                         },
                         new
                         {
-                            Id = new Guid("5a9591c1-c40f-4bc8-bca8-c715fa72e502"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4541),
+                            Id = new Guid("5c3670e1-8d23-4586-a1c6-f9444f7124c1"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2797),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "خمین"
                         },
                         new
                         {
-                            Id = new Guid("48c9ad45-c315-4b53-ae0d-741a704e9403"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4554),
+                            Id = new Guid("2d0d7cd7-e6c5-4bb0-abbb-7352d076eb42"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2810),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "خنداب"
                         },
                         new
                         {
-                            Id = new Guid("4c94d093-ed06-40e2-8d2b-e2bd3531d288"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4567),
+                            Id = new Guid("a058f0d0-b97c-449f-8a85-757b788b58cf"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2825),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "سربند"
                         },
                         new
                         {
-                            Id = new Guid("29c29d38-578b-4b88-81f3-c7acd1051ca3"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4581),
+                            Id = new Guid("c1d22f95-b7c6-40e2-bdae-2f7ff7b87686"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2863),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "کمیجان"
                         },
                         new
                         {
-                            Id = new Guid("346dde6a-f131-4749-8323-84ac9aa666f2"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4594),
+                            Id = new Guid("fe6ac661-a823-40fa-87dd-ac3ff3c9cce0"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2877),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دلیجان"
                         },
                         new
                         {
-                            Id = new Guid("89b049e0-20e7-42fd-8297-a04f50b0c1d9"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4607),
+                            Id = new Guid("72b96635-697d-4567-b285-f19b104fc093"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2889),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "محلات"
                         },
                         new
                         {
-                            Id = new Guid("37594e6c-7f8a-4695-8635-c07d0ba2e696"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4634),
+                            Id = new Guid("b45fcd9e-71e1-4c3b-8800-3f36fba41182"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2902),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "شازند"
                         },
                         new
                         {
-                            Id = new Guid("0eec2fb5-fa09-4298-a4fc-119bfdb529d9"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4647),
+                            Id = new Guid("455bcd80-e1a5-4a58-a7ec-c3cbf1475ea1"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2914),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "نوبران"
                         },
                         new
                         {
-                            Id = new Guid("9317c6c1-eb53-4513-b434-2130aa2e3381"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4660),
+                            Id = new Guid("0ca80af5-321c-49b3-8a4a-2d1508b6450d"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2927),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "زرندیه"
                         },
                         new
                         {
-                            Id = new Guid("02eb9329-8813-41f5-95f1-fbf472786c06"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4673),
+                            Id = new Guid("4b0ee5f3-8695-4eaa-ae48-6e159772b442"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2941),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ساوه"
                         },
                         new
                         {
-                            Id = new Guid("bbe3a395-c4fe-4991-81c6-6d45b9eb6c13"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(4686),
+                            Id = new Guid("391ac1cc-2eec-4997-bd54-1d0caa0af449"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(2954),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "فراهان"
                         });
@@ -704,15 +704,15 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e4091bed-8a79-46b4-b054-3be9b170cc71"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(678),
+                            Id = new Guid("2c3753c4-e760-4765-aa4f-660b19484db9"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8948),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "هیأت امنایی"
                         },
                         new
                         {
-                            Id = new Guid("dda9eedb-3c37-4cd4-86d1-369959295e70"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(1183),
+                            Id = new Guid("0fcd68f9-b954-4f4b-9107-2926c731bde0"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(9441),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "شبانه روزی"
                         });
@@ -745,15 +745,15 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("42232a37-3dbd-49f3-9572-f149d8ebbfba"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(2264),
+                            Id = new Guid("dd225706-a1df-441f-aa00-9d44245d0ffc"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(584),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "زن"
                         },
                         new
                         {
-                            Id = new Guid("a628cd1f-1360-411f-94b5-ea8d1af3a7c3"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(2891),
+                            Id = new Guid("c859a9c7-58ab-437b-8fba-074a03898a51"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(1275),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "مرد"
                         });
@@ -785,22 +785,22 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f09cca12-76eb-4766-a144-d7a0eee02a5e"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(6771),
+                            Id = new Guid("cfd885ce-f99f-4bcc-b38a-c4ed46be94c9"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(5098),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دهم"
                         },
                         new
                         {
-                            Id = new Guid("8c73ebab-ae10-4262-969b-028427680a38"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(7300),
+                            Id = new Guid("086086bd-cd4b-4342-a132-f85c9c12452d"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(5618),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "یازدهم"
                         },
                         new
                         {
-                            Id = new Guid("3113f870-91dc-49fa-84f0-f30161176061"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(7330),
+                            Id = new Guid("37bf8064-0633-4615-8cc7-b05607e1c582"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(5648),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دوازدهم"
                         });
@@ -861,50 +861,50 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("77bb823c-9d69-4be7-8799-17599838ac53"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8044),
+                            Id = new Guid("e3e7f46c-0e43-407c-b4fd-62b756541d05"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6367),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "هنرآموز"
                         },
                         new
                         {
-                            Id = new Guid("bfc13661-2958-4813-9666-17152e621273"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8565),
+                            Id = new Guid("89839636-f103-4d02-8284-fd0f45013411"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6874),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "استادکار"
                         },
                         new
                         {
-                            Id = new Guid("8dbcdd47-7112-4d7b-8081-e219562a0730"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8595),
+                            Id = new Guid("8b8b8289-e394-4b52-a510-8a95dfc00cc8"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6926),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "مدیر"
                         },
                         new
                         {
-                            Id = new Guid("153cc9bc-ed8c-483d-975d-fca2fc387eb8"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8609),
+                            Id = new Guid("2d712107-227c-421d-8e13-bd51090f15d8"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6940),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "معاون فنی"
                         },
                         new
                         {
-                            Id = new Guid("0441dcaa-9038-49e4-a920-90b03430ea72"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8622),
+                            Id = new Guid("f64a56eb-9aa2-47cb-9771-9b5b68bd1a59"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6953),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "معاون آموزشی"
                         },
                         new
                         {
-                            Id = new Guid("2ad5496a-d1c6-4ccb-8236-a419880295fe"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8654),
+                            Id = new Guid("ef5bc123-8e37-401e-809f-bb0062c0fb65"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6967),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "انباردار"
                         },
                         new
                         {
-                            Id = new Guid("01977506-c9f1-4bcc-bdc9-8db6349f267e"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(8669),
+                            Id = new Guid("1bf7bdfb-282d-4504-af7b-725887ae1cc3"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(6979),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "سرپرست بخش"
                         });
@@ -977,25 +977,90 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("15ef34be-fac5-469a-9a48-cf09ae8626ec"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(5460),
+                            Id = new Guid("984f2425-a533-4c14-93bb-3d4098acb9ff"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(3781),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "یک نمره ای"
                         },
                         new
                         {
-                            Id = new Guid("ca8182b7-96c2-4852-8f1e-2a0b04aa4fee"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(6004),
+                            Id = new Guid("f99ff077-b94b-4ac4-b402-1d7ad12f44b0"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(4316),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دو نمره ای"
                         },
                         new
                         {
-                            Id = new Guid("54de46ca-9a1e-4521-a38b-076c8521cc82"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(6032),
+                            Id = new Guid("913e7b73-8e2a-4b38-9865-0064df9395f1"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(4348),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "چهار نمره ای"
                         });
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ParentNotificationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentNotificationId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.NotificationRecipient", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("NotificationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RecipientGroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RecipientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("NotificationRecipients");
                 });
 
             modelBuilder.Entity("FKRM.Domain.Entities.OUType", b =>
@@ -1025,43 +1090,43 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("196b3413-dcd2-45e4-b68e-474303f758f3"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9378),
+                            Id = new Guid("734c5f57-8320-4a48-920b-e850fd171461"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(7676),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "استعدادهای درخشان"
                         },
                         new
                         {
-                            Id = new Guid("007ee8af-87df-4446-b023-79fb6a50dae6"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9885),
+                            Id = new Guid("a2e3a593-436f-4156-9d89-9263e9776ed6"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8174),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "شاهد"
                         },
                         new
                         {
-                            Id = new Guid("12a67618-6c3e-448c-9b8c-4cd1a2c1fb4f"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9914),
+                            Id = new Guid("5cb8c761-c59e-4f18-9e33-84df2f23f62e"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8202),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "عادی"
                         },
                         new
                         {
-                            Id = new Guid("4edee1a3-28ae-41d5-b170-9abd234605d8"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9930),
+                            Id = new Guid("c763f792-8c3a-4dec-afa8-68a946c4dd34"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8235),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "عام المنفعه"
                         },
                         new
                         {
-                            Id = new Guid("15d49346-84ae-467d-8df3-d5f69697b9bc"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9943),
+                            Id = new Guid("4e70b4b8-6e06-417b-9df9-e4eb6dc5176b"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8249),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "نمونه دولتی"
                         },
                         new
                         {
-                            Id = new Guid("280b6159-60d1-439c-b52c-a499a57e7e9f"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 195, DateTimeKind.Local).AddTicks(9957),
+                            Id = new Guid("b3f69cf9-c15b-4a9b-8068-0791d3aad0fe"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 592, DateTimeKind.Local).AddTicks(8261),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "وابسته"
                         });
@@ -1253,15 +1318,15 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("faecb50b-5ff9-402d-b62b-fa2275397690"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(2019),
+                            Id = new Guid("2eb04e8f-5c1b-4cb8-b752-2349b830f507"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(158),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "دولتی"
                         },
                         new
                         {
-                            Id = new Guid("eca49ac3-ad3f-422e-beba-94b84867a7ce"),
-                            AddedDate = new DateTime(2021, 5, 19, 13, 41, 15, 196, DateTimeKind.Local).AddTicks(2533),
+                            Id = new Guid("18000912-941d-4af7-812f-a6e59304c2ac"),
+                            AddedDate = new DateTime(2021, 5, 29, 11, 32, 43, 593, DateTimeKind.Local).AddTicks(654),
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "غیردولتی"
                         });
@@ -1361,6 +1426,22 @@ namespace FKRM.Infra.Data.Migrations
                     b.HasOne("FKRM.Domain.Entities.Group", "Group")
                         .WithMany("Majors")
                         .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("FKRM.Domain.Entities.Notification", "ParentNotification")
+                        .WithMany()
+                        .HasForeignKey("ParentNotificationId");
+                });
+
+            modelBuilder.Entity("FKRM.Domain.Entities.NotificationRecipient", b =>
+                {
+                    b.HasOne("FKRM.Domain.Entities.Notification", "Notification")
+                        .WithMany("NotificationRecipients")
+                        .HasForeignKey("NotificationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

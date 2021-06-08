@@ -139,5 +139,100 @@ namespace FKRM.Application.Extension
             }
             return rt;
         }
+        public static string ToPriorDate(this DateTime userDate)
+        {
+            string rt = string.Empty;
+            try
+            {
+                DateTime now = DateTime.Now;
+                TimeSpan ts = now.Subtract(userDate);
+                if (ts.TotalMinutes <= 60)
+                {
+                    rt = "دقایقی قبل";
+                }else if (ts.TotalMinutes>60 && ts.TotalMinutes<=1440)
+                {
+                    rt = "ساعاتی قبل";
+                }else if (ts.TotalMinutes > 1440 && ts.TotalMinutes <= 10080)
+                {
+                    int days= (int)(ts.TotalMinutes/1440);
+                    switch (days)
+                    {
+                        case 1: rt = "یک روز قبل"; break;
+                        case 2: rt = "دو روز قبل"; break;
+                        case 3: rt = "سه روز قبل"; break;
+                        case 4: rt = "چهار روز قبل"; break;
+                        case 5: rt = "پنج روز قبل"; break;
+                        case 6: rt = "شش روز قبل"; break;
+                        case 7: rt = "هفت روز قبل"; break;
+                    }
+                }
+                else if (ts.TotalMinutes > 10080 && ts.TotalMinutes <= 43200)
+                {
+                    int weeks = (int)(ts.TotalMinutes / 10080);
+                    switch (weeks)
+                    {
+                        case 1: rt = "یک هفته قبل"; break;
+                        case 2: rt = "دو هفته قبل"; break;
+                        case 3: rt = "سه هفته قبل"; break;
+                        case 4: rt = "چهار هفته قبل"; break;
+                       
+                    }
+                }
+                else if (ts.TotalMinutes > 43200 && ts.TotalMinutes <= 525600)
+                {
+                    int monthes = (int)(ts.TotalMinutes / 43200);
+                    switch (monthes)
+                    {
+                        case 1: rt = "یک ماه قبل"; break;
+                        case 2: rt = "دو ماه قبل"; break;
+                        case 3: rt = "سه ماه قبل"; break;
+                        case 4: rt = "چهار ماه قبل"; break;
+                        case 5: rt = "پنج ماه قبل"; break;
+                        case 6: rt = "شش ماه قبل"; break;
+                        case 7: rt = "هفت ماه قبل"; break;
+                        case 8: rt = "هشت ماه قبل"; break;
+                        case 9: rt = "نه ماه قبل"; break;
+                        case 10: rt = "ده ماه قبل"; break;
+                        case 11: rt = "یازده ماه قبل"; break;
+                        case 12: rt = "دوازده ماه قبل"; break;
+                    }
+                }
+                else if (ts.TotalMinutes > 525600 && ts.TotalMinutes <= 10512000)
+                {
+                    int monthes = (int)(ts.TotalMinutes / 525600);
+                    switch (monthes)
+                    {
+                        case 1: rt = "یک سال قبل"; break;
+                        case 2: rt = "دو سال قبل"; break;
+                        case 3: rt = "سه سال قبل"; break;
+                        case 4: rt = "چهار سال قبل"; break;
+                        case 5: rt = "پنج سال قبل"; break;
+                        case 6: rt = "شش سال قبل"; break;
+                        case 7: rt = "هفت سال قبل"; break;
+                        case 8: rt = "هشت سال قبل"; break;
+                        case 9: rt = "نه سال قبل"; break;
+                        case 10: rt = "ده سال قبل"; break;
+                        case 11: rt = "یازده سال قبل"; break;
+                        case 12: rt = "دوازده سال قبل"; break;
+                        case 13: rt = "سیزده سال قبل"; break;
+                        case 14: rt = "چهارده سال قبل"; break;
+                        case 15: rt = "پانزده سال قبل"; break;
+                        case 16: rt = "شانزده سال قبل"; break;
+                        case 17: rt = "هفده سال قبل"; break;
+                        case 18: rt = "هجده سال قبل"; break;
+                        case 19: rt = "نوزده سال قبل"; break;
+                        case 20: rt = "بیست سال قبل"; break;
+                            
+                    }
+                }
+
+
+            }
+            catch
+            {
+                rt = "N/A";
+            }
+            return rt;
+        }
     }
 }
