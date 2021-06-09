@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<UserRolesViewModel>
-<table id="roleTable" class="table table-hover table-sm table-striped data-table no-wrap mb-0 fs--1 w-100">
+<table id="userTable" class="table table-hover table-sm table-striped data-table no-wrap mb-0 fs--1 w-100">
     <thead class="bg-200">
         <tr>
             <th class="sort">
@@ -31,7 +31,6 @@
                 @user.UserName
             </td>
             <td>@string.Join(" , ", user.Roles.ToList())</td>
-
             <td>
                 <div class="btn-group btn-group-sm hover-actions r-0" role="group">
 
@@ -46,7 +45,7 @@
                             type="button" data-placement="top" title="ویرایش">
                         <span class="fas fa-edit"></span>
                     </button>
-                    <a class="btn btn-light" title="Snooze"><span class="fas fa-clock"></span></a>
+                    <a class="btn btn-light" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId"><span class="fas fa-user-shield"></span></a>
                 </div>
             </td>
         </tr>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class RoleManagerController : BaseController<RoleManagerController>
     {
         private readonly RoleManager<IdentityRole> _roleManager;

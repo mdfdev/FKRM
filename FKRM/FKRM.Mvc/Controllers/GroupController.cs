@@ -1,5 +1,6 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class GroupController : BaseController<GroupController>
     {
         private readonly IGroupService _groupService;

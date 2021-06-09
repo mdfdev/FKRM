@@ -1,5 +1,6 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class GenderController : BaseController<BranchController>
     {
         private readonly IGenderService _genderService;
-
         public GenderController(IGenderService genderService, IToastNotification toastNotification) : base(toastNotification)
         {
             _genderService = genderService;

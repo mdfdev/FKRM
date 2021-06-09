@@ -1,5 +1,6 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class UnitTypeController : BaseController<UnitTypeController>
     {
         private readonly IUnitTypeService _unitTypeService;

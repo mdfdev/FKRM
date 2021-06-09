@@ -1,14 +1,11 @@
 ﻿<div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownUser">
     <div class="bg-white rounded-soft py-2">
-
-        <a class="dropdown-item" href="#!">Set status</a>
-        <a class="dropdown-item" href="pages/profile.html">Profile &amp; account</a>
-        <a class="dropdown-item" href="#!">Feedback</a>
+        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">تغییر کلمه عبور</a>
+        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">پروفایل</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="pages/settings.html">تنظیمات</a>
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button class="dropdown-item" type="submit">خروج</button>
         </form>
-        
+
     </div>
 </div>

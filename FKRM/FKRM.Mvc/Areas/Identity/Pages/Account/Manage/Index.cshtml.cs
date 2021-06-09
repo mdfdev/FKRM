@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NToastNotify;
 
 namespace FKRM.Mvc.Areas.Identity.Pages.Account.Manage
 {
@@ -14,19 +12,20 @@ namespace FKRM.Mvc.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IToastNotification _toastNotification;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IToastNotification toastNotification)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _toastNotification = toastNotification;
+
         }
 
         public string Username { get; set; }
-
-        [TempData]
-        public string StatusMessage { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -34,7 +33,7 @@ namespace FKRM.Mvc.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "تلفن همراه")]
             public string PhoneNumber { get; set; }
             [Display(Name = "نام")]
             public string FirstName { get; set; }
@@ -92,8 +91,11 @@ namespace FKRM.Mvc.Areas.Identity.Pages.Account.Manage
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
+                    _toastNotification.AddErrorToastMessage($"Unexpected error when trying to set phone number.", new ToastrOptions()
+                    {
+                        Title = "خطا!"
+                    });
+                    RedirectToAction("Index", "Home");
                 }
             }
             if (Input.FirstName != firstName)
@@ -108,8 +110,11 @@ namespace FKRM.Mvc.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
+            _toastNotification.AddSuccessToastMessage($"Your profile has been updated.", new ToastrOptions()
+            {
+                Title = "موفق"
+            });
+            return RedirectToAction("Index", "Home");
         }
     }
 }
