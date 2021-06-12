@@ -39,6 +39,7 @@ namespace FKRM.Mvc.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> OnPostCreateOrEdit(Guid id, BranchViewModel branchViewModel)
         {
             if (ModelState.IsValid)

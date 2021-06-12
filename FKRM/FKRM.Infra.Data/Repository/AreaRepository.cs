@@ -10,15 +10,13 @@ namespace FKRM.Infra.Data.Repository
 {
     public class AreaRepository : Repository<Area>, IAreaRepository
     {
-        private readonly DbSet<Area> _areas;
         public AreaRepository(SchoolDBContext context) : base(context)
         {
-            _areas = context.Set<Area>();
         }
 
         public IQueryable<Area> GetAllByBranchId(Guid id)
         {
-            return _areas.Where(p => p.BranchId == id);
+            return DbSet.Where(p => p.BranchId == id);
         }
     }
 }

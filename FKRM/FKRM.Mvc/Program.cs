@@ -1,3 +1,4 @@
+using FKRM.Infra.Identity.Models;
 using FKRM.Mvc.Data;
 using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Hosting;

@@ -11,15 +11,13 @@ namespace FKRM.Infra.Data.Repository
 {
     public class NotificationRepository : Repository<Notification>, INotificationRepository
     {
-        private readonly DbSet<Notification> notifications;
         public NotificationRepository(SchoolDBContext context) : base(context)
         {
-            notifications = context.Set<Notification>();
         }
 
         public IQueryable<Notification> GetAllData()
         {
-            return notifications.Select(p => new Notification()
+            return DbSet.Select(p => new Notification()
             {
                 Id = p.Id,
                 Subject = p.Subject,
@@ -30,7 +28,7 @@ namespace FKRM.Infra.Data.Repository
 
         public IQueryable<Notification> GetLatest()
         {
-            return notifications.OrderByDescending(p => p.AddedDate).Take(3).Select(p => new Notification()
+            return DbSet.OrderByDescending(p => p.AddedDate).Take(3).Select(p => new Notification()
             {
                 Id = p.Id,
                 Subject = p.Subject,

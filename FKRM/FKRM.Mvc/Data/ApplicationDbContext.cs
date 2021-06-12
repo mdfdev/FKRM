@@ -1,4 +1,4 @@
-﻿using FKRM.Mvc.Models;
+﻿using FKRM.Infra.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

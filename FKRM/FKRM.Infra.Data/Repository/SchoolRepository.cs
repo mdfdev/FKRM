@@ -8,15 +8,14 @@ namespace FKRM.Infra.Data.Repository
 {
     public class SchoolRepository : Repository<School>, ISchoolRepository
     {
-        private readonly DbSet<School> _schools;
         public SchoolRepository(SchoolDBContext context) : base(context)
         {
-            _schools = context.Set<School>();
         }
 
         public IQueryable<School> GetAllWithCode()
         {
-            return _schools.Select(p => new School()
+            
+            return DbSet.Select(p => new School()
             {
                 Id = p.Id,
                 Name = p.Name + " - " + p.Code,

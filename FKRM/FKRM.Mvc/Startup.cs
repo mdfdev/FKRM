@@ -1,4 +1,5 @@
 using FKRM.Infra.Data.Context;
+using FKRM.Infra.Identity.Models;
 using FKRM.Infra.IoC;
 using FKRM.Mvc.Abstractions;
 using FKRM.Mvc.Configurations;

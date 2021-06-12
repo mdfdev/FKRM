@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using FKRM.Mvc.Models;
+using FKRM.Infra.Identity.Models;
 
 namespace FKRM.Mvc.Areas.Identity.Pages.Account
 {

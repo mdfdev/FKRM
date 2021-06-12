@@ -1,4 +1,5 @@
 ﻿using FKRM.Domain.Enums;
+using FKRM.Infra.Identity.Models;
 using FKRM.Mvc.Areas.Identity.Pages.Account;
 using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Authorization;

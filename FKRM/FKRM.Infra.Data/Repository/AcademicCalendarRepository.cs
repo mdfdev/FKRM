@@ -8,15 +8,13 @@ namespace FKRM.Infra.Data.Repository
 {
     public class AcademicCalendarRepository : Repository<AcademicCalendar>, IAcademicCalendarRepository
     {
-        private readonly DbSet<AcademicCalendar> _academicCalendars;
         public AcademicCalendarRepository(SchoolDBContext context) : base(context)
         {
-            _academicCalendars = context.Set<AcademicCalendar>();
 
         }
         public IQueryable<AcademicCalendar> GetAllWithTitle()
         {
-            return _academicCalendars.Select(p => new AcademicCalendar()
+            return DbSet.Select(p => new AcademicCalendar()
             {
                 Id = p.Id,
                 AcademicYear = p.AcademicQuarter + " " + p.AcademicYear
@@ -25,7 +23,7 @@ namespace FKRM.Infra.Data.Repository
 
         public AcademicCalendar GetByYear(string year)
         {
-            return _academicCalendars.Where(p=>p.AcademicYear.EndsWith(year)).FirstOrDefault();
+            return DbSet.Where(p=>p.AcademicYear.EndsWith(year)).FirstOrDefault();
         }
     }
 }

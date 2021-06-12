@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FKRM.Application\FKRM.Application.csproj" />
+    <ProjectReference Include="..\FKRM.Infra.Identity\FKRM.Infra.Identity.csproj" />
     <ProjectReference Include="..\FKRM.Infra.IoC\FKRM.Infra.IoC.csproj" />
   </ItemGroup>
 
