@@ -9,5 +9,6 @@ namespace FKRM.Infra.Identity.Models
         public string LastName { get; set; }
         public string EmployeeId { get; set; }
         public byte[] ProfilePicture { get; set; }
+        public bool IsActive { get; set; } = false;
     }
 }

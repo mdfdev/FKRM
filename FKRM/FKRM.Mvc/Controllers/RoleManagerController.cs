@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FKRM.Infra.Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
@@ -13,9 +14,15 @@ namespace FKRM.Mvc.Controllers
     public class RoleManagerController : BaseController<RoleManagerController>
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        public RoleManagerController(RoleManager<IdentityRole> roleManager, IToastNotification toastNotification) : base(toastNotification)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public RoleManagerController(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager, 
+            IToastNotification toastNotification) : base(toastNotification)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
+
         }
         public IActionResult LoadAll()
         {
@@ -25,7 +32,7 @@ namespace FKRM.Mvc.Controllers
         {
             return View();
         }
-        public JsonResult OnGetCreateOrEdit(string id)
+        public async Task<JsonResult> OnGetCreateOrEditAsync(string id)
         {
             if (id == null)
             {
@@ -35,7 +42,8 @@ namespace FKRM.Mvc.Controllers
             }
             else
             {
-                var identityRole = _roleManager.Roles.First(p=>p.Id.CompareTo(id)==0);
+                var identityRole =await _roleManager.FindByIdAsync(id);
+                if (identityRole == null) NotifyError("Unexpected Error. Role not found!");
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", identityRole) });
             }
         }
@@ -48,29 +56,29 @@ namespace FKRM.Mvc.Controllers
                 {
                     if (id==null)
                     {
-
                         var response = _roleManager.CreateAsync(new IdentityRole(identityRole.Name.Trim()));
-                        if (!response.Result.Succeeded)
+                        if (response.Result.Succeeded)
                         {
-                            NotifyErrors(new List<string>() { "ثبت اطلاعات انجام نشد" });
+                            NotifySuccess($"{identityRole.Name} ثبت شد");
                         }
                         else
                         {
-                            NotifySuccess($"{identityRole.Name} ثبت شد");
-
+                            NotifyErrors(new List<string>() { "ثبت اطلاعات انجام نشد" });
                         }
                     }
                     else
                     {
-                        var response = _roleManager.UpdateAsync(identityRole);
-                        if (!response.Result.Succeeded)
+                        var existingRole = await _roleManager.FindByIdAsync(identityRole.Id);
+                        existingRole.Name = identityRole.Name;
+                        existingRole.NormalizedName = identityRole.Name.ToUpper();
+                        var response = _roleManager.UpdateAsync(existingRole);
+                        if (response.Result.Succeeded)
                         {
-                            NotifyErrors(new List<string>() { "ثبت اطلاعات انجام نشد" });
+                            NotifySuccess($"{identityRole.Name} ویرایش شد");
                         }
                         else
                         {
-                            NotifySuccess($"{identityRole.Name} ویرایش شد");
-
+                            NotifyErrors(new List<string>() { "ثبت اطلاعات انجام نشد" });
                         }
                     }
                 }
@@ -92,17 +100,33 @@ namespace FKRM.Mvc.Controllers
         {
             try
             {
-                var role = _roleManager.Roles.FirstOrDefault(p => p.Id.CompareTo(id) == 0);
-                var name = role.Name;
-                var response = _roleManager.DeleteAsync(role);
-                if (!response.Result.Succeeded)
+                var existingRole = _roleManager.Roles.FirstOrDefault(p => p.Id.CompareTo(id) == 0);
+                var name = existingRole.Name;
+                if (name != "SuperAdmin" && name != "Basic")
                 {
-                    NotifyErrors(new List<string>() { "حذف اطلاعات انجام نشد" });
+                    bool roleIsNotUsed = true;
+                    var allUsers =  _userManager.Users.ToList();
+                    foreach (var user in allUsers)
+                    {
+                        if (await _userManager.IsInRoleAsync(user, existingRole.Name))
+                        {
+                            roleIsNotUsed = false;
+                        }
+                    }
+                    if (roleIsNotUsed)
+                    {
+                        await _roleManager.DeleteAsync(existingRole);
+                        NotifySuccess($"Role {existingRole.Name} deleted.");
+                    }
+                    else
+                    {
+                        NotifyError("حذف اطلاعات انجام نشد");
+                    }
+
                 }
                 else
                 {
-                    NotifySuccess($"{name} حذف شد");
-
+                    NotifyError($"Not allowed to  delete {name} Role.");
                 }
             }
             catch (Exception)

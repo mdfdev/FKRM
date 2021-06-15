@@ -7,7 +7,6 @@ using FKRM.Mvc.Data;
 using FKRM.Mvc.Models;
 using FKRM.Mvc.Services;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +34,12 @@ namespace FKRM.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAntiforgery(x => x.HeaderName = "X-XSRF-TOKEN");
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            //});
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SchoolIdentityDBConnection"))

@@ -5,7 +5,7 @@
             <th class="sort">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-          
+
             <th></th>
         </tr>
     </thead>
@@ -16,22 +16,24 @@
                 <td>
                     @role.Name
                 </td>
-               
+
                 <td>
                     <div class="btn-group btn-group-sm hover-actions r-0" role="group">
+                        @if (role.Name != "SuperAdmin")
+                        {
+                            <form id="form_delete_@role.Id" asp-controller="RoleManager" method="post"
+                                  asp-action="OnPostDelete" asp-route-id="@role.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@role.Id').submit();" data-placement="top" class="btn btn-light">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </form>
 
-                        <form id="form_delete_@role.Id" asp-controller="RoleManager" method="post"
-                              asp-action="OnPostDelete" asp-route-id="@role.Id" onsubmit="return jQueryModalDelete(this)">
-                            <a href="javascript:$('#form_delete_@role.Id').submit();" data-placement="top" class="btn btn-light">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </form>
-
-                        <button class="btn btn-light" onclick="jQueryModalGet('/rolemanager/OnGetCreateOrEdit?id=@role.Id','ویرایش نقش')"
-                                type="button" data-placement="top" title="ویرایش">
-                            <span class="fas fa-edit"></span>
-                        </button>
-                        <a class="btn btn-light"  title="Snooze"><span class="fas fa-clock"></span></a>
+                            <button class="btn btn-light" onclick="jQueryModalGet('/rolemanager/OnGetCreateOrEdit?id=@role.Id','ویرایش نقش')"
+                                    type="button" data-placement="top" title="ویرایش">
+                                <span class="fas fa-edit"></span>
+                            </button>
+                            <a class="btn btn-light" title="Snooze"><span class="fas fa-clock"></span></a>
+                        }
                     </div>
                 </td>
             </tr>
@@ -50,7 +52,7 @@
     $(document).ready(function () {
         $("#roleTable").DataTable({
             responsive: true,
-            "order": [[0, "asc"]]           
+            "order": [[0, "asc"]]
         });
     });
 </script>

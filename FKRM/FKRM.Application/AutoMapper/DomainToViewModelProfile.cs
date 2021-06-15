@@ -2,6 +2,7 @@
 using FKRM.Application.Extension;
 using FKRM.Application.ViewModels;
 using FKRM.Domain.Entities;
+using System;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -9,6 +10,10 @@ namespace FKRM.Application.AutoMapper
     {
         public DomainToViewModelProfile()
         {
+            //CreateMap<string, string>().ConvertUsing(s => s ?? string.Empty);
+            //CreateMap<string, Type>().ConvertUsing<TypeTypeConverter>();
+            //CreateMap<DateTime, string>().ConvertUsing(new DateTimeToPersianDateTimeConverter());
+            //CreateMap<string, DateTime>().ConvertUsing(new PersianDateTimeToDateTimeConverter());
             CreateMap<AcademicCalendar, AcademicCalendarViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
@@ -63,16 +68,13 @@ namespace FKRM.Application.AutoMapper
             CreateMap<MarkingType, MarkingTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
-
             CreateMap<Notification, NotificationViewModel>()
                 .ForMember(cd => cd.ParentNotification, opt => opt.MapFrom(c => c.ParentNotification.Subject))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPriorDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
-
             CreateMap<OUType, OUTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
-           
             CreateMap<JobTitle, JobTitleViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
@@ -93,7 +95,6 @@ namespace FKRM.Application.AutoMapper
             CreateMap<UnitType, UnitTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
-
             CreateMap<WorkedFor, WorkedForViewModel>()
                .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));

@@ -1,17 +1,13 @@
 ﻿using FKRM.Domain.Enums;
 using FKRM.Infra.Identity.Models;
-using FKRM.Mvc.Areas.Identity.Pages.Account;
-using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
@@ -33,7 +29,6 @@ namespace FKRM.Mvc.Controllers
             List<UserRolesViewModel> userRolesViewModel = await GetUsers();
             return PartialView("_ViewAll", userRolesViewModel);
         }
-
         private async Task<List<UserRolesViewModel>> GetUsers()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -41,25 +36,23 @@ namespace FKRM.Mvc.Controllers
             foreach (ApplicationUser user in users)
             {
                 var thisViewModel = new UserRolesViewModel();
-                thisViewModel.UserId = user.Id;
+                thisViewModel.Id = user.Id;
                 thisViewModel.UserName = user.UserName;
                 thisViewModel.FirstName = user.FirstName;
                 thisViewModel.LastName = user.LastName;
+                thisViewModel.IsActive = user.IsActive;
                 thisViewModel.Roles = await GetUserRoles(user);
                 userRolesViewModel.Add(thisViewModel);
             }
-
             return userRolesViewModel;
         }
-
         public IActionResult Index()
         {
             return View();
         }
         public JsonResult OnGetCreate()
         {
-            var branchViewModel = new RegisterUserViewModel();
-            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", branchViewModel) });  
+            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", new RegisterUserViewModel()) }); 
         }
         [HttpPost]
         public async Task<JsonResult> OnPostCreate(RegisterUserViewModel registerUserViewModel)
@@ -88,6 +81,10 @@ namespace FKRM.Mvc.Controllers
                 else
                 {
                     NotifyError($"عملیات مورد نظر انجام نشد.");
+                    foreach (var error in result.Errors)
+                    {
+                        NotifyError(error.Description);
+                    }
                     var html = await ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", registerUserViewModel);
                     return new JsonResult(new { isValid = false, html });
                 }
@@ -102,13 +99,13 @@ namespace FKRM.Mvc.Controllers
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
-        public async Task<IActionResult> Manage(string userId)
+        public async Task<IActionResult> Manage(string Id)
         {
-            ViewBag.userId = userId;
-            var user = await _userManager.FindByIdAsync(userId);
+            ViewBag.userId = Id;
+            var user = await _userManager.FindByIdAsync(Id);
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                ViewBag.ErrorMessage = $"User with Id = {Id} cannot be found";
                 return View("NotFound");
             }
             ViewBag.UserName = user.UserName;
@@ -133,9 +130,9 @@ namespace FKRM.Mvc.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
+        public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string Id)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(Id);
             if (user == null)
             {
                 return View();
@@ -155,6 +152,34 @@ namespace FKRM.Mvc.Controllers
             }
             NotifySuccess($"ثبت اطلاعات انجام شد");
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<JsonResult> OnPostActive(string Id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(Id);
+                if (user == null)
+                {
+                    NotifyError($"Cannot remove user existing roles.");
+                }
+                else
+                {
+                    user.IsActive = !user.IsActive;
+                    var response=_userManager.UpdateAsync(user);
+                    if (response.Result.Succeeded)
+                    {
+                        NotifySuccess($"تغییر وضعیت انجام شد");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                NotifyError(ex.Message);
+            }
+            List<UserRolesViewModel> userRolesViewModel = await GetUsers();
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", userRolesViewModel);
+            return new JsonResult(new { isValid = true, html });
         }
     }
 }

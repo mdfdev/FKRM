@@ -11,6 +11,9 @@
             <th class="sort">
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
             <th class="sort">
                 نقش ها
             </th>
@@ -20,35 +23,39 @@
     <tbody class="bg-white">
         @foreach (var user in Model)
         {
-        <tr class="hover-actions-trigger hover-shadow">
-            <td>
-                @user.FirstName
-            </td>
-            <td>
-                @user.LastName
-            </td>
-            <td>
-                @user.UserName
-            </td>
-            <td>@string.Join(" , ", user.Roles.ToList())</td>
-            <td>
-                <div class="btn-group btn-group-sm hover-actions r-0" role="group">
-
-                    <form id="form_delete_@user.UserId" asp-controller="RoleManager" method="post"
-                          asp-action="OnPostDelete" asp-route-id="@user.UserId" onsubmit="return jQueryModalDelete(this)">
-                        <a href="javascript:$('#form_delete_@user.UserId').submit();" data-placement="top" class="btn btn-light">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </form>
-
-                    <button class="btn btn-light" onclick="jQueryModalGet('/userroles/OnGetCreateOrEdit?id=@user.UserId', 'ویرایش کاربر')"
-                            type="button" data-placement="top" title="ویرایش">
-                        <span class="fas fa-edit"></span>
-                    </button>
-                    <a class="btn btn-light" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId"><span class="fas fa-user-shield"></span></a>
-                </div>
-            </td>
-        </tr>
+            <tr class="hover-actions-trigger hover-shadow">
+                <td>
+                    @user.FirstName
+                </td>
+                <td>
+                    @user.LastName
+                </td>
+                <td>
+                    @user.UserName
+                </td>
+                <td>
+                    @if (user.IsActive)
+                    {
+                        <span class="badge badge-success">فعال</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">غیرفعال</span>
+                    }
+                </td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <div class="btn-group btn-group-sm hover-actions r-0" role="group">
+                        <form id="form_active_@user.Id" asp-controller="UserRoles" method="post"
+                              asp-action="OnPostActive" asp-route-id="@user.Id" onsubmit="return jQueryModalActive(this)">
+                            <a href="javascript:$('#form_active_@user.Id').submit();" data-placement="top" class="btn btn-light">
+                                <i class="fas fa-user-slash"></i>
+                            </a>
+                        </form>
+                        <a class="btn btn-light" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.Id"><span class="fas fa-user-shield"></span></a>
+                    </div>
+                </td>
+            </tr>
         }
     </tbody>
     <tfoot class="bg-200">
@@ -63,6 +70,9 @@
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th class="sort">
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th class="sort">
                 نقش ها
             </th>
             <th></th>
@@ -73,7 +83,7 @@
     $(document).ready(function () {
         $("#userTable").DataTable({
             responsive: true,
-            "order": [[0, "asc"]]           
+            "order": [[0, "asc"]]
         });
     });
 </script>

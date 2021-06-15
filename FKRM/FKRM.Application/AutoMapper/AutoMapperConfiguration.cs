@@ -10,6 +10,7 @@ namespace FKRM.Application.AutoMapper
             {
                 cfg.AddProfile(new DomainToViewModelProfile());
                 cfg.AddProfile(new ViewModelToDomainProfile());
+                
             });
         }
     }
