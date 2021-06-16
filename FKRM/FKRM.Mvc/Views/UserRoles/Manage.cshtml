@@ -1,43 +1,246 @@
-﻿@model List<ManageUserRolesViewModel>
-
-<div class="card mb-3">
-    <form method="post">
-        <div class="card-header">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-6 col-sm-auto d-flex align-items-center pr-0">
-                    <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">مدیریت نقش های کاربر / @ViewBag.UserName</h5>
-                </div>
-            </div>
+﻿@model ManageViewModel
+<div class="row">
+    <div class="col-12">
+       
+        <div class="card-header position-relative min-vh-25 mb-7">
+            <div class="bg-holder rounded-soft rounded-bottom-0" style="background-image:url(../../img/generic/4.jpg);"></div>
+            <div class="avatar avatar-5xl avatar-profile"><img class="rounded-circle img-thumbnail shadow-sm" src="~/img/team/profile.jpg" width="200" alt="" /></div>
         </div>
-        <div class="card-body bg-light px-0">
+    </div>
+</div>
 
-            <div class="row">
-                <div class="col-lg-1">
-
-                </div>
-                <div class="col-lg-10">
-                    @for (int i = 0; i < Model.Count; i++)
-                    {
-                        <div class="custom-control custom-checkbox">
-                            <input type="hidden" asp-for="@Model[i].RoleId" />
-                            <input type="hidden" asp-for="@Model[i].RoleName" />
-                            <input asp-for="@Model[i].Selected" class="custom-control-input" />
-                            <label class="custom-control-label" asp-for="@Model[i].Selected">
-                                @Model[i].RoleName
-                            </label>
+<div class="row no-gutters">
+    <div class="col-lg-8 pr-lg-2">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">مدیریت نقش ها / @ViewBag.UserName</h5>
+            </div>
+            <div class="card-body bg-light">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            @for (int i = 0; i < Model.manageUserRoles.Count; i++)
+                            {
+                                <div class="custom-control custom-checkbox">
+                                    <input type="hidden" asp-for="@Model.manageUserRoles[i].RoleId" />
+                                    <input type="hidden" asp-for="@Model.manageUserRoles[i].RoleName" />
+                                    <input asp-for="@Model.manageUserRoles[i].Selected" class="custom-control-input" />
+                                    <label class="custom-control-label" asp-for="@Model.manageUserRoles[i].Selected">
+                                        @Model.manageUserRoles[i].RoleName
+                                    </label>
+                                </div>
+                            }
+                            <div asp-validation-summary="All" class="text-danger"></div>
                         </div>
-                    }
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <input type="submit" value="بروزرسانی" class="btn btn-primary" style="width:auto" />
+                            &nbsp;
+                            <a asp-action="Index" class="btn btn-primary" style="width:auto">انصراف</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">Experiences</h5>
+            </div>
+            <div class="card-body bg-light">
+                <a class="mb-4 d-block d-flex align-items-center" href="#experience-form" data-toggle="collapse" aria-expanded="false" aria-controls="experience-form"><span class="circle-dashed"><span class="fas fa-plus"></span></span><span class="ml-3">Add new experience</span></a>
+                <div class="collapse" id="experience-form">
+                    <form>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="company">Company</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="company" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="position">Position</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="position" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="city">City</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="city" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="exp-description">Description</label></div>
+                                <div class="col-lg-7"><textarea class="form-control form-control-sm" id="exp-description" rows="3"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-7 offset-lg-3">
+                                    <div class="custom-checkbox custom-control custom-control-inline"><input class="custom-control-input" id="experience-current" type="checkbox" checked="" /><label class="custom-control-label" for="experience-current">I currently work here</label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="exp-from">From</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm datetimepicker" id="exp-from" type="text" placeholder="d-m-y" data-options='{"dateFormat":"d-m-Y"}' /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="exp-to">To</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm datetimepicker" id="exp-to" type="text" placeholder="d-m-y" data-options='{"dateFormat":"d-m-Y"}' /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-7 offset-lg-3"><button class="btn btn-primary" type="button">Save</button></div>
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="border-dashed border-bottom-0 my-4" />
                 </div>
-                <div class="col-lg-1">
-
+                <div class="media">
+                    <a href="#!"> <img class="img-fluid" src="../assets/img/logos/g.png" alt="" width="56" /></a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0">Big Data Engineer<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></h6>
+                        <p class="mb-1"> <a href="#!">Google</a></p>
+                        <p class="text-1000 mb-0">Apr 2012 - Present &bull; 6 yrs 9 mos</p>
+                        <p class="text-1000 mb-0">California, USA</p>
+                        <hr class="border-dashed border-bottom-0" />
+                    </div>
+                </div>
+                <div class="media">
+                    <a href="#!"> <img class="img-fluid" src="../assets/img/logos/apple.png" alt="" width="56" /></a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0">Software Engineer<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></h6>
+                        <p class="mb-1"> <a href="#!">Apple</a></p>
+                        <p class="text-1000 mb-0">Jan 2012 - Apr 2012 &bull; 4 mos</p>
+                        <p class="text-1000 mb-0">California, USA</p>
+                        <hr class="border-dashed border-bottom-0" />
+                    </div>
+                </div>
+                <div class="media">
+                    <a href="#!"> <img class="img-fluid" src="../assets/img/logos/nike.png" alt="" width="56" /></a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0">Mobile App Developer<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></h6>
+                        <p class="mb-1"> <a href="#!">Nike</a></p>
+                        <p class="text-1000 mb-0">Jan 2011 - Apr 2012 &bull; 1 yr 4 mos</p>
+                        <p class="text-1000 mb-0">Beaverton, USA</p>
+                    </div>
                 </div>
             </div>
-
         </div>
-        <div class="card-footer">
-            <input type="submit" value="بروزرسانی" class="btn btn-primary" style="width:auto" />
-            <a asp-action="Index" class="btn btn-primary" style="width:auto">انصراف</a>
+        <div class="card mb-3 mb-lg-0">
+            <div class="card-header">
+                <h5 class="mb-0">Educations</h5>
+            </div>
+            <div class="card-body bg-light">
+                <a class="mb-4 d-block d-flex align-items-center" href="#education-form" data-toggle="collapse" aria-expanded="false" aria-controls="education-form"><span class="circle-dashed"><span class="fas fa-plus"></span></span><span class="ml-3">Add new education</span></a>
+                <div class="collapse" id="education-form">
+                    <form>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="school">School</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="school" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="degree">Degree</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="degree" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="field">Field</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm" id="field" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="edu-from">From</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm datetimepicker" id="edu-from" type="text" placeholder="d-m-y" data-options='{"dateFormat":"d-m-Y"}' /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 text-lg-right"><label class="mb-0" for="edu-to">To</label></div>
+                                <div class="col-lg-7"><input class="form-control form-control-sm datetimepicker" id="edu-to" type="text" placeholder="d-m-y" data-options='{"dateFormat":"d-m-Y"}' /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-7 offset-lg-3"><button class="btn btn-primary" type="button">Save</button></div>
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="border-dashed border-bottom-0 my-4" />
+                </div>
+                <div class="media">
+                    <a href="#!">
+                        <div class="avatar avatar-3xl">
+                            <div class="avatar-name rounded-circle"><span>SU</span></div>
+                        </div>
+                    </a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0"> <a href="#!">Stanford University<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></a></h6>
+                        <p class="mb-1">Computer Science and Engineering</p>
+                        <p class="text-1000 mb-0">2010 - 2014 • 4 yrs</p>
+                        <p class="text-1000 mb-0">California, USA</p>
+                        <hr class="border-dashed border-bottom-0" />
+                    </div>
+                </div>
+                <div class="media">
+                    <a href="#!"> <img class="img-fluid" src="../assets/img/logos/staten.png" alt="" width="56" /></a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0"> <a href="#!">Staten Island Technical High School<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></a></h6>
+                        <p class="mb-1">Higher Secondary School Certificate, Science</p>
+                        <p class="text-1000 mb-0">2008 - 2010 &bull; 2 yrs</p>
+                        <p class="text-1000 mb-0">New York, USA</p>
+                        <hr class="border-dashed border-bottom-0" />
+                    </div>
+                </div>
+                <div class="media">
+                    <a href="#!"> <img class="img-fluid" src="../assets/img/logos/tj-heigh-school.png" alt="" width="56" /></a>
+                    <div class="media-body position-relative pl-3">
+                        <h6 class="fs-0 mb-0"> <a href="#!">Thomas Jefferson High School for Science and Technology<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="top" title="Verified" data-fa-transform="shrink-4 down-2"></small></a></h6>
+                        <p class="mb-1">Secondary School Certificate, Science</p>
+                        <p class="text-1000 mb-0">2003 - 2008 &bull; 5 yrs</p>
+                        <p class="text-1000 mb-0">Alexandria, USA</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
+    <div class="col-lg-4 pl-lg-2">
+        <div class="sticky-top sticky-sidebar">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="mb-0">بازنشانی کلمه عبور</h5>
+                </div>
+                <div class="card-body bg-light">
+                    <form method="post" asp-action="ResetPassword">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="resetPasswordModel.EmployeeId"></label>
+                            <input asp-for="resetPasswordModel.EmployeeId" class="form-control" readonly="" />
+                            <span asp-validation-for="resetPasswordModel.EmployeeId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="resetPasswordModel.Password"></label>
+                            <input asp-for="resetPasswordModel.Password" class="form-control" />
+                            <span asp-validation-for="resetPasswordModel.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="resetPasswordModel.ConfirmPassword"></label>
+                            <input asp-for="resetPasswordModel.ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="resetPasswordModel.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">بازنشانی</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -15,47 +15,47 @@
             <th class="sort">
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
-            <th></th>
+            <th class="no-sort"></th>
         </tr>
     </thead>
     <tbody class="bg-white">
 
         @foreach (var area in Model)
         {
-            <tr>
-                <td>
-                    @area.Name
-                </td>
-                <td>
-                    @area.Branch
-                </td>
-                <td>
-                    @area.AddedDate
-                </td>
-                <td>
-                    @area.ModifiedDate
-                </td>
-              
-                <td class="align-middle white-space-nowrap">
-                    <div class="dropdown text-sans-serif">
-                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0"
-                                data-toggle="dropdown" data-boundary="html" aria-haspopup="true" aria-expanded="false">
-                            <span class="fas fa-ellipsis-h fs--1"></span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
-                            <div class="bg-white py-2">
-                                <a onclick="jQueryModalGet('/area/OnGetCreateOrEdit?id=@area.Id','ویرایش زمینه')"
-                                   class="dropdown-item"><i class="fas fa-pencil-alt"></i>  ویرایش</a>
-                                <div class="dropdown-divider"></div>
-                                <form id="form_delete_@area.Id" asp-controller="Area" method="post"
-                                      asp-action="OnPostDelete" asp-route-id="@area.Id" onsubmit="return jQueryModalDelete(this)">
-                                    <a href="javascript:$('#form_delete_@area.Id').submit();" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i>  حذف</a>
-                                </form>
-                            </div>
+        <tr>
+            <td>
+                @area.Name
+            </td>
+            <td>
+                @area.Branch
+            </td>
+            <td>
+                @area.AddedDate
+            </td>
+            <td>
+                @area.ModifiedDate
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+                <div class="dropdown text-sans-serif">
+                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button"
+                            id="order-dropdown-1" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-ellipsis-h fs--1"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-1">
+                        <div class="bg-white py-2">
+                            <a class="dropdown-item" onclick="jQueryModalGet('/area/OnGetCreateOrEdit?id=@area.Id','ویرایش اطلاعات زمینه')">ویرایش</a>
+                            <div class="dropdown-divider"></div>
+                            <form id="form_delete_@area.Id" asp-controller="Area" method="post"
+                                  asp-action="OnPostDelete" asp-route-id="@area.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@area.Id').submit();" class="dropdown-item text-danger">
+                                    حذف
+                                </a>
+                            </form>
                         </div>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

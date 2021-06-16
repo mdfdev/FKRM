@@ -4,6 +4,7 @@ using FKRM.Infra.IoC;
 using FKRM.Mvc.Abstractions;
 using FKRM.Mvc.Configurations;
 using FKRM.Mvc.Data;
+using FKRM.Mvc.Helper;
 using FKRM.Mvc.Models;
 using FKRM.Mvc.Services;
 using MediatR;
@@ -46,6 +47,7 @@ namespace FKRM.Mvc
                 );
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<PersianIdentityErrorDescriber>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 

@@ -2,7 +2,7 @@
 <table id="branchTable" class="table table-hover table-sm table-striped data-table no-wrap mb-0 fs--1 w-100">
     <thead class="bg-200">
         <tr>
-            <th class="sort">
+            <th class="align-middle sort text-center">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="sort">
@@ -11,14 +11,14 @@
             <th class="sort">
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
-            <th></th>
+            <th class="no-sort"></th>
         </tr>
     </thead>
     <tbody class="bg-white">
         @foreach (var branch in Model)
         {
             <tr class="hover-actions-trigger hover-shadow">
-                <td>
+                <td class="py-2 align-middle white-space-nowrap">
                     @branch.Name
                 </td>
                 <td>
@@ -27,21 +27,24 @@
                 <td>
                     @branch.ModifiedDate
                 </td>
-                <td>
-                    <div class="btn-group btn-group-sm hover-actions r-0" role="group">
-
-                        <form id="form_delete_@branch.Id" asp-controller="Branch" method="post"
-                              asp-action="OnPostDelete" asp-route-id="@branch.Id" onsubmit="return jQueryModalDelete(this)">
-                            <a href="javascript:$('#form_delete_@branch.Id').submit();" data-placement="top" class="btn btn-light">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </form>
-
-                        <button class="btn btn-light" onclick="jQueryModalGet('/branch/OnGetCreateOrEdit?id=@branch.Id','ویرایش اطلاعات شاخه')"
-                                type="button" data-placement="top" title="ویرایش">
-                            <span class="fas fa-edit"></span>
+                <td class="py-2 align-middle white-space-nowrap">
+                    <div class="dropdown text-sans-serif">
+                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button"
+                                id="order-dropdown-1" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-ellipsis-h fs--1"></span>
                         </button>
-                        <a class="btn btn-light"  title="Snooze"><span class="fas fa-clock"></span></a>
+                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-1">
+                            <div class="bg-white py-2">
+                                <a class="dropdown-item" onclick="jQueryModalGet('/branch/OnGetCreateOrEdit?id=@branch.Id','ویرایش اطلاعات شاخه')">ویرایش</a>
+                                <div class="dropdown-divider"></div>
+                                <form id="form_delete_@branch.Id" asp-controller="Branch" method="post"
+                                      asp-action="OnPostDelete" asp-route-id="@branch.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <a href="javascript:$('#form_delete_@branch.Id').submit();" class="dropdown-item text-danger">
+                                        حذف
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </td>
             </tr>

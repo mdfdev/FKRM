@@ -101,7 +101,7 @@ namespace FKRM.Mvc.Controllers
         }
         public async Task<IActionResult> Manage(string Id)
         {
-            ViewBag.userId = Id;
+            ViewBag.Id = Id;
             var user = await _userManager.FindByIdAsync(Id);
             if (user == null)
             {
@@ -127,10 +127,10 @@ namespace FKRM.Mvc.Controllers
                 }
                 model.Add(userRolesViewModel);
             }
-            return View(model);
+            return View(new ManageViewModel() { manageUserRoles = model, resetPasswordModel = new ResetPasswordModel() { EmployeeId = user.UserName } });
         }
         [HttpPost]
-        public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string Id)
+        public async Task<IActionResult> Manage(ManageViewModel model, string Id)
         {
             var user = await _userManager.FindByIdAsync(Id);
             if (user == null)
@@ -144,11 +144,33 @@ namespace FKRM.Mvc.Controllers
                 NotifyError($"Cannot remove user existing roles.");
                 return View(model);
             }
-            result = await _userManager.AddToRolesAsync(user, model.Where(x => x.Selected).Select(y => y.RoleName));
+            result = await _userManager.AddToRolesAsync(user, model.manageUserRoles.Where(x => x.Selected).Select(y => y.RoleName));
             if (!result.Succeeded)
             {
                 NotifyError($"Cannot add selected roles to user.");
                 return View(model);
+            }
+            NotifySuccess($"ثبت اطلاعات انجام شد");
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ManageViewModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.resetPasswordModel.EmployeeId);
+            if (user == null)
+            {
+                return View();
+            }
+            string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, Code, model.resetPasswordModel.Password);
+            if (!result.Succeeded)
+            {
+                NotifyError($"عملیات مورد نظر انجام نشد.");
+                foreach (var error in result.Errors)
+                {
+                    NotifyError(error.Description);
+                }
+                return RedirectToAction("Index");
             }
             NotifySuccess($"ثبت اطلاعات انجام شد");
             return RedirectToAction("Index");

@@ -17,45 +17,54 @@
             <th class="sort">
                 نقش ها
             </th>
-            <th></th>
+            <th class="no-sort"></th>
         </tr>
     </thead>
     <tbody class="bg-white">
         @foreach (var user in Model)
         {
-            <tr class="hover-actions-trigger hover-shadow">
-                <td>
-                    @user.FirstName
-                </td>
-                <td>
-                    @user.LastName
-                </td>
-                <td>
-                    @user.UserName
-                </td>
-                <td>
-                    @if (user.IsActive)
-                    {
-                        <span class="badge badge-success">فعال</span>
-                    }
-                    else
-                    {
-                        <span class="badge badge-danger">غیرفعال</span>
-                    }
-                </td>
-                <td>@string.Join(" , ", user.Roles.ToList())</td>
-                <td>
-                    <div class="btn-group btn-group-sm hover-actions r-0" role="group">
-                        <form id="form_active_@user.Id" asp-controller="UserRoles" method="post"
-                              asp-action="OnPostActive" asp-route-id="@user.Id" onsubmit="return jQueryModalActive(this)">
-                            <a href="javascript:$('#form_active_@user.Id').submit();" data-placement="top" class="btn btn-light">
-                                <i class="fas fa-user-slash"></i>
-                            </a>
-                        </form>
-                        <a class="btn btn-light" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.Id"><span class="fas fa-user-shield"></span></a>
+        <tr class="hover-actions-trigger hover-shadow">
+            <td>
+                @user.FirstName
+            </td>
+            <td>
+                @user.LastName
+            </td>
+            <td>
+                @user.UserName
+            </td>
+            <td>
+                @if (user.IsActive)
+                {
+                    <span class="badge badge-success">فعال</span>
+                }
+                else
+                {
+                    <span class="badge badge-danger">غیرفعال</span>
+                }
+            </td>
+            <td>@string.Join(" , ", user.Roles.ToList())</td>
+            <td class="py-2 align-middle white-space-nowrap">
+                <div class="dropdown text-sans-serif">
+                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button"
+                            id="order-dropdown-1" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-ellipsis-h fs--1"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-1">
+                        <div class="bg-white py-2">
+                            <a class="dropdown-item" asp-controller="UserRoles" asp-action="Manage" asp-route-Id="@user.Id">تنظیمات</a>
+                            <div class="dropdown-divider"></div>
+                            <form id="form_active_@user.Id" asp-controller="UserRoles" method="post"
+                                  asp-action="OnPostActive" asp-route-Id="@user.Id" onsubmit="return jQueryModalActive(this)">
+                                <a href="javascript:$('#form_active_@user.Id').submit();" class="dropdown-item text-danger">
+                                    تغییر وضعیت
+                                </a>
+                            </form>
+                        </div>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </td>
+        </tr>
         }
     </tbody>
     <tfoot class="bg-200">
