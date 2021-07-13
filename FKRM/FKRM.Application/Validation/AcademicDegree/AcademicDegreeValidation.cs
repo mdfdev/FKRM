@@ -11,9 +11,10 @@ namespace FKRM.Application.Validation.AcademicDegree
             RuleFor(c => c.Name)
                 .NotNull()
                 .NotEmpty()
-                .WithMessage("نام الزامی می باشد")
+                .WithName("نام شاخه")
+                .WithMessage("{PropertyName} الزامی می باشد")
                 .Length(3, 20)
-                .WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
+                .WithMessage("طول {PropertyName} باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

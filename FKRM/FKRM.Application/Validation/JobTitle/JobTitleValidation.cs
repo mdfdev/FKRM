@@ -9,7 +9,10 @@ namespace FKRM.Application.Validation.JobTitle
         protected void ValidateName()
         {
             RuleFor(c => c.Title)
-                .NotEmpty().NotNull().WithMessage("نام عنوان شغلی الزامی می باشد");
+                .NotEmpty()
+                .NotNull()
+                .WithName("عنوان شغلی")
+                .WithMessage("{PropertyName} الزامی می باشد");
         }
         protected void ValidateId()
         {

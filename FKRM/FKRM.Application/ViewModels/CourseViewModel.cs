@@ -18,6 +18,7 @@ namespace FKRM.Application.ViewModels
         public int Credits { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("حد نصاب قبولی")]
+        [RegularExpression(@"^\d+(\.\d{0,0})*$", ErrorMessage = "The field Price must be a positive number with maximum two decimals.")]
         public int PassMark { get; set; }
         [Required(ErrorMessage = "(*)")]
         [DisplayName("ساعت هفتگی عملی")]

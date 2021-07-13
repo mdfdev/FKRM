@@ -1,4 +1,4 @@
-﻿using FKRM.Domain.Enums;
+﻿using FKRM.Domain.Constants;
 using FKRM.Infra.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace FKRM.Mvc.Data
         public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Roles
-            await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdmin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.Basic.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdmin));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Moderator));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Basic));
         }
         public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -35,10 +35,10 @@ namespace FKRM.Mvc.Data
                 if (user == null)
                 {
                     await userManager.CreateAsync(defaultUser, "123Pa$$word.");
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Basic.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
+                    await userManager.AddToRoleAsync(defaultUser, Roles.Basic);
+                    await userManager.AddToRoleAsync(defaultUser, Roles.Moderator);
+                    await userManager.AddToRoleAsync(defaultUser, Roles.Admin);
+                    await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin);
                 }
 
             }

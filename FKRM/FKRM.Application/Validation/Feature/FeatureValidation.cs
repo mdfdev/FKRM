@@ -9,8 +9,11 @@ namespace FKRM.Application.Validation.Feature
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("نام ویژگی الزامی می باشد")
-                .Length(2, 20).WithMessage("طول نام باید بین 2~20 کاراکتر باشد");
+                .NotEmpty()
+                .WithName("نام ویژگی")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(2, 20)
+                .WithMessage("طول {PropertyName} باید بین 2~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

@@ -9,7 +9,9 @@ namespace FKRM.Application.Validation.Enrollment
         protected void ValidateName()
         {
             RuleFor(c => c.Capacity)
-                .GreaterThan(0).WithMessage("ظرفیت الزامی می باشد");
+                .GreaterThan(0)
+                .WithName("ظرفیت")
+                .WithMessage("{PropertyName} الزامی می باشد");
         }
         protected void ValidateId()
         {

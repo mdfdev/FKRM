@@ -16,14 +16,20 @@ namespace FKRM.Application.Validation.Notification
         protected void ValidateBody()
         {
             RuleFor(c => c.Body)
-                .NotEmpty().WithMessage("متن پیام الزامی می باشد")
-                .Length(5, 500).WithMessage("طول نام باید بین 5~500 کاراکتر باشد");
+                .NotEmpty()
+                .WithName("متن پیام")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(5, 500)
+                .WithMessage("طول {PropertyName} باید بین 5~500 کاراکتر باشد");
         }
         protected void ValidateSubject()
         {
             RuleFor(c => c.Subject)
-                .NotEmpty().WithMessage("عنوان الزامی می باشد")
-                .Length(5, 100).WithMessage("طول نام باید بین 5~100 کاراکتر باشد");
+                .NotEmpty()
+                .WithName("عنوان پیام")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(5, 100)
+                .WithMessage("طول {PropertyName} باید بین 5~100 کاراکتر باشد");
         }
     }
 }

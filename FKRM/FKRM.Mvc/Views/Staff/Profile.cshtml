@@ -10,7 +10,6 @@
                 <h4 class="mb-1"> @Model.FirstName @Model.LastName<small class="fas fa-check-circle text-primary ml-1" data-toggle="tooltip" data-placement="right" title="Verified" data-fa-transform="shrink-4 down-2"></small></h4>
                 <h5 class="fs-0 font-weight-normal">@Model.School</h5>
                 <p class="text-500">@Model.JobTitle</p>
-
                 <hr class="border-dashed my-4 d-lg-none" />
                 <p class="text-500">@Model.Bio</p>
             </div>
@@ -30,9 +29,44 @@
                 <p>
                     <span class="fas fa-address-card"></span> @Model.Email
                 </p>
-
-
             </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead class="bg-200 text-900">
+                    <tr>
+                        <th scope="col">
+                            مقطع تحصیلی
+                        </th>
+                        <th scope="col">
+                            مدرک تحصیلی
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    @foreach (var stb in Model.staffEducationalBackgrounds)
+                    { 
+                    <tr>
+                        <td class="align-middle">
+                            @stb.AcademicDegree
+                        </td>
+                        <td class="align-middle">
+                            @stb.AcademicMajor
+                        </td>
+                        <td>
+                            <form id="form_delete_@stb.Id" asp-controller="StaffEducationalBackground" method="post"
+                                  asp-action="OnPostDelete" asp-route-id="@stb.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@stb.Id').submit();" class="dropdown-item text-danger">
+                                    حذف
+                                </a>
+                            </form>
+                        </td>
+                    </tr>
+                        }
+                </tbody>
+            </table>
+
         </div>
     </div>
     <div class="modal-footer">

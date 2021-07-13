@@ -10,6 +10,7 @@ namespace FKRM.Application.ViewModels
     /// </summary>
     public class StaffEducationalBackgroundViewModel : BaseViewModel
     {
+        public Guid StaffId { get; set; }
         public string AcademicDegree { get; set; }
         public string AcademicMajor { get; set; }
 

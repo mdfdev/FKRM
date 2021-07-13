@@ -1,16 +1,15 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
+using FKRM.Domain.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = Roles.SuperAdmin)]
     public class AcademicMajorController : BaseController<AcademicMajorController>
     {
         private readonly IAcademicMajorService _academicMajorService;

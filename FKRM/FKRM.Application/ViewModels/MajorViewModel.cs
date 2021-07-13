@@ -26,7 +26,7 @@ namespace FKRM.Application.ViewModels
         /// تعداد واحد الزامی
         /// </summary>
         [Display(Name = "تعداد واحد الزامی", Prompt = "تعداد واحد الزامی")]
-        [Range(1, 10, ErrorMessage = "تعداد واحد الزامی باید بین 0 و 10 باشد.")]
+        [Range(1, 120, ErrorMessage = "تعداد واحد الزامی باید بین 1 و 120 باشد.")]
         public int RequiredCredit { get; set; }
         /// <summary>
         /// تعداد واحد اختیاری یا انتخابی
@@ -38,11 +38,8 @@ namespace FKRM.Application.ViewModels
         /// تعداد واحد فارغ التحصیلی
         /// </summary>
         [Display(Name = "تعداد واحد فارغ التحصیلی", Prompt = "تعداد واحد فارغ التحصیلی")]
-        [Range(1, 10, ErrorMessage = "تعداد واحد فارغ التحصیلی باید بین 0 و 10 باشد.")]
+        [Range(1, 120, ErrorMessage = "تعداد واحد فارغ التحصیلی باید بین 1 و 120 باشد.")]
         public int GraduationCredits { get; set; }
-
-
-
         [DisplayName("شاخه")]
         public string Branch { get; set; }
         [DisplayName("زمینه")]

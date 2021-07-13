@@ -13,8 +13,67 @@
     <script>
         $(document).ready(function () {
             var myChartpie = window.echarts.init(document.getElementById('echart-pie-majors'));
-            var myCharttreemap = window.echarts.init(document.getElementById('echart-treemap-majors'));
+            var myCharttreemapJobs = window.echarts.init(document.getElementById('echart-treemap-jobtitles'));
             try {
+                $.ajax({
+                    type: 'GET',
+                    url: '/JobTitle/GetStats',
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res != null) {
+                            option2 = {
+                                title: {
+                                    textStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
+                                    subtextStyle: {
+                                        fontFamily: "IRANSans"
+                                    },
+                                    text: 'پرسنل',
+                                    subtext: 'بر اساس سمت',
+                                    left: 'center'
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b} : {c}'
+                                },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        mark: { show: true },
+                                        restore: { show: true },
+                                        saveAsImage: { show: true }
+                                    }
+                                },
+                                series: [{
+                                    top: 60,
+                                    name: 'سمت ها',
+                                    type: 'treemap',
+                                    label: {
+                                        fontFamily: "IRANSans",
+                                        show: true,
+                                        formatter: '{b}'
+                                    },
+                                    itemStyle: {
+                                        borderColor: '#fff'
+                                    },
+                                    tooltip: {
+                                        textStyle: {
+                                            fontFamily: "IRANSans"
+                                        }
+                                    },
+                                    data: res.sort(function (a, b) { return a.value - b.value; })
+                                }]
+                            };
+                            myCharttreemapJobs.setOption(option2);
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                })
                 $.ajax({
                     type: 'GET',
                     url: '/Major/GetStats',
@@ -93,55 +152,8 @@
                                     }
                                 ]
                             };
-
                             myChartpie.setOption(option1);
-
-                            option2 = {
-                                title: {
-                                    textStyle: {
-                                        fontFamily: "IRANSans"
-                                    },
-                                    subtextStyle: {
-                                        fontFamily: "IRANSans"
-                                    },
-                                    text: 'سهم رشته ها',
-                                    subtext: 'بر اساس شاخه',
-                                    left: 'center'
-                                },
-                                tooltip: {
-                                    trigger: 'item',
-                                    formatter: '{a} <br/>{b} : {c}'
-                                },
-                                toolbox: {
-                                    show: true,
-                                    feature: {
-                                        mark: { show: true },
-                                        restore: { show: true },
-                                        saveAsImage: { show: true }
-                                    }
-                                },
-                                series: [{
-                                    name: 'سهم رشته ها',
-                                    type: 'treemap',
-                                    label: {
-                                        fontFamily: "IRANSans",
-                                        show: true,
-                                        formatter: '{b}'
-                                    },
-                                    itemStyle: {
-                                        borderColor: '#fff'
-                                    },
-                                    tooltip: {
-                                        textStyle: {
-                                            fontFamily: "IRANSans"
-                                        }
-                                    },
-                                    data: res.sort(function (a, b) { return a.value - b.value; })
-                                }]
-                            };
-                            myCharttreemap.setOption(option2);
                         }
-
                     },
                     error: function (err) {
                         console.log(err)
@@ -152,8 +164,6 @@
             } catch (ex) {
                 console.log(ex)
             }
-
-
         });
     </script>
 }

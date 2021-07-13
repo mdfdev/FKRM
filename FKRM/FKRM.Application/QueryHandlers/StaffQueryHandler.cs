@@ -31,7 +31,6 @@ namespace FKRM.Application.QueryHandlers
             _schoolRepository = schoolRepository;
             _academicCalendarRepository = academicCalendarRepository;
         }
-
         public Task<Response<IEnumerable<StaffViewModel>>> Handle(GetStaffAllData request, CancellationToken cancellationToken)
         {
             var staffs = _staffRepository.GetAll();
@@ -58,7 +57,6 @@ namespace FKRM.Application.QueryHandlers
                     NationalCode = p.p.p.st.NationalCode
                 })));
         }
-
         public Task<Response<StaffViewModel>> Handle(GetAllDataById request, CancellationToken cancellationToken)
         {
             var staffs = _staffRepository.GetAll();

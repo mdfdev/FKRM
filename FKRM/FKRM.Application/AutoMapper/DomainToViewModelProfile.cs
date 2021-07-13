@@ -92,6 +92,15 @@ namespace FKRM.Application.AutoMapper
                 .ForMember(cd => cd.JobTitle, opt => opt.MapFrom(c => c.JobTitle.Title))
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
+
+            CreateMap<StaffEducationalBackground, StaffEducationalBackgroundViewModel>()
+               .ForMember(cd => cd.AcademicDegree, opt => opt.MapFrom(c => c.AcademicDegree.Name))
+               .ForMember(cd => cd.AcademicMajor, opt => opt.MapFrom(c => c.AcademicMajor.Name))
+               .ForMember(cd => cd.AcademicMajorId, opt => opt.MapFrom(c => c.AcademicMajor.Id))
+               .ForMember(cd => cd.AcademicDegreeId, opt => opt.MapFrom(c => c.AcademicDegree.Id))
+               .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
+               .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));
+
             CreateMap<UnitType, UnitTypeViewModel>()
                 .ForMember(cd => cd.AddedDate, opt => opt.MapFrom(c => c.AddedDate.ToPersianDate()))
                 .ForMember(cd => cd.ModifiedDate, opt => opt.MapFrom(c => c.ModifiedDate.ToPersianDate()));

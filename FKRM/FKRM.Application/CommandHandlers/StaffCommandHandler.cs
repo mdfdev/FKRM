@@ -44,8 +44,8 @@ namespace FKRM.Application.CommandHandlers
                 entity.NationalCode = request.NationalCode;
                 entity.ModifiedDate = request.ModifiedDate;
                 entity.JobTitleId = request.JobTitleId;
-                entity.BirthDate = Convert.ToDateTime(request.BirthDate);
-                entity.HiringDate = Convert.ToDateTime(request.HiringDate);
+                entity.BirthDate = request.BirthDate.PersianToEnglish().ToGeorgianDate();
+                entity.HiringDate = request.HiringDate.PersianToEnglish().ToGeorgianDate();
                 entity.Email = request.Email;
                 entity.Bio = request.Email;
                 _staffRepository.Update(entity);

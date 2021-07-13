@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -48,5 +49,7 @@ namespace FKRM.Application.ViewModels
         public string Bio { get; set; }
         [DisplayName("سن")]
         public string Age { get; set; }
+
+        public IEnumerable<StaffEducationalBackgroundViewModel> staffEducationalBackgrounds { get; set; }
     }
 }

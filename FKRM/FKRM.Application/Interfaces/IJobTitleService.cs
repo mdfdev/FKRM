@@ -15,5 +15,6 @@ namespace FKRM.Application.Interfaces
 
         Task<Response<int>> Update(JobTitleViewModel jobTitleViewModel);
         Task<Response<int>> Remove(Guid id);
+        Task<Response<IEnumerable<ChartViewModel>>> GetJobsStatistics();
     }
 }

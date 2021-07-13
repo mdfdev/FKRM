@@ -9,6 +9,7 @@ using FKRM.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FKRM.Application.Queries.JobTitle;
 
 namespace FKRM.Application.Services
 {
@@ -51,6 +52,11 @@ namespace FKRM.Application.Services
         public IEnumerable<JobTitleViewModel> GetPagedResponse(int pageNumber, int pageSize)
         {
             return _jobTitleRepository.GetPagedReponse(pageNumber, pageSize).ProjectTo<JobTitleViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public Task<Response<IEnumerable<ChartViewModel>>> GetJobsStatistics()
+        {
+            return _bus.Send(new GetJobStatistics());
         }
     }
 }

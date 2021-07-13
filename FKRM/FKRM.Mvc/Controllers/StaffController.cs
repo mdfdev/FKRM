@@ -6,7 +6,6 @@ using NToastNotify;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-
 namespace FKRM.Mvc.Controllers
 {
     public class StaffController : BaseController<StaffController>
@@ -15,9 +14,16 @@ namespace FKRM.Mvc.Controllers
         private readonly IJobTitleService _jobTitleService;
         private readonly ISchoolService _schoolService;
         private readonly IAcademicCalendarService _academicCalendarService;
-
-        public StaffController(IStaffService staffService,IAcademicCalendarService academicCalendarService,ISchoolService schoolService,IJobTitleService jobTitleService, IToastNotification toastNotification) : base(toastNotification)
+        private readonly IAcademicDegreeService _academicDegreeService;
+        private readonly IAcademicMajorService _academicMajorService;
+        private readonly IStaffEducationalBackgroundService _staffEducationalBackgroundService;
+        public StaffController(IStaffService staffService, IAcademicCalendarService academicCalendarService, ISchoolService schoolService,
+            IJobTitleService jobTitleService, IToastNotification toastNotification, IAcademicDegreeService academicDegreeService,
+            IAcademicMajorService academicMajorService,IStaffEducationalBackgroundService staffEducationalBackgroundService) : base(toastNotification)
         {
+            _staffEducationalBackgroundService = staffEducationalBackgroundService;
+            _academicMajorService = academicMajorService;
+            _academicDegreeService = academicDegreeService;
             _staffService = staffService;
             _schoolService = schoolService;
             _academicCalendarService = academicCalendarService;
@@ -25,7 +31,10 @@ namespace FKRM.Mvc.Controllers
         }
         public JsonResult Profile(Guid id)
         {
-            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("Profile", _staffService.GetAllDataById(id).Result.Data) });
+            var  staffEducationalBackgrounds = _staffEducationalBackgroundService.GetAllDataByStaffId(id).Result.Data;
+            var   staffViewModel = _staffService.GetAllDataById(id).Result.Data;
+            staffViewModel.staffEducationalBackgrounds = staffEducationalBackgrounds;
+            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("Profile",staffViewModel) });
         }
         public IActionResult LoadAll(Guid id)
         {
@@ -43,6 +52,47 @@ namespace FKRM.Mvc.Controllers
         {
             return new JsonResult(_staffService.GetAllDataByNid(id).Result.Data);
         }
+        public JsonResult OnGetCreateEducationalBackground(Guid StaffId = default)
+        {
+
+            var staffEducationalBackgroundViewModel = new StaffEducationalBackgroundViewModel();
+            staffEducationalBackgroundViewModel.StaffId = StaffId;
+            var academicDegreeViewModels = _academicDegreeService.GetAll();
+            var academicMajorViewModels = _academicMajorService.GetAll();
+            staffEducationalBackgroundViewModel.AcademicMajors = new SelectList(academicMajorViewModels, "Id", "Name", null, null);
+            staffEducationalBackgroundViewModel.AcademicDegrees = new SelectList(academicDegreeViewModels, "Id", "Name", null, null);
+
+            return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateEducationalBackground", staffEducationalBackgroundViewModel) });
+
+        }
+        [HttpPost]
+        public async Task<JsonResult> OnGetCreateEducationalBackground(Guid StaffId, StaffEducationalBackgroundViewModel educationalBackgroundViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (StaffId != Guid.Empty)
+                    {
+                        var response = _staffEducationalBackgroundService.Register(educationalBackgroundViewModel);
+                        if (response.Result.Data == 400)
+                        {
+                            NotifyErrors(response.Result.Message);
+                        }
+                        else
+                        {
+                            NotifySuccess($"سابقه تحصیلی ثبت شد.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    NotifyError($"عملیات مورد نظر انجام نشد.{ex.Message}");
+                }
+            }
+            var html = await ViewRenderer.RenderViewToStringAsync("_ViewAll", _staffService.GetAll());
+            return new JsonResult(new { isValid = true, html });
+        }
         public JsonResult OnGetCreateOrEdit(Guid id = default)
         {
             PersianCalendar pc = new PersianCalendar();
@@ -53,9 +103,7 @@ namespace FKRM.Mvc.Controllers
                 var jobTitleViewModels = _jobTitleService.GetAll();
                 var schoolViewModels = _schoolService.GetAllWithCode();
                 var academicCalendarViewModels = _academicCalendarService.GetAllWithTitle();
-
-              
-                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear",_academicCalendarService.GetByYear(pYear).Id , null);
+                staffViewModel.AcademicCalendars = new SelectList(academicCalendarViewModels, "Id", "AcademicYear", _academicCalendarService.GetByYear(pYear).Id, null);
                 staffViewModel.JobTitles = new SelectList(jobTitleViewModels, "Id", "Title", null, null);
                 staffViewModel.Schools = new SelectList(schoolViewModels, "Id", "Name", null, null);
                 return new JsonResult(new { isValid = true, html = ViewRenderer.RenderViewToStringAsync("_CreateOrEdit", staffViewModel) });
@@ -89,7 +137,6 @@ namespace FKRM.Mvc.Controllers
                         else
                         {
                             NotifySuccess($"{staffViewModel.FirstName} ثبت شد.");
-
                         }
                     }
                     else

@@ -9,8 +9,11 @@ namespace FKRM.Application.Validation.District
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
-                .NotEmpty().WithMessage("نام منطقه الزامی می باشد")
-                .Length(3, 20).WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
+                .NotEmpty()
+                .WithName("نام منطقه")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(3, 20)
+                .WithMessage("طول {PropertyName} باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

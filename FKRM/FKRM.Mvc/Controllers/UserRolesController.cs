@@ -1,4 +1,4 @@
-﻿using FKRM.Domain.Enums;
+﻿using FKRM.Domain.Constants;
 using FKRM.Infra.Identity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FKRM.Mvc.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = Roles.SuperAdmin)]
     public class UserRolesController : BaseController<UserRolesController>
     {
         private readonly UserManager<ApplicationUser> _userManager;

@@ -33,52 +33,61 @@
 
         @foreach (var staff in Model)
         {
-            <tr class="btn-reveal-trigger">
-                <td class="align-middle">
-                    @staff.FirstName
-                </td>
-                <td>
-                    @staff.LastName
-                </td>
-                <td>
-                    @staff.JobTitle
-                </td>
-                <td>
-                    @staff.School
-                </td>
-                <td>
-                    @staff.AcademicCalendar
-                </td>
-                <td>
-                    @staff.Mobile
-                </td>
-                <td>
-                    @staff.Phone
-                </td>
-                <td>
-                    @staff.NationalCode
-                </td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <form id="form_delete_@staff.Id" asp-controller="Staff" method="post" asp-action="OnPostDelete" asp-route-id="@staff.Id" onsubmit="return jQueryModalDelete(this)">
-                            <a href="javascript:$('#form_delete_@staff.Id').submit();" class="btn btn-light">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </form>
-                        <button class="btn btn-light" onclick="jQueryModalGet('/staff/OnGetCreateOrEdit?id=@staff.Id','ویرایش اطلاعات پرسنل')" type="button" title="ویرایش">
-                            <span class="fas fa-edit"></span>
-                        </button>
-                        <button class="btn btn-light" onclick="jQueryModalGet('/staff/Profile?id=@staff.Id','اطلاعات پرسنل')" type="button" title="جزئیات">
-                            <span class="fas fa-info-circle"></span>
-                        </button>
+        <tr class="btn-reveal-trigger">
+            <td class="align-middle">
+                @staff.FirstName
+            </td>
+            <td>
+                @staff.LastName
+            </td>
+            <td>
+                @staff.JobTitle
+            </td>
+            <td>
+                @staff.School
+            </td>
+            <td>
+                @staff.AcademicCalendar
+            </td>
+            <td>
+                @staff.Mobile
+            </td>
+            <td>
+                @staff.Phone
+            </td>
+            <td>
+                @staff.NationalCode
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+                <div class="dropdown text-sans-serif">
+                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button"
+                            id="order-dropdown-1" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-ellipsis-h fs--1"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-1">
+                        <div class="bg-white py-2">
+                            <a class="dropdown-item" onclick="jQueryModalGet('/staff/Profile?id=@staff.Id','پروفایل کاربر')">پروفایل</a>
+                            <a class="dropdown-item" onclick="jQueryModalGet('/staff/OnGetCreateOrEdit?id=@staff.Id','ویرایش اطلاعات پرسنل')">ویرایش</a>
+                            <a class="dropdown-item" onclick="jQueryModalGet('/staff/OnGetCreateEducationalBackground?StaffId=@staff.Id','ویرایش سوابق تحصیلی')">سوابق تحصیلی</a>
+                            <div class="dropdown-divider"></div>
+                            <form id="form_delete_@staff.Id" asp-controller="Staff" method="post"
+                                  asp-action="OnPostDelete" asp-route-id="@staff.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@staff.Id').submit();" class="dropdown-item text-danger">
+                                    حذف
+                                </a>
+                            </form>
+                        </div>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 <script>
     $(document).ready(function () {
-        $("#staffTable").DataTable();
+        $("#staffTable").DataTable({
+            responsive:true
+        });
     });
 </script>

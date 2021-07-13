@@ -1,6 +1,5 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;

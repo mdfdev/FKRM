@@ -35,6 +35,9 @@ using FKRM.Application.Commands.District;
 using FKRM.Application.Commands.AcademicDegree;
 using FKRM.Application.Commands.AcademicMajor;
 using FKRM.Application.Commands.Notification;
+using FKRM.Application.Queries.JobTitle;
+using FKRM.Application.Commands.StaffEducationalBackground;
+using FKRM.Application.Queries.StaffEducationalBackground;
 
 namespace FKRM.Infra.IoC
 {
@@ -48,6 +51,9 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             //Domain Handler
+            services.AddScoped<IRequestHandler<GetStaffEducationalBackgroundById, Response<IEnumerable<StaffEducationalBackgroundViewModel>>>, StaffEducationalBackgroundQueryHandler>();
+            services.AddScoped<IRequestHandler<GetJobStatistics, Response<IEnumerable<ChartViewModel>>>, JobTitleQueryHandler>();
+
             services.AddScoped<IRequestHandler<CreateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteAcademicCalendarCommand, Response<int>>, AcademicCalendarCommandHandler>();
@@ -132,6 +138,8 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IRequestHandler<GetAllDataById, Response<StaffViewModel>>, StaffQueryHandler>();
             services.AddScoped<IRequestHandler<GetAllDataByNid, Response<StaffViewModel>>, StaffQueryHandler>();
 
+            services.AddScoped<IRequestHandler<CreateStaffEducationalBackgroundCommand, Response<int>>, StaffEducationalBackgroundCommandHandler>();
+
             services.AddScoped<IRequestHandler<CreateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteUnitTypeCommand, Response<int>>, UnitTypeCommandHandler>();
@@ -162,7 +170,7 @@ namespace FKRM.Infra.IoC
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IUnitTypeService, UnitTypeService>();
             services.AddScoped<IWorkedForService, WorkedForService>();
-
+            services.AddScoped<IStaffEducationalBackgroundService, StaffEducationalBackgroundService>();
             //Infra.Data.Layer
             services.AddScoped<IAcademicCalendarRepository, AcademicCalendarRepository>();
             services.AddScoped<IAcademicDegreeRepository, AcademicDegreeRepository>();

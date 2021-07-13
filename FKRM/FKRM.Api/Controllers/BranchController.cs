@@ -1,6 +1,7 @@
 ﻿using FKRM.Application.Interfaces;
 using FKRM.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 
 namespace FKRM.Api.Controllers
@@ -15,6 +16,9 @@ namespace FKRM.Api.Controllers
             _branchService = branchService;
         }
         [HttpGet]
+        [SwaggerOperation(
+            Summary = "نمایش عناوین شاخه ها",
+            Description = "لیست شاخه ها را نمایش می دهد" )]
         public IActionResult GetAll()
         {
             var branchs = _branchService.GetAll();

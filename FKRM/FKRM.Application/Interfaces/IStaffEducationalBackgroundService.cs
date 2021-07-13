@@ -15,5 +15,6 @@ namespace FKRM.Application.Interfaces
         IEnumerable<StaffEducationalBackgroundViewModel> GetPagedResponse(int pageNumber, int pageSize);
         Task<Response<int>> Update(StaffEducationalBackgroundViewModel staffEducationalBackgroundViewModel);
         Task<Response<int>> Remove(Guid id);
+        Task<Response<IEnumerable<StaffEducationalBackgroundViewModel>>> GetAllDataByStaffId(Guid id);
     }
 }

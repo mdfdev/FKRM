@@ -8,7 +8,12 @@ namespace FKRM.Application.Validation.OUType
     {
         protected void ValidateName()
         {
-            RuleFor(c => c.Name).NotEmpty().WithMessage("نام الزامی می باشد").Length(3, 20).WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
+            RuleFor(c => c.Name)
+                .NotEmpty()
+                .WithName("واحد سازمانی")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(3, 20)
+                .WithMessage("طول {PropertyName} باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

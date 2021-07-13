@@ -48,6 +48,5 @@ namespace FKRM.Mvc.Helper
                 Description = "کلمه عبور باید شامل حداقل یک حرف بزرگ باشد ('A'-'Z')."
             };
         }
-
     }
 }

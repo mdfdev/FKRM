@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\StaffEducationalBackground\" />
     <Folder Include="Common\" />
     <Folder Include="Constants\" />
     <Folder Include="Enums\" />

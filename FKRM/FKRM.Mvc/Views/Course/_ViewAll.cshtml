@@ -122,10 +122,11 @@
 <script>
     $(document).ready(function () {
         $("#courseTable").DataTable({
+            responsive: true,
             order: [[4, 'asc'], [5, 'asc'], [6, 'asc'], [7, 'asc'], [0, 'asc']],
             columnDefs: [
                 {
-                    "targets": [10, 11],
+                    "targets": [12, 13],
                     "visible": false
                 }
             ]

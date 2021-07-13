@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace FKRM.Api
 {
@@ -30,7 +31,12 @@ namespace FKRM.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "School Api", Version = "v1" });
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo { 
+                        Title = "School Api",
+                        Description = "This Api will be responsible for overall data distribution and authorization.",
+                        Version = "v1" 
+                    });
             });
             services.AddMediatR(typeof(Startup));
             services.RegisterAutoMapper();

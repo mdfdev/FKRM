@@ -71,6 +71,10 @@ namespace FKRM.Mvc
             services.AddScoped<IViewRenderService, ViewRenderService>();
             services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
             {
+                HideDuration = 20,
+                NewestOnTop = true,
+                ShowDuration = 50,
+                TapToDismiss = true,
                 Rtl = true,
                 ProgressBar = true,
                 PositionClass = ToastPositions.BottomLeft

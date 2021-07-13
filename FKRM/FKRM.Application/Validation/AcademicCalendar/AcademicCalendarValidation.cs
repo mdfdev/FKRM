@@ -9,8 +9,11 @@ namespace FKRM.Application.Validation.AcademicCalendar
         protected void ValidateName()
         {
             RuleFor(c => c.AcademicYear)
-                .NotEmpty().WithMessage("سال تحصیلی الزامی می باشد")
-                .Length(3, 20).WithMessage("طول نام باید بین 3~20 کاراکتر باشد");
+                .NotEmpty()
+                .WithName("نام شاخه")
+                .WithMessage("{PropertyName} الزامی می باشد")
+                .Length(3, 20)
+                .WithMessage("طول {PropertyName} باید بین 3~20 کاراکتر باشد");
         }
         protected void ValidateId()
         {

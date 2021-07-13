@@ -1,4 +1,5 @@
 ﻿using FKRM.Application.Interfaces;
+using FKRM.Domain.Constants;
 using FKRM.Mvc.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using System.Diagnostics;
 
 namespace FKRM.Mvc.Controllers
 {
-    [Authorize(Roles = "Basic")]
+    [Authorize(Roles = Roles.Basic)]
     public class HomeController : BaseController<HomeController> 
     {
         private readonly ILogger<HomeController> _logger;

@@ -22,6 +22,7 @@ using FKRM.Application.Commands.District;
 using FKRM.Application.Commands.AcademicDegree;
 using FKRM.Application.Commands.AcademicMajor;
 using FKRM.Application.Commands.Notification;
+using FKRM.Application.Commands.StaffEducationalBackground;
 
 namespace FKRM.Application.AutoMapper
 {
@@ -172,6 +173,11 @@ namespace FKRM.Application.AutoMapper
                 c.BirthDate, c.HiringDate, c.Email, c.Bio));
             CreateMap<StaffViewModel, DeleteStaffCommand>()
                 .ConstructUsing(c => new DeleteStaffCommand(c.Id));
+            //---------------------------------------------------
+            CreateMap<StaffEducationalBackgroundViewModel, CreateStaffEducationalBackgroundCommand>()
+              .ForMember(c => c.ModifiedDate, opt => opt.MapFrom(_ => DateTime.Now))
+              .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
+              .ConstructUsing(c => new CreateStaffEducationalBackgroundCommand(c.StaffId,c.AcademicDegreeId,c.AcademicMajorId));
             //---------------------------------------------------
             CreateMap<MajorViewModel, CreateMajorCommand>()
                 .ForMember(c => c.AddedDate, opt => opt.MapFrom(_ => DateTime.Now))
